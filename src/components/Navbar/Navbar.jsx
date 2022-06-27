@@ -3,11 +3,9 @@ import {
   MenuOutlined,
   RightOutlined,
   SearchOutlined,
-  ShoppingCartOutlined,
   TwitterOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
-import { Badge, Button, Drawer, Form, Input, Menu, Modal, Select } from 'antd';
+import { Button, Drawer, Form, Input, Modal, Select } from 'antd';
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -16,12 +14,9 @@ import vn from '../../assets/images/vietnamIcon.png';
 import './index.scss';
 
 const { Search } = Input;
-const { Option } = Select;
 const Navbar = () => {
   const [visibleDrawer, setVisibleDrawer] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isActive, setIsActive] = useState();
-  // const [value, setValue] = useState('');
   const showDrawer = () => {
     setVisibleDrawer(true);
   };
