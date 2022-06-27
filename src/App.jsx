@@ -3,18 +3,19 @@ import 'antd/dist/antd.variable.min.css';
 import React from 'react';
 
 import './App.scss';
-import { HomePage } from './pages';
+import { HomePage, LoginPage } from './pages';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#cea384', // primary color for all components
+    primaryColor: '#fc4c4c', // primary color for all components
   },
 });
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
+      {/* <HomePage /> */}
+      <LoginPage />
     </div>
   );
 }
