@@ -46,6 +46,28 @@ const Navbar = () => {
     setIsModalVisible(false);
     console.log(e);
   };
+
+  const languageOptions = [
+    {
+      key: 'en',
+      value: 'en',
+      label: (
+        <div>
+          <img src={us} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
+    },
+    {
+      key: 'vi',
+      value: 'vi',
+      label: (
+        <div>
+          <img src={vn} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
+    },
+  ];
+  const defaultLanguage = window.localStorage.getItem('lng');
   return (
     <>
       <header className="header__wrapper">
@@ -108,14 +130,9 @@ const Navbar = () => {
                 />
               </span>
               <Select
-                style={{
-                  width: 100,
-                }}
-                defaultValue="English"
-              >
-                <Option value="English">English</Option>
-                <Option value="Vietnam">Vietnam</Option>
-              </Select>
+                defaultValue={defaultLanguage}
+                options={languageOptions}
+              />
               <Link className="user__icon__link" to="/login">
                 <Button className="login__btn" type="link">
                   Login
@@ -141,6 +158,12 @@ const Navbar = () => {
                 className="navbar__search__icon"
               />
             </span>
+            <Select defaultValue={defaultLanguage} options={languageOptions} />
+            <Link className="user__icon__link" to="/login">
+              <Button size="small" className="login__btn" type="link">
+                Login
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
