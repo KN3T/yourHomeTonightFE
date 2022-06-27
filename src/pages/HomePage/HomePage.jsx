@@ -1,14 +1,14 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import { LargeButton } from '../../components';
+import { LargeButton, Navbar } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
   return (
-    <div className="homepage__container">
-      HomePage
-      <LargeButton />
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 };
 
