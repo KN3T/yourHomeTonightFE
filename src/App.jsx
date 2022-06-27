@@ -8,14 +8,16 @@ import Router from './router/Router';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#cea384', // primary color for all components
+    primaryColor: '#fc4c4c', // primary color for all components
   },
 });
 
 function App() {
   return (
     <BrowserRouter>
-      <Router />
+      <div className="App">
+        <Router />
+      </div>
     </BrowserRouter>
   );
 }
