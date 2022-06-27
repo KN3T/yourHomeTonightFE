@@ -1,12 +1,13 @@
 .room_card {
-  border-radius: 10px;
-  width: 20rem;
+  width: 18rem;
   overflow: hidden;
   .room_card_img_wrapper {
     overflow: hidden;
     // border: 1px solid black;
     .room_card_img {
       width: 100%;
+      border-radius: 10px;
+      height: 24rem;
     }
     &:hover {
       img {
@@ -24,12 +25,12 @@
       color: #777777;
     }
     .room_price {
-      color: red;
-      font-size: 30px;
-      font-weight: 600;
+      color: #fc4c4c;
+      font-size: 22px;
+      font-weight: 750;
     }
     .room_per_night {
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 400;
     }
   }
