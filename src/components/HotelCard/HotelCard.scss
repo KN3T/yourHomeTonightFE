@@ -1,0 +1,36 @@
+.room_card {
+  border-radius: 10px;
+  width: 20rem;
+  overflow: hidden;
+  .room_card_img_wrapper {
+    overflow: hidden;
+    // border: 1px solid black;
+    .room_card_img {
+      width: 100%;
+    }
+    &:hover {
+      img {
+        transition: 0.5s;
+        transform: scale(1.5);
+      }
+    }
+  }
+  .room_card_info {
+    .room_name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .room_rating {
+      color: #777777;
+    }
+    .room_price {
+      color: red;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .room_per_night {
+      font-size: 20px;
+      font-weight: 400;
+    }
+  }
+}
