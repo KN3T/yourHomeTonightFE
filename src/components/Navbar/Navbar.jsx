@@ -6,14 +6,18 @@ import {
   ShoppingCartOutlined,
   TwitterOutlined,
 } from '@ant-design/icons';
-import { Badge, Drawer, Menu } from 'antd';
+import { Badge, Drawer, Form, Input, Menu, Modal } from 'antd';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import './index.scss';
 
+const { Search } = Input;
+
 const Navbar = () => {
   const [visibleDrawer, setVisibleDrawer] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [value, setValue] = useState('');
   const showDrawer = () => {
     setVisibleDrawer(true);
   };
@@ -21,9 +25,27 @@ const Navbar = () => {
   const onClose = () => {
     setVisibleDrawer(false);
   };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onSearch = (e) => {
+    setIsModalVisible(false);
+    console.log(e);
+  };
   return (
     <>
       <header className="header__wrapper">
+        {/* navbar for desktop */}
         <div className="header__navbar__desktop">
           <div className="header__logo__wrapper">
             <TwitterOutlined className="header__logo__icon" />
@@ -33,16 +55,54 @@ const Navbar = () => {
           </div>
           <nav className="header__navigation__wrapper">
             <ul className="header__navigation__menu">
-              <li>Home</li>
-              <li>About</li>
-              <li>Room</li>
-              <li>Contact</li>
-              <li>Destination</li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? 'header__navigation__item' : ''
+                }
+              >
+                <li>Home</li>
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? 'header__navigation__item' : ''
+                }
+              >
+                <li>About</li>
+              </NavLink>
+              <NavLink
+                to="/rooms"
+                className={({ isActive }) =>
+                  isActive ? 'header__navigation__item' : ''
+                }
+              >
+                <li>Room</li>
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? 'header__navigation__item' : ''
+                }
+              >
+                <li>Contact</li>
+              </NavLink>
+              <NavLink
+                to="/destination"
+                className={({ isActive }) =>
+                  isActive ? 'header__navigation__item' : ''
+                }
+              >
+                <li>Destination</li>
+              </NavLink>
             </ul>
 
             <div className="header__navigation__icon">
               <span className="header__navigation__icon__wrapper">
-                <SearchOutlined className="navbar__search__icon" />
+                <SearchOutlined
+                  onClick={showModal}
+                  className="navbar__search__icon"
+                />
               </span>
               <span className="header__navigation__icon__wrapper">
                 <Badge count={0} showZero>
@@ -53,18 +113,8 @@ const Navbar = () => {
           </nav>
         </div>
 
+        {/* navbar for mobile */}
         <div className="header__navbar__mobile">
-          {/* <div
-          onClick={(e) => {
-            e.target.classList.remove('hamburgur');
-            e.target.classList.add('hamburgur__open__sidebar');
-          }}
-          className="hamburgur"
-        >
-          <div></div>
-          <div></div>
-          <div></div>
-        </div> */}
           <MenuOutlined onClick={showDrawer} className="hamburgur" />
           <div className="header__logo__wrapper">
             <TwitterOutlined className="header__logo__icon" />
@@ -74,7 +124,10 @@ const Navbar = () => {
           </div>
           <div className="header__navigation__icon">
             <span className="header__navigation__icon__wrapper">
-              <SearchOutlined className="navbar__search__icon" />
+              <SearchOutlined
+                onClick={showModal}
+                className="navbar__search__icon"
+              />
             </span>
             <span className="header__navigation__icon__wrapper">
               <Badge count={0} showZero>
@@ -85,28 +138,89 @@ const Navbar = () => {
         </div>
       </header>
 
-      <Drawer visible={visibleDrawer}>
+      {/* drawer for sidebar mobile */}
+      <Drawer
+        maskClosable={true}
+        keyboard={true}
+        placement="left"
+        visible={visibleDrawer}
+        closable={false}
+        onClose={onClose}
+      >
         <div className="header__sidebar__wrapper">
           <CloseOutlined onClick={onClose} className="sidebar__close__icon" />
           <ul className="sidebar__menu">
-            <li>
-              Home <RightOutlined />
-            </li>
-            <li>
-              About <RightOutlined />
-            </li>
-            <li>
-              Room <RightOutlined />
-            </li>
-            <li>
-              Contact <RightOutlined />
-            </li>
-            <li>
-              Destination <RightOutlined />
-            </li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? 'sidebar__item' : undefined
+              }
+              onClick={onClose}
+            >
+              <li>
+                Home <RightOutlined />
+              </li>
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? 'sidebar__item' : undefined
+              }
+              onClick={onClose}
+            >
+              <li>
+                About <RightOutlined />
+              </li>
+            </NavLink>
+            <NavLink
+              to="/rooms"
+              className={({ isActive }) =>
+                isActive ? 'sidebar__item' : undefined
+              }
+              onClick={onClose}
+            >
+              <li>
+                Room <RightOutlined />
+              </li>
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? 'sidebar__item' : undefined
+              }
+              onClick={onClose}
+            >
+              <li>
+                Contact <RightOutlined />
+              </li>
+            </NavLink>
+            <NavLink
+              to="/destination"
+              className={({ isActive }) =>
+                isActive ? 'sidebar__item' : undefined
+              }
+              onClick={onClose}
+            >
+              <li>
+                Destination <RightOutlined />
+              </li>
+            </NavLink>
           </ul>
         </div>
       </Drawer>
+      <Modal
+        title="  "
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <Form>
+          <Form.Item>
+            <Search onSearch={onSearch} placeholder="Search here..." />
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   );
 };

@@ -31,6 +31,11 @@
         align-items: center;
         list-style: none;
         margin-right: 1vw;
+        .header__navigation__item {
+          li {
+            color: #fc4c4c;
+          }
+        }
         li {
           margin-right: 3vw;
           border: 1px solid transparent;
@@ -39,6 +44,7 @@
           font-weight: 500;
           letter-spacing: 2px;
           cursor: pointer;
+          color: black;
           &:hover {
             color: #fc4c4c;
           }
@@ -192,47 +198,55 @@
   }
 }
 
-.header__sidebar__wrapper {
-  display: flex;
-  flex-direction: column;
+.ant-drawer-content {
   background-color: #243452;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 50vw;
-  align-items: center;
-  .sidebar__close__icon {
-    font-weight: bolder;
-    font-size: 20px;
-    color: white;
-    border: 1px solid white;
-    margin-top: 3vh;
-    padding: 0.3rem;
-    transition: 0.3s;
-    cursor: pointer;
-    &:hover {
-      color: #fc4c4c;
-      border-color: #fc4c4c;
-    }
+  .ant-drawer-header {
+    background-color: #243452;
   }
-  .sidebar__menu {
-    margin-top: 3vh;
-    list-style: none;
-    color: white;
-    width: 100%;
-    li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      font-weight: bold;
-      margin-top: 2vh;
+
+  .header__sidebar__wrapper {
+    .sidebar__close__icon {
+      font-weight: bolder;
+      font-size: 20px;
+      color: white;
+      border: 1px solid white;
+      margin-top: 3vh;
+      padding: 0.3rem;
       transition: 0.3s;
       cursor: pointer;
+      margin-left: 20px;
       &:hover {
         color: #fc4c4c;
+        border-color: #fc4c4c;
+      }
+    }
+    .sidebar__menu {
+      margin-top: 3vh;
+      list-style: none;
+      width: 100%;
+      .sidebar__item {
+        li {
+          color: #fc4c4c;
+        }
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        font-weight: bold;
+        margin-top: 2vh;
+        transition: 0.3s;
+        cursor: pointer;
+        color: white;
+        &:hover {
+          color: #fc4c4c;
+        }
       }
     }
   }
+}
+
+.ant-modal-header {
+  border-bottom: none;
 }
