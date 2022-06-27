@@ -1,8 +1,11 @@
+import { Rate } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import './HotelCard.scss';
 
-const HotelCard = () => {
+const HotelCard = ({ name, rating }) => {
+  const { t } = useTranslation();
   return (
     <div className="room_card">
       <div className="room_card_img_wrapper">
@@ -13,11 +16,14 @@ const HotelCard = () => {
         />
       </div>
       <div className="room_card_info">
-        <div className="room_name">Deluxe Contrast Room</div>
-        <div className="room_rating">Rating</div>
+        <div className="room_name">{name}</div>
+        <div className="room_rating">
+          {t('hotel.rating')}:{' '}
+          <Rate allowHalf defaultValue={2.5} value={(rating * 5) / 100} />
+        </div>
         <div>
           <span className="room_price">$250</span>
-          <span className="room_per_night"> / Night</span>
+          <span className="room_per_night"> / {t('hotel.per_night')}</span>
         </div>
       </div>
     </div>

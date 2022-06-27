@@ -1,0 +1,15 @@
+{
+  "login": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "email_placeholder": "Your email",
+    "password_placeholder": "Your password",
+    "account_link": "Do not have account?"
+  },
+  "hotel": {
+    "rating": "Rating",
+    "per_night": "Per night"
+  }
+}
