@@ -1,9 +1,9 @@
-import { axiosInstance } from '../utils/axios/axiosInstance';
+import { axiosInstance } from './axiosInstance';
 
 const loginApi = {
   login: (user) => {
     axiosInstance
-      .post('login', {
+      .post('/login', {
         email: user.email,
         password: user.password,
       })
