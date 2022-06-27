@@ -1,4 +1,4 @@
-.login {
+.register {
   &__container {
     width: 100%;
     height: 100%;
@@ -60,7 +60,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .login {
+  .register {
     &__container {
       padding: 50px;
     }
@@ -68,7 +68,7 @@
 }
 
 @media screen and (max-width: 375px) {
-  .login {
+  .register {
     &__container {
       padding: 20px;
     }

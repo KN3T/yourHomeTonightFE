@@ -1,9 +1,10 @@
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.scss';
-import { HomePage, LoginPage } from './pages';
+import Router from './router/Router';
 
 ConfigProvider.config({
   theme: {
@@ -13,10 +14,11 @@ ConfigProvider.config({
 
 function App() {
   return (
-    <div className="App">
-      {/* <HomePage /> */}
-      <LoginPage />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Router />
+      </div>
+    </BrowserRouter>
   );
 }
 

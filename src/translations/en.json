@@ -6,6 +6,14 @@
     "password": "Password",
     "email_placeholder": "Your email",
     "password_placeholder": "Your password",
-    "account_link": "Do not have account?"
+    "hotel_name": "Hotel name",
+    "name_placeholder": "Your hotel name",
+    "user_type": "User Type",
+    "guest": "Guest",
+    "owner": "Hotel Owner",
+    "not_have_account": "Do not have account?",
+    "already_have_account": "You already have an account?",
+    "register_now": "Register now!",
+    "login_now": "Login now!"
   }
 }

@@ -1,6 +1,7 @@
 import { Button, Form, Input, message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { loginApi } from '../../api';
 import './LoginPage.scss';
@@ -83,8 +84,8 @@ const LoginPage = () => {
           </Form.Item>
           <Form.Item>
             <div className="login__form__link">
-              <span>{t('login.account_link')}</span>
-              <Button type="link">{t('login.register')}</Button>
+              <span>{t('login.not_have_account')}</span>
+              <Link to="/register">{t('login.register_now')}</Link>
             </div>
           </Form.Item>
           <Form.Item>
