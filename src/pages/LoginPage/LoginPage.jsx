@@ -1,17 +1,28 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import { loginApi } from '../../api';
 import './LoginPage.scss';
 
 const LoginPage = () => {
   const [loadingButton, setLoadingButton] = useState(false);
+  const { t } = useTranslation();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     setLoadingButton(true);
-    setTimeout(() => {
-      console.log(values);
+    const response = await loginApi.login({
+      email: values.email,
+      password: values.password,
+    });
+
+    if (response.status === 200) {
       setLoadingButton(false);
-    }, 3000);
+      message.success('Login successfully');
+    } else {
+      setLoadingButton(false);
+      message.error('Email or password is invalid');
+    }
   };
 
   const onFinishFailed = () => {
@@ -26,7 +37,7 @@ const LoginPage = () => {
   return (
     <div className="login__container">
       <div className="login__wrapper">
-        <h2 className="login__form__title">Login</h2>
+        <h2 className="login__form__title">{t('login.login')}</h2>
         <Form
           labelCol={layout.labelCol}
           wrapperCol={layout.wrapperCol}
@@ -42,7 +53,7 @@ const LoginPage = () => {
           autoComplete="off"
         >
           <Form.Item
-            label="Email"
+            label={t('login.email')}
             name="email"
             rules={[
               {
@@ -55,11 +66,11 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input placeholder="Email" />
+            <Input placeholder={t('login.email_placeholder')} />
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label={t('login.password')}
             name="password"
             rules={[
               {
@@ -68,12 +79,12 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input.Password placeholder="Password" />
+            <Input.Password placeholder={t('login.password_placeholder')} />
           </Form.Item>
           <Form.Item>
             <div className="login__form__link">
-              <span>Do not have account?</span>
-              <Button type="link">Register</Button>
+              <span>{t('login.account_link')}</span>
+              <Button type="link">{t('login.register')}</Button>
             </div>
           </Form.Item>
           <Form.Item>
@@ -83,7 +94,7 @@ const LoginPage = () => {
               className="submit__button"
               loading={loadingButton}
             >
-              Login
+              {t('login.login')}
             </Button>
           </Form.Item>
         </Form>

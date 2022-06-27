@@ -1,0 +1,11 @@
+{
+  "login": {
+    "login": "Đăng nhập",
+    "register": "Đăng kí",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "email_placeholder": "Email của bạn",
+    "password_placeholder": "Mật khẩu của bạn",
+    "account_link": "Chưa có tài khoản?"
+  }
+}
