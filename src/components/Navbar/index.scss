@@ -78,9 +78,19 @@
           .navbar__cart__icon {
             font-size: 20px;
           }
+          .navbar__user__icon {
+            font-size: 20px;
+          }
           padding: 0;
           &:last-child {
             margin-right: 0;
+          }
+        }
+        .user__icon__link {
+          .login__btn {
+            color: #fc4c4c;
+            font-weight: bold;
+            letter-spacing: 2px;
           }
         }
       }
@@ -102,55 +112,6 @@
       font-size: 18px;
       cursor: pointer;
     }
-    // .hamburgur {
-    //   background-color: #fc4c4c;
-    //   padding: 4px 5px;
-    //   width: 1.9rem;
-    //   height: 1.8rem;
-    //   border-radius: 3px;
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   justify-content: center;
-    //   cursor: pointer;
-    //   div {
-    //     width: 80%;
-    //     height: 2px;
-    //     background-color: white;
-    //     &:nth-child(2) {
-    //       height: 1px;
-    //       margin: 4px 0;
-    //     }
-    //   }
-    // }
-    // .hamburgur__open__sidebar {
-    //   background-color: #fc4c4c;
-    //   padding: 4px 5px;
-    //   width: 1.9rem;
-    //   height: 1.8rem;
-    //   border-radius: 3px;
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   justify-content: center;
-    //   cursor: pointer;
-    //   transition: 2s;
-    //   div {
-    //     width: 80%;
-    //     height: 2px;
-    //     background-color: white;
-    //     &:nth-child(1) {
-    //       transform: rotate(-40deg);
-    //     }
-    //     &:nth-child(3) {
-    //       transform: rotate(40deg);
-    //     }
-    //     &:nth-child(2) {
-    //       display: none;
-    //     }
-    //   }
-    // }
-
     .header__logo__wrapper {
       display: flex;
       align-items: center;
@@ -167,6 +128,7 @@
     .header__navigation__icon {
       display: flex;
       align-items: center;
+
       .header__navigation__icon__wrapper {
         margin-right: 1vw;
         display: flex;
@@ -198,6 +160,22 @@
     }
     .header__navbar__desktop {
       display: none;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .header__navbar__mobile {
+      .header__navigation__icon {
+        .header__navigation__icon__wrapper {
+          width: 2rem;
+          height: 2rem;
+          .navbar__search__icon {
+            font-size: 17px;
+          }
+          .navbar__cart__icon {
+            font-size: 17px;
+          }
+        }
+      }
     }
   }
 }
@@ -253,4 +231,10 @@
 
 .ant-modal-header {
   border-bottom: none;
+}
+
+@media screen and (min-width: 820px) {
+  .modal__mobile__device {
+    display: none;
+  }
 }

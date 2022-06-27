@@ -5,18 +5,22 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
   TwitterOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
-import { Badge, Drawer, Form, Input, Menu, Modal } from 'antd';
+import { Badge, Button, Drawer, Form, Input, Menu, Modal, Select } from 'antd';
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import us from '../../assets/images/englandIcon.jpg';
+import vn from '../../assets/images/vietnamIcon.png';
 import './index.scss';
 
 const { Search } = Input;
-
+const { Option } = Select;
 const Navbar = () => {
   const [visibleDrawer, setVisibleDrawer] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isActive, setIsActive] = useState();
   // const [value, setValue] = useState('');
   const showDrawer = () => {
     setVisibleDrawer(true);
@@ -96,7 +100,6 @@ const Navbar = () => {
                 <li>Destination</li>
               </NavLink>
             </ul>
-
             <div className="header__navigation__icon">
               <span className="header__navigation__icon__wrapper">
                 <SearchOutlined
@@ -104,11 +107,20 @@ const Navbar = () => {
                   className="navbar__search__icon"
                 />
               </span>
-              <span className="header__navigation__icon__wrapper">
-                <Badge count={0} showZero>
-                  <ShoppingCartOutlined className="navbar__cart__icon" />
-                </Badge>
-              </span>
+              <Select
+                style={{
+                  width: 100,
+                }}
+                defaultValue="English"
+              >
+                <Option value="English">English</Option>
+                <Option value="Vietnam">Vietnam</Option>
+              </Select>
+              <Link className="user__icon__link" to="/login">
+                <Button className="login__btn" type="link">
+                  Login
+                </Button>
+              </Link>
             </div>
           </nav>
         </div>
@@ -129,17 +141,13 @@ const Navbar = () => {
                 className="navbar__search__icon"
               />
             </span>
-            <span className="header__navigation__icon__wrapper">
-              <Badge count={0} showZero>
-                <ShoppingCartOutlined className="navbar__cart__icon" />
-              </Badge>
-            </span>
           </div>
         </div>
       </header>
 
       {/* drawer for sidebar mobile */}
       <Drawer
+        className="modal__mobile__device"
         maskClosable={true}
         keyboard={true}
         placement="left"
@@ -210,6 +218,7 @@ const Navbar = () => {
       </Drawer>
       <Modal
         title="  "
+        mask={false}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
