@@ -1,4 +1,8 @@
 {
+  "hotel": {
+    "rating": "Đánh giá",
+    "per_night": "Đêm"
+  },
   "login": {
     "login": "Đăng nhập",
     "register": "Đăng kí",
