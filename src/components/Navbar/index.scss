@@ -1,6 +1,9 @@
 .header__wrapper {
   font-size: 16px;
-
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
   .header__navbar__desktop {
     display: flex;
     justify-content: space-between;
@@ -11,6 +14,7 @@
     .header__logo__wrapper {
       display: flex;
       align-items: center;
+      color: white;
       .header__logo__icon {
         margin-right: 1vw;
       }
@@ -19,6 +23,7 @@
         font-weight: 600;
         color: black;
         font-weight: 900;
+        color: white;
         .logo__emphasize {
           color: #fc4c4c;
         }
@@ -48,7 +53,7 @@
           font-weight: 500;
           letter-spacing: 2px;
           cursor: pointer;
-          color: black;
+          color: white;
           &:hover {
             color: #fc4c4c;
           }
@@ -88,7 +93,7 @@
         }
         .user__icon__link {
           .login__btn {
-            color: #fc4c4c;
+            color: white;
             font-weight: bold;
             letter-spacing: 2px;
           }
@@ -117,12 +122,17 @@
       align-items: center;
       .header__logo__icon {
         margin-right: 1vw;
+        color: white;
       }
 
       .header__logo__link {
         letter-spacing: 3px;
         font-weight: bold;
         color: black;
+        color: white;
+        .logo__emphasize {
+          color: #fc4c4c;
+        }
       }
     }
     .header__navigation__icon {
@@ -152,6 +162,11 @@
           margin-right: 0;
         }
       }
+      .user__icon__link {
+        .login__btn {
+          font-weight: bold;
+        }
+      }
     }
   }
   @media screen and (max-width: 820px) {
@@ -162,7 +177,7 @@
       display: none;
     }
   }
-  @media screen and (max-width: 350px) {
+  @media screen and (max-width: 400px) {
     .header__navbar__mobile {
       .header__navigation__icon {
         .header__navigation__icon__wrapper {
@@ -175,6 +190,13 @@
             font-size: 17px;
           }
         }
+      }
+    }
+  }
+  @media screen and (max-width: 350px) {
+    .header__navbar__mobile {
+      .header__logo__wrapper {
+        display: none;
       }
     }
   }

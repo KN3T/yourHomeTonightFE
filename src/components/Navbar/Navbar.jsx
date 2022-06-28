@@ -143,7 +143,7 @@ const Navbar = () => {
           <div className="header__logo__wrapper">
             <TwitterOutlined className="header__logo__icon" />
             <Link to="/" className="header__logo__link">
-              Yourhome29.
+              Yourhome <span className="logo__emphasize">29.</span>
             </Link>
           </div>
           <div className="header__navigation__icon">
