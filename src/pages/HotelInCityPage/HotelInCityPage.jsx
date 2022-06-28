@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, Layout, Slider } from 'antd';
+import { Button, DatePicker, Form, Input, Layout, Rate, Slider } from 'antd';
 import React from 'react';
 
 import './HotelInCityPage.scss';
@@ -30,15 +30,22 @@ const HotelInCityPage = () => {
             <div className="filter__item">
               <div className="filter__price">
                 <h3 className="filter__title">Your Budget (pernight)</h3>
-                <Slider range min={0} max={4000000} tooltipVisible />
+                <Slider
+                  className="filter__slider"
+                  range
+                  defaultValue={[0, 1000000]}
+                  min={0}
+                  max={4000000}
+                  tooltipVisible
+                />
               </div>
             </div>
             <div className="filter__item">
               <div className="filter__rating">
                 <h3 className="filter__title">Start Rating</h3>
+                <Rate allowHalf defaultValue={1} />
               </div>
             </div>
-            <div className="filter__item"></div>
           </div>
         </Sider>
         <Content>

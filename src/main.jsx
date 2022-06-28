@@ -9,7 +9,8 @@ import './index.scss';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#fc4c4c', // primary color for all components
+    // primaryColor: '#fc4c4c', // primary color for all components
+    primaryColor: '#f7660c',
   },
 });
 
