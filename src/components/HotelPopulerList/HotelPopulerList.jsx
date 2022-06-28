@@ -36,7 +36,7 @@ const HotelPopulerList = () => {
             <Col
               xxl={8}
               xl={8}
-              lg={8}
+              lg={12}
               md={12}
               sm={24}
               xs={24}

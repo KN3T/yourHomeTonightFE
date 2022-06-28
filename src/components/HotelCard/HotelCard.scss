@@ -11,6 +11,7 @@
     border-radius: 10px;
     .room_card_img {
       height: 100%;
+      object-fit: cover;
     }
     &:hover {
       img {
@@ -53,6 +54,7 @@
     &_img_wrapper {
       &_img {
         height: 25rem;
+        object-fit: cover;
       }
     }
   }
@@ -64,6 +66,7 @@
     &_img_wrapper {
       &_img {
         height: 25rem;
+        object-fit: cover;
       }
     }
   }
@@ -75,6 +78,7 @@
     &_img_wrapper {
       &_img {
         height: 25rem;
+        object-fit: cover;
       }
     }
   }
@@ -86,39 +90,43 @@
     &_img_wrapper {
       &_img {
         height: 24rem;
+        object-fit: cover;
       }
     }
   }
 }
 
-@media screen and (max-width: 1159px) {
+@media screen and (max-width: 1197px) {
   .room_card {
-    width: 18rem;
+    width: 24rem;
     &_img_wrapper {
       &_img {
         height: 24rem;
+        object-fit: cover;
       }
     }
   }
 }
 
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 915px) {
+  .room_card {
+    width: 20rem;
+    &_img_wrapper {
+      &_img {
+        height: 22rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 764px) {
   .room_card {
     width: 24rem;
     &_img_wrapper {
       &_img {
         height: 22rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .room_card {
-    width: 24rem;
-    &_img_wrapper {
-      &_img {
-        height: 21rem;
+        object-fit: cover;
       }
     }
   }
@@ -130,6 +138,7 @@
     &_img_wrapper {
       &_img {
         height: 20rem;
+        object-fit: cover;
       }
     }
   }
