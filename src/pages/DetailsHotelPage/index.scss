@@ -1,0 +1,19 @@
+.details__hotel__wrapper {
+  padding: 0 15vw;
+  .details__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .details__title__left {
+      .details__title__left__rating {
+        background-color: #148f50;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+  .gallery__image {
+  }
+}

@@ -62,7 +62,10 @@ const Navbar = () => {
       ),
     },
   ];
-  const defaultLanguage = window.localStorage.getItem('lng');
+  const defaultLanguage = navigator.language.slice(
+    0,
+    navigator.language.indexOf('-')
+  );
   return (
     <>
       <header className="header__wrapper">
