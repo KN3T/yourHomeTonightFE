@@ -46,6 +46,7 @@ const MainCarousel = () => {
       navigation
       grabCursor={true}
       effect="coverflow"
+      loop="infinite"
     >
       {data.map((item, index) => (
         <SwiperSlide className="carousel__item" key={index}>

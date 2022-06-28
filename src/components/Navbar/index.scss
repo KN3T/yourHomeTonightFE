@@ -4,6 +4,7 @@
   z-index: 10;
   left: 0;
   top: 0;
+  background: rgba(37, 48, 65, 0.2);
   .header__navbar__desktop {
     display: flex;
     justify-content: space-between;
@@ -56,9 +57,6 @@
           color: white;
           &:hover {
             color: var(--primary-color);
-          }
-          &:last-child {
-            // margin-right: 0;
           }
         }
       }

@@ -28,6 +28,12 @@ const HotelInCityPage = () => {
           <div className="filter__section">
             <h2 className="filter__heading">Filter by:</h2>
             <div className="filter__item">
+              <div className="filter__rating">
+                <h3 className="filter__title">Start Rating</h3>
+                <Rate allowHalf defaultValue={1} />
+              </div>
+            </div>
+            <div className="filter__item">
               <div className="filter__price">
                 <h3 className="filter__title">Your Budget (pernight)</h3>
                 <Slider
@@ -38,12 +44,6 @@ const HotelInCityPage = () => {
                   max={4000000}
                   tooltipVisible
                 />
-              </div>
-            </div>
-            <div className="filter__item">
-              <div className="filter__rating">
-                <h3 className="filter__title">Start Rating</h3>
-                <Rate allowHalf defaultValue={1} />
               </div>
             </div>
           </div>
