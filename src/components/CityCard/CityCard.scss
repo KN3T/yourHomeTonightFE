@@ -1,0 +1,35 @@
+.city_card {
+  width: 15rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &_img_wrapper {
+    overflow: hidden;
+    height: 15rem;
+    width: 100%;
+    border-radius: 5px;
+    .city_card_img {
+      height: 100%;
+      object-fit: cover;
+    }
+    &:hover {
+      img {
+        transition: all 0.5s ease;
+        transform: scale(1.5);
+      }
+    }
+  }
+  &_info {
+    width: 100%;
+    .city_name {
+      padding-top: 5px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .city_total {
+      color: #777777;
+      font-size: 14px;
+    }
+  }
+}

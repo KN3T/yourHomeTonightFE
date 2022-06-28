@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { HotelPopulerList, MainCarousel, Navbar } from '../../components';
+import {
+  CityCard,
+  CityIntro,
+  HotelPopulerList,
+  MainCarousel,
+  Navbar,
+} from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
@@ -9,6 +15,8 @@ const HomePage = () => {
       <Navbar />
       <MainCarousel />
       <HotelPopulerList />
+      <CityCard />
+      <CityIntro />
     </div>
   );
 };
