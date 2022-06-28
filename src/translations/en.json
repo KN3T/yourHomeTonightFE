@@ -2,5 +2,24 @@
   "hotel": {
     "rating": "Rating",
     "per_night": "Night"
+  },
+  "login": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "email_placeholder": "Your email",
+    "password_placeholder": "Your password",
+    "hotel_name": "Hotel name",
+    "name_placeholder": "Your hotel name",
+    "user_type": "User Type",
+    "full_name": "Full name",
+    "full_name_placeholder": "Your full name",
+    "guest": "Guest",
+    "owner": "Hotel Owner",
+    "not_have_account": "Do not have account?",
+    "already_have_account": "You already have an account?",
+    "register_now": "Register now!",
+    "login_now": "Login now!"
   }
 }

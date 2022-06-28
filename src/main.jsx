@@ -4,11 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
+import './i18n';
 import './index.scss';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#cea384', // primary color for all components
+    primaryColor: '#fc4c4c', // primary color for all components
   },
 });
 

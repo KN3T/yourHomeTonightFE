@@ -20,7 +20,7 @@ const HotelPopulerList = () => {
   return (
     <div className="hotel_populer_list">
       <Title className="title_section" level={2}>
-        Our Most Populer Room
+        Our Most Populer Hotel
       </Title>
       <Row className="content_section">
         <Col span={12} offset={6}>

@@ -15,7 +15,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: localStorage.getItem('lng'),
+  lng: localStorage.getItem('lng') ? 'en' : 'vi',
   fallbackLng: 'en',
   supportedLngs: ['en', 'vi'],
   interpolation: {

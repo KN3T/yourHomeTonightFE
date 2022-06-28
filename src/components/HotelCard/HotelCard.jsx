@@ -22,7 +22,9 @@ const HotelCard = ({ name, rating }) => {
           <Rate allowHalf defaultValue={2.5} value={(rating * 5) / 100} />
         </div>
         <div>
-          <span className="room_price">$250</span>
+          {' '}
+          <span className="room_start">Start from:</span>
+          <span className="room_price"> $250</span>
           <span className="room_per_night"> / {t('hotel.per_night')}</span>
         </div>
       </div>

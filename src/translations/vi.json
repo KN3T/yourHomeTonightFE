@@ -2,5 +2,24 @@
   "hotel": {
     "rating": "Đánh giá",
     "per_night": "Đêm"
+  },
+  "login": {
+    "login": "Đăng nhập",
+    "register": "Đăng kí",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "email_placeholder": "Email của bạn",
+    "password_placeholder": "Mật khẩu của bạn",
+    "hotel_name": "Tên khách sạn",
+    "name_placeholder": "Tên khách sạn của bạn",
+    "user_type": "Loại người dùng",
+    "full_name": "Họ và tên",
+    "full_name_placeholder": "Họ và tên của bạn",
+    "guest": "Khách",
+    "owner": "Chủ khách sạn",
+    "not_have_account": "Chưa có tài khoản?",
+    "already_have_account": "Bạn đã có tài khoản?",
+    "register_now": "Đăng kí ngay!",
+    "login_now": "Đăng nhập ngay!"
   }
 }

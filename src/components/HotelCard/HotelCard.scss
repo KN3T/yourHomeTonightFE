@@ -31,19 +31,58 @@
     }
     .room_price {
       color: #fc4c4c;
-      font-size: 25px;
+      font-size: 28px;
       font-weight: 750;
     }
     .room_per_night {
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 500;
+      color: #777777;
+    }
+    .room_start {
+      font-size: 16px;
+      font-weight: 500;
+      color: #777777;
     }
   }
 }
 
-@media screen and (max-width: 1266px) {
+@media screen and (max-width: 1412px) {
   .room_card {
-    width: 20rem;
+    width: 23rem;
+    .room_card_img_wrapper {
+      .room_card_img {
+        height: 25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1310px) {
+  .room_card {
+    width: 22rem;
+    .room_card_img_wrapper {
+      .room_card_img {
+        height: 25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1161px) {
+  .room_card {
+    width: 21rem;
+    .room_card_img_wrapper {
+      .room_card_img {
+        height: 25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1227px) {
+  .room_card {
+    width: 18rem;
     .room_card_img_wrapper {
       .room_card_img {
         height: 25rem;
@@ -54,7 +93,7 @@
 
 @media screen and (max-width: 1045px) {
   .room_card {
-    width: 18rem;
+    width: 17rem;
     .room_card_img_wrapper {
       .room_card_img {
         height: 24rem;
@@ -65,7 +104,7 @@
 
 @media screen and (max-width: 664px) {
   .room_card {
-    width: 18rem;
+    width: 16rem;
     .room_card_img_wrapper {
       .room_card_img {
         height: 22rem;
@@ -76,7 +115,7 @@
 
 @media screen and (max-width: 650px) {
   .room_card {
-    width: 16rem;
+    width: 15rem;
     .room_card_img_wrapper {
       .room_card_img {
         height: 21rem;
