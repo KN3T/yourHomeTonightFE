@@ -85,12 +85,12 @@ const Navbar = () => {
                 <li>Home</li>
               </NavLink>
               <NavLink
-                to="/about"
+                to="/hotels"
                 className={({ isActive }) =>
                   isActive ? 'header__navigation__item' : ''
                 }
               >
-                <li>About</li>
+                <li>Hotels</li>
               </NavLink>
               <NavLink
                 to="/rooms"
@@ -188,14 +188,14 @@ const Navbar = () => {
               </li>
             </NavLink>
             <NavLink
-              to="/about"
+              to="/hotels"
               className={({ isActive }) =>
                 isActive ? 'sidebar__item' : undefined
               }
               onClick={onClose}
             >
               <li>
-                About <RightOutlined />
+                Hotel <RightOutlined />
               </li>
             </NavLink>
             <NavLink
