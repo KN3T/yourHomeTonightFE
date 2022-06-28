@@ -1,4 +1,4 @@
-import { Button, Form, Select, message } from 'antd';
+import { Button, Form, Select, Steps, message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -7,17 +7,45 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import './RegisterPage.scss';
 
 const { Option } = Select;
+const { Step } = Steps;
 
 const RegisterPage = () => {
-  const [step, setStep] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
   const [isHotel, setIsHotel] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [currentType, setCurrentType] = useState('guest');
+
   const { t } = useTranslation();
 
+  const layout = {
+    labelCol: { span: { sm: 24, md: 8, lg: 6 } },
+    wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
+  };
+
+  const steps = [
+    {
+      title: 'Choose user type',
+    },
+    {
+      title: 'Fill information',
+    },
+  ];
+
+  const onClickNextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const onClickPreStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
   const handleChange = (value) => {
+    console.log(value);
     if (value === 'hotel') {
+      setCurrentType('hotel');
       setIsHotel(true);
-    } else {
+    } else if (value === 'guest') {
+      setCurrentType('guest');
       setIsHotel(false);
     }
   };
@@ -38,16 +66,15 @@ const RegisterPage = () => {
     console.log('something went wrong');
   };
 
-  const layout = {
-    labelCol: { span: { sm: 24, md: 8, lg: 6 } },
-    wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
-  };
-
   return (
     <div className="register__container">
       <div className="register__wrapper">
         <h2 className="register__form__title">{t('login.register')}</h2>
-        <h2>Step {step}</h2>
+        <Steps current={currentStep}>
+          {steps.map((step) => {
+            return <Step key={step.title} title={step.title} />;
+          })}
+        </Steps>
         <Form
           labelCol={layout.labelCol}
           wrapperCol={layout.wrapperCol}
@@ -62,10 +89,10 @@ const RegisterPage = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          {step === 1 && (
-            <Form.Item label={t('login.user_type')} name="type">
+          {currentStep === 0 && (
+            <Form.Item>
               <Select
-                defaultValue="guest"
+                defaultValue={currentType}
                 style={{
                   width: '100%',
                 }}
@@ -77,10 +104,10 @@ const RegisterPage = () => {
             </Form.Item>
           )}
 
-          {step === 2 ? (
+          {currentStep === 1 ? (
             <>
               <RegisterForm loading={loadingButton} isHotel={isHotel} />
-              <Button onClick={() => setStep(1)}>Back</Button>
+              <Button onClick={onClickPreStep}>Back</Button>
             </>
           ) : (
             <>
@@ -90,7 +117,7 @@ const RegisterPage = () => {
                   <Link to="/login">{t('login.login_now')}</Link>
                 </div>
               </Form.Item>
-              <Button type="primary" onClick={() => setStep(2)}>
+              <Button type="primary" onClick={onClickNextStep}>
                 Next
               </Button>
             </>
