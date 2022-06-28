@@ -6,3 +6,4 @@ export { default as Navbar } from './Navbar/Navbar';
 export { default as ClientLayout } from './ClientLayout/ClientLayout';
 export { default as MainCarousel } from './Carousel/MainCarousel/MainCarousel';
 export { default as Button } from './Button/Button';
+export { default as HotelList } from './HotelList/HotelList'
