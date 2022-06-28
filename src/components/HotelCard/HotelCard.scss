@@ -1,16 +1,16 @@
 .room_card {
-  width: 25rem;
+  width: 24rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .room_card_img_wrapper {
+  &_img_wrapper {
     overflow: hidden;
+    height: 28rem;
+    width: 100%;
     border-radius: 10px;
     .room_card_img {
-      width: 100%;
-      border-radius: 10px;
-      height: 30rem;
+      height: 100%;
     }
     &:hover {
       img {
@@ -19,7 +19,7 @@
       }
     }
   }
-  .room_card_info {
+  &_info {
     width: 100%;
     .room_name {
       font-size: 30px;
@@ -50,8 +50,8 @@
 @media screen and (max-width: 1412px) {
   .room_card {
     width: 23rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    &_img_wrapper {
+      &_img {
         height: 25rem;
       }
     }
@@ -61,52 +61,52 @@
 @media screen and (max-width: 1310px) {
   .room_card {
     width: 22rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    &_img_wrapper {
+      &_img {
         height: 25rem;
       }
     }
   }
 }
 
-@media screen and (max-width: 1161px) {
+@media screen and (max-width: 1256px) {
   .room_card {
     width: 21rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    &_img_wrapper {
+      &_img {
         height: 25rem;
       }
     }
   }
 }
 
-@media screen and (max-width: 1227px) {
+@media screen and (max-width: 1206px) {
   .room_card {
-    width: 18rem;
-    .room_card_img_wrapper {
-      .room_card_img {
-        height: 25rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1045px) {
-  .room_card {
-    width: 17rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    width: 21rem;
+    &_img_wrapper {
+      &_img {
         height: 24rem;
       }
     }
   }
 }
 
-@media screen and (max-width: 664px) {
+@media screen and (max-width: 1159px) {
   .room_card {
-    width: 16rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    width: 18rem;
+    &_img_wrapper {
+      &_img {
+        height: 24rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .room_card {
+    width: 24rem;
+    &_img_wrapper {
+      &_img {
         height: 22rem;
       }
     }
@@ -115,9 +115,9 @@
 
 @media screen and (max-width: 650px) {
   .room_card {
-    width: 15rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    width: 24rem;
+    &_img_wrapper {
+      &_img {
         height: 21rem;
       }
     }
@@ -126,9 +126,9 @@
 
 @media screen and (max-width: 334px) {
   .room_card {
-    width: 14rem;
-    .room_card_img_wrapper {
-      .room_card_img {
+    width: 22rem;
+    &_img_wrapper {
+      &_img {
         height: 20rem;
       }
     }
