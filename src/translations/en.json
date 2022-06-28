@@ -1,4 +1,8 @@
 {
+  "hotel": {
+    "rating": "Rating",
+    "per_night": "Night"
+  },
   "login": {
     "login": "Login",
     "register": "Register",
