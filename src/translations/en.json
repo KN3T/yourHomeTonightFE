@@ -9,6 +9,8 @@
     "hotel_name": "Hotel name",
     "name_placeholder": "Your hotel name",
     "user_type": "User Type",
+    "full_name": "Full name",
+    "full_name_placeholder": "Your full name",
     "guest": "Guest",
     "owner": "Hotel Owner",
     "not_have_account": "Do not have account?",

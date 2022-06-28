@@ -9,6 +9,8 @@
     "hotel_name": "Tên khách sạn",
     "name_placeholder": "Tên khách sạn của bạn",
     "user_type": "Loại người dùng",
+    "full_name": "Họ và tên",
+    "full_name_placeholder": "Họ và tên của bạn",
     "guest": "Khách",
     "owner": "Chủ khách sạn",
     "not_have_account": "Chưa có tài khoản?",

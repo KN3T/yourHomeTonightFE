@@ -1,12 +1,11 @@
-import { Button, Form, Select, Steps, message } from 'antd';
+import { Steps, message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import { RegisterForm } from '../../components';
 import './RegisterPage.scss';
 
-const { Option } = Select;
 const { Step } = Steps;
 
 const RegisterPage = () => {
@@ -16,11 +15,7 @@ const RegisterPage = () => {
   const [currentType, setCurrentType] = useState('guest');
 
   const { t } = useTranslation();
-
-  const layout = {
-    labelCol: { span: { sm: 24, md: 8, lg: 6 } },
-    wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
-  };
+  const navigate = useNavigate();
 
   const steps = [
     {
@@ -40,7 +35,6 @@ const RegisterPage = () => {
   };
 
   const handleChange = (value) => {
-    console.log(value);
     if (value === 'hotel') {
       setCurrentType('hotel');
       setIsHotel(true);
@@ -58,7 +52,8 @@ const RegisterPage = () => {
         isHotel: isHotel,
       });
       setLoadingButton(false);
-      message.success('Login successfully');
+      navigate('/login');
+      message.success('Register successfully');
     }, 3000);
   };
 
@@ -75,54 +70,17 @@ const RegisterPage = () => {
             return <Step key={step.title} title={step.title} />;
           })}
         </Steps>
-        <Form
-          labelCol={layout.labelCol}
-          wrapperCol={layout.wrapperCol}
-          className="register__form"
-          name="basic"
-          initialValues={{
-            remember: true,
-          }}
-          layout="vertical"
-          size="large"
+        <RegisterForm
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          {currentStep === 0 && (
-            <Form.Item>
-              <Select
-                defaultValue={currentType}
-                style={{
-                  width: '100%',
-                }}
-                onChange={handleChange}
-              >
-                <Option value="guest">{t('login.guest')}</Option>
-                <Option value="hotel">{t('login.owner')}</Option>
-              </Select>
-            </Form.Item>
-          )}
-
-          {currentStep === 1 ? (
-            <>
-              <RegisterForm loading={loadingButton} isHotel={isHotel} />
-              <Button onClick={onClickPreStep}>Back</Button>
-            </>
-          ) : (
-            <>
-              <Form.Item>
-                <div className="register__form__link">
-                  <span>{t('login.already_have_account')}</span>
-                  <Link to="/login">{t('login.login_now')}</Link>
-                </div>
-              </Form.Item>
-              <Button type="primary" onClick={onClickNextStep}>
-                Next
-              </Button>
-            </>
-          )}
-        </Form>
+          handleChange={handleChange}
+          onClickNextStep={onClickNextStep}
+          onClickPreStep={onClickPreStep}
+          currentType={currentType}
+          currentStep={currentStep}
+          loading={loadingButton}
+          isHotel={isHotel}
+        />
       </div>
     </div>
   );

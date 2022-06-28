@@ -1,3 +1,2 @@
-import LargeButton from './LargeButton/LargeButton';
-
-export { LargeButton };
+export { default as LoginForm } from './LoginForm/LoginForm';
+export { default as RegisterForm } from './RegisterForm/RegisterForm';

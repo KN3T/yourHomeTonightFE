@@ -1,28 +1,38 @@
-import { Button, Form, Input, message } from 'antd';
+import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { loginApi } from '../../api';
+import { LoginForm } from '../../components';
 import './LoginPage.scss';
 
 const LoginPage = () => {
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoadingButton(true);
-    const response = await loginApi.login({
-      email: values.email,
-      password: values.password,
-    });
-
-    if (response.status === 200) {
+    try {
+      const response = await loginApi.login({
+        email: values.email,
+        password: values.password,
+      });
+      const status = await response.data.status;
+      const data = await response.data;
+      if (status === 'success') {
+        localStorage.setItem('email', data.data.email);
+        localStorage.setItem('role', data.data.role);
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('fullName', data.data.fullName);
+        setLoadingButton(false);
+        navigate('/');
+        message.success('Login successfully');
+      }
+    } catch (error) {
       setLoadingButton(false);
-      message.success('Login successfully');
-    } else {
-      setLoadingButton(false);
-      message.error('Email or password is invalid');
+      message.error(error.response.data.message);
     }
   };
 
@@ -30,75 +40,15 @@ const LoginPage = () => {
     console.log('something went wrong');
   };
 
-  const layout = {
-    labelCol: { span: { sm: 24, md: 8, lg: 6 } },
-    wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
-  };
-
   return (
     <div className="login__container">
       <div className="login__wrapper">
         <h2 className="login__form__title">{t('login.login')}</h2>
-        <Form
-          labelCol={layout.labelCol}
-          wrapperCol={layout.wrapperCol}
-          className="login__form"
-          name="basic"
-          initialValues={{
-            remember: true,
-          }}
-          layout="vertical"
-          size="large"
+        <LoginForm
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item
-            label={t('login.email')}
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter your email!',
-              },
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!',
-              },
-            ]}
-          >
-            <Input placeholder={t('login.email_placeholder')} />
-          </Form.Item>
-
-          <Form.Item
-            label={t('login.password')}
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter your password!',
-              },
-            ]}
-          >
-            <Input.Password placeholder={t('login.password_placeholder')} />
-          </Form.Item>
-          <Form.Item>
-            <div className="login__form__link">
-              <span>{t('login.not_have_account')}</span>
-              <Link to="/register">{t('login.register_now')}</Link>
-            </div>
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="submit__button"
-              loading={loadingButton}
-            >
-              {t('login.login')}
-            </Button>
-          </Form.Item>
-        </Form>
+          loadingButton={loadingButton}
+        />
       </div>
     </div>
   );
