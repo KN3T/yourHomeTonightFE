@@ -12,7 +12,7 @@ const HotelCard = ({ name, rating }) => {
         <img
           className="room_card_img"
           src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/328270670.jpg?k=e1d9d748699b1aa3257fb190da472def6689647b01a3c540e219fab6b771c184&o=&hp=1"
-          alt=""
+          alt="room_card_img"
         />
       </div>
       <div className="room_card_info">

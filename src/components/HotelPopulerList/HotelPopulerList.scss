@@ -1,9 +1,17 @@
 .hotel_populer_list {
+  padding: 0 5vw;
   & > h2 {
     text-align: center;
   }
   .content_section {
     text-align: center;
-    margin-bottom: 30px;
+  }
+  .hotel_list {
+    padding: 20px;
+    .hotel_list_item_wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

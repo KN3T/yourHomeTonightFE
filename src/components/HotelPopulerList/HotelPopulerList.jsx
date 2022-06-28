@@ -30,11 +30,20 @@ const HotelPopulerList = () => {
           </p>
         </Col>
       </Row>
-      <Row className="hotel-list" style={{ justifyItems: 'center' }}>
+      <Row className="hotel_list">
         {data.map((item, index) => {
           return (
-            <Col xxl={8} xl={8} lg={8} md={12} sm={12} xs={24} key={index}>
-              <HotelCard {...item} />
+            <Col
+              xxl={8}
+              xl={8}
+              lg={8}
+              md={12}
+              sm={12}
+              xs={24}
+              key={index}
+              className="hotel_list_item_wrapper"
+            >
+              <HotelCard {...item} className="hotel_list_item" />
             </Col>
           );
         })}
