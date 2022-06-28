@@ -4,3 +4,8 @@ coverage
 
 # Ignore all HTML files:
 *.html
+
+node_modules/**
+
+# Ignore all JS files:
+**/*.js
