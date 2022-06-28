@@ -7,7 +7,7 @@ import { HomePage } from './pages';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#cea384', // primary color for all components
+    primaryColor: '#fc4c4c', // primary color for all components
   },
 });
 

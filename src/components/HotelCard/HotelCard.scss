@@ -1,5 +1,5 @@
 .room_card {
-  width: 18rem;
+  width: 25rem;
   overflow: hidden;
   .room_card_img_wrapper {
     overflow: hidden;
@@ -7,7 +7,7 @@
     .room_card_img {
       width: 100%;
       border-radius: 10px;
-      height: 24rem;
+      height: 30rem;
     }
     &:hover {
       img {
@@ -18,20 +18,43 @@
   }
   .room_card_info {
     .room_name {
-      font-size: 20px;
+      font-size: 30px;
       font-weight: 600;
     }
     .room_rating {
       color: #777777;
+      font-size: 14px;
     }
     .room_price {
       color: #fc4c4c;
-      font-size: 22px;
+      font-size: 25px;
       font-weight: 750;
     }
     .room_per_night {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
+    }
+  }
+}
+
+@media screen and (max-width: 1210px) {
+  .room_card {
+    width: 20rem;
+    .room_card_img_wrapper {
+      .room_card_img {
+        height: 25rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 664px) {
+  .room_card {
+    width: 18rem;
+    .room_card_img_wrapper {
+      .room_card_img {
+        height: 22rem;
+      }
     }
   }
 }

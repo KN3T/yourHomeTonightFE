@@ -1,6 +1,6 @@
 {
   "hotel": {
     "rating": "Rating",
-    "per_night": "Per night"
+    "per_night": "Night"
   }
 }

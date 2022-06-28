@@ -33,7 +33,7 @@ const HomePage = () => {
           </p>
         </Col>
       </Row>
-      <Row gutter={8}>
+      <Row>
         {data.map((item, index) => {
           return (
             <Col xxl={8} xl={8} lg={8} md={12} sm={12} xs={24} key={index}>
