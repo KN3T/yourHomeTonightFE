@@ -1,0 +1,13 @@
+.btn__component {
+  padding: 10px 25px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #fc4c4c;
+  font-weight: bold;
+  transition: 0.4s;
+  &:hover {
+    background-color: #fc6666;
+  }
+}

@@ -25,7 +25,8 @@
     "react-i18next": "^11.17.3",
     "react-router-dom": "^6.3.0",
     "reselect": "^4.1.6",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "swiper": "^8.2.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
