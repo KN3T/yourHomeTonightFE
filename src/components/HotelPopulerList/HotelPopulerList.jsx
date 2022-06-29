@@ -10,6 +10,7 @@ const { Title } = Typography;
 
 const HotelPopulerList = () => {
   const [data, setData] = useState([]);
+  const NumberOfHotels = 3;
   const fetchHotels = async () => {
     let result = await hotelApi.getAll();
     setData(result);
@@ -31,7 +32,7 @@ const HotelPopulerList = () => {
         </Col>
       </Row>
       <Row className="hotel_list">
-        {data.map((item, index) => {
+        {data.slice(0, NumberOfHotels).map((item, index) => {
           return (
             <Col
               xxl={8}
