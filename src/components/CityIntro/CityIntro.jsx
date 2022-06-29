@@ -18,27 +18,30 @@ const CityInfo = () => {
           <Col span={12}>
             <section className="section_display">
               <a>
-                <div className="city_info_img">
+                <div className="city_info_img1">
                   {' '}
-                  <Text>Can Tho, Vietname</Text>{' '}
+                  <Text className="text_city_info">
+                    {' '}
+                    <div className="city_name">
+                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                    </div>
+                  </Text>{' '}
                 </div>
-                {/* <img
-            className="city_info_img"
-            src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1"
-            alt="city_card_img"
-          /> */}
               </a>
-              {/* <Text>Can Tho, Vietname</Text> */}
             </section>
           </Col>
           <Col span={12}>
             <section>
               <a>
-                <img
-                  className="city_info_img"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1"
-                  alt="city_card_img"
-                />
+                <div className="city_info_img2">
+                  {' '}
+                  <Text className="text_city_info">
+                    {' '}
+                    <div className="city_name">
+                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                    </div>
+                  </Text>{' '}
+                </div>
               </a>
             </section>
           </Col>
@@ -48,33 +51,45 @@ const CityInfo = () => {
           <Col span={8}>
             <section>
               <a>
-                <img
-                  className="city_info_img"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1"
-                  alt="city_card_img"
-                />
+                <div className="city_info_img3">
+                  {' '}
+                  <Text className="text_city_info">
+                    {' '}
+                    <div className="city_name">
+                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                    </div>
+                  </Text>{' '}
+                </div>
               </a>
             </section>
           </Col>
           <Col span={8}>
             <section>
               <a>
-                <img
-                  className="city_info_img"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1"
-                  alt="city_card_img"
-                />
+                <div className="city_info_img4">
+                  {' '}
+                  <Text className="text_city_info">
+                    {' '}
+                    <div className="city_name">
+                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                    </div>
+                  </Text>{' '}
+                </div>
               </a>
             </section>
           </Col>
           <Col span={8}>
             <section>
               <a>
-                <img
-                  className="city_info_img"
-                  src="https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1"
-                  alt="city_card_img"
-                />
+                <div className="city_info_img5">
+                  {' '}
+                  <Text className="text_city_info">
+                    {' '}
+                    <div className="city_name">
+                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                    </div>
+                  </Text>{' '}
+                </div>
               </a>
             </section>
           </Col>

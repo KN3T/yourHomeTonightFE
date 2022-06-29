@@ -3,6 +3,7 @@
     "rating": "Đánh giá",
     "per_night": "Đêm"
   },
+
   "login": {
     "login": "Đăng nhập",
     "register": "Đăng kí",
@@ -21,5 +22,34 @@
     "already_have_account": "Bạn đã có tài khoản?",
     "register_now": "Đăng kí ngay!",
     "login_now": "Đăng nhập ngay!"
+  },
+
+  "hotels": {
+    "destination": "Điểm đến",
+    "search": "Tìm",
+    "search_placeholder": "Tìm thành phố",
+    "filter_by": "Lọc theo",
+    "rating": "Đánh giá",
+    "your_budget": "Ngân sách của bạn",
+    "per_night": "mỗi đêm",
+    "properties": "kết quả",
+    "sort_by": "Sắp xếp theo",
+    "price": "Giá",
+    "low_to_high": "(thấp đến cao)",
+    "high_to_low": "(cao đến thấp)",
+    "reviews": "đánh giá",
+    "price_value": "{{val, currency(currency: VND)}}"
+  },
+
+  "main": {
+    "search_your_perfect_place_to_stay": "Tìm chỗ ở thích hợp..."
+  },
+
+  "navbar": {
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "hotels": "Khách sạn",
+    "contact": "Liên hệ",
+    "login": "Đăng nhập"
   }
 }

@@ -1,18 +1,12 @@
 import React from 'react';
 
-import {
-  CityIntro,
-  HotelPopulerList,
-  MainCarousel,
-  Navbar,
-} from '../../components';
+import { CityIntro, HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
   return (
     <div className="homepage__container">
-      <Navbar />
-      <MainCarousel />
+      <MainSection />
       <HotelPopulerList />
       <CityIntro />
     </div>

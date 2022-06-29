@@ -1,0 +1,3 @@
+const EXCHANGE_RATE = 23250;
+
+export {EXCHANGE_RATE}
