@@ -3,6 +3,7 @@
     "rating": "Rating",
     "per_night": "Night"
   },
+
   "login": {
     "login": "Login",
     "register": "Register",
@@ -22,6 +23,7 @@
     "register_now": "Register now!",
     "login_now": "Login now!"
   },
+
   "hotels": {
     "destination": "Destination",
     "search": "Search",
@@ -36,5 +38,17 @@
     "low_to_high": "low to high",
     "high_to_low": "high to low",
     "reviews": "reviews"
+  },
+
+  "main": {
+    "search_your_perfect_place_to_stay": "Search your perfect place to stay..."
+  },
+
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "hotels": "Hotels",
+    "contact": "Contact",
+    "login": "Login"
   }
 }

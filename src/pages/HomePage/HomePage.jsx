@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { HotelPopulerList, MainCarousel } from '../../components';
+import { HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
   return (
     <div className="homepage__container">
-      <MainCarousel />
+      <MainSection />
       <HotelPopulerList />
     </div>
   );
