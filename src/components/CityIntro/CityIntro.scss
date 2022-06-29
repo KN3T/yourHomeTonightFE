@@ -1,0 +1,26 @@
+.city_info {
+  padding: 5vw;
+  & > h2 {
+    text-align: center;
+  }
+  .city_info_wrapper {
+    padding-top: 60px;
+    padding-bottom: 10px;
+    .city_info_row {
+      padding-bottom: 8px;
+      section {
+        .city_info_img {
+          background: url
+            '(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1)';
+          width: 100%;
+          height: 15rem;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+        .city_info_img:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

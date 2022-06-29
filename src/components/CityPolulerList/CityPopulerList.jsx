@@ -6,22 +6,6 @@ import CityCard from '../CityCard/CityCard';
 
 const CityPopulerList = () => {
   const responsive = {
-    // superLargeDesktop: {
-    //   breakpoint: { max: 4000, min: 3000 },
-    //   items: 5
-    // },
-    // desktop: {
-    //   breakpoint: { max: 3000, min: 1502 },
-    //   items: 4
-    // },
-    // tablet: {
-    //   breakpoint: { max: 1502, min: 1132 },
-    //   items: 3
-    // },
-    // mobile: {
-    //   breakpoint: { max: 1132, min: 464 },
-    //   items: 2
-    // }
     superLargeDesktop: {
       breakpoint: { max: 3000, min: 1502 },
       items: 4,

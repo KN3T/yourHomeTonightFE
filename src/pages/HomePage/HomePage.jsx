@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  CityPopulerList, // CityIntro,
+  CityIntro,
   HotelPopulerList,
   MainCarousel,
   Navbar,
@@ -14,8 +14,7 @@ const HomePage = () => {
       <Navbar />
       <MainCarousel />
       <HotelPopulerList />
-      <CityPopulerList />
-      {/* <CityIntro /> */}
+      <CityIntro />
     </div>
   );
 };
