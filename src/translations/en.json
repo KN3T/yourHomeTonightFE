@@ -35,8 +35,8 @@
     "properties": "properties",
     "sort_by": "Sort by",
     "price": "Price",
-    "low_to_high": "low to high",
-    "high_to_low": "high to low",
+    "low_to_high": "(low to high)",
+    "high_to_low": "(high to low)",
     "reviews": "reviews",
     "price_value": "{{val, currency(currency: USD)}}"
   },
@@ -51,5 +51,17 @@
     "hotels": "Hotels",
     "contact": "Contact",
     "login": "Login"
+  },
+
+  "room": {
+    "description": "Description",
+    "beds": "Beds",
+    "adults": "Adults",
+    "children": "Children",
+    "facilities": "Facilities",
+    "per_night": "per 1 night",
+    "only": "Only",
+    "reverse_now": "Reverse now",
+    "price_value": "{{val, currency(currency: USD)}}"
   }
 }

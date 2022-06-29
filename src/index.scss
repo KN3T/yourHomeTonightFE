@@ -1,6 +1,8 @@
 :root {
   --primary-color: #fc4c4c;
   --secondary-color: #192024;
+  --background-btn: linear-gradient(135deg, #ff690f 0%, #e8381b 100%);
+  --background-btn-hover: linear-gradient(135deg, #e55e0d 0%, #cf3218 100%);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');

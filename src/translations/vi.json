@@ -51,5 +51,17 @@
     "hotels": "Khách sạn",
     "contact": "Liên hệ",
     "login": "Đăng nhập"
+  },
+
+  "room": {
+    "description": "Chi tiết",
+    "beds": "Số giường",
+    "adults": "Số người lớn",
+    "children": "Số trẻ em",
+    "facilities": "Cơ sở vật chất",
+    "per_night": "mỗi đêm",
+    "only": "Chỉ",
+    "reverse_now": "Đặt ngay",
+    "price_value": "{{val, currency(currency: VND)}}"
   }
 }
