@@ -21,5 +21,20 @@
     "already_have_account": "Bạn đã có tài khoản?",
     "register_now": "Đăng kí ngay!",
     "login_now": "Đăng nhập ngay!"
+  },
+  "hotels": {
+    "destination": "Điểm đến",
+    "search": "Tìm",
+    "search_placeholder": "Tìm thành phố",
+    "filter_by": "Lọc theo",
+    "rating": "Đánh giá",
+    "your_budget": "Ngân sách của bạn",
+    "per_night": "mỗi đêm",
+    "properties": "kết quả",
+    "sort_by": "Sắp xếp theo",
+    "price": "Giá",
+    "low_to_high": "(thấp đến cao)",
+    "high_to_low": "(cao đến thấp)",
+    "reviews": "đánh giá"
   }
 }

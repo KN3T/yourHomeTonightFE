@@ -21,5 +21,20 @@
     "already_have_account": "You already have an account?",
     "register_now": "Register now!",
     "login_now": "Login now!"
+  },
+  "hotels": {
+    "destination": "Destination",
+    "search": "Search",
+    "search_placeholder": "Search by city",
+    "filter_by": "Filer by",
+    "rating": "Rating",
+    "your_budget": "Your budget",
+    "per_night": "Per 1 night",
+    "properties": "properties",
+    "sort_by": "Sort by",
+    "price": "Price",
+    "low_to_high": "low to high",
+    "high_to_low": "high to low",
+    "reviews": "reviews"
   }
 }

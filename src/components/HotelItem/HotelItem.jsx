@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Button, Image, Rate } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { MdLocationOn } from 'react-icons/md';
 
 import './HotelItem.scss';
 
 const HotelItem = ({ hotelData }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="hotel__item__container">
       <div className="hotel__item__top">
@@ -19,7 +22,9 @@ const HotelItem = ({ hotelData }) => {
 
         <div className="hotel__rating">
           <Rate value={hotelData.rating} className="rating" />
-          <span>{hotelData.ratingCount} reviews</span>
+          <span>
+            {hotelData.ratingCount} {t('hotels.reviews')}
+          </span>
         </div>
       </div>
       <div className="hotel__item__bottom">
@@ -31,7 +36,7 @@ const HotelItem = ({ hotelData }) => {
             <div className="description__wrapper">{hotelData.description}</div>
             <div className="price__wrapper">
               <span className="price">{hotelData.price}</span>
-              <span className="per__night">Per 1 night</span>
+              <span className="per__night">{t('hotels.per_night')}</span>
               <Button type="primary">View</Button>
             </div>
           </div>
