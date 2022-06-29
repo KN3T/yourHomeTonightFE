@@ -26,10 +26,6 @@ const Navbar = () => {
     setVisibleDrawer(false);
   };
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -96,7 +92,7 @@ const Navbar = () => {
                 <li>{t('navbar.home')}</li>
               </NavLink>
               <NavLink
-                to="/about"
+                to="/rooms"
                 className={({ isActive }) =>
                   isActive ? 'header__navigation__item' : ''
                 }
@@ -104,7 +100,7 @@ const Navbar = () => {
                 <li>{t('navbar.about')}</li>
               </NavLink>
               <NavLink
-                to="/rooms"
+                to="/hotels"
                 className={({ isActive }) =>
                   isActive ? 'header__navigation__item' : ''
                 }
@@ -184,7 +180,7 @@ const Navbar = () => {
               </li>
             </NavLink>
             <NavLink
-              to="/about"
+              to="/rooms"
               className={({ isActive }) =>
                 isActive ? 'sidebar__item' : undefined
               }
@@ -195,7 +191,7 @@ const Navbar = () => {
               </li>
             </NavLink>
             <NavLink
-              to="/rooms"
+              to="/hotels"
               className={({ isActive }) =>
                 isActive ? 'sidebar__item' : undefined
               }

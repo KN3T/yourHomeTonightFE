@@ -1,4 +1,4 @@
-import { axiosInstance } from '../utils/axios/axiosInstance';
+import { axiosInstance } from "./axiosInstance";
 
 const hotelApi = {
   getAll: async () => {
