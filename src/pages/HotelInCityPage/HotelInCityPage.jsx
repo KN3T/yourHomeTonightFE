@@ -2,8 +2,10 @@ import { Button, Form, Input, Layout, Popover, Rate, Slider } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
 
-import { HotelList } from '../../components';
+import { HotelList, RoomDetailsModal } from '../../components';
+import { getRoomById } from '../../store/Slice/Rooms/roomsSlice';
 import './HotelInCityPage.scss';
 
 const { Content, Sider } = Layout;
@@ -91,8 +93,10 @@ const HotelInCityPage = () => {
 
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const onClickHigh = () => {
     setSortValue('high to low');
@@ -122,6 +126,20 @@ const HotelInCityPage = () => {
       </ul>
     </div>
   );
+
+  const showModal = () => {
+    setIsModalVisible(true);
+    const data = dispatch(getRoomById(1));
+    console.log(data);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div className="hotelpage__container">
@@ -168,6 +186,12 @@ const HotelInCityPage = () => {
             <div className="result__list">
               {mockHotelData.length} {t('hotels.properties')}
             </div>
+            <Button onClick={showModal}>Open room details</Button>
+            <RoomDetailsModal
+              isModalVisible={isModalVisible}
+              handleOk={handleOk}
+              handleCancel={handleCancel}
+            />
             <Popover
               content={sortOptions}
               placement="bottomRight"
