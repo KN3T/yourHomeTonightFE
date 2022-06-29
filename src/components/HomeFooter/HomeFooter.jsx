@@ -9,8 +9,10 @@ import { Layout } from 'antd';
 import 'antd';
 import React from 'react';
 
+import dollar from '../../assets/images/dollar.jpg';
 // import { useTranslation } from 'react-i18next'
 import us from '../../assets/images/englandIcon.jpg';
+import euro from '../../assets/images/euro.jpg';
 import vn from '../../assets/images/vietnamIcon.png';
 import './HomeFooter.scss';
 
@@ -111,16 +113,19 @@ const HomeFooter = () => {
 
           <div className="lng-select">
             <Select
-              defaultValue="£ Pound Sterling"
+              defaultValue="&nbsp;£ &nbsp; Pound Sterling"
               style={{
                 width: 200,
               }}
               onChange={handleChange}
             >
               <OptGroup label="Most-Used Currencies">
-                <Option value="Euro">Euro</Option>
+                <Option value="Euro">
+                  <img src={euro} alt="" style={{ width: '20px' }} /> Euro
+                </Option>
                 <Option value="United States Dollars">
-                  United States Dollars
+                  <img src={dollar} alt="" style={{ width: '20px' }} /> United
+                  States Dollars
                 </Option>
               </OptGroup>
             </Select>
