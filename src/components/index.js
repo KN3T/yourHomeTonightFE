@@ -10,3 +10,4 @@ export { default as HotelList } from './HotelList/HotelList'
 export { default as MainSection } from './MainSection/MainSection';
 export { default as SearchHome } from './Search/SearchHome/SearchHome';
 export {default as PopoverDetailsHotel} from './Popover/PopoverDetailsHotel/PopoverDetailsHotel'
+export {default as RoomInDetailsHotel} from './Room/RoomInDetailsHotel/RoomInDetailsHotel'

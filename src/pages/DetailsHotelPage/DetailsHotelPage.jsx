@@ -1,38 +1,41 @@
 import {
+  Affix,
   Breadcrumb,
   Button,
   Col,
   DatePicker,
   Divider,
   Image,
+  List,
   Popover,
+  Rate,
   Row,
   Space,
   Spin,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { hotelApi } from '../../api';
-import { PopoverDetailsHotel } from '../../components';
+import { PopoverDetailsHotel, RoomInDetailsHotel } from '../../components';
+import { getByIdAsync } from '../../store/Slice/Hotels/HotelsSlice';
+import { getAllRoomAsync } from '../../store/Slice/Rooms/RoomsSlice';
 import './index.scss';
 
 const DetailsHotelPage = () => {
-  const [singleHotel, setSingleHotel] = useState({});
   const loading = useSelector((state) => state.hotels.loading);
+  const singleHotel = useSelector((state) => state.hotels.singleHotel);
+  const rooms = useSelector((state) => state.rooms.list);
   const [beds, setBeds] = useState(1);
   const [guests, setGuests] = useState(1);
   const [visiblePopover, setVisiblePopover] = useState(false);
+  const dispatch = useDispatch();
   let { id } = useParams();
-  console.log(id);
   useEffect(() => {
-    const getHotelById = async (id) => {
-      const data = await hotelApi.getById(id);
-      data && setSingleHotel(data);
-    };
-    getHotelById(id);
+    dispatch(getByIdAsync(1));
+    dispatch(getAllRoomAsync());
   }, [id]);
+
   let firstImage = '';
 
   // list of image after remove first image in an array
@@ -44,11 +47,12 @@ const DetailsHotelPage = () => {
       ...singleHotel.images.slice(1),
     ];
   }
+
   return (
     <div className="details__hotel__wrapper">
       {loading && <Spin spinning={loading} />}
       {singleHotel.images ? (
-        <Row className="details__hotel__row" gutter={[20, 0]}>
+        <Row className="details__hotel__row" gutter={[20, 40]}>
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -70,6 +74,7 @@ const DetailsHotelPage = () => {
             xs={{ span: 24 }}
             className="details__title__wrappper"
           >
+            <Divider />
             <Row gutter={[10, 0]}>
               <Col
                 lg={{ span: 12 }}
@@ -82,9 +87,9 @@ const DetailsHotelPage = () => {
                 <h4>{singleHotel.address}</h4>
                 <h5>
                   <span className="details__rating__number">
-                    {singleHotel.rating}
+                    {singleHotel.ratingCount}
                   </span>
-                  wonderful {singleHotel.reviews} reviews
+                  Wonderful reviews
                 </h5>
               </Col>
               <Col
@@ -103,6 +108,7 @@ const DetailsHotelPage = () => {
                 </div>
               </Col>
             </Row>
+            <Divider />
           </Col>
           <Col
             lg={{ span: 24 }}
@@ -116,17 +122,17 @@ const DetailsHotelPage = () => {
               <Col lg={{ span: 12 }}>
                 <Image
                   className="details__hotel__image"
-                  width="100%"
+                  height="100%"
                   src={firstImage}
                 />
               </Col>
-              <Col lg={{ span: 12 }}>
+              <Col className="images" lg={{ span: 12 }}>
                 <Row gutter={[10, 10]}>
                   {images.map((item, key) => (
                     <Col key={key} lg={{ span: 12 }}>
                       <Image
                         className="details__hotel__image"
-                        width="100%"
+                        height="100%"
                         src={item}
                       />
                     </Col>
@@ -144,13 +150,13 @@ const DetailsHotelPage = () => {
             className="details__rating__wrapper"
           >
             <Divider />
-            <Row gutter={[20, 0]}>
+            <Row gutter={[20, 10]}>
               <Col
                 lg={{ span: 12 }}
                 xl={{ span: 12 }}
-                md={{ span: 12 }}
-                sm={{ span: 12 }}
-                xs={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
               >
                 <h1>Overview</h1>
                 <p>{singleHotel.description}</p>
@@ -158,20 +164,13 @@ const DetailsHotelPage = () => {
               <Col
                 lg={{ span: 12 }}
                 xl={{ span: 12 }}
-                md={{ span: 12 }}
-                sm={{ span: 12 }}
-                xs={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
               >
                 <h1>Rating</h1>
-                <div className="rating">
-                  <span>{singleHotel.rating}</span>
-                  <div>
-                    <h3>Very good</h3>
-                    <p>
-                      Based on {singleHotel.ratingCount} verified guest reviews
-                    </p>
-                  </div>
-                </div>
+                <Rate disabled defaultValue={singleHotel.rating} />
+                <p>Based on {singleHotel.ratingCount} verified guest reviews</p>
               </Col>
             </Row>
             <Divider />
@@ -204,6 +203,87 @@ const DetailsHotelPage = () => {
                 </Button>
               </Popover>
             </Space>
+          </Col>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <List
+              itemLayout="horizontal"
+              dataSource={rooms}
+              header={<h1>Various rooms</h1>}
+              renderItem={(item) => (
+                <List.Item>
+                  {' '}
+                  <RoomInDetailsHotel room={item} />{' '}
+                </List.Item>
+              )}
+            />
+          </Col>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <Divider />
+            <h1>Amenities</h1>
+            <Row>
+              {singleHotel.assets.map((item, key) => (
+                <Col
+                  lg={{ span: 12 }}
+                  xl={{ span: 12 }}
+                  md={{ span: 12 }}
+                  sm={{ span: 12 }}
+                  xs={{ span: 12 }}
+                  key={key}
+                >
+                  {item}
+                </Col>
+              ))}
+            </Row>
+            <Divider />
+          </Col>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <h1>Things to keep in mind</h1>
+            <Row gutter={[0, 20]}>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h3>Cancellation/prepayment</h3>
+                <p>
+                  Cancellation/prepayment policies vary by room type and
+                  provider.
+                </p>
+              </Col>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h3>Check-in/Check-out</h3>
+                <p>
+                  Check in anytime after 3:00p, check out anytime before 12:00p
+                </p>
+              </Col>
+            </Row>
+            <Divider />
           </Col>
         </Row>
       ) : (

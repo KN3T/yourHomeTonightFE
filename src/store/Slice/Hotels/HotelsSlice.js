@@ -6,7 +6,7 @@ export const getByIdAsync = createAsyncThunk('hotels/get-by-id', async (id) => {
   return await hotelApi.getById(id);
 });
 
-const HotelsSlice = createSlice({
+export const HotelsSlice = createSlice({
   name: 'hotelsSlice',
   initialState: {
     list: [],

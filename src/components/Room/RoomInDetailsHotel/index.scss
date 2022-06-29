@@ -1,0 +1,11 @@
+.room__in__details__hotel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6f688d;
+  .price {
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+  }
+}

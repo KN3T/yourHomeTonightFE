@@ -93,7 +93,7 @@ const Navbar = () => {
               </NavLink>
 
               <NavLink
-                to="/hotels"
+                to="/about"
                 className={({ isActive }) =>
                   isActive ? 'header__navigation__item' : ''
                 }
