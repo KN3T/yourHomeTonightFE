@@ -4,10 +4,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdLocationOn } from 'react-icons/md';
 
+import formatCurrency from '../../utils/formatCurrency';
 import './HotelItem.scss';
 
 const HotelItem = ({ hotelData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = i18n.language;
+
+  console.log(formatCurrency(hotelData.price, currentLanguage));
 
   return (
     <div className="hotel__item__container">
@@ -35,7 +40,11 @@ const HotelItem = ({ hotelData }) => {
           <div className="content__wrapper">
             <div className="description__wrapper">{hotelData.description}</div>
             <div className="price__wrapper">
-              <span className="price">{hotelData.price}</span>
+              <span className="price">
+                {t('hotels.price_value', {
+                  val: formatCurrency(hotelData.price, currentLanguage),
+                })}
+              </span>
               <span className="per__night">{t('hotels.per_night')}</span>
               <Button type="primary">View</Button>
             </div>

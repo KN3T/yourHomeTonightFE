@@ -2,7 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { ClientLayout } from '../components';
-import { HomePage, HotelInCityPage, LoginPage, RegisterPage } from '../pages';
+import {
+  DetailsHotelPage,
+  HomePage,
+  HotelInCityPage,
+  LoginPage,
+  RegisterPage,
+} from '../pages';
 
 const Router = () => {
   return (
@@ -11,6 +17,7 @@ const Router = () => {
         <Route element={<ClientLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/hotels" element={<HotelInCityPage />} />
+          <Route path="/hotels/:id" element={<DetailsHotelPage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
