@@ -1,23 +1,15 @@
 .city_card {
-  width: 15rem;
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   &_img_wrapper {
-    overflow: hidden;
     height: 15rem;
-    width: 100%;
-    border-radius: 5px;
     .city_card_img {
       height: 100%;
       object-fit: cover;
-    }
-    &:hover {
-      img {
-        transition: all 0.5s ease;
-        transform: scale(1.5);
-      }
+      border-radius: 5px;
     }
   }
   &_info {
@@ -30,6 +22,39 @@
     .city_total {
       color: #777777;
       font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 777px) {
+  .city_card {
+    &_img_wrapper {
+      height: 15rem;
+      .city_card_img {
+        width: 18rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .city_card {
+    &_img_wrapper {
+      height: 15rem;
+      .city_card_img {
+        width: 15rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 557px) {
+  .city_card {
+    &_img_wrapper {
+      height: 15rem;
+      .city_card_img {
+        width: 13rem;
+      }
     }
   }
 }
