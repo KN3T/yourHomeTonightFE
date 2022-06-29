@@ -24,3 +24,5 @@ export { default as MainSection }
 from './MainSection/MainSection';
 export { default as SearchHome }
 from './Search/SearchHome/SearchHome';
+export { default as HomeFooter }
+from './HomeFooter/HomeFooter';
