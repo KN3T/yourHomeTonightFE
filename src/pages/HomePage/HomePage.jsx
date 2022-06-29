@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { HotelPopulerList, MainSection, Navbar } from '../../components';
+import { HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
   return (
     <div className="homepage__container">
-      <Navbar />
       <MainSection />
+      <HotelPopulerList />
     </div>
   );
 };
