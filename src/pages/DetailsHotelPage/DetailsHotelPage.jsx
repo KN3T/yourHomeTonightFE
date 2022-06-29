@@ -1,4 +1,14 @@
-import { Breadcrumb, Button, Col, Image, Row, Spin, Tabs } from 'antd';
+import {
+  Breadcrumb,
+  Button,
+  Col,
+  Divider,
+  Image,
+  Row,
+  Space,
+  Spin,
+  Tabs,
+} from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -110,6 +120,37 @@ const DetailsHotelPage = () => {
                     </Col>
                   ))}
                 </Row>
+              </Col>
+            </Row>
+          </Col>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <Divider />
+            <Row>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h1>Overview</h1>
+                <h3>{singleHotel.description}</h3>
+                <Button>Read more</Button>
+              </Col>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h1>{singleHotel.rating}</h1>
               </Col>
             </Row>
           </Col>
