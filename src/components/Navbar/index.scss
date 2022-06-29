@@ -1,10 +1,10 @@
 .header__wrapper {
   font-size: 16px;
   position: absolute;
-  z-index: 10;
+  z-index: 20;
   left: 0;
   top: 0;
-  background: rgba(37, 48, 65, 0.2);
+  background: rgba(55, 66, 82, 0.2);
   .header__navbar__desktop {
     display: flex;
     justify-content: space-between;
@@ -47,7 +47,7 @@
           }
         }
         li {
-          margin-right: 3vw;
+          margin-right: 2vw;
           border: 1px solid transparent;
           padding: 2px 5px;
           transition: 0.3s;
@@ -55,6 +55,7 @@
           letter-spacing: 2px;
           cursor: pointer;
           color: white;
+          transition: 0.3s;
           &:hover {
             color: #fc4c4c;
           }
@@ -166,6 +167,7 @@
       .user__icon__link {
         .login__btn {
           font-weight: bold;
+          color: white;
         }
       }
     }

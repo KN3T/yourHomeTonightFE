@@ -2,11 +2,11 @@ import {
   CloseOutlined,
   MenuOutlined,
   RightOutlined,
-  SearchOutlined,
   TwitterOutlined,
 } from '@ant-design/icons';
 import { Button, Drawer, Form, Input, Modal, Select } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 
 import us from '../../assets/images/englandIcon.jpg';
@@ -15,6 +15,7 @@ import './index.scss';
 
 const { Search } = Input;
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [visibleDrawer, setVisibleDrawer] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showDrawer = () => {
@@ -62,10 +63,17 @@ const Navbar = () => {
       ),
     },
   ];
-  const defaultLanguage = navigator.language.slice(
-    0,
-    navigator.language.indexOf('-')
-  );
+
+  const defaultLanguage = window.localStorage.getItem('lng');
+
+  useEffect(() => {
+    i18n.changeLanguage(defaultLanguage);
+  }, []);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('lng', lng);
+  };
   return (
     <>
       <header className="header__wrapper">
@@ -85,7 +93,7 @@ const Navbar = () => {
                   isActive ? 'header__navigation__item' : ''
                 }
               >
-                <li>Home</li>
+                <li>{t('navbar.home')}</li>
               </NavLink>
               <NavLink
                 to="/about"
@@ -93,7 +101,7 @@ const Navbar = () => {
                   isActive ? 'header__navigation__item' : ''
                 }
               >
-                <li>About</li>
+                <li>{t('navbar.about')}</li>
               </NavLink>
               <NavLink
                 to="/rooms"
@@ -101,7 +109,7 @@ const Navbar = () => {
                   isActive ? 'header__navigation__item' : ''
                 }
               >
-                <li>Room</li>
+                <li>{t('navbar.hotels')}</li>
               </NavLink>
               <NavLink
                 to="/contact"
@@ -109,31 +117,18 @@ const Navbar = () => {
                   isActive ? 'header__navigation__item' : ''
                 }
               >
-                <li>Contact</li>
-              </NavLink>
-              <NavLink
-                to="/destination"
-                className={({ isActive }) =>
-                  isActive ? 'header__navigation__item' : ''
-                }
-              >
-                <li>Destination</li>
+                <li>{t('navbar.contact')}</li>
               </NavLink>
             </ul>
             <div className="header__navigation__icon">
-              <span className="header__navigation__icon__wrapper">
-                <SearchOutlined
-                  onClick={showModal}
-                  className="navbar__search__icon"
-                />
-              </span>
               <Select
+                onChange={changeLanguage}
                 defaultValue={defaultLanguage}
                 options={languageOptions}
               />
               <Link className="user__icon__link" to="/login">
                 <Button className="login__btn" type="link">
-                  Login
+                  {t('navbar.login')}
                 </Button>
               </Link>
             </div>
@@ -150,16 +145,14 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="header__navigation__icon">
-            <span className="header__navigation__icon__wrapper">
-              <SearchOutlined
-                onClick={showModal}
-                className="navbar__search__icon"
-              />
-            </span>
-            <Select defaultValue={defaultLanguage} options={languageOptions} />
+            <Select
+              onChange={changeLanguage}
+              defaultValue={defaultLanguage}
+              options={languageOptions}
+            />
             <Link className="user__icon__link" to="/login">
               <Button size="small" className="login__btn" type="link">
-                Login
+                {t('navbar.login')}
               </Button>
             </Link>
           </div>
@@ -187,7 +180,7 @@ const Navbar = () => {
               onClick={onClose}
             >
               <li>
-                Home <RightOutlined />
+                {t('navbar.home')} <RightOutlined />
               </li>
             </NavLink>
             <NavLink
@@ -198,7 +191,7 @@ const Navbar = () => {
               onClick={onClose}
             >
               <li>
-                About <RightOutlined />
+                {t('navbar.about')} <RightOutlined />
               </li>
             </NavLink>
             <NavLink
@@ -209,7 +202,7 @@ const Navbar = () => {
               onClick={onClose}
             >
               <li>
-                Room <RightOutlined />
+                {t('navbar.hotels')} <RightOutlined />
               </li>
             </NavLink>
             <NavLink
@@ -220,18 +213,7 @@ const Navbar = () => {
               onClick={onClose}
             >
               <li>
-                Contact <RightOutlined />
-              </li>
-            </NavLink>
-            <NavLink
-              to="/destination"
-              className={({ isActive }) =>
-                isActive ? 'sidebar__item' : undefined
-              }
-              onClick={onClose}
-            >
-              <li>
-                Destination <RightOutlined />
+                {t('navbar.contact')} <RightOutlined />
               </li>
             </NavLink>
           </ul>

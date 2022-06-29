@@ -21,5 +21,15 @@
     "already_have_account": "You already have an account?",
     "register_now": "Register now!",
     "login_now": "Login now!"
+  },
+  "main": {
+    "search_your_perfect_place_to_stay": "Search your perfect place to stay..."
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "hotels": "Hotels",
+    "contact": "Contact",
+    "login": "Login"
   }
 }
