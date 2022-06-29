@@ -1,6 +1,7 @@
 import { Col, Row, Typography } from 'antd';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { HotelCard } from '..';
 import { hotelApi } from '../../api';
@@ -9,6 +10,7 @@ import './HotelPopulerList.scss';
 const { Title } = Typography;
 
 const HotelPopulerList = () => {
+  const { t, i18n } = useTranslation();
   const [data, setData] = useState([]);
   const NumberOfHotels = 3;
   const fetchHotels = async () => {
@@ -21,13 +23,12 @@ const HotelPopulerList = () => {
   return (
     <div className="hotel_populer_list">
       <Title className="title_section" level={2}>
-        Our Most Populer Hotel
+        {t('hotel.populer_hotel_title')}
       </Title>
       <Row className="content_section">
         <Col span={12} offset={6}>
           <p className="content_section_center">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page.
+            {t('hotel.populer_hotel_content')}
           </p>
         </Col>
       </Row>

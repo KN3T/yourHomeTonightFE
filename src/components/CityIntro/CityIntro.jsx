@@ -1,16 +1,18 @@
 import { Col, Row } from 'antd';
 import { Typography } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import CityPopulerList from '../CityPolulerList/CityPopulerList';
 import './CityIntro.scss';
 
 const { Title, Text } = Typography;
 const CityInfo = () => {
+  const { t } = useTranslation();
   return (
     <div className="city_info">
       <Title level={2} className="title_city_section">
-        Our Most Populer City
+        {t('city.populer_city_title')}
       </Title>
       <CityPopulerList />
       <div className="city_info_wrapper">
@@ -23,7 +25,8 @@ const CityInfo = () => {
                   <Text className="text_city_info">
                     {' '}
                     <div className="city_name">
-                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                      <h3>{t('city.populer_city_name1')}</h3>{' '}
+                      <p>672 {t('city.populer_city_properties')} </p>
                     </div>
                   </Text>{' '}
                 </div>
@@ -38,7 +41,8 @@ const CityInfo = () => {
                   <Text className="text_city_info">
                     {' '}
                     <div className="city_name">
-                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                      <h3>{t('city.populer_city_name2')}</h3>{' '}
+                      <p>1301 properties</p>
                     </div>
                   </Text>{' '}
                 </div>
@@ -56,7 +60,8 @@ const CityInfo = () => {
                   <Text className="text_city_info">
                     {' '}
                     <div className="city_name">
-                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                      <h3>{t('city.populer_city_name3')}</h3>{' '}
+                      <p>709 properties</p>
                     </div>
                   </Text>{' '}
                 </div>
@@ -71,7 +76,8 @@ const CityInfo = () => {
                   <Text className="text_city_info">
                     {' '}
                     <div className="city_name">
-                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                      <h3>{t('city.populer_city_name4')}</h3>{' '}
+                      <p>980 properties</p>
                     </div>
                   </Text>{' '}
                 </div>
@@ -86,7 +92,8 @@ const CityInfo = () => {
                   <Text className="text_city_info">
                     {' '}
                     <div className="city_name">
-                      <h3>Can Tho, Vietname</h3> <p>672 properties</p>
+                      <h3>{t('city.populer_city_name5')}</h3>{' '}
+                      <p>1024 properties</p>
                     </div>
                   </Text>{' '}
                 </div>

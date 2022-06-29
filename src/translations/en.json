@@ -1,7 +1,10 @@
 {
   "hotel": {
     "rating": "Rating",
-    "per_night": "Night"
+    "per_night": "Night",
+    "populer_hotel_title": "Our Most Populer Hotel",
+    "populer_hotel_content": "This summer, make your dream trip a reality. Book and stay for less before Sep 30, 2022",
+    "start_from": "Start from:"
   },
 
   "login": {
@@ -51,5 +54,15 @@
     "hotels": "Hotels",
     "contact": "Contact",
     "login": "Login"
+  },
+  "city": {
+    "populer_city_name1": "Phu Quoc, Vietnam",
+    "populer_city_name2": "Ho Chi Minh City, Vietnam",
+    "populer_city_name3": "Can Tho, Vietnam",
+    "populer_city_name4": "Hoi An, Vietnam",
+    "populer_city_name5": "Hue, Vietnam",
+    "populer_city_title": "Our Most Populer City",
+    "populer_city_properties": "properties",
+    "motels": "motels"
   }
 }
