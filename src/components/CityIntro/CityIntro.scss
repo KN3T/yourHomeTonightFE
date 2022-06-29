@@ -1,16 +1,16 @@
 .city_info {
-  padding: 5vw;
+  margin-top: 60px;
+  width: 100%;
+
   & > h2 {
     text-align: center;
   }
   .city_info_wrapper {
-    padding-top: 60px;
-    // padding: 2vw;
     .city_info_row {
       padding-bottom: 8px;
+
       section {
-        .city_info_img1 {
-          background: url(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1);
+        .city_info_img {
           width: 100%;
           height: 15rem;
           object-fit: cover;
@@ -18,107 +18,29 @@
           background-position: center;
           background-size: cover;
           background-repeat: no-repeat;
+          transition: all 0.2s ease;
+
           .text_city_info {
             .city_name {
-              padding: 10px;
-              color: #fff;
-              h3 {
+              padding: 15px;
+
+              h2 {
                 color: #fff;
+                margin: 0;
+              }
+
+              p {
+                color: #fff;
+                font-weight: bold;
+                font-size: 18px;
               }
             }
           }
-        }
-      }
-      .city_info_img2 {
-        background: url(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/329276200.jpg?k=5d027e5a1be921becc2582e27904e1ffe700b8a244c2f52c971d6709538d704d&o=&hp=1);
-        width: 100%;
-        height: 15rem;
-        object-fit: cover;
-        border-radius: 5px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        .text_city_info {
-          .city_name {
-            padding: 10px;
-            color: #fff;
-            h3 {
-              color: #fff;
-            }
+
+          &:hover {
+            opacity: 0.8;
           }
         }
-      }
-      .city_info_img3 {
-        background: url(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/196407744.jpg?k=1f82b3bbe1509877d15386622426e01aa912b1f1c53caa52f0426c403967ad95&o=&hp=1);
-        width: 100%;
-        height: 15rem;
-        object-fit: cover;
-        border-radius: 5px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        .text_city_info {
-          .city_name {
-            padding: 10px;
-            color: #fff;
-            h3 {
-              color: #fff;
-            }
-          }
-        }
-      }
-      .city_info_img4 {
-        background: url(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/161116603.jpg?k=bf827bd530d82f54a078054ba524e29400c18695615251709e96b121d0c57556&o=&hp=1);
-        width: 100%;
-        height: 15rem;
-        object-fit: cover;
-        border-radius: 5px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        .text_city_info {
-          .city_name {
-            padding: 10px;
-            color: #fff;
-            h3 {
-              color: #fff;
-            }
-          }
-        }
-      }
-      .city_info_img5 {
-        background: url(https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/161116585.jpg?k=6d35e26e4ba72338ee27704ad0468da3bd257d7be0b94dba6b3ec931b174ea11&o=&hp=1);
-        width: 100%;
-        height: 15rem;
-        object-fit: cover;
-        border-radius: 5px;
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        .text_city_info {
-          .city_name {
-            padding: 10px;
-            color: #fff;
-            h3 {
-              color: #fff;
-            }
-          }
-        }
-      }
-      .city_info_img1:hover {
-        opacity: 0.8;
-      }
-      .city_info_img2:hover {
-        opacity: 0.8;
-      }
-      .city_info_img3:hover {
-        opacity: 0.8;
-      }
-      .city_info_img4:hover {
-        opacity: 0.8;
-      }
-      .city_info_img5:hover {
-        opacity: 0.8;
       }
     }
   }

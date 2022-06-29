@@ -4,7 +4,8 @@
     "per_night": "Đêm",
     "Populer_hotel_title": "Khách sạn nổi tiếng nhất của chúng tôi",
     "populer_hotel_content": "Mùa hè này, hãy biến giấc mơ của bạn thành hiện thực. Đặt và lưu trú với giá thấp hơn trước ngày 30 tháng 9 năm 2022",
-    "start_from": "Chỉ từ:"
+    "start_from": "Chỉ từ:",
+    "price_value": "{{val, currency(currency: VND)}}"
   },
 
   "login": {
@@ -56,11 +57,6 @@
     "login": "Đăng nhập"
   },
   "city": {
-    "populer_city_name1": "Phú Quốc, Việt Nam",
-    "populer_city_name2": "TP. Hồ Chí Minh, Việt Nam",
-    "populer_city_name3": "Cần Thơ, Việt Nam",
-    "populer_city_name4": "Hội An, Việt Nam",
-    "populer_city_name5": "Huế, Việt Nam",
     "populer_city_title": "Những thành phố nổi tiếng nhất của chúng tôi",
     "populer_city_properties": "chỗ ở",
     "motels": "Chỗ nghỉ"

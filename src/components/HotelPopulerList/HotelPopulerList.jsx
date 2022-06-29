@@ -10,7 +10,7 @@ import './HotelPopulerList.scss';
 const { Title } = Typography;
 
 const HotelPopulerList = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const NumberOfHotels = 3;
   const fetchHotels = async () => {
@@ -20,8 +20,9 @@ const HotelPopulerList = () => {
   useEffect(() => {
     fetchHotels();
   }, []);
+
   return (
-    <div className="hotel_populer_list">
+    <div className="hotel_populer_list  ctn">
       <Title className="title_section" level={2}>
         {t('hotel.populer_hotel_title')}
       </Title>
@@ -32,7 +33,7 @@ const HotelPopulerList = () => {
           </p>
         </Col>
       </Row>
-      <Row className="hotel_list">
+      <Row className="hotel_list" gutter={[16, 0]}>
         {data.slice(0, NumberOfHotels).map((item, index) => {
           return (
             <Col
