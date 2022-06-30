@@ -168,8 +168,6 @@ const HotelInCityPage = () => {
 
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState(mockRoomsInHotelData[0]);
 
   const { t } = useTranslation();
 
@@ -201,25 +199,6 @@ const HotelInCityPage = () => {
       </ul>
     </div>
   );
-
-  const getRoom = (roomdId) => {
-    const room = mockRoomsInHotelData.find((room) => room.id === roomdId);
-    return room;
-  };
-
-  const showModal = () => {
-    setIsModalVisible(true);
-    const room = getRoom(1);
-    setSelectedRoom(room);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
   return (
     <div className="hotelpage__container">
@@ -266,13 +245,6 @@ const HotelInCityPage = () => {
             <div className="result__list">
               {mockHotelData.length} {t('hotels.properties')}
             </div>
-            <Button onClick={showModal}>Open room details</Button>
-            <RoomDetailsModal
-              isModalVisible={isModalVisible}
-              handleOk={handleOk}
-              handleCancel={handleCancel}
-              roomData={selectedRoom}
-            />
             <Popover
               content={sortOptions}
               placement="bottomRight"

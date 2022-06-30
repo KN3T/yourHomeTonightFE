@@ -15,40 +15,72 @@ import {
   Spin,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { PopoverDetailsHotel, RoomInDetailsHotel } from '../../components';
+import {
+  PopoverDetailsHotel,
+  RoomDetailsModal,
+  RoomInDetailsHotel,
+} from '../../components';
 import { getByIdAsync } from '../../store/Slice/Hotels/HotelsSlice';
 import { getAllRoomAsync } from '../../store/Slice/Rooms/RoomsSlice';
+import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
 const DetailsHotelPage = () => {
+  //data from store redux
   const loading = useSelector((state) => state.hotels.loading);
   const singleHotel = useSelector((state) => state.hotels.singleHotel);
   const rooms = useSelector((state) => state.rooms.list);
+  const [selectedRoom, setSelectedRoom] = useState({});
+  const [roomImages, setRoomImages] = useState([]);
+  const { t, i18n } = useTranslation();
   const [beds, setBeds] = useState(1);
   const [guests, setGuests] = useState(1);
+  const currentLanguage = i18n.language;
+  //this is for modal room
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  //for popover select beds and guests
   const [visiblePopover, setVisiblePopover] = useState(false);
+
+  let { id } = useParams(); //get id from url
+
+  //dispatch to get data from store
   const dispatch = useDispatch();
-  let { id } = useParams();
   useEffect(() => {
     dispatch(getByIdAsync(1));
     dispatch(getAllRoomAsync());
   }, [id]);
-
+  //get first image to render ui
   let firstImage = '';
 
   // list of image after remove first image in an array
   let images = [];
 
+  //handle whether data is recieved
   if (singleHotel) {
     firstImage = singleHotel.images !== undefined && singleHotel.images[0];
     images = singleHotel.images !== undefined && [
       ...singleHotel.images.slice(1),
     ];
   }
+  const showModal = (idRoom) => {
+    setIsModalVisible(true);
+    const room = rooms.find((room) => room.id === idRoom);
+    setSelectedRoom(room);
+    setRoomImages(room.images);
+  };
 
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   return (
     <div className="details__hotel__wrapper">
       {loading && <Spin spinning={loading} />}
@@ -62,7 +94,7 @@ const DetailsHotelPage = () => {
             xs={{ span: 24 }}
           >
             <Breadcrumb>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>{t('details__hotel.home')}</Breadcrumb.Item>
               <Breadcrumb.Item>New York</Breadcrumb.Item>
               <Breadcrumb.Item>{singleHotel.name}</Breadcrumb.Item>
             </Breadcrumb>
@@ -88,9 +120,11 @@ const DetailsHotelPage = () => {
                 <h4>{singleHotel.address}</h4>
                 <h5>
                   <span className="details__rating__number">
-                    {singleHotel.ratingCount}
+                    {t('details__hotel.review', {
+                      review: singleHotel.ratingCount,
+                    })}
                   </span>
-                  Wonderful reviews
+                  {t('details__hotel.wonderful_reviews')}
                 </h5>
               </Col>
               <Col
@@ -102,10 +136,19 @@ const DetailsHotelPage = () => {
               >
                 <div className="right">
                   <h1>
-                    <span>from</span> ${singleHotel.price}/
-                    <span style={{ fontSize: '15px' }}>night</span>
+                    <span>{t('details__hotel.from')}</span>{' '}
+                    {t('details__hotel.price_value', {
+                      val: formatCurrency(singleHotel.price),
+                      currentLanguage,
+                    })}
+                    /
+                    <span style={{ fontSize: '15px' }}>
+                      {t('details__hotel.night')}
+                    </span>
                   </h1>
-                  <Button type="primary">View deal</Button>
+                  <Button type="primary">
+                    {t('details__hotel.view_details')}
+                  </Button>
                 </div>
               </Col>
             </Row>
@@ -159,8 +202,12 @@ const DetailsHotelPage = () => {
                 sm={{ span: 24 }}
                 xs={{ span: 24 }}
               >
-                <h1>Overview</h1>
-                <p>{singleHotel.description}</p>
+                <h1>{t('details__hotel.overview')}</h1>
+                <p>
+                  {t('details__hotel.description', {
+                    description: singleHotel.description,
+                  })}
+                </p>
               </Col>
               <Col
                 lg={{ span: 12 }}
@@ -169,9 +216,13 @@ const DetailsHotelPage = () => {
                 sm={{ span: 24 }}
                 xs={{ span: 24 }}
               >
-                <h1>Rating</h1>
+                <h1>{t('details__hotel.rating')}</h1>
                 <Rate disabled defaultValue={singleHotel.rating} />
-                <p>Based on {singleHotel.ratingCount} verified guest reviews</p>
+                <p>
+                  {t('details__hotel.based_on', {
+                    review: singleHotel.ratingCount,
+                  })}
+                </p>
               </Col>
             </Row>
             <Divider />
@@ -184,7 +235,7 @@ const DetailsHotelPage = () => {
             xs={{ span: 24 }}
             className="filter__wrapper"
           >
-            <h1>Available rates</h1>
+            <h1>{t('details__hotel.available_rates')}</h1>
             <Space>
               <DatePicker placeholder="check in" />
               <DatePicker placeholder="check out" />
@@ -200,7 +251,8 @@ const DetailsHotelPage = () => {
                 trigger="focus"
               >
                 <Button onClick={() => setVisiblePopover(true)}>
-                  {beds} bed, {guests} guests
+                  {beds} {t('details__hotel.beds')}, {guests}{' '}
+                  {t('details__hotel.guests')}
                 </Button>
               </Popover>
             </Space>
@@ -215,11 +267,11 @@ const DetailsHotelPage = () => {
             <List
               itemLayout="horizontal"
               dataSource={rooms}
-              header={<h1>Various rooms</h1>}
+              header={<h1>{t('details__hotel.various_rooms')}</h1>}
               renderItem={(item) => (
                 <List.Item>
                   {' '}
-                  <RoomInDetailsHotel room={item} />{' '}
+                  <RoomInDetailsHotel showModal={showModal} room={item} />{' '}
                 </List.Item>
               )}
             />
@@ -232,7 +284,7 @@ const DetailsHotelPage = () => {
             xs={{ span: 24 }}
           >
             <Divider />
-            <h1>Amenities</h1>
+            <h1>{t('details__hotel.amenities')}</h1>
             <Row gutter={[0, 10]}>
               {singleHotel.assets.map((item, key) => (
                 <Col
@@ -259,7 +311,7 @@ const DetailsHotelPage = () => {
             sm={{ span: 24 }}
             xs={{ span: 24 }}
           >
-            <h1>Things to keep in mind</h1>
+            <h1>{t('details__hotel.things_to_keep_in_mind')}</h1>
             <Row gutter={[0, 20]}>
               <Col
                 lg={{ span: 12 }}
@@ -268,11 +320,8 @@ const DetailsHotelPage = () => {
                 sm={{ span: 12 }}
                 xs={{ span: 12 }}
               >
-                <h3>Cancellation/prepayment</h3>
-                <p>
-                  Cancellation/prepayment policies vary by room type and
-                  provider.
-                </p>
+                <h3>{t('details__hotel.cancellation/prepayment')}</h3>
+                <p>{t('details__hotel.policies')}</p>
               </Col>
               <Col
                 lg={{ span: 12 }}
@@ -281,10 +330,8 @@ const DetailsHotelPage = () => {
                 sm={{ span: 12 }}
                 xs={{ span: 12 }}
               >
-                <h3>Check-in/Check-out</h3>
-                <p>
-                  Check in anytime after 3:00p, check out anytime before 12:00p
-                </p>
+                <h3>{t('details__hotel.checkin_checkout')}</h3>
+                <p>{t('details__hotel.checkin')}</p>
               </Col>
             </Row>
             <Divider />
@@ -292,6 +339,15 @@ const DetailsHotelPage = () => {
         </Row>
       ) : (
         ''
+      )}
+      {selectedRoom.images && (
+        <RoomDetailsModal
+          isModalVisible={isModalVisible}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          roomData={selectedRoom}
+          roomImages={roomImages}
+        />
       )}
     </div>
   );

@@ -1,15 +1,16 @@
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Image, Space } from 'antd';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
-const RoomInDetailsHotel = ({ room }) => {
+const RoomInDetailsHotel = ({ room, showModal }) => {
+  const { t, i18n } = useTranslation();
   return (
     <Space className="room__in__details__hotel">
       <span>Beds - {room.beds}</span>
-      <Link to={`/hotels`}>{room.name}</Link>
+      <span>{room.name}</span>
       <Image
         width={150}
         src={room.images[0]}
@@ -23,8 +24,12 @@ const RoomInDetailsHotel = ({ room }) => {
         ))}
       </Space>
       <span className="price">${room.price}</span>
-      <Button icon={<CaretRightOutlined />} type="primary">
-        View deal
+      <Button
+        onClick={() => showModal(room.id)}
+        icon={<CaretRightOutlined />}
+        type="primary"
+      >
+        View details
       </Button>
     </Space>
   );
