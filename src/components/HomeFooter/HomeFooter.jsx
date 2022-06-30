@@ -12,8 +12,8 @@ import React from 'react';
 import dollar from '../../assets/images/dollar.jpg';
 // import { useTranslation } from 'react-i18next'
 import us from '../../assets/images/englandIcon.jpg';
-import euro from '../../assets/images/euro.jpg';
 import vn from '../../assets/images/vietnamIcon.png';
+import vietnamdong from '../../assets/images/vietnamdong.jpg';
 import './HomeFooter.scss';
 
 const { Option, OptGroup } = Select;
@@ -105,7 +105,7 @@ const HomeFooter = () => {
                 </Option>
                 <Option value="Vietnamese">
                   {' '}
-                  <img src={vn} alt="" style={{ width: '20px' }} /> Vietnamese
+                  <img src={vn} alt="" style={{ width: '20px' }} /> Vietnam
                 </Option>
               </OptGroup>
             </Select>
@@ -121,7 +121,8 @@ const HomeFooter = () => {
             >
               <OptGroup label="Most-Used Currencies">
                 <Option value="Euro">
-                  <img src={euro} alt="" style={{ width: '20px' }} /> Euro
+                  <img src={vietnamdong} alt="" style={{ width: '20px' }} />{' '}
+                  Việt Nam đồng
                 </Option>
                 <Option value="United States Dollars">
                   <img src={dollar} alt="" style={{ width: '20px' }} /> United

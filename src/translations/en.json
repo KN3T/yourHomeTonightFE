@@ -60,5 +60,8 @@
     "populer_city_title": "Our Most Populer City",
     "populer_city_properties": "properties",
     "motels": "motels"
+  },
+  "city": {
+    "company": "Company"
   }
 }
