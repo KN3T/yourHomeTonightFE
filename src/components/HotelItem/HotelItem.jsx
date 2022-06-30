@@ -12,8 +12,6 @@ const HotelItem = ({ hotelData }) => {
 
   const currentLanguage = i18n.language;
 
-  console.log(formatCurrency(hotelData.price, currentLanguage));
-
   return (
     <div className="hotel__item__container">
       <div className="hotel__item__top">
