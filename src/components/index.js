@@ -13,4 +13,5 @@ export { default as RoomDetailsModal } from './RoomDetailsModal/RoomDetailsModal
 export { default as CityPopulerList } from './CityPolulerList/CityPopulerList';
 export { default as CityIntro } from './CityIntro/CityIntro';
 export { default as CheckoutForm } from './CheckoutForm/CheckoutForm'
+export { default as HomeFooter } from './HomeFooter/HomeFooter';
 
