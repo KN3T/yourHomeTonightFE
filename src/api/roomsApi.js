@@ -1,8 +1,12 @@
 import { axiosInstance } from "./axiosInstance";
 
 export const roomsApi = {
-    getAll(){
-        const url = 'https://62b95f6641bf319d227ae509.mockapi.io/kn3t/rooms/'
+    getAll(id){
+        const url = `http://api.yourhometonight.com/api/hotels/${id}/rooms`
         return axiosInstance.get(url)
+    },
+    delete(hotelId, roomId){
+        const url = `http://api.yourhometonight.com/api/hotels/${hotelId}/rooms/${roomId}`
+        return axiosInstance.delete(url)
     }
 }

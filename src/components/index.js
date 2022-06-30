@@ -17,3 +17,4 @@ export { default as CityIntro } from './CityIntro/CityIntro';
 export {default as Segmented} from './Segmented/Segmented'
 export {default as PopConfirm} from './PopConfirm/PopConfirm'
 export { default as HomeFooter} from './HomeFooter/HomeFooter';
+export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';

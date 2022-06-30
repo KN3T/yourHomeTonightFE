@@ -1,28 +1,42 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, Col, Image, Modal, Row } from 'antd';
+import { Button, Card, Col, Image, Modal, Row, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { addOrder } from '../../store/Slice/Booking/BookingSlice';
 import formatCurrency from '../../utils/formatCurrency';
 import './RoomDetailsModal.scss';
 
 const RoomDetailsModal = (props) => {
-  const { isModalVisible, handleOk, handleCancel, roomData, roomImages } =
-    props;
-
+  const {
+    isModalVisible,
+    handleOk,
+    handleCancel,
+    roomData,
+    roomImages,
+    dataOrder,
+  } = props;
+  const navigate = useNavigate();
   const [bigImage, setBigImage] = useState(roomImages[0]);
-
+  const dispath = useDispatch();
   useEffect(() => {
     setBigImage(roomImages[0]);
   }, [roomData]);
 
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+  const handleBooking = () => {
+    localStorage.getItem('token')
+      ? dispath(addOrder(dataOrder))
+      : navigate('/login');
+  };
+
   return (
     <Modal
       visible={isModalVisible}
@@ -101,9 +115,22 @@ const RoomDetailsModal = (props) => {
               </strong>
             </div>
             <div className="booking__button">
-              <Link to={localStorage.getItem('token') ? '/checkout' : '/login'}>
-                <Button type="primary">{t('room.reverse_now')}</Button>
-              </Link>
+              {dataOrder.dateCheckin && dataOrder.dateCheckout ? (
+                <Button onClick={handleBooking} type="primary">
+                  {t('room.reverse_now')}
+                </Button>
+              ) : (
+                <Button
+                  onClick={() =>
+                    message.error(
+                      'You must select date check in, check out first, please!'
+                    )
+                  }
+                  type="primary"
+                >
+                  {t('room.reverse_now')}
+                </Button>
+              )}
             </div>
           </Col>
         </Row>

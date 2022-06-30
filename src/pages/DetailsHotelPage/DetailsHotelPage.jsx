@@ -1,10 +1,8 @@
 import { CheckCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import {
-  Affix,
   Breadcrumb,
   Button,
   Col,
-  DatePicker,
   Divider,
   Image,
   List,
@@ -21,6 +19,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   PopoverDetailsHotel,
+  RangePickerInHotels,
   RoomDetailsModal,
   RoomInDetailsHotel,
 } from '../../components';
@@ -39,21 +38,19 @@ const DetailsHotelPage = () => {
   const { t, i18n } = useTranslation();
   const [beds, setBeds] = useState(1);
   const [guests, setGuests] = useState(1);
-  const [dateCheckin, setDateCheckin] = useState('');
-  const [dateCheckout, setDateCheckout] = useState('');
+  const [dateCheckin, setDateCheckin] = useState();
+  const [dateCheckout, setDateCheckout] = useState();
   const currentLanguage = i18n.language;
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   //for popover select beds and guests
   const [visiblePopover, setVisiblePopover] = useState(false);
-  console.log(beds, guests);
   let { id } = useParams(); //get id from url
 
   //dispatch to get data from store
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getByIdAsync(1));
+    dispatch(getByIdAsync(id));
     dispatch(getAllRoomAsync());
   }, [id]);
   //get first image to render ui
@@ -64,7 +61,7 @@ const DetailsHotelPage = () => {
 
   //handle whether data is recieved
   if (singleHotel) {
-    firstImage = singleHotel.images !== undefined && singleHotel.images[0];
+    firstImage = singleHotel.images !== undefined && singleHotel.images[0].src;
     images = singleHotel.images !== undefined && [
       ...singleHotel.images.slice(1),
     ];
@@ -83,15 +80,14 @@ const DetailsHotelPage = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  const dataOrder = {
+    dateCheckin,
+    dateCheckout,
+    hotelAddress: singleHotel.address,
+    rating: singleHotel.rating,
+    selectedRoom,
+  };
 
-  const onCheckin = (date, dateString) => {
-    console.log('check in', dateString);
-    setDateCheckin(dateString);
-  };
-  const onCheckout = (date, dateString) => {
-    console.log('check out', dateString);
-    setDateCheckout(dateString);
-  };
   return (
     <div className="details__hotel__wrapper">
       {loading && <Spin spinning={loading} />}
@@ -110,6 +106,7 @@ const DetailsHotelPage = () => {
               <Breadcrumb.Item>{singleHotel.name}</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -131,7 +128,7 @@ const DetailsHotelPage = () => {
                   {singleHotel.name}{' '}
                   <Rate disabled defaultValue={singleHotel.rating} />
                 </h1>
-                <h4>{singleHotel.address}</h4>
+                {/* <h4>{singleHotel.address}</h4> */}
                 <h5>
                   <span className="details__rating__number">
                     {t('details__hotel.review', {
@@ -167,6 +164,7 @@ const DetailsHotelPage = () => {
             </Row>
             <Divider />
           </Col>
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -190,7 +188,7 @@ const DetailsHotelPage = () => {
                       <Image
                         className="details__hotel__image"
                         height="100%"
-                        src={item}
+                        src={item.src}
                       />
                     </Col>
                   ))}
@@ -198,6 +196,7 @@ const DetailsHotelPage = () => {
               </Col>
             </Row>
           </Col>
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -240,6 +239,7 @@ const DetailsHotelPage = () => {
             </Row>
             <Divider />
           </Col>
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -256,15 +256,11 @@ const DetailsHotelPage = () => {
                 justifyContent: 'flex-end',
               }}
             >
+              <RangePickerInHotels
+                setDateCheckin={setDateCheckin}
+                setDateCheckout={setDateCheckout}
+              />
               <Space>
-                <DatePicker
-                  onChange={onCheckin}
-                  placeholder={t('details__hotel.check_in')}
-                />
-                <DatePicker
-                  onChange={onCheckout}
-                  placeholder={t('details__hotel.check_out')}
-                />
                 <Popover
                   visible={visiblePopover}
                   content={
@@ -284,13 +280,12 @@ const DetailsHotelPage = () => {
                   </Button>
                 </Popover>
               </Space>
-              <Space>
-                <Button style={{ width: 100 }} type="primary">
-                  <SearchOutlined />
-                </Button>
-              </Space>
+              <Button style={{ width: 100 }} type="primary">
+                <SearchOutlined />
+              </Button>
             </Space>
           </Col>
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -301,7 +296,6 @@ const DetailsHotelPage = () => {
             <List
               itemLayout="horizontal"
               dataSource={rooms}
-              // header={<h1>{t('details__hotel.various_rooms')}</h1>}
               renderItem={(item) => (
                 <List.Item>
                   {' '}
@@ -310,7 +304,8 @@ const DetailsHotelPage = () => {
               )}
             />
           </Col>
-          <Col
+
+          {/* <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
             md={{ span: 24 }}
@@ -337,7 +332,8 @@ const DetailsHotelPage = () => {
               ))}
             </Row>
             <Divider />
-          </Col>
+          </Col> */}
+
           <Col
             lg={{ span: 24 }}
             xl={{ span: 24 }}
@@ -381,6 +377,7 @@ const DetailsHotelPage = () => {
           handleCancel={handleCancel}
           roomData={selectedRoom}
           roomImages={roomImages}
+          dataOrder={dataOrder}
         />
       )}
     </div>
