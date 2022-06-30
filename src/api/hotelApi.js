@@ -12,6 +12,11 @@ const hotelApi = {
     const response = await axiosInstance.get(url);
     return response.data;
   },
+
+  get: async (params) => {
+    const response = await axiosInstance.get(`/hotels?city=${params}`)
+    return response;
+  }
 };
 
 export default hotelApi;
