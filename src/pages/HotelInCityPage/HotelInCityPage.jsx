@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import { HotelList } from '../../components';
+import { HotelList, RoomDetailsModal } from '../../components';
 import './HotelInCityPage.scss';
 
 const { Content, Sider } = Layout;
@@ -89,8 +89,87 @@ const HotelInCityPage = () => {
     },
   ];
 
+  const mockRoomsInHotelData = [
+    {
+      id: 1,
+      hotel_id: 2,
+      name: 'A01',
+      price: 130,
+      beds: 2,
+      images: [
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662190.jpg?k=4f57a95cedb8a0b499aca8112ac445206fb538b7c35a6e65adada86e79faeac6&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662197.jpg?k=5386995cea8418030d3ec2b09b817f2893d1e8b9a392044c74522c7788633c74&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662180.jpg?k=22da781b75505a7ce7ee6efed752d0e833196b2bb73dead984bbcca9163a2e60&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109774.jpg?k=ae405b41803f56321e8773fdc2a78e0f64d79c884988dd5b939a6938d87c65e6&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109776.jpg?k=070830d80413f92c645fb44b5d66903ead1b35a9485c7859017b4a3fc8a1a10d&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/197588683.jpg?k=feef2d9ec96a837c8a74c5e1bad995f42b2e284ab70b9a442ef7ddca8fc2051e&o=',
+        },
+      ],
+      description:
+        'Phòng Giường Đôi/2 Giường Đơn này có ban công, áo choàng tắm và ghế sofa.',
+      adults: 4,
+      children: 2,
+      assets: [
+        'Hoàn toàn nằm ở tầng trệt',
+        'Giường cực dài (> 2 mét)',
+        'Tủ lạnh',
+        'Điện thoại',
+        'Bồn tắm spa',
+        'Hệ thống cách âm',
+        'Tủ hoặc phòng để quần áo',
+      ],
+    },
+    {
+      id: 2,
+      hotel_id: 2,
+      name: 'A02',
+      price: 130,
+      beds: 2,
+      images: [
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662190.jpg?k=4f57a95cedb8a0b499aca8112ac445206fb538b7c35a6e65adada86e79faeac6&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662197.jpg?k=5386995cea8418030d3ec2b09b817f2893d1e8b9a392044c74522c7788633c74&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662180.jpg?k=22da781b75505a7ce7ee6efed752d0e833196b2bb73dead984bbcca9163a2e60&o=',
+        },
+        {
+          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109774.jpg?k=ae405b41803f56321e8773fdc2a78e0f64d79c884988dd5b939a6938d87c65e6&o=',
+        },
+      ],
+      description:
+        'Phòng Giường Đôi/2 Giường Đơn này có ban công, áo choàng tắm và ghế sofa.',
+      adults: 4,
+      children: 2,
+      assets: [
+        'Hoàn toàn nằm ở tầng trệt',
+        'Giường cực dài (> 2 mét)',
+        'Tủ lạnh',
+        'Điện thoại',
+        'Bồn tắm spa',
+        'Hệ thống cách âm',
+        'Tủ hoặc phòng để quần áo',
+      ],
+    },
+  ];
+
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState(mockRoomsInHotelData[0]);
 
   const { t } = useTranslation();
 
@@ -122,6 +201,25 @@ const HotelInCityPage = () => {
       </ul>
     </div>
   );
+
+  const getRoom = (roomdId) => {
+    const room = mockRoomsInHotelData.find((room) => room.id === roomdId);
+    return room;
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+    const room = getRoom(1);
+    setSelectedRoom(room);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <div className="hotelpage__container">
@@ -168,6 +266,13 @@ const HotelInCityPage = () => {
             <div className="result__list">
               {mockHotelData.length} {t('hotels.properties')}
             </div>
+            <Button onClick={showModal}>Open room details</Button>
+            <RoomDetailsModal
+              isModalVisible={isModalVisible}
+              handleOk={handleOk}
+              handleCancel={handleCancel}
+              roomData={selectedRoom}
+            />
             <Popover
               content={sortOptions}
               placement="bottomRight"

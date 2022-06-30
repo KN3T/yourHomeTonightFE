@@ -108,12 +108,16 @@
 
           button {
             border-radius: 5px;
-            background: linear-gradient(135deg, #ff690f 0%, #e8381b 100%);
+            background: var(--background-btn);
             color: #fff;
             font-weight: bold;
             width: 110px;
             margin-top: 4px;
             height: 30px;
+
+            &:hover {
+              background: var(--background-btn-hover);
+            }
           }
         }
       }

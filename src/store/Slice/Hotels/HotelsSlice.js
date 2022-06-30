@@ -13,6 +13,7 @@ const HotelsSlice = createSlice({
     loading: false,
     singleHotel: {},
   },
+  
   reducers: {},
   extraReducers: {
     [getByIdAsync.pending]: (state) => {
