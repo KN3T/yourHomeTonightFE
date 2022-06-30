@@ -73,5 +73,33 @@
     "populer_city_title": "Our Most Populer City",
     "populer_city_properties": "properties",
     "motels": "motels"
+  },
+  "footer": {
+    "company": "Company",
+    "contact": "Contact",
+    "more": "More",
+    "site": "Site",
+    "currency": "Curruncy",
+    "about": "About",
+    "careers": "Careers",
+    "mobile": "Mobile",
+    "blog": "Blog",
+    "how_we_work": "How we work",
+    "sustainability": "Sustainability",
+    "help": "Help",
+    "faq": "FAQ",
+    "press": "Press",
+    "affiliates": "Affiliates",
+    "hotels_owners": "Hotel owners",
+    "advertise_with_us": "Advertise with us",
+    "airline fees": "Airline fees",
+    "airlines": "Airlines",
+    "low_fare_tips": "Low fare tips",
+    "badges_certificates": "Badges & Certificates",
+    "privacy": "Privacy",
+    "term": "Term & Conditions",
+    "imprint": "Imprint",
+    "footer_description": "Search flights, hotels, hire cars, travel guides and more with Yourhome29. searches hundreds of other travel sites at once to get you the information you need to make the right decisions.",
+    "sub_footer": "Yourhome29. is part of Booking Holdings Inc., the world leader in online travel & related services."
   }
 }
