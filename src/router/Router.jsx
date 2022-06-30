@@ -8,6 +8,7 @@ import {
   HotelInCityPage,
   LoginPage,
   RegisterPage,
+  UserProfilePage,
 } from '../pages';
 
 const Router = () => {
@@ -21,6 +22,7 @@ const Router = () => {
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/userprofile" element={<UserProfilePage />} />
       </Routes>
     </>
   );
