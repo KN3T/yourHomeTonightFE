@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { HotelPopulerList, MainSection } from '../../components';
+import { CityIntro, HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
@@ -8,6 +8,7 @@ const HomePage = () => {
     <div className="homepage__container">
       <MainSection />
       <HotelPopulerList />
+      <CityIntro />
     </div>
   );
 };
