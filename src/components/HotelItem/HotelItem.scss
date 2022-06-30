@@ -79,11 +79,24 @@
 
       &__wrapper {
         display: flex;
+        justify-content: space-between;
         padding: 8px 0;
         border-top: 1px solid #d9e2e8;
         width: 100%;
         cursor: pointer;
         min-height: 56px;
+
+        .description__wrapper {
+          div {
+            display: flex;
+            align-items: center;
+
+            svg {
+              font-size: 16px;
+              margin-right: 4px;
+            }
+          }
+        }
 
         .price__wrapper {
           display: flex;
