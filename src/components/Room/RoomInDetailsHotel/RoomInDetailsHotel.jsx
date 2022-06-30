@@ -1,6 +1,7 @@
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Image, Space } from 'antd';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './index.scss';
 

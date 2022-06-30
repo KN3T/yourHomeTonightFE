@@ -1,3 +1,4 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
 import {
   Affix,
   Breadcrumb,
@@ -232,7 +233,7 @@ const DetailsHotelPage = () => {
           >
             <Divider />
             <h1>Amenities</h1>
-            <Row>
+            <Row gutter={[0, 10]}>
               {singleHotel.assets.map((item, key) => (
                 <Col
                   lg={{ span: 12 }}
@@ -242,7 +243,10 @@ const DetailsHotelPage = () => {
                   xs={{ span: 12 }}
                   key={key}
                 >
-                  {item}
+                  <Space>
+                    <CheckCircleOutlined style={{ color: '#158F50' }} />
+                    <span>{item}</span>
+                  </Space>
                 </Col>
               ))}
             </Row>
