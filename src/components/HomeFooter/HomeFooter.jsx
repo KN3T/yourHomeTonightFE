@@ -122,7 +122,7 @@ const HomeFooter = () => {
               <OptGroup label="Most-Used Currencies">
                 <Option value="Euro">
                   <img src={vietnamdong} alt="" style={{ width: '20px' }} />{' '}
-                  Việt Nam đồng
+                  Vietnamese Dong
                 </Option>
                 <Option value="United States Dollars">
                   <img src={dollar} alt="" style={{ width: '20px' }} /> United
