@@ -6,7 +6,7 @@ import paypal_logo from '../../assets/images/paypal_logo.jpg';
 import './CheckoutForm.scss';
 
 const CheckoutForm = (props) => {
-  const { handleSubmitForm, form } = props;
+  const { handleSubmitForm, form, userData } = props;
 
   const handleFinish = (values) => {
     handleSubmitForm(values);
@@ -18,7 +18,6 @@ const CheckoutForm = (props) => {
         form
           .validateFields()
           .then((values) => {
-            form.resetFields();
             handleFinish(values);
           })
           .catch((err) => {
@@ -28,6 +27,10 @@ const CheckoutForm = (props) => {
       className="checkout__form__wrapper"
       size="large"
       form={form}
+      initialValues={{
+        fullName: userData.fullName,
+        email: userData.email,
+      }}
     >
       <div className="checkout__form__item guest__info">
         <div className="guest__info__notice">
@@ -38,35 +41,14 @@ const CheckoutForm = (props) => {
         </div>
         <h2 className="form__item__title">Guest Name</h2>
         <Form.Item
-          name="firstName"
+          name="fullName"
           rules={[
             {
               required: true,
             },
           ]}
-          style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
-            marginBottom: '0',
-          }}
         >
-          <Input className="form__item__input" placeholder="First name *" />
-        </Form.Item>
-        <Form.Item
-          name="lastName"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-          style={{
-            display: 'inline-block',
-            width: 'calc(50% - 8px)',
-            marginLeft: '8px',
-            marginBottom: '0',
-          }}
-        >
-          <Input className="form__item__input" placeholder="Last name *" />
+          <Input className="form__item__input" placeholder="Full name *" />
         </Form.Item>
       </div>
       <div className="checkout__form__item">

@@ -22,10 +22,7 @@ const LoginPage = () => {
       const status = await response.data.status;
       const data = await response.data;
       if (status === 'success') {
-        localStorage.setItem('email', data.data.email);
-        localStorage.setItem('role', data.data.role);
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('fullName', data.data.fullName);
+        localStorage.setItem('userData', JSON.stringify(data.data));
         setLoadingButton(false);
         navigate('/');
         message.success('Login successfully');
