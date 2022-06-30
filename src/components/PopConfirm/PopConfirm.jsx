@@ -2,18 +2,9 @@ import { Button, Form, InputNumber, Space } from 'antd';
 import { t } from 'i18next';
 import React from 'react';
 
-import './index.scss';
-
-const PopoverDetailsHotel = ({
-  beds,
-  guests,
-  setVisiblePopover,
-  setBeds,
-  setGuests,
-}) => {
-  const onFinish = ({ bed, guest }) => {
-    setBeds(bed);
-    setGuests(guest);
+const PopConfirm = ({ beds, guests, setVisiblePopover }) => {
+  const onFinish = (values) => {
+    console.log(values);
   };
   return (
     <Form
@@ -46,4 +37,4 @@ const PopoverDetailsHotel = ({
   );
 };
 
-export default PopoverDetailsHotel;
+export default PopConfirm;

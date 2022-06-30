@@ -1,4 +1,4 @@
-import { CheckCircleOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import {
   Affix,
   Breadcrumb,
@@ -39,13 +39,15 @@ const DetailsHotelPage = () => {
   const { t, i18n } = useTranslation();
   const [beds, setBeds] = useState(1);
   const [guests, setGuests] = useState(1);
+  const [dateCheckin, setDateCheckin] = useState('');
+  const [dateCheckout, setDateCheckout] = useState('');
   const currentLanguage = i18n.language;
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   //for popover select beds and guests
   const [visiblePopover, setVisiblePopover] = useState(false);
-
+  console.log(beds, guests);
   let { id } = useParams(); //get id from url
 
   //dispatch to get data from store
@@ -80,6 +82,15 @@ const DetailsHotelPage = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const onCheckin = (date, dateString) => {
+    console.log('check in', dateString);
+    setDateCheckin(dateString);
+  };
+  const onCheckout = (date, dateString) => {
+    console.log('check out', dateString);
+    setDateCheckout(dateString);
   };
   return (
     <div className="details__hotel__wrapper">
@@ -116,7 +127,10 @@ const DetailsHotelPage = () => {
                 sm={{ span: 24 }}
                 xs={{ span: 24 }}
               >
-                <h1>{singleHotel.name}</h1>
+                <h1>
+                  {singleHotel.name}{' '}
+                  <Rate disabled defaultValue={singleHotel.rating} />
+                </h1>
                 <h4>{singleHotel.address}</h4>
                 <h5>
                   <span className="details__rating__number">
@@ -138,8 +152,7 @@ const DetailsHotelPage = () => {
                   <h1>
                     <span>{t('details__hotel.from')}</span>{' '}
                     {t('details__hotel.price_value', {
-                      val: formatCurrency(singleHotel.price),
-                      currentLanguage,
+                      val: formatCurrency(singleHotel.price, currentLanguage),
                     })}
                     /
                     <span style={{ fontSize: '15px' }}>
@@ -236,25 +249,46 @@ const DetailsHotelPage = () => {
             className="filter__wrapper"
           >
             <h1>{t('details__hotel.available_rates')}</h1>
-            <Space>
-              <DatePicker placeholder="check in" />
-              <DatePicker placeholder="check out" />
-              <Popover
-                visible={visiblePopover}
-                content={
-                  <PopoverDetailsHotel
-                    setVisiblePopover={setVisiblePopover}
-                    beds={beds}
-                    guests={guests}
-                  />
-                }
-                trigger="focus"
-              >
-                <Button onClick={() => setVisiblePopover(true)}>
-                  {beds} {t('details__hotel.beds')}, {guests}{' '}
-                  {t('details__hotel.guests')}
+            <Space
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <Space>
+                <DatePicker
+                  onChange={onCheckin}
+                  placeholder={t('details__hotel.check_in')}
+                />
+                <DatePicker
+                  onChange={onCheckout}
+                  placeholder={t('details__hotel.check_out')}
+                />
+                <Popover
+                  visible={visiblePopover}
+                  content={
+                    <PopoverDetailsHotel
+                      setVisiblePopover={setVisiblePopover}
+                      beds={beds}
+                      guests={guests}
+                      setBeds={setBeds}
+                      setGuests={setGuests}
+                    />
+                  }
+                  trigger="focus"
+                >
+                  <Button onClick={() => setVisiblePopover(true)}>
+                    {beds} {t('details__hotel.beds')}, {guests}{' '}
+                    {t('details__hotel.guests')}
+                  </Button>
+                </Popover>
+              </Space>
+              <Space>
+                <Button style={{ width: 100 }} type="primary">
+                  <SearchOutlined />
                 </Button>
-              </Popover>
+              </Space>
             </Space>
           </Col>
           <Col
@@ -267,7 +301,7 @@ const DetailsHotelPage = () => {
             <List
               itemLayout="horizontal"
               dataSource={rooms}
-              header={<h1>{t('details__hotel.various_rooms')}</h1>}
+              // header={<h1>{t('details__hotel.various_rooms')}</h1>}
               renderItem={(item) => (
                 <List.Item>
                   {' '}

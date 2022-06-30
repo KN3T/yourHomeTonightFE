@@ -14,5 +14,5 @@ export {default as RoomInDetailsHotel} from './Room/RoomInDetailsHotel/RoomInDet
 export { default as RoomDetailsModal } from './RoomDetailsModal/RoomDetailsModal'
 export { default as CityPopulerList } from './CityPolulerList/CityPopulerList';
 export { default as CityIntro } from './CityIntro/CityIntro';
-
-
+export {default as Segmented} from './Segmented/Segmented'
+export {default as PopConfirm} from './PopConfirm/PopConfirm'

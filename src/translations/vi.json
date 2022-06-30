@@ -90,7 +90,9 @@
     "cancellation/prepayment": "Hủy hóa đơn / thanh toán trước",
     "policies": "Tùy thuộc vào loại khách sạn và nhà cung cấp sẽ có chính sách thanh toán khác nhau",
     "checkin_checkout": "Nhập phòng / trả phòng",
-    "checkin": "Nhận phòng trước 3 giờ chiều, trả phòng trước 12 trưa"
+    "checkin": "Nhận phòng trước 3 giờ chiều, trả phòng trước 12 trưa",
+    "check_in": "Ngày nhận phòng",
+    "check_out": "Ngày trả phòng"
   },
 
   "room": {
