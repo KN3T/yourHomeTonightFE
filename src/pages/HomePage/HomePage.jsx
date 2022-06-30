@@ -1,11 +1,6 @@
 import React from 'react';
 
-import {
-  CityIntro,
-  HomeFooter,
-  HotelPopulerList,
-  MainSection,
-} from '../../components';
+import { CityIntro, HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
@@ -14,7 +9,6 @@ const HomePage = () => {
       <MainSection />
       <HotelPopulerList />
       <CityIntro />
-      <HomeFooter />
     </div>
   );
 };
