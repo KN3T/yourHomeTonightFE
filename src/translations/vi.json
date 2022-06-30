@@ -2,7 +2,7 @@
   "hotel": {
     "rating": "Đánh giá",
     "per_night": "Đêm",
-    "Populer_hotel_title": "Khách sạn nổi tiếng nhất của chúng tôi",
+    "populer_hotel_title": "Khách sạn nổi tiếng nhất của chúng tôi",
     "populer_hotel_content": "Mùa hè này, hãy biến giấc mơ của bạn thành hiện thực. Đặt và lưu trú với giá thấp hơn trước ngày 30 tháng 9 năm 2022",
     "start_from": "Chỉ từ:",
     "price_value": "{{val, currency(currency: VND)}}"
@@ -91,8 +91,9 @@
     "press": "Truyền thông",
     "affiliates": "Liên kết kinh doanh",
     "hotels_owners": "Chủ khách sạn",
-    "advertise_with_us": "Đối tác",
-    "airline fees": "Phí cho hãng bay",
+    "partners": "Đối tác",
+    "advertise_with_us": "Quảng cáo",
+    "airline_fees": "Phí cho hãng bay",
     "airlines": "Hãng bay",
     "low_fare_tips": "Mẹo tìm giá vé rẻ",
     "badges_certificates": "Giấy chứng nhận",
