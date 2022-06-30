@@ -16,3 +16,4 @@ export { default as CityPopulerList } from './CityPolulerList/CityPopulerList';
 export { default as CityIntro } from './CityIntro/CityIntro';
 export {default as Segmented} from './Segmented/Segmented'
 export {default as PopConfirm} from './PopConfirm/PopConfirm'
+export { default as HomeFooter} from './HomeFooter/HomeFooter';
