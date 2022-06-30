@@ -9,7 +9,9 @@ const RoomInDetailsHotel = ({ room, showModal }) => {
   const { t, i18n } = useTranslation();
   return (
     <Space className="room__in__details__hotel">
-      <span>Beds - {room.beds}</span>
+      <span>
+        {t('details__hotel.beds')} - {room.beds}
+      </span>
       <span>{room.name}</span>
       <Image
         width={150}
@@ -29,7 +31,7 @@ const RoomInDetailsHotel = ({ room, showModal }) => {
         icon={<CaretRightOutlined />}
         type="primary"
       >
-        View details
+        {t('details__hotel.view_details')}
       </Button>
     </Space>
   );
