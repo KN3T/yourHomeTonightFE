@@ -14,7 +14,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { cityApi, hotelApi } from '../../api';
 import { HotelList } from '../../components';
@@ -32,6 +32,12 @@ const HotelInCityPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [currentParams, setCurrentParams] = useState(location.search);
+
+  useEffect(() => {
+    setCurrentParams(location.search);
+  }, [location.search]);
 
   const [params, setParams] = useState({
     limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
@@ -60,11 +66,30 @@ const HotelInCityPage = () => {
   const onClickHigh = () => {
     setSortValue('high to low');
     setVisibleSortOption(false);
+    setParams({
+      ...params,
+      order: 'desc',
+    });
+    if (currentParams) {
+      console.log(123);
+      navigate(`/hotels${currentParams}&order=desc`);
+    } else {
+      navigate(`/hotels/?order=desc`);
+    }
   };
 
   const onClickLow = () => {
     setSortValue('low to high');
     setVisibleSortOption(false);
+    setParams({
+      ...params,
+      order: 'asc',
+    });
+    if (currentParams) {
+      navigate(`/hotels${currentParams}&order=asc`);
+    } else {
+      navigate(`/hotels/?order=asc`);
+    }
   };
 
   const sortOptions = (
@@ -115,11 +140,12 @@ const HotelInCityPage = () => {
     setParams({
       ...params,
       city: searchValue,
-    }),
-      navigate({
-        pathname: '/hotels',
-        search: `?city=${searchValue}`,
-      });
+    });
+    if (currentParams) {
+      navigate(`/hotels${currentParams}&city=${searchValue}`);
+    } else {
+      navigate(`/hotels?city=${searchValue}`);
+    }
   };
 
   return (
