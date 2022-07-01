@@ -3,6 +3,7 @@ import { Button, Form, Input, Radio } from 'antd';
 import React from 'react';
 
 import stripe_logo_blue from '../../assets/images/stripe_logo_blue.png';
+
 import './CheckoutForm.scss';
 
 const CheckoutForm = (props) => {
