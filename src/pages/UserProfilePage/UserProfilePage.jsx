@@ -17,18 +17,16 @@ const UserProfilePage = () => {
   };
   return (
     <div className="hotelpage__container">
-      <div>
+      <div className="user_profile">
         <Tabs
-          defaultActiveKey="1"
+          defaultActiveKey="2"
           size={size}
           style={{
             marginBottom: 32,
           }}
         >
-          <TabPane tab="Tab 1" key="1">
-            Content of tab 1
-          </TabPane>
-          <TabPane tab="Tab 2" key="2">
+          <TabPane tab="My Trips" key="1"></TabPane>
+          <TabPane tab="My Account" key="2">
             <div className="user_profile_banner">
               <img
                 className="user_profile_bg"
@@ -38,20 +36,14 @@ const UserProfilePage = () => {
               />
             </div>
           </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            Content of tab 3
-          </TabPane>
+          <TabPane tab="VIP Dashboard" key="3"></TabPane>
         </Tabs>
         <Tabs defaultActiveKey="1" type="card" size={size}>
-          <TabPane tab="Card Tab 1" key="1">
-            Content of card tab 1
+          <TabPane tab="Personal Info" key="1">
+            <UserProfileAccount />
           </TabPane>
-          <TabPane tab="Card Tab 2" key="2">
-            Content of card tab 2
-          </TabPane>
-          <TabPane tab="Card Tab 3" key="3">
-            Content of card tab 3
-          </TabPane>
+          <TabPane tab="Sign In & Security" key="2"></TabPane>
+          <TabPane tab="Payment Info" key="3"></TabPane>
         </Tabs>
       </div>
     </div>
