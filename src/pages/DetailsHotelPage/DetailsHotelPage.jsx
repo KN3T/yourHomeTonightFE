@@ -1,8 +1,4 @@
-import {
-  CheckCircleOutlined,
-  PhoneOutlined,
-  SearchOutlined,
-} from '@ant-design/icons';
+import { PhoneOutlined, SearchOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
@@ -12,21 +8,17 @@ import {
   Image,
   InputNumber,
   List,
-  Popover,
   Rate,
   Row,
   Skeleton,
   Space,
-  Spin,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IoBedSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import {
-  PopoverDetailsHotel,
   RangePickerInHotels,
   RoomDetailsModal,
   RoomInDetailsHotel,
@@ -38,8 +30,6 @@ import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
 const DetailsHotelPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams({});
-
   //data from store redux
   const loading = useSelector((state) => state.hotels.loading);
   const singleHotel = useSelector((state) => state.hotels.singleHotel);
@@ -55,8 +45,6 @@ const DetailsHotelPage = () => {
   const currentLanguage = i18n.language;
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
-  //for popover select beds and guests
-  const [visiblePopover, setVisiblePopover] = useState(false);
   let { id } = useParams(); //get id from url
 
   //dispatch to get data from store
@@ -334,35 +322,6 @@ const DetailsHotelPage = () => {
                 />
               </Skeleton>
             </Col>
-
-            {/* <Col
-            lg={{ span: 24 }}
-            xl={{ span: 24 }}
-            md={{ span: 24 }}
-            sm={{ span: 24 }}
-            xs={{ span: 24 }}
-          >
-            <Divider />
-            <h1>{t('details__hotel.amenities')}</h1>
-            <Row gutter={[0, 10]}>
-              {singleHotel.assets.map((item, key) => (
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 12 }}
-                  sm={{ span: 12 }}
-                  xs={{ span: 12 }}
-                  key={key}
-                >
-                  <Space>
-                    <CheckCircleOutlined style={{ color: '#158F50' }} />
-                    <span>{item}</span>
-                  </Space>
-                </Col>
-              ))}
-            </Row>
-            <Divider />
-          </Col> */}
 
             <Col
               lg={{ span: 24 }}
