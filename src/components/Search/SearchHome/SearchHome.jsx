@@ -1,19 +1,29 @@
+/* eslint-disable react/prop-types */
+import { AutoComplete, Input } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
-const SearchHome = () => {
-  const { t, i18n } = useTranslation();
+const SearchHome = ({ handleSearch, onSelect, options }) => {
+  const { t } = useTranslation();
   return (
     <div className="search__home__wrapper">
-      <form action="">
-        <input
-          className="search__home__wrapper__input"
+      <AutoComplete
+        dropdownMatchSelectWidth={300}
+        options={options}
+        onSelect={onSelect}
+        onSearch={handleSearch}
+        className="search__home__container"
+      >
+        <Input
+          size="large"
           placeholder={t('main.search_your_perfect_place_to_stay')}
-          type="text"
+          bordered={false}
+          allowClear={true}
+          className="search__home__input"
         />
-      </form>
+      </AutoComplete>
     </div>
   );
 };

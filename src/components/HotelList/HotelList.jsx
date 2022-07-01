@@ -20,9 +20,10 @@ const HotelList = ({ hotelListData }) => {
 
   return (
     <div className="hotel__list__container">
-      {sliceData.map((hotel) => {
+      {hotelListData.map((hotel) => {
         return <HotelItem hotelData={hotel} key={hotel.id} />;
       })}
+
       {sliceData.length > 0 && (
         <Pagination
           style={{

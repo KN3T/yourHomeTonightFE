@@ -95,16 +95,16 @@ const DetailsHotelPage = () => {
   };
   return (
     <div className="details__hotel__wrapper">
-      {/* {loading && <Spin spinning={loading} />} */}
       <Skeleton loading={loading}>
         {singleHotel.images ? (
-          <Row className="details__hotel__row" gutter={[20, 40]}>
+          <Row className="details__hotel__row ctn" gutter={[20, 40]}>
             <Col
               lg={{ span: 24 }}
               xl={{ span: 24 }}
               md={{ span: 24 }}
               sm={{ span: 24 }}
               xs={{ span: 24 }}
+              style={{ width: '100%' }}
             >
               <Breadcrumb>
                 <Breadcrumb.Item>{t('details__hotel.home')}</Breadcrumb.Item>
@@ -132,24 +132,18 @@ const DetailsHotelPage = () => {
                   sm={{ span: 24 }}
                   xs={{ span: 24 }}
                 >
-                  <h1>
-                    {singleHotel.name}{' '}
-                    {/* <Rate disabled defaultValue={singleHotel.rating} /> */}
-                    <Rate disabled defaultValue={5} />
+                  <h1 style={{ textTransform: 'capitalize' }}>
+                    {singleHotel.name} <Rate disabled defaultValue={5} />
                   </h1>
-                  {/* <h4>{singleHotel.address}</h4> */}
                   <h4>
                     <PhoneOutlined />{' '}
                     <a href={`tel:${singleHotel.phone}`}>{singleHotel.phone}</a>
                   </h4>
-                  <h4>{`${singleHotel.address.city}, ${singleHotel.address.province}, ${singleHotel.address.address}`}</h4>
+                  <h4
+                    style={{ textTransform: 'capitalize' }}
+                  >{`${singleHotel.address.city}, ${singleHotel.address.province}, ${singleHotel.address.address}`}</h4>
                   <h5>
-                    <span className="details__rating__number">
-                      {/* {t('details__hotel.review', {
-                      review: singleHotel.ratingCount,
-                    })} */}
-                      999
-                    </span>
+                    <span className="details__rating__number">999</span>
                     {t('details__hotel.wonderful_reviews')}
                   </h5>
                 </Col>
@@ -244,7 +238,6 @@ const DetailsHotelPage = () => {
                   xs={{ span: 24 }}
                 >
                   <h1>{t('details__hotel.rating')}</h1>
-                  {/* <Rate disabled defaultValue={singleHotel.rating} /> */}
                   <Rate disabled defaultValue={5} />
                   <p>
                     {t('details__hotel.based_on', {

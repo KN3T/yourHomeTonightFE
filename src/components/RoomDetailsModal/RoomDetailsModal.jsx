@@ -32,14 +32,15 @@ const RoomDetailsModal = (props) => {
     setBigImage(roomImages[0]);
   }, [roomData]);
 
-  console.log(bigImage);
-
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   const handleBooking = () => {
-    localStorage.getItem('token')
-      ? dispath(addOrder(dataOrder))
-      : navigate('/login');
+    if (localStorage.getItem('userData')) {
+      dispath(addOrder(dataOrder));
+      navigate('/checkout');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -123,7 +124,6 @@ const RoomDetailsModal = (props) => {
               {dataOrder.dateCheckin && dataOrder.dateCheckout ? (
                 <Button
                   onClick={() => {
-                    message.success('Booking successful!');
                     handleBooking();
                     setIsModalVisible(false);
                   }}
