@@ -90,7 +90,7 @@ const CheckoutForm = (props) => {
       <div className="checkout__form__item">
         <h2 className="form__item__title">Payment</h2>
         <Radio value={1} className="radio__button" checked={true}>
-          Paypal
+          Stripe
           <span className="radio__logo">
             <img src={stripe_logo_blue} alt="" style={{ width: '70px' }} />
           </span>

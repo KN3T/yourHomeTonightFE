@@ -1,9 +1,23 @@
 .details__hotel__wrapper {
   padding: 0 15vw;
   margin-top: 3vh;
-  // max-width: 100vw;
-  // overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  button {
+    background: var(--background-btn);
+    transition: all 0.3s linear;
+    border-radius: 5px;
+
+    &:hover {
+      background: var(--background-btn-hover);
+    }
+  }
+
   .details__hotel__row {
+    width: 100%;
+
     .details__title__wrappper {
       .details__rating__number {
         background: #158f50;
@@ -30,15 +44,11 @@
         }
       }
     }
-    .gallery__image {
-    }
-    .details__hotel__image {
-    }
+
     .details__rating__wrapper {
       .rating {
         display: flex;
         align-items: center;
-        // color: white;
         font-weight: bold;
         span {
           background-color: #158f50;

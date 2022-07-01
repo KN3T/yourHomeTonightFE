@@ -70,6 +70,10 @@ const Navbar = () => {
     i18n.changeLanguage(lng);
     localStorage.setItem('lng', lng);
   };
+
+  const userData = JSON.parse(window.localStorage.getItem('userData'));
+  const isLogin = Boolean(userData);
+
   return (
     <>
       <header className="header__wrapper">
@@ -147,11 +151,21 @@ const Navbar = () => {
               defaultValue={defaultLanguage}
               options={languageOptions}
             />
-            <Link className="user__icon__link" to="/login">
-              <Button size="small" className="login__btn" type="link">
-                {t('navbar.login')}
-              </Button>
-            </Link>
+            {isLogin ? (
+              console.log(isLogin) && (
+                <Link className="user__icon__link" to="/login">
+                  <Button size="small" className="login__btn" type="link">
+                    {userData.fullName}
+                  </Button>
+                </Link>
+              )
+            ) : (
+              <Link className="user__icon__link" to="/login">
+                <Button size="small" className="login__btn" type="link">
+                  {t('navbar.login')}
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </header>
