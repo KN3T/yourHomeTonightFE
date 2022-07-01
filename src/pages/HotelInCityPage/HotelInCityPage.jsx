@@ -44,7 +44,7 @@ const HotelInCityPage = () => {
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 0,
+      : 100,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });
 
@@ -55,7 +55,7 @@ const HotelInCityPage = () => {
 
   useEffect(() => {
     getHotel(params);
-  }, [searchParams]);
+  }, [params]);
 
   const onClickHigh = () => {
     setSortValue('high to low');
@@ -96,12 +96,13 @@ const HotelInCityPage = () => {
         };
       })
     );
-  }, 500);
+  }, 300);
 
   const handleSearch = (value) => {
     if (value && value !== '') {
       search(value);
-    } else {
+    } else if (value === '') {
+      setSearchValue('');
       setOptions([]);
     }
   };
@@ -111,10 +112,14 @@ const HotelInCityPage = () => {
   };
 
   const onClickSearch = () => {
-    navigate({
-      pathname: '/hotels',
-      search: `?city=${searchValue}`,
-    });
+    setParams({
+      ...params,
+      city: searchValue,
+    }),
+      navigate({
+        pathname: '/hotels',
+        search: `?city=${searchValue}`,
+      });
   };
 
   return (
@@ -175,7 +180,7 @@ const HotelInCityPage = () => {
         <Content className="hotels__section">
           <div className="sort__button__wrapper">
             <div className="result__list">
-              {hotelsData.length} {t('hotels.properties')}
+              {hotelsData && hotelsData.length} {t('hotels.properties')}
             </div>
             <Popover
               content={sortOptions}

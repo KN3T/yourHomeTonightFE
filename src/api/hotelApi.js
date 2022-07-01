@@ -16,7 +16,7 @@ const hotelApi = {
   get: async (params) => {
     const {limit, offset, order, minPrice, maxPrice, city} = params;
     const response = await axiosInstance.get(
-      `/hotels?limit=${limit}&offset=${offset}&order=${order}&minPrice=${minPrice}&maxPrice=${maxPrice}&city=${city}`
+      `/hotels?limit=${limit}&offset=${offset}&order=${order}&minPrice=${minPrice}&maxPrice=${maxPrice}&city=${city ? city: ""}`
       )
     return response;
   }
