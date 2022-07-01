@@ -14,4 +14,9 @@ export { default as CityPopulerList } from './CityPolulerList/CityPopulerList';
 export { default as CityIntro } from './CityIntro/CityIntro';
 export { default as CheckoutForm } from './CheckoutForm/CheckoutForm'
 export { default as HomeFooter } from './HomeFooter/HomeFooter';
+export {default as PopoverDetailsHotel} from './Popover/PopoverDetailsHotel/PopoverDetailsHotel'
+export {default as RoomInDetailsHotel} from './Room/RoomInDetailsHotel/RoomInDetailsHotel'
+export {default as Segmented} from './Segmented/Segmented'
+export {default as PopConfirm} from './PopConfirm/PopConfirm'
+export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';
 
