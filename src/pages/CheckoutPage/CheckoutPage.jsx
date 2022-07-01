@@ -1,6 +1,7 @@
 import { Col, Form, Row, Steps } from 'antd';
 import moment from 'moment';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { IoBedSharp } from 'react-icons/io5';
@@ -9,14 +10,16 @@ import { RiShieldCheckFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 
 import { CheckoutForm } from '../../components';
+import formatCurrency from '../../utils/formatCurrency';
 import './CheckoutPage.scss';
 
 const { Step } = Steps;
 const CheckoutPage = () => {
   const [form] = Form.useForm();
   const bookingData = useSelector((state) => state.booking.orders);
+  const { t, i18n } = useTranslation();
 
-  console.log(bookingData);
+  const currentLanguage = i18n.language;
 
   const checkIn = moment(bookingData.dateCheckin);
   const checkOut = moment(bookingData.dateCheckout);
@@ -77,9 +80,17 @@ const CheckoutPage = () => {
                     </div>
                     <div className="checkout__content__description">
                       <h2>{bookingData.selectedRoom.name}</h2>
-                      <p>{bookingData.hotelAddress.address}</p>
+                      <p>
+                        {bookingData.hotelAddress.address},{' '}
+                        {bookingData.hotelAddress.city},{' '}
+                        {bookingData.hotelAddress.province}
+                      </p>
                       <div className="checkout__content__rating">
-                        <div>{bookingData.hotelRating}</div>
+                        <div>
+                          {bookingData.hotelRating
+                            ? bookingData.hotelRating
+                            : 0}{' '}
+                        </div>
                         <span>GUEST RATING</span>
                       </div>
                     </div>
@@ -153,7 +164,14 @@ const CheckoutPage = () => {
                   <div className="checkout__content__summary__list">
                     <div className="checkout__content__summary__item">
                       <span>Cost per night</span>
-                      <span>{bookingData.selectedRoom.price}</span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(
+                            bookingData.selectedRoom.price,
+                            currentLanguage
+                          ),
+                        })}
+                      </span>
                     </div>
                     <div className="checkout__content__summary__item">
                       <span>Number of nights</span>
@@ -161,12 +179,23 @@ const CheckoutPage = () => {
                     </div>
                     <div className="checkout__content__summary__item">
                       <span>Taxes and fees</span>
-                      <span>{tax}</span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(tax, currentLanguage),
+                        })}
+                      </span>
                     </div>
                   </div>
                   <div className="checkout__content__summary__total">
                     <span>Total charges</span>
-                    <span>{bookingData.selectedRoom.price + tax}</span>
+                    <span>
+                      {t('hotels.price_value', {
+                        val: formatCurrency(
+                          bookingData.selectedRoom.price * nights + tax,
+                          currentLanguage
+                        ),
+                      })}
+                    </span>
                   </div>
                 </div>
               </Col>
