@@ -1,16 +1,13 @@
 import { axiosInstance } from "./axiosInstance";
 
 const hotelApi = {
-  getAll: async () => {
-    const response = await axiosInstance.get(
-      'https://62b95f6641bf319d227ae509.mockapi.io/kn3t/hotels'
-    );
-    return response.data;
+  getAll() {
+    const url = 'http://api.yourhometonight.com/api/hotels'
+    return axiosInstance.get(url)
   },
-  getById: async (id) => {
-    const url = `https://62b95f6641bf319d227ae509.mockapi.io/kn3t/hotels/${id}`;
-    const response = await axiosInstance.get(url);
-    return response.data;
+  getById(id) {
+    const url = `http://api.yourhometonight.com/api/hotels/${id}/`;
+    return  axiosInstance.get(url);
   },
 
   get: async (params) => {
@@ -19,7 +16,23 @@ const hotelApi = {
       `/hotels?limit=${limit}&offset=${offset}&order=${order}&minPrice=${minPrice}&maxPrice=${maxPrice}&city=${city ? city: ""}`
       )
     return response;
-  }
+  },
+
+  create(newHotel){
+    const url = `http://api.yourhometonight.com/api/hotels/`;
+    return axiosInstance.post(url, newHotel)
+  },
+
+  update(newHotel){
+    const url = `http://api.yourhometonight.com/api/hotels/${newHotel.id}`;
+    return axiosInstance.put(url, newHotel)
+  },
+  
+  delete(id){
+    const url = `http://api.yourhometonight.com/api/hotels/${id}/`;
+    return axiosInstance.delete(url)
+  },
+  
 };
 
 export default hotelApi;
