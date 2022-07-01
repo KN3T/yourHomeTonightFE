@@ -35,7 +35,7 @@
     "filter_by": "Filer by",
     "rating": "Rating",
     "your_budget": "Your budget",
-    "per_night": "Per 1 night",
+    "per_night": "Per night",
     "properties": "properties",
     "sort_by": "Sort by",
     "price": "Price",
@@ -63,7 +63,7 @@
     "adults": "Adults",
     "children": "Children",
     "facilities": "Facilities",
-    "per_night": "per 1 night",
+    "per_night": "per night",
     "only": "Only",
     "reverse_now": "Reverse now",
     "price_value": "{{val, currency(currency: USD)}}"

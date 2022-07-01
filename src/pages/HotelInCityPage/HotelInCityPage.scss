@@ -44,9 +44,11 @@
 
     .filter {
       &__section {
-        .ant-slider-rail {
-          background-color: #e1e1e1;
-        }
+        padding: 15px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        margin-bottom: 10px;
       }
 
       &__heading {

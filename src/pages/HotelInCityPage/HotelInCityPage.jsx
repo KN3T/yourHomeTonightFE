@@ -148,6 +148,20 @@ const HotelInCityPage = () => {
     }
   };
 
+  const onFilterPrice = (value) => {
+    setParams({
+      ...params,
+      minPrice: value[0],
+      maxPrice: value[1],
+    });
+    if (currentParams) {
+      navigate(
+        `/hotels${currentParams}&minPrice=${value[0]}&maxPrice=${value[1]}`
+      );
+    } else {
+      navigate(`/hotels?city=${searchValue}`);
+    }
+  };
   return (
     <div className="hotelpage__container">
       <Layout className="hotelpage__wrapper">
@@ -194,10 +208,11 @@ const HotelInCityPage = () => {
                 <Slider
                   className="filter__slider"
                   range
-                  defaultValue={[0, 1000000]}
+                  defaultValue={[0, 50]}
                   min={0}
-                  max={4000000}
+                  max={300}
                   tooltipVisible
+                  onAfterChange={onFilterPrice}
                 />
               </div>
             </div>
