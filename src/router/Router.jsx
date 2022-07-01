@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ClientLayout } from '../components';
 import {
   CheckoutPage,
+  CheckoutVerifyPage,
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
@@ -23,6 +24,7 @@ const Router = () => {
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/checkoutVerify" element={<CheckoutVerifyPage />} />
       </Routes>
     </>
   );
