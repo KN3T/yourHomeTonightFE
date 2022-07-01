@@ -11,6 +11,6 @@ export const BookingSlice = createSlice({
         }
     }
 })
-export const {addOrder} = BookingSlice.actions
 
+export const {addOrder} = BookingSlice.actions
 export default BookingSlice.reducer

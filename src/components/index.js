@@ -18,3 +18,5 @@ export {default as Segmented} from './Segmented/Segmented'
 export {default as PopConfirm} from './PopConfirm/PopConfirm'
 export { default as HomeFooter} from './HomeFooter/HomeFooter';
 export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';
+export { default as CheckoutForm } from './CheckoutForm/CheckoutForm'
+
