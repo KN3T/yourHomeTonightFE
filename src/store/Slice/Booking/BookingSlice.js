@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const BookingSlice = createSlice({
     name: 'booking',
     initialState: {
-        orders: []
+        orders: {}
     },
     reducers: {
         addOrder: (state, action) => {
-            state.orders.push(action.payload)
+            state.orders = action.payload
         }
     }
 })
