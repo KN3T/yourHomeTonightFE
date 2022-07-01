@@ -13,7 +13,6 @@ const PopoverDetailsHotel = ({
 }) => {
   const onFinish = ({ bed, guest }) => {
     setBeds(bed);
-    setGuests(guest);
   };
   return (
     <Form
@@ -26,13 +25,9 @@ const PopoverDetailsHotel = ({
       }}
       initialValues={{
         bed: beds,
-        guest: guests,
       }}
     >
       <Form.Item name="bed" label={t('details__hotel.beds')}>
-        <InputNumber min={1} />
-      </Form.Item>
-      <Form.Item name="guest" label={t('details__hotel.guests')}>
         <InputNumber min={1} />
       </Form.Item>
       <Button

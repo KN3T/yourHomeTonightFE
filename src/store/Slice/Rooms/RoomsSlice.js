@@ -3,17 +3,19 @@ import { roomsApi } from "../../../api/roomsApi"
 
 export const getAllRoomAsync = createAsyncThunk(
     'rooms/get-all',
-    async() => {
-        const response = await roomsApi.getAll()
+    async(id) => {
+        const response = await roomsApi.getAll(id)
         return response.data
     }
 )
+
 
 export const RoomsSlice = createSlice({
     name: 'rooms',
     initialState: {
         list: [],
-        loading: false
+        loading: false,
+        listFilter: []
     },
     reducers: {},
     extraReducers: {
@@ -25,8 +27,8 @@ export const RoomsSlice = createSlice({
         },
         [getAllRoomAsync.fulfilled]: (state, action) => {
             state.loading = false
-            state.list = action.payload
-        }
+            state.list = action.payload.data.rooms
+        },
     }
 })
 

@@ -21,6 +21,7 @@ const RoomDetailsModal = (props) => {
     roomData,
     roomImages,
     dataOrder,
+    setIsModalVisible,
   } = props;
   const navigate = useNavigate();
   const [bigImage, setBigImage] = useState(roomImages[0]);
@@ -36,7 +37,6 @@ const RoomDetailsModal = (props) => {
       ? dispath(addOrder(dataOrder))
       : navigate('/login');
   };
-
   return (
     <Modal
       visible={isModalVisible}
@@ -89,7 +89,7 @@ const RoomDetailsModal = (props) => {
             <div className="info__facilities">
               <h2 className="info__title">{t('room.facilities')}</h2>
               <ul className="facilities__list">
-                {roomData.assets.map((item, index) => {
+                {roomData.asset.map((item, index) => {
                   return (
                     <li key={index}>
                       <span>
@@ -116,7 +116,14 @@ const RoomDetailsModal = (props) => {
             </div>
             <div className="booking__button">
               {dataOrder.dateCheckin && dataOrder.dateCheckout ? (
-                <Button onClick={handleBooking} type="primary">
+                <Button
+                  onClick={() => {
+                    message.success('Booking successful!');
+                    handleBooking();
+                    setIsModalVisible(false);
+                  }}
+                  type="primary"
+                >
                   {t('room.reverse_now')}
                 </Button>
               ) : (

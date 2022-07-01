@@ -2,11 +2,12 @@ import { axiosInstance } from "./axiosInstance";
 
 export const roomsApi = {
     getAll(id){
-        const url = `http://api.yourhometonight.com/api/hotels/${id}/rooms`
+        const url = `/hotels/${id}/rooms`
         return axiosInstance.get(url)
     },
-    delete(hotelId, roomId){
-        const url = `http://api.yourhometonight.com/api/hotels/${hotelId}/rooms/${roomId}`
-        return axiosInstance.delete(url)
+    filterByBeds(params){
+        const {hotelId, beds} = params
+        const url = `/hotels/${hotelId}/rooms?beds=${beds}`
+        return axiosInstance.get(url)
     }
 }
