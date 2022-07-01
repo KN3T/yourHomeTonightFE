@@ -3,10 +3,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import hotelApi from '../../../api/hotelApi';
 
 export const getByIdAsync = createAsyncThunk('hotels/get-by-id', async (id) => {
-  return await hotelApi.getById(id);
+  const response =  await hotelApi.getById(id);
+  return response.data.data
 });
 
-const HotelsSlice = createSlice({
+export const HotelsSlice = createSlice({
   name: 'hotelsSlice',
   initialState: {
     list: [],
