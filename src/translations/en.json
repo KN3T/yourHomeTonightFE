@@ -102,5 +102,17 @@
     "imprint": "Imprint",
     "footer_description": "Search flights, hotels, hire cars, travel guides and more with Yourhome29. searches hundreds of other travel sites at once to get you the information you need to make the right decisions.",
     "sub_footer": "Yourhome29. is part of Booking Holdings Inc., the world leader in online travel & related services."
+  },
+  "profile": {
+    "edit_profile": "Edit your profile",
+    "info": "Personal Information",
+    "update": "Update",
+    "not_trip": "Not seeing your trip?",
+    "find_trip": "Find my trip",
+    "top_faq": "Browse top FAQ's",
+    "need_help": "Need help?",
+    "full_name": "Full name *",
+    "email": "Email address *",
+    "phone": "Mobile phone number *"
   }
 }

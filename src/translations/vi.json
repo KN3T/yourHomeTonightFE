@@ -102,5 +102,17 @@
     "miprint": "Xuất bản",
     "footer_description": "Tìm kiếm chuyến bay, khách sạn, thuê ô tô, hướng dẫn du lịch và hơn thế nữa với Yourhome29. tìm kiếm hàng trăm trang web du lịch khác cùng một lúc để cung cấp cho bạn thông tin cần thiết để đưa ra quyết định đúng đắn.",
     "sub_footer": "Yourhome29. là một phần của Booking Holdings Inc., công ty hàng đầu thế giới về du lịch trực tuyến và các dịch vụ liên quan."
+  },
+  "profile": {
+    "edit_profile": "Sửa thông tin cá nhân của bạn",
+    "info": "Thông tin cá nhân",
+    "update": "Cập nhật",
+    "not_trip": "Không tìm thấy khách sạn?",
+    "find_trip": "Tìm khách sạn",
+    "top_faq": "Câu hỏi thường gặp",
+    "need_help": "Cần trợ giúp?",
+    "full_name": "Họ tên *",
+    "email": "Địa chỉ email *",
+    "phone": "Số điện thoại *"
   }
 }

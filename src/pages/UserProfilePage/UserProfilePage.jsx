@@ -1,53 +1,72 @@
-import { Radio, Tabs } from 'antd';
+import { Col, Form, Row } from 'antd';
 import React from 'react';
-import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
-import UserProfileAccount from '../UserProfileAccount/UserProfileAccount';
-import './UserProfilePage.scss';
+import { ProfileForm } from '../../components';
+import './UserprofilePage.scss';
 
-const { TabPane } = Tabs;
-const onChange = (key) => {
-  console.log(key);
-};
-const UserProfilePage = () => {
-  const [size, setSize] = useState('small');
+const UserprofilePage = () => {
+  const [form] = Form.useForm();
+  const { t } = useTranslation();
 
-  const onChange = (e) => {
-    setSize(e.target.value);
+  const userData = JSON.parse(window.localStorage.getItem('userData'));
+
+  const handleSubmitForm = (values) => {
+    console.log(values);
   };
+
   return (
-    <div className="hotelpage__container">
-      <div className="user_profile">
-        <Tabs
-          defaultActiveKey="2"
-          size={size}
-          style={{
-            marginBottom: 32,
-          }}
-        >
-          <TabPane tab="My Trips" key="1"></TabPane>
-          <TabPane tab="My Account" key="2">
-            <div className="user_profile_banner">
-              <img
-                className="user_profile_bg"
-                width="100%"
-                height={300}
-                src="https://www.kayak.co.uk/news/wp-content/uploads/sites/5/2022/04/dest_usa_california_venice-beach_skate-park_gettyimages-495523864_kayak_within-usage-period_27806-1920x600.jpg"
-              />
-            </div>
-          </TabPane>
-          <TabPane tab="VIP Dashboard" key="3"></TabPane>
-        </Tabs>
-        <Tabs defaultActiveKey="1" type="card" size={size}>
-          <TabPane tab="Personal Info" key="1">
-            <UserProfileAccount />
-          </TabPane>
-          <TabPane tab="Sign In & Security" key="2"></TabPane>
-          <TabPane tab="Payment Info" key="3"></TabPane>
-        </Tabs>
+    <div className="checkout__container">
+      <div className="checkout__wrapper">
+        <div className="user_profile_banner">
+          <img
+            className="user_profile_bg"
+            width="100%"
+            height={300}
+            src="https://www.kayak.co.uk/news/wp-content/uploads/sites/5/2022/04/dest_usa_california_venice-beach_skate-park_gettyimages-495523864_kayak_within-usage-period_27806-1920x600.jpg"
+          />
+        </div>
+        <div className="checkout__banner"></div>
+
+        <section className="checkout__content ctn">
+          <Row gutter={[16, 0]}>
+            <Col span={16}>
+              <div className="checkout__content__form">
+                <ProfileForm
+                  form={form}
+                  handleSubmitForm={handleSubmitForm}
+                  userData={userData}
+                />
+              </div>
+            </Col>
+            <Col span={7} style={{ paddingTop: 15 }}>
+              <div className="checkout__content__summary">
+                <div className="checkout__content__summary__list">
+                  <div className="checkout__content__summary__item">
+                    <span>{t('profile.not_trip')}</span>
+                  </div>
+                  <div className="checkout__content__summary__item">
+                    <span>
+                      <a>{t('profile.find_trip')}</a>
+                    </span>
+                  </div>
+                  <div className="checkout__content__summary__item">
+                    <span>
+                      <a>{t('profile.top_faq')}</a>
+                    </span>
+                  </div>
+                </div>
+                <div className="checkout__content__summary__total">
+                  <span>{t('profile.need_help')}</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </section>
       </div>
     </div>
   );
 };
 
-export default UserProfilePage;
+export default UserprofilePage;

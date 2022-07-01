@@ -8,5 +8,7 @@ export { default as HotelInCityPage }
 from './HotelInCityPage/HotelInCityPage';
 export { default as DetailsHotelPage }
 from './DetailsHotelPage/DetailsHotelPage';
+export { default as CheckoutPage }
+from './CheckoutPage/CheckoutPage';
 export { default as UserProfilePage }
 from './UserProfilePage/UserProfilePage'

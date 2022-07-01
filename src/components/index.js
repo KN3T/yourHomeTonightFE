@@ -1,5 +1,3 @@
-export { default as HomeFooter }
-from './HomeFooter/HomeFooter';
 export { default as HotelCard }
 from './HotelCard/HotelCard';
 export { default as HotelPopulerList }
@@ -28,3 +26,9 @@ export { default as CityPopulerList }
 from './CityPolulerList/CityPopulerList';
 export { default as CityIntro }
 from './CityIntro/CityIntro';
+export { default as CheckoutForm }
+from './CheckoutForm/CheckoutForm'
+export { default as HomeFooter }
+from './HomeFooter/HomeFooter';
+export { default as ProfileForm }
+from './ProfileForm/ProfileForm'
