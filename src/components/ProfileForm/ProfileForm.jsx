@@ -62,7 +62,10 @@ const ProfileForm = (props) => {
             },
           ]}
         >
-          <Input className="form__item__input" placeholder="Email address *" />
+          <Input
+            className="form__item__input"
+            placeholder={t('profile.email')}
+          />
         </Form.Item>
         <Form.Item
           name="phone"
@@ -77,7 +80,7 @@ const ProfileForm = (props) => {
         >
           <Input
             className="form__item__input"
-            placeholder="Mobile phone number *"
+            placeholder={t('profile.phone')}
           />
         </Form.Item>
       </div>

@@ -113,6 +113,9 @@
     "need_help": "Cần trợ giúp?",
     "full_name": "Họ tên *",
     "email": "Địa chỉ email *",
-    "phone": "Số điện thoại *"
+    "phone": "Số điện thoại *",
+    "account_email": "Tài khoản email",
+    "congrats": "Chúc mừng bạn đã trở thành VIP!!",
+    "congrats_vip": "Mỗi lần đặt hoàn thành sẽ giúp bạn tiến gần hơn đến hạng VIP tiếp theo và thậm chí còn nhiều lợi ích hơn nữa."
   }
 }
