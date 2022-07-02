@@ -1,4 +1,4 @@
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, UserOutlined } from '@ant-design/icons';
 import {
   Button,
   Col,
@@ -12,6 +12,7 @@ import {
 import moment from 'moment';
 import React, { useState } from 'react';
 
+import homeBg from '../../../assets/images/homeBg.jpg';
 import './index.scss';
 
 const { RangePicker } = DatePicker;
@@ -35,6 +36,8 @@ const SearchHome = () => {
     setVisible(newVisible);
   };
   const onFinish = (value) => {
+    setCityName(value.city);
+    console.log(cityName);
     console.log(value);
   };
   const content = (
@@ -42,12 +45,20 @@ const SearchHome = () => {
       labelCol={{
         span: 10,
       }}
+      initialValues={{
+        beds: beds,
+        adults: adults,
+        children: children,
+      }}
     >
-      <Form.Item label="Beds">
-        <InputNumber />
+      <Form.Item name="beds" label="Beds">
+        <InputNumber min={1} />
       </Form.Item>
-      <Form.Item label="Guests">
-        <InputNumber />
+      <Form.Item name="adults" label="Adults">
+        <InputNumber min={1} />
+      </Form.Item>
+      <Form.Item name="children" label="Children">
+        <InputNumber min={1} />
       </Form.Item>
     </Form>
   );
@@ -67,7 +78,7 @@ const SearchHome = () => {
           date: date,
         }}
       >
-        <Row gutter={[20, 0]}>
+        <Row gutter={[10, 0]}>
           <Col
             xl={{ span: 6 }}
             lg={{ span: 6 }}
@@ -76,7 +87,12 @@ const SearchHome = () => {
             xs={{ span: 24 }}
           >
             <Form.Item name="city">
-              <Input defaultValue={cityName} />
+              <Input
+                className="input"
+                style={{ maxWidth: '310px' }}
+                size="large"
+                defaultValue={cityName}
+              />
             </Form.Item>
           </Col>
           <Col
@@ -88,6 +104,9 @@ const SearchHome = () => {
           >
             <Form.Item name="date">
               <RangePicker
+                className="input"
+                style={{ maxWidth: '310px' }}
+                size="large"
                 onChange={(value) => onChange(value)}
                 defaultValue={[
                   moment(),
@@ -99,39 +118,47 @@ const SearchHome = () => {
           <Col
             xl={{ span: 6 }}
             lg={{ span: 6 }}
-            md={{ span: 24 }}
-            sm={{ span: 24 }}
-            xs={{ span: 24 }}
+            md={{ span: 12 }}
+            sm={{ span: 12 }}
+            xs={{ span: 12 }}
           >
             <Form.Item>
-              <Popover
-                trigger="click"
-                content={content}
-                visible={visible}
-                onVisibleChange={handleVisibleChange}
-              >
-                <Button onClick={handleVisibleChange}>
-                  {' '}
-                  {beds} Beds, {children + adults} Guests
-                </Button>
-              </Popover>
-            </Form.Item>
-          </Col>
-          <Col
-            xl={{ span: 6 }}
-            lg={{ span: 6 }}
-            md={{ span: 24 }}
-            sm={{ span: 24 }}
-            xs={{ span: 24 }}
-          >
-            <Form.Item>
-              <Button htmlType="submit" type="primary" shape="circle">
-                <SearchOutlined />
-              </Button>
+              <div className="popover__guests">
+                <Popover
+                  className="popover__antd"
+                  trigger="click"
+                  content={content}
+                  visible={visible}
+                  onVisibleChange={handleVisibleChange}
+                >
+                  <Button
+                    className="btn"
+                    size="large"
+                    onClick={handleVisibleChange}
+                  >
+                    {' '}
+                    {beds} Beds, {adults} Adults, {children} Children
+                  </Button>
+                </Popover>
+                <div className="search__btn">
+                  <Button
+                    className="btn"
+                    size="large"
+                    htmlType="submit"
+                    type="primary"
+                  >
+                    <SearchOutlined />
+                  </Button>
+                </div>
+              </div>
             </Form.Item>
           </Col>
         </Row>
       </Form>
+      <div
+        className="ctn bg__image__home"
+        style={{ backgroundImage: `url(${homeBg})` }}
+      ></div>
     </div>
   );
 };
