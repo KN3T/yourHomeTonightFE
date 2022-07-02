@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom';
 
 import englandIcon from '../../../assets/images/englandIcon.jpg';
 import vietnamIcon from '../../../assets/images/vietnamIcon.png';
+import UserControl from '../../UserControl/UserControl';
 import './index.scss';
 
 const HeaderNav = () => {
   const { t, i18n } = useTranslation();
+
+  const accessToken = localStorage.getItem('accessToken');
 
   const languageOptions = [
     {
@@ -51,13 +54,17 @@ const HeaderNav = () => {
         onChange={changeLanguage}
       />
       <Link to="/login">
-        <Button
-          type="link"
-          style={{ margin: '0 10px' }}
-          icon={<UserOutlined />}
-        >
-          Sign in{' '}
-        </Button>
+        {accessToken ? (
+          <UserControl />
+        ) : (
+          <Button
+            type="link"
+            style={{ margin: '0 10px' }}
+            icon={<UserOutlined />}
+          >
+            {t('navbar.login')}
+          </Button>
+        )}
       </Link>
     </div>
   );
