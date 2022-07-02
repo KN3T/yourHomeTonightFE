@@ -19,4 +19,3 @@ export {default as RoomInDetailsHotel} from './Room/RoomInDetailsHotel/RoomInDet
 export {default as Segmented} from './Segmented/Segmented'
 export {default as PopConfirm} from './PopConfirm/PopConfirm'
 export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';
-
