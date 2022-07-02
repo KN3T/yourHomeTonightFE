@@ -1,4 +1,4 @@
-.checkout {
+.checkout__confirmation {
   &__container {
     width: 100%;
     display: flex;
@@ -55,19 +55,23 @@
     &__heading {
       margin-top: 20px;
       margin-bottom: 16px;
+      color: #001833;
+      padding: 16px;
 
-      span {
-        font-size: 16px;
-        color: #001833;
+      h1 {
+        text-align: start;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 5px;
       }
 
-      span:first-child {
-        font-weight: 700;
-        margin-right: 4px;
+      span {
+        margin-right: 30px;
       }
     }
 
     &__info {
+      margin: 30px 20px 20px 20px;
       border-radius: 16px;
       padding: 16px;
       border: 1px solid rgb(192, 202, 213);
@@ -138,15 +142,30 @@
     }
 
     &__summary {
+      position: relative;
+      margin-top: 30px;
       border-radius: 16px;
       padding: 16px 0;
       border: 1px solid rgb(192, 202, 213);
       box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
         rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
 
+      &__heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+
+        h2 {
+          color: #001833;
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+      }
+
       &__list {
-        border-bottom: 1px solid #ccc;
-        padding: 0 16px 8px 16px;
+        padding: 16px 16px 8px 16px;
       }
 
       &__item {
@@ -288,5 +307,81 @@
         }
       }
     }
+  }
+
+  &__small__summary {
+    position: relative;
+    width: 50%;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgb(192, 202, 213);
+    box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
+      rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
+    margin-top: 20px;
+    display: flex;
+
+    .icon__bed {
+      svg {
+        font-weight: 500;
+        font-size: 20px;
+      }
+      margin-right: 20px;
+      margin-top: 1px;
+    }
+
+    .icon__arrow {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(-50%, -50%);
+      transition: all 0.2s linear;
+      cursor: pointer;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        transition: all 0.2s linear;
+        color: var(--primary-color);
+      }
+
+      &:hover {
+        svg {
+          color: #001833;
+        }
+      }
+    }
+  }
+}
+
+.hr {
+  position: absolute;
+  width: 100%;
+  box-shadow: rgb(0 0 0 / 8%) 0px 0px 2px 0px, rgb(0 0 0 / 16%) 0px 2px 8px 0px;
+  left: 0;
+  right: 0;
+  border-width: 0px 0px 1px;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-left-style: initial;
+  border-image: initial;
+  border-bottom-style: solid;
+  border-color: rgb(192, 202, 213);
+  background-color: rgb(192, 202, 213);
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.line {
+  position: absolute;
+  background-color: #ccc;
+  height: 1px;
+  width: 100%;
+}
+
+.tag__highlight {
+  b {
+    background-color: rgb(255, 243, 192);
   }
 }

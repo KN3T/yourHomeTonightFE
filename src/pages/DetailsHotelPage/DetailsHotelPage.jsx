@@ -47,6 +47,10 @@ const DetailsHotelPage = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   let { id } = useParams(); //get id from url
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   //dispatch to get data from store
   const dispatch = useDispatch();
   useEffect(() => {
@@ -107,7 +111,9 @@ const DetailsHotelPage = () => {
               style={{ width: '100%' }}
             >
               <Breadcrumb>
-                <Breadcrumb.Item>{t('details__hotel.home')}</Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <Link to="/">{t('details__hotel.home')}</Link>
+                </Breadcrumb.Item>
                 <Breadcrumb.Item>
                   <Link to="/hotels">{singleHotel.address.province}</Link>
                 </Breadcrumb.Item>

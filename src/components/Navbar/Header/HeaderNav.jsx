@@ -12,7 +12,11 @@ import './index.scss';
 const HeaderNav = () => {
   const { t, i18n } = useTranslation();
 
-  const accessToken = localStorage.getItem('accessToken');
+  const userData = window.localStorage.getItem('userData')
+    ? JSON.parse(window.localStorage.getItem('userData'))
+    : '';
+
+  const accessToken = userData.token;
 
   const languageOptions = [
     {
@@ -53,10 +57,16 @@ const HeaderNav = () => {
         options={languageOptions}
         onChange={changeLanguage}
       />
-      <Link to="/login">
-        {accessToken ? (
+      {accessToken ? (
+        <Button
+          type="link"
+          style={{ margin: '0 10px' }}
+          icon={<UserOutlined />}
+        >
           <UserControl />
-        ) : (
+        </Button>
+      ) : (
+        <Link to="/login">
           <Button
             type="link"
             style={{ margin: '0 10px' }}
@@ -64,8 +74,8 @@ const HeaderNav = () => {
           >
             {t('navbar.login')}
           </Button>
-        )}
-      </Link>
+        </Link>
+      )}
     </div>
   );
 };
