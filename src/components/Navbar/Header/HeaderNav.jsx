@@ -6,10 +6,17 @@ import { Link } from 'react-router-dom';
 
 import englandIcon from '../../../assets/images/englandIcon.jpg';
 import vietnamIcon from '../../../assets/images/vietnamIcon.png';
+import UserControl from '../../UserControl/UserControl';
 import './index.scss';
 
 const HeaderNav = () => {
   const { t, i18n } = useTranslation();
+
+  const userData = window.localStorage.getItem('userData')
+    ? JSON.parse(window.localStorage.getItem('userData'))
+    : '';
+
+  const accessToken = userData.token;
 
   const languageOptions = [
     {
@@ -49,15 +56,25 @@ const HeaderNav = () => {
         options={languageOptions}
         onChange={changeLanguage}
       />
-      <Link to="/login">
+      {accessToken ? (
         <Button
           type="link"
           style={{ margin: '0 10px' }}
           icon={<UserOutlined />}
         >
-          Sign in{' '}
+          <UserControl />
         </Button>
-      </Link>
+      ) : (
+        <Link to="/login">
+          <Button
+            type="link"
+            style={{ margin: '0 10px' }}
+            icon={<UserOutlined />}
+          >
+            {t('navbar.login')}
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

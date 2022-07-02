@@ -1,13 +1,17 @@
 import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Divider, Menu, Space } from 'antd';
+import { Divider, Space } from 'antd';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+import UserControl from '../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNav = () => {
+  const userData = window.localStorage.getItem('userData')
+    ? JSON.parse(window.localStorage.getItem('userData'))
+    : '';
+
   window.addEventListener('scroll', () => {
-    // console.log(window.pageYOffset);
     if (window.pageYOffset > 300) {
       const navbar = document.querySelector('.navbar__logo__wrapper');
       navbar.classList.add('navbar__logo__wrapper__with_shadow');
@@ -16,35 +20,51 @@ const SiderNav = () => {
       navbar.classList.remove('navbar__logo__wrapper__with_shadow');
     }
   });
+
   return (
     <>
       <div className="navbar__sider__wrapper">
+        {userData.token ? (
+          <Space className="space">
+            <a className="link">
+              <UserOutlined className="icon" />
+              <span className="text__icon">
+                <UserControl />
+              </span>
+            </a>
+          </Space>
+        ) : (
+          <Space className="space">
+            <NavLink className="link" to="/login">
+              <UserOutlined className="icon" />
+              <span className="text__icon">Login</span>
+            </NavLink>
+          </Space>
+        )}
+
+        <Divider
+          className="navbar__sider__divider"
+          style={{ margin: '14px 0' }}
+        />
         <Space className="space">
-          <Link className="link" to="/login">
-            <UserOutlined className="icon" />
-            <span className="text__icon">Login</span>
-          </Link>
-        </Space>
-        <Divider className="navbar__sider__divider" />
-        <Space className="space">
-          <Link className="link" to="/">
+          <NavLink className="link" to="/">
             <HomeOutlined className="icon" />
             <span className="text__icon">Home</span>
-          </Link>
+          </NavLink>
         </Space>
         <Space className="space">
-          <Link className="link" to="/hotels">
+          <NavLink className="link" to="/hotels">
             <TwitterOutlined className="icon" />
             <span className="text__icon">Hotels</span>
-          </Link>
+          </NavLink>
         </Space>
       </div>
       <div className="navbar__logo__wrapper">
-        <Link to="/">
+        <NavLink to="/">
           <h1>
             yourhome<span>29.</span>{' '}
           </h1>
-        </Link>
+        </NavLink>
       </div>
     </>
   );

@@ -2,28 +2,34 @@
 import { Rate } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import formatCurrency from '../../utils/formatCurrency';
 import './HotelCard.scss';
 
-const HotelCard = ({ name, rating }) => {
+const HotelCard = (props) => {
+  const { rating, name, id, images } = props;
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+  const navigate = useNavigate();
 
   return (
     <div className="room_card">
       <div className="room_card_img_wrapper">
         <img
           className="room_card_img"
-          src="https://cf.bstatic.com/xdata/images/hotel/max1280x900/328270670.jpg?k=e1d9d748699b1aa3257fb190da472def6689647b01a3c540e219fab6b771c184&o=&hp=1"
+          src={images[0].src}
           alt="room_card_img"
+          onClick={() => navigate(`/hotels/${id}`)}
         />
       </div>
       <div className="room_card_info">
-        <div className="room_name">{name}</div>
+        <div className="room_name" onClick={() => navigate(`/hotels/${id}`)}>
+          {name}
+        </div>
         <div className="room_rating">
           {t('hotel.rating')}:{' '}
-          <Rate disabled defaultValue={2.5} value={(rating * 5) / 100} />
+          <Rate disabled defaultValue={0} value={rating ? rating : 0} />
         </div>
         <div>
           <span className="room_start">{t('hotel.start_from')}</span>

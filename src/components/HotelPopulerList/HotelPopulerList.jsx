@@ -13,15 +13,17 @@ const HotelPopulerList = () => {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const NumberOfHotels = 3;
+
   const fetchHotels = async () => {
     let result = await hotelApi.getAll();
     const { data } = result;
     setData(data.data.hotels);
   };
+
   useEffect(() => {
     fetchHotels();
   }, []);
-  console.log(data);
+
   return (
     <div className="hotel_populer_list  ctn">
       <Title className="title_section" level={2}>
