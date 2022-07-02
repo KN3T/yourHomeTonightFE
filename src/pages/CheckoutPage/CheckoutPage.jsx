@@ -1,6 +1,6 @@
 import { Col, Form, Row, Steps } from 'antd';
 import moment from 'moment';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
@@ -9,6 +9,7 @@ import { MdOutlineChildCare, MdSecurity } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 
+import bookingApi from '../../api/bookingApi';
 import { CheckoutForm } from '../../components';
 import formatCurrency from '../../utils/formatCurrency';
 import './CheckoutPage.scss';
@@ -31,8 +32,23 @@ const CheckoutPage = () => {
 
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 
-  const handleSubmitForm = (values) => {
-    console.log(values);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleSubmitForm = async (values) => {
+    const data = {
+      ...values,
+      checkIn: parseInt(moment(bookingData.dateCheckin).format('X')),
+      checkOut: parseInt(moment(bookingData.dateCheckout).format('X')),
+      userId: userData.id,
+      roomId: bookingData.selectedRoom.id,
+    };
+
+    const response = await bookingApi.book(data);
+    if (response.data.status === 'success') {
+      location.replace(response.data.data[0]);
+    }
   };
 
   return (
