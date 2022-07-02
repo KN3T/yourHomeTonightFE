@@ -30,7 +30,7 @@ const CheckoutVerifyPage = () => {
   return (
     <div className="checkout__check__page">
       <Result
-        title="Your transaction is being processed, please wait for a few seconds..."
+        title="Please wait while we complete your booking. This may take a few minutes, do not go back or refresh this page..."
         extra={<Spin></Spin>}
       />
     </div>

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { ClientLayout } from '../components';
 import {
+  CheckoutConfirmationPage,
   CheckoutPage,
   CheckoutVerifyPage,
   DetailsHotelPage,
@@ -21,6 +22,10 @@ const Router = () => {
           <Route path="/hotels" element={<HotelInCityPage />} />
           <Route path="/hotels/:id" element={<DetailsHotelPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route
+            path="/checkoutConfirmation"
+            element={<CheckoutConfirmationPage />}
+          />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
