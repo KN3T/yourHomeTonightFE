@@ -8,9 +8,9 @@ import { Select } from 'antd';
 import { Layout } from 'antd';
 import 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import dollar from '../../assets/images/dollar.jpg';
-// import { useTranslation } from 'react-i18next'
 import us from '../../assets/images/englandIcon.jpg';
 import vn from '../../assets/images/vietnamIcon.png';
 import vietnamdong from '../../assets/images/vietnamdong.jpg';
@@ -25,70 +25,73 @@ const handleChange = (value) => {
 };
 
 const HomeFooter = () => {
-  // const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <Footer className="footer">
-      {/* <div className='ctn'> */}
       <section className="container ctn">
         <div className="item-1">
-          <p className="footer-title">Company</p>
+          <p className="footer-title">{t('footer.company')}</p>
           <a>
-            <p>About</p>
+            <p>{t('footer.about')}</p>
           </a>
           <a>
-            <p>Careers</p>
+            <p>{t('footer.careers')}</p>
           </a>
           <a>
-            <p>Mobile</p>
+            <p>{t('footer.mobile')}</p>
           </a>
           <a>
-            <p>Blog</p>
+            <p>{t('footer.blog')}</p>
           </a>
           <a>
-            <p>How we work</p>
+            <p>{t('footer.how_we_work')}</p>
           </a>
           <a>
-            <p>Sustainability</p>
+            <p>{t('footer.sustainability')}</p>
           </a>
         </div>
         <div className="item-2">
-          <p className="footer-title">Contact</p>
+          <p className="footer-title">{t('footer.contact')}</p>
           <a>
-            <p>Help/FAQ</p>
+            <p>
+              {t('footer.help')}/{t('footer.faq')}
+            </p>
           </a>
           <a>
-            <p>Press</p>
+            <p>{t('footer.press')}</p>
           </a>
           <a>
-            <p>Affiliates</p>
+            <p>{t('footer.affiliates')}</p>
           </a>
           <a>
-            <p>Hotel owners</p>
+            <p>{t('footer.hotels_owners')}</p>
           </a>
           <a>
-            <p>Partners</p>
+            <p>{t('footer.partners')}</p>
           </a>
           <a>
-            <p>Advertise with us</p>
+            <p>{t('footer.advertise_with_us')}</p>
           </a>
         </div>
         <div className="item-3">
-          <p className="footer-title">More</p>
+          <p className="footer-title">{t('footer.more')}</p>
           <a>
-            <p>Airline fees</p>
+            <p>{t('footer.airline_fees')}</p>
           </a>
           <a>
-            <p>Airlines</p>
+            <p>{t('footer.airlines')}</p>
           </a>
           <a>
-            <p>Low fare tips</p>
+            <p>{t('footer.low_fare_tips')}</p>
           </a>
           <a>
-            <p>Badges & Certificates</p>
+            <p>{t('footer.badges_certificates')}</p>
           </a>
         </div>
         <div className="item-4">
-          <p className="footer-title">Site / Currency</p>
+          <p className="footer-title">
+            {t('footer.site')} / {t('footer.currency')}
+          </p>
           <div className="lng-select" style={{ paddingBottom: 10 }}>
             <Select
               defaultValue="United Kingdom"
@@ -135,22 +138,18 @@ const HomeFooter = () => {
         <div className="item-5">
           <div className="footer-info">
             <a>
-              <div className="item-a">Privacy</div>
+              <div className="item-a">{t('footer.privacy')}</div>
             </a>
             <a>
-              <div className="item-b">Terms & Conditions</div>
+              <div className="item-b">{t('footer.term')}</div>
             </a>
             <a>
-              <div className="item-c">Imprint</div>
+              <div className="item-c">{t('footer.imprint')}</div>
             </a>
             <a>
               <div className="item-d">©2022 Yourhome29.</div>
             </a>
-            <div className="item-e">
-              Search flights, hotels, hire cars, travel guides and more with
-              Yourhome29. searches hundreds of other travel sites at once to get
-              you the information you need to make the right decisions.
-            </div>
+            <div className="item-e">{t('footer.footer_description')}</div>
             <div className="item-f">
               <p className="contact-footer">
                 <a>
@@ -175,10 +174,7 @@ const HomeFooter = () => {
         </div>
 
         <div className="item-6">
-          <div className="subfooter">
-            Yourhome29. is part of Booking Holdings Inc., the world leader in
-            online travel & related services.
-          </div>
+          <div className="subfooter">{t('footer.sub_footer')}</div>
         </div>
       </section>
     </Footer>

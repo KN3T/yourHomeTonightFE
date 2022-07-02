@@ -2,7 +2,7 @@
   "hotel": {
     "rating": "Đánh giá",
     "per_night": "Đêm",
-    "Populer_hotel_title": "Khách sạn nổi tiếng nhất của chúng tôi",
+    "populer_hotel_title": "Khách sạn nổi tiếng nhất của chúng tôi",
     "populer_hotel_content": "Mùa hè này, hãy biến giấc mơ của bạn thành hiện thực. Đặt và lưu trú với giá thấp hơn trước ngày 30 tháng 9 năm 2022",
     "start_from": "Chỉ từ:",
     "price_value": "{{val, currency(currency: VND)}}"
@@ -129,8 +129,9 @@
     "press": "Truyền thông",
     "affiliates": "Liên kết kinh doanh",
     "hotels_owners": "Chủ khách sạn",
-    "advertise_with_us": "Đối tác",
-    "airline fees": "Phí cho hãng bay",
+    "partners": "Đối tác",
+    "advertise_with_us": "Quảng cáo",
+    "airline_fees": "Phí cho hãng bay",
     "airlines": "Hãng bay",
     "low_fare_tips": "Mẹo tìm giá vé rẻ",
     "badges_certificates": "Giấy chứng nhận",
@@ -139,5 +140,20 @@
     "miprint": "Xuất bản",
     "footer_description": "Tìm kiếm chuyến bay, khách sạn, thuê ô tô, hướng dẫn du lịch và hơn thế nữa với Yourhome29. tìm kiếm hàng trăm trang web du lịch khác cùng một lúc để cung cấp cho bạn thông tin cần thiết để đưa ra quyết định đúng đắn.",
     "sub_footer": "Yourhome29. là một phần của Booking Holdings Inc., công ty hàng đầu thế giới về du lịch trực tuyến và các dịch vụ liên quan."
+  },
+  "profile": {
+    "edit_profile": "Sửa thông tin cá nhân của bạn",
+    "info": "Thông tin cá nhân",
+    "update": "Cập nhật",
+    "not_trip": "Không tìm thấy khách sạn?",
+    "find_trip": "Tìm khách sạn",
+    "top_faq": "Câu hỏi thường gặp",
+    "need_help": "Cần trợ giúp?",
+    "full_name": "Họ tên *",
+    "email": "Địa chỉ email *",
+    "phone": "Số điện thoại *",
+    "account_email": "Tài khoản email",
+    "congrats": "Chúc mừng bạn đã trở thành VIP!!",
+    "congrats_vip": "Mỗi lần đặt hoàn thành sẽ giúp bạn tiến gần hơn đến hạng VIP tiếp theo và thậm chí còn nhiều lợi ích hơn nữa."
   }
 }
