@@ -3,9 +3,14 @@ import { Divider, Space } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import UserControl from '../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNav = () => {
+  const userData = window.localStorage.getItem('userData')
+    ? JSON.parse(window.localStorage.getItem('userData'))
+    : '';
+
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
       const navbar = document.querySelector('.navbar__logo__wrapper');
@@ -19,12 +24,24 @@ const SiderNav = () => {
   return (
     <>
       <div className="navbar__sider__wrapper">
-        <Space className="space">
-          <NavLink className="link" to="/login">
-            <UserOutlined className="icon" />
-            <span className="text__icon">Login</span>
-          </NavLink>
-        </Space>
+        {userData.token ? (
+          <Space className="space">
+            <a className="link">
+              <UserOutlined className="icon" />
+              <span className="text__icon">
+                <UserControl />
+              </span>
+            </a>
+          </Space>
+        ) : (
+          <Space className="space">
+            <NavLink className="link" to="/login">
+              <UserOutlined className="icon" />
+              <span className="text__icon">Login</span>
+            </NavLink>
+          </Space>
+        )}
+
         <Divider
           className="navbar__sider__divider"
           style={{ margin: '14px 0' }}

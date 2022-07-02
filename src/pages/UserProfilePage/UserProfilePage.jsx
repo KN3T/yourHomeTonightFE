@@ -1,8 +1,6 @@
-import { SolutionOutlined } from '@ant-design/icons';
 import { Col, Form, Row } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 
 import { ProfileForm } from '../../components';
 import './UserProfilePage.scss';
@@ -10,6 +8,10 @@ import './UserProfilePage.scss';
 const UserProfilePage = () => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 

@@ -1,17 +1,15 @@
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, Space } from 'antd';
+import { Dropdown, Menu } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 const UserControl = () => {
-  const user = JSON.parse(localStorage.getItem('userData'));
-  console.log(user);
-  const navigate = useNavigate();
+  const userData = window.localStorage.getItem('userData')
+    ? JSON.parse(window.localStorage.getItem('userData'))
+    : '';
 
   const logout = () => {
-    localStorage.clear();
-    navigate('/');
+    window.localStorage.removeItem('userData');
+    location.reload();
   };
 
   const menu = (
@@ -34,12 +32,7 @@ const UserControl = () => {
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
-      <a onClick={(e) => e.preventDefault()}>
-        <Space>
-          {user.fullName}
-          <DownOutlined />
-        </Space>
-      </a>
+      <span>{userData.email}</span>
     </Dropdown>
   );
 };
