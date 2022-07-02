@@ -13,7 +13,7 @@ import {
 } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { cityApi } from '../../../api';
@@ -25,6 +25,7 @@ const { RangePicker } = DatePicker;
 const SearchHome = () => {
   const dateFormat = 'YYYY/MM/DD';
   const navigate = useNavigate();
+
   const [visible, setVisible] = useState(false);
   const [checkIn, setCheckIn] = useState(moment());
   const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
@@ -36,22 +37,27 @@ const SearchHome = () => {
   const [beds, setBeds] = useState(1);
   const [children, setChildren] = useState(1);
   const [adults, setAdults] = useState(1);
-  const [cityName, setCityName] = useState('An Giang');
+  const [cityName, setCityName] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const getFirstCity = async () => {
+    const response = await cityApi.getAll();
+    return setCityName(response.data.data[0].city);
+  };
+
+  useEffect(() => {
+    getFirstCity();
+  }, []);
 
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
   };
+
   const onFinish = (value) => {
     setCityName(value.city);
     setCheckIn(value.date[0].format('YYYY-MM-DD'));
     setCheckOut(value.date[1].format('YYYY-MM-DD'));
-    console.log(cityName);
-    console.log();
-    console.log();
-    console.log(beds);
-    console.log(adults);
-    console.log(children);
+
     navigate({
       pathname: '/hotels',
       search: `?city=${cityName}&checkIn=${moment(checkIn).format(
@@ -61,6 +67,7 @@ const SearchHome = () => {
       )}&beds=${beds}&adults=${adults}&children=${children}`,
     });
   };
+
   const content = (
     <Form
       labelCol={{
@@ -152,8 +159,8 @@ const SearchHome = () => {
                   style={{ paddingRight: '50px' }}
                   className="input"
                   size="large"
-                  defaultValue={cityName}
                   loading={loading}
+                  placeholder={`Search your favarite city. EX: ${cityName}`}
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
