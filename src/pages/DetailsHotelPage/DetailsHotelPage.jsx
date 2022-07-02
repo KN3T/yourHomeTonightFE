@@ -115,7 +115,9 @@ const DetailsHotelPage = () => {
                   <Link to="/">{t('details__hotel.home')}</Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <Link to="/hotels">{singleHotel.address.province}</Link>
+                  <a onClick={() => history.back()}>
+                    {singleHotel.address.province}
+                  </a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>{singleHotel.name}</Breadcrumb.Item>
               </Breadcrumb>

@@ -1,9 +1,13 @@
-import { Col, Form, Row } from 'antd';
+import { TransactionOutlined, UserOutlined } from '@ant-design/icons';
+import { Col, Form, Row, Table } from 'antd';
+import { Tabs } from 'antd';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ProfileForm } from '../../components';
 import './UserProfilePage.scss';
+
+const { TabPane } = Tabs;
 
 const UserProfilePage = () => {
   const [form] = Form.useForm();
@@ -18,6 +22,39 @@ const UserProfilePage = () => {
   const handleSubmitForm = (values) => {
     console.log(values);
   };
+
+  const dataSource = [
+    {
+      key: '1',
+      name: 'Mike',
+      roomType: 32,
+      address: '10 Downing Street',
+    },
+    {
+      key: '2',
+      name: 'John',
+      roomType: 42,
+      address: '10 Downing Street',
+    },
+  ];
+
+  const columns = [
+    {
+      title: 'Hotel Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Room type',
+      dataIndex: 'roomType',
+      key: 'roomType',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
 
   return (
     <div className="profile__container">
@@ -82,42 +119,64 @@ const UserProfilePage = () => {
             </Col>
           </Row>
         </section>
-
-        <section className="profile__content ctn">
-          <Row gutter={[16, 0]} style={{ justifyContent: 'center' }}>
-            <Col lg={16} md={24} sm={24} xs={24}>
-              <div className="checkout__content__form">
-                <ProfileForm
-                  form={form}
-                  handleSubmitForm={handleSubmitForm}
-                  userData={userData}
-                />
-              </div>
-            </Col>
-            <Col lg={7} md={24} sm={24} xs={24} style={{ paddingTop: 15 }}>
-              <div className="profile__content__summary">
-                <div className="profile__content__summary__list">
-                  <div className="profile__content__summary__item">
-                    <span>{t('profile.not_trip')}</span>
+        <Tabs defaultActiveKey="1" className="ctn">
+          <TabPane
+            tab={
+              <span>
+                <UserOutlined />
+                Profile
+              </span>
+            }
+            key="1"
+          >
+            <section className="profile__content ctn">
+              <Row gutter={[16, 0]} style={{ justifyContent: 'center' }}>
+                <Col lg={16} md={24} sm={24} xs={24}>
+                  <div className="checkout__content__form">
+                    <ProfileForm
+                      form={form}
+                      handleSubmitForm={handleSubmitForm}
+                      userData={userData}
+                    />
                   </div>
-                  <div className="profile__content__summary__item">
-                    <span>
-                      <a>{t('profile.find_trip')}</a>
-                    </span>
+                </Col>
+                <Col lg={7} md={24} sm={24} xs={24} style={{ paddingTop: 15 }}>
+                  <div className="profile__content__summary">
+                    <div className="profile__content__summary__list">
+                      <div className="profile__content__summary__item">
+                        <span>{t('profile.not_trip')}</span>
+                      </div>
+                      <div className="profile__content__summary__item">
+                        <span>
+                          <a>{t('profile.find_trip')}</a>
+                        </span>
+                      </div>
+                      <div className="profile__content__summary__item">
+                        <span>
+                          <a>{t('profile.top_faq')}</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="profile__content__summary__total">
+                      <span>{t('profile.need_help')}</span>
+                    </div>
                   </div>
-                  <div className="profile__content__summary__item">
-                    <span>
-                      <a>{t('profile.top_faq')}</a>
-                    </span>
-                  </div>
-                </div>
-                <div className="profile__content__summary__total">
-                  <span>{t('profile.need_help')}</span>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </section>
+                </Col>
+              </Row>
+            </section>
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <TransactionOutlined />
+                Transaction
+              </span>
+            }
+            key="2"
+          >
+            <Table dataSource={dataSource} columns={columns} />;
+          </TabPane>
+        </Tabs>
       </div>
     </div>
   );
