@@ -1,0 +1,14 @@
+.navbar__header__wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 101;
+  height: 71px;
+  display: flex;
+  width: 50vw;
+  justify-content: flex-end;
+  align-items: center;
+  .select {
+    width: 10rem;
+  }
+}
