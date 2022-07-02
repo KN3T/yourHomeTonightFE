@@ -1,22 +1,33 @@
-.search__home__wrapper {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  width: 50vw;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  .search__home__wrapper__input {
+.search__home {
+  &__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  &__container {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  &__input {
     background-color: white;
     padding: 15px 20px;
     transition: 0.3s;
-    border-radius: 10px;
     border: none;
+    border-radius: 10px;
     outline: none;
     width: 100%;
   }
+
   @media screen and(max-width: 800px) {
     width: 80vw;
   }
+
   @media screen and(max-width: 800px) {
     width: 90vw;
   }

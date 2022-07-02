@@ -2,7 +2,7 @@
 import { Button, Form, Input, Radio } from 'antd';
 import React from 'react';
 
-import paypal_logo from '../../assets/images/paypal_logo.jpg';
+import stripe_logo_blue from '../../assets/images/stripe_logo_blue.png';
 import './CheckoutForm.scss';
 
 const CheckoutForm = (props) => {
@@ -90,9 +90,9 @@ const CheckoutForm = (props) => {
       <div className="checkout__form__item">
         <h2 className="form__item__title">Payment</h2>
         <Radio value={1} className="radio__button" checked={true}>
-          Paypal
+          Stripe
           <span className="radio__logo">
-            <img src={paypal_logo} alt="" style={{ width: '100px' }} />
+            <img src={stripe_logo_blue} alt="" style={{ width: '70px' }} />
           </span>
         </Radio>
       </div>

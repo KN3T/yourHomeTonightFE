@@ -1,11 +1,11 @@
 .header__wrapper {
   font-size: 16px;
-  position: absolute;
+  position: relative;
   z-index: 20;
   left: 0;
   top: 0;
   background-color: #fff;
-
+  border-bottom: 1px solid #a8aeb8;
   .header__navbar__desktop {
     display: flex;
     justify-content: space-between;
@@ -61,7 +61,7 @@
           font-weight: 500;
           letter-spacing: 2px;
           cursor: pointer;
-          color: var(--secondary-color);
+          color: black;
           transition: 0.3s;
 
           &:hover {

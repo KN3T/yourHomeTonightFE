@@ -7,10 +7,10 @@
     box-shadow: 0 1px 1px 0 rgb(0 0 0 / 20%);
     margin-bottom: 16px;
     outline: none;
-    transition: all 0.2s ease-out;
+    transition: all 0.4s ease-out;
 
     &:hover {
-      border: 1px solid #8596a3;
+      border: 1px solid var(--primary-color);
       box-shadow: 0 1px 0 rgb(19 26 31 / 12%), 0 1px 2px 0 rgb(19 26 31 / 22%);
       cursor: pointer;
     }
@@ -79,11 +79,24 @@
 
       &__wrapper {
         display: flex;
+        justify-content: space-between;
         padding: 8px 0;
         border-top: 1px solid #d9e2e8;
         width: 100%;
         cursor: pointer;
         min-height: 56px;
+
+        .description__wrapper {
+          div {
+            display: flex;
+            align-items: center;
+
+            svg {
+              font-size: 16px;
+              margin-right: 4px;
+            }
+          }
+        }
 
         .price__wrapper {
           display: flex;

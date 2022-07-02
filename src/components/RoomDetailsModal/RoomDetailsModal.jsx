@@ -1,22 +1,47 @@
 /* eslint-disable react/prop-types */
-import { Button, Card, Col, Image, Modal, Row } from 'antd';
-import React, { useState } from 'react';
+import { Button, Card, Col, Image, Modal, Row, message } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { addOrder } from '../../store/Slice/Booking/BookingSlice';
 import formatCurrency from '../../utils/formatCurrency';
 import './RoomDetailsModal.scss';
 
 const RoomDetailsModal = (props) => {
-  const { isModalVisible, handleOk, handleCancel, roomData } = props;
-  const [bigImage, setBigImage] = useState(roomData.images[0]);
+  const {
+    isModalVisible,
+    handleOk,
+    handleCancel,
+    roomData,
+    roomImages,
+    dataOrder,
+    setIsModalVisible,
+  } = props;
+
+  const navigate = useNavigate();
+  const [bigImage, setBigImage] = useState(roomImages[0]);
+  const dispath = useDispatch();
+
+  useEffect(() => {
+    setBigImage(roomImages[0]);
+  }, [roomData]);
 
   const { t, i18n } = useTranslation();
-
   const currentLanguage = i18n.language;
+  const handleBooking = () => {
+    if (localStorage.getItem('userData')) {
+      dispath(addOrder(dataOrder));
+      navigate('/checkout');
+    } else {
+      navigate('/login');
+    }
+  };
 
   return (
     <Modal
@@ -70,7 +95,7 @@ const RoomDetailsModal = (props) => {
             <div className="info__facilities">
               <h2 className="info__title">{t('room.facilities')}</h2>
               <ul className="facilities__list">
-                {roomData.assets.map((item, index) => {
+                {roomData.asset.map((item, index) => {
                   return (
                     <li key={index}>
                       <span>
@@ -96,7 +121,28 @@ const RoomDetailsModal = (props) => {
               </strong>
             </div>
             <div className="booking__button">
-              <Button type="primary">{t('room.reverse_now')}</Button>
+              {dataOrder.dateCheckin && dataOrder.dateCheckout ? (
+                <Button
+                  onClick={() => {
+                    handleBooking();
+                    setIsModalVisible(false);
+                  }}
+                  type="primary"
+                >
+                  {t('room.reverse_now')}
+                </Button>
+              ) : (
+                <Button
+                  onClick={() =>
+                    message.error(
+                      'You must select date check in, check out first, please!'
+                    )
+                  }
+                  type="primary"
+                >
+                  {t('room.reverse_now')}
+                </Button>
+              )}
             </div>
           </Col>
         </Row>

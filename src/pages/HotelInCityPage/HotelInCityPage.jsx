@@ -1,186 +1,95 @@
-import { Button, Form, Input, Layout, Popover, Rate, Slider } from 'antd';
+/* eslint-disable no-unused-vars */
+import {
+  AutoComplete,
+  Button,
+  Form,
+  Input,
+  Layout,
+  Popover,
+  Rate,
+  Slider,
+} from 'antd';
+import _ from 'lodash';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { HotelList, RoomDetailsModal } from '../../components';
+import { cityApi, hotelApi } from '../../api';
+import { HotelList } from '../../components';
 import './HotelInCityPage.scss';
 
 const { Content, Sider } = Layout;
 
 const HotelInCityPage = () => {
-  const mockHotelData = [
-    {
-      id: 1,
-      hotelName: 'Vinpearl Hotel Can Tho',
-      price: 120,
-      img: 'https://content.r9cdn.net/rimg/himg/07/69/27/expediav2-2662803-a43a54-065828.jpg?width=226&height=209&xhint=500&yhint=281&crop=true&watermarkheight=14&watermarkpadding=5',
-      rating: 4,
-      ratingCount: 250,
-      address: 'Phuong 3',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 2,
-      hotelName: 'Victoria Resort',
-      price: 180,
-      img: 'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/12/Capture.png',
-      rating: 3,
-      ratingCount: 120,
-      address: 'Phuong 7',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 3,
-      hotelName: 'Victoria Resort',
-      price: 180,
-      img: 'http://vietair.com.vn/Media/Images/azerai-can-tho.jpg?w=1200&h=630&c=true',
-      rating: 3,
-      ratingCount: 120,
-      address: 'Phuong 7',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 4,
-      hotelName: 'Victoria Resort',
-      price: 180,
-      img: 'https://www.hoteljob.vn/uploads/images/18-08-08-16/Resort-la-gi-01.jpeg',
-      rating: 3,
-      ratingCount: 120,
-      address: 'Phuong 7',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 5,
-      hotelName: 'Victoria Resort',
-      price: 180,
-      img: 'https://cdn.cet.edu.vn/wp-content/uploads/2018/02/thuat-ngu-resort-la-gi.jpg',
-      rating: 3,
-      ratingCount: 120,
-      address: 'Phuong 7',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 6,
-      hotelName: 'Vinpearl Hotel Can Tho',
-      price: 120,
-      img: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/157869791.jpg?k=5bb305d114029126f9dc4f55b12de4f921b6dd29e11b25076e4a27ec2f9bf7e4&o=&hp=1',
-      rating: 4,
-      ratingCount: 250,
-      address: 'Phuong 3',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-    {
-      id: 7,
-      hotelName: 'Victoria Resort',
-      price: 180,
-      img: 'https://hellotrip.vn/wp-content/uploads/2021/02/gold-coast-resort-5-spa-quang-binh-850000d-phong-23000.jpg',
-      rating: 3,
-      ratingCount: 120,
-      address: 'Phuong 7',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem deleniti accusantium, labore sit in enim, optio asperiores cum reiciendis harum doloremque incidunt explicabo sed rem, modi velit quos voluptatum inventore!',
-    },
-  ];
-
-  const mockRoomsInHotelData = [
-    {
-      id: 1,
-      hotel_id: 2,
-      name: 'A01',
-      price: 130,
-      beds: 2,
-      images: [
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662190.jpg?k=4f57a95cedb8a0b499aca8112ac445206fb538b7c35a6e65adada86e79faeac6&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662197.jpg?k=5386995cea8418030d3ec2b09b817f2893d1e8b9a392044c74522c7788633c74&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662180.jpg?k=22da781b75505a7ce7ee6efed752d0e833196b2bb73dead984bbcca9163a2e60&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109774.jpg?k=ae405b41803f56321e8773fdc2a78e0f64d79c884988dd5b939a6938d87c65e6&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109776.jpg?k=070830d80413f92c645fb44b5d66903ead1b35a9485c7859017b4a3fc8a1a10d&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/197588683.jpg?k=feef2d9ec96a837c8a74c5e1bad995f42b2e284ab70b9a442ef7ddca8fc2051e&o=',
-        },
-      ],
-      description:
-        'Phòng Giường Đôi/2 Giường Đơn này có ban công, áo choàng tắm và ghế sofa.',
-      adults: 4,
-      children: 2,
-      assets: [
-        'Hoàn toàn nằm ở tầng trệt',
-        'Giường cực dài (> 2 mét)',
-        'Tủ lạnh',
-        'Điện thoại',
-        'Bồn tắm spa',
-        'Hệ thống cách âm',
-        'Tủ hoặc phòng để quần áo',
-      ],
-    },
-    {
-      id: 2,
-      hotel_id: 2,
-      name: 'A02',
-      price: 130,
-      beds: 2,
-      images: [
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662190.jpg?k=4f57a95cedb8a0b499aca8112ac445206fb538b7c35a6e65adada86e79faeac6&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662197.jpg?k=5386995cea8418030d3ec2b09b817f2893d1e8b9a392044c74522c7788633c74&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/216662180.jpg?k=22da781b75505a7ce7ee6efed752d0e833196b2bb73dead984bbcca9163a2e60&o=',
-        },
-        {
-          src: 'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/213109774.jpg?k=ae405b41803f56321e8773fdc2a78e0f64d79c884988dd5b939a6938d87c65e6&o=',
-        },
-      ],
-      description:
-        'Phòng Giường Đôi/2 Giường Đơn này có ban công, áo choàng tắm và ghế sofa.',
-      adults: 4,
-      children: 2,
-      assets: [
-        'Hoàn toàn nằm ở tầng trệt',
-        'Giường cực dài (> 2 mét)',
-        'Tủ lạnh',
-        'Điện thoại',
-        'Bồn tắm spa',
-        'Hệ thống cách âm',
-        'Tủ hoặc phòng để quần áo',
-      ],
-    },
-  ];
-
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedRoom, setSelectedRoom] = useState(mockRoomsInHotelData[0]);
+  const [hotelsData, setHotelsData] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [searchValue, setSearchValue] = useState();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [currentParams, setCurrentParams] = useState(location.search);
+
+  useEffect(() => {
+    setCurrentParams(location.search);
+  }, [location.search]);
+
+  const [params, setParams] = useState({
+    limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
+    offset: searchParams.get('offset')
+      ? parseInt(searchParams.get('offset'))
+      : 0,
+    order: searchParams.get('order') ? searchParams.get('order') : 'desc',
+    minPrice: searchParams.get('minPrice')
+      ? parseInt(searchParams.get('minPrice'))
+      : 0,
+    maxPrice: searchParams.get('maxPrice')
+      ? parseInt(searchParams.get('maxPrice'))
+      : 100,
+    city: searchParams.get('city') ? searchParams.get('city') : '',
+  });
+
+  const getHotel = async (params) => {
+    const response = await hotelApi.get(params);
+    setHotelsData(response.data.data.hotels);
+  };
+
+  useEffect(() => {
+    getHotel(params);
+  }, [params]);
 
   const onClickHigh = () => {
     setSortValue('high to low');
     setVisibleSortOption(false);
+    setParams({
+      ...params,
+      order: 'desc',
+    });
+    if (currentParams) {
+      console.log(123);
+      navigate(`/hotels${currentParams}&order=desc`);
+    } else {
+      navigate(`/hotels/?order=desc`);
+    }
   };
 
   const onClickLow = () => {
     setSortValue('low to high');
     setVisibleSortOption(false);
+    setParams({
+      ...params,
+      order: 'asc',
+    });
+    if (currentParams) {
+      navigate(`/hotels${currentParams}&order=asc`);
+    } else {
+      navigate(`/hotels/?order=asc`);
+    }
   };
 
   const sortOptions = (
@@ -202,25 +111,57 @@ const HotelInCityPage = () => {
     </div>
   );
 
-  const getRoom = (roomdId) => {
-    const room = mockRoomsInHotelData.find((room) => room.id === roomdId);
-    return room;
+  const search = _.debounce(async (e) => {
+    const response = await cityApi.search(e);
+    setOptions(
+      response.data.data.map((item) => {
+        return {
+          label: item.city && item.city,
+          value: item.city && item.city,
+        };
+      })
+    );
+  }, 300);
+
+  const handleSearch = (value) => {
+    if (value && value !== '') {
+      search(value);
+    } else if (value === '') {
+      setSearchValue('');
+      setOptions([]);
+    }
   };
 
-  const showModal = () => {
-    setIsModalVisible(true);
-    const room = getRoom(1);
-    setSelectedRoom(room);
+  const onSelect = (value) => {
+    setSearchValue(value);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const onClickSearch = () => {
+    setParams({
+      ...params,
+      city: searchValue,
+    });
+    if (currentParams) {
+      navigate(`/hotels${currentParams}&city=${searchValue}`);
+    } else {
+      navigate(`/hotels?city=${searchValue}`);
+    }
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const onFilterPrice = (value) => {
+    setParams({
+      ...params,
+      minPrice: value[0],
+      maxPrice: value[1],
+    });
+    if (currentParams) {
+      navigate(
+        `/hotels${currentParams}&minPrice=${value[0]}&maxPrice=${value[1]}`
+      );
+    } else {
+      navigate(`/hotels?city=${searchValue}`);
+    }
   };
-
   return (
     <div className="hotelpage__container">
       <Layout className="hotelpage__wrapper">
@@ -228,9 +169,24 @@ const HotelInCityPage = () => {
           <div className="search__section">
             <Form layout="vertical">
               <Form.Item label={t('hotels.destination')} name="destination">
-                <Input placeholder={t('hotels.search_placeholder')} />
+                <AutoComplete
+                  dropdownMatchSelectWidth={300}
+                  options={options}
+                  onSelect={onSelect}
+                  onSearch={handleSearch}
+                >
+                  <Input
+                    size="large"
+                    placeholder={t('hotels.search_placeholder')}
+                    allowClear={true}
+                  />
+                </AutoComplete>
               </Form.Item>
-              <Button className="search__btn" type="primary">
+              <Button
+                className="search__btn"
+                type="primary"
+                onClick={onClickSearch}
+              >
                 {t('hotels.search')}
               </Button>
             </Form>
@@ -252,10 +208,11 @@ const HotelInCityPage = () => {
                 <Slider
                   className="filter__slider"
                   range
-                  defaultValue={[0, 1000000]}
+                  defaultValue={[0, 50]}
                   min={0}
-                  max={4000000}
+                  max={300}
                   tooltipVisible
+                  onAfterChange={onFilterPrice}
                 />
               </div>
             </div>
@@ -264,15 +221,8 @@ const HotelInCityPage = () => {
         <Content className="hotels__section">
           <div className="sort__button__wrapper">
             <div className="result__list">
-              {mockHotelData.length} {t('hotels.properties')}
+              {hotelsData && hotelsData.length} {t('hotels.properties')}
             </div>
-            <Button onClick={showModal}>Open room details</Button>
-            <RoomDetailsModal
-              isModalVisible={isModalVisible}
-              handleOk={handleOk}
-              handleCancel={handleCancel}
-              roomData={selectedRoom}
-            />
             <Popover
               content={sortOptions}
               placement="bottomRight"
@@ -294,7 +244,7 @@ const HotelInCityPage = () => {
               </a>
             </Popover>
           </div>
-          <HotelList hotelListData={mockHotelData} />
+          {hotelsData && <HotelList hotelListData={hotelsData} />}
         </Content>
       </Layout>
     </div>
