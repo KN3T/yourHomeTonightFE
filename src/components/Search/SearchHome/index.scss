@@ -1,34 +1,95 @@
-.search__home {
-  &__wrapper {
+.search__home__wrapper {
+  margin-top: 5rem;
+  .spin__search {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50vw;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    top: 29%;
+    right: 10px;
   }
-
-  &__container {
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-  }
-
-  &__input {
-    background-color: white;
-    padding: 15px 20px;
-    transition: 0.3s;
-    border: none;
-    border-radius: 10px;
+  .input {
+    border-radius: 5px;
+    background-color: #f0f3f5;
     outline: none;
+    border: none;
+    transition: 0.5s;
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #a1a8ac;
+    }
+  }
+  .ant-picker.ant-picker-range.ant-picker-large.input {
     width: 100%;
   }
-
-  @media screen and(max-width: 800px) {
-    width: 80vw;
+  .popover__guests {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    .popover__antd {
+      transition: 0.5s;
+      background-color: #f0f3f5;
+      height: 45px;
+      border: none;
+      border-radius: 5px;
+      flex: 1;
+      &:hover {
+        background-color: #a1a8ac;
+        color: white;
+        border: none;
+      }
+    }
+    .search__btn {
+      margin-left: 10px;
+      button {
+        height: 45px;
+        border-radius: 5px;
+      }
+    }
   }
 
-  @media screen and(max-width: 800px) {
-    width: 90vw;
+  @media screen and (max-width: 992px) {
+    .input {
+      // max-width: 310px;
+      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .ant-picker.ant-picker-range.ant-picker-large.input {
+      // max-width: 100%;
+    }
+    .popover__guests {
+      display: inline-block;
+      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+
+      // width: 90%;
+      .popover__antd {
+        width: 100%;
+      }
+      .search__btn {
+        // margin-left: 10px;
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+        button {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    }
   }
+}
+
+.bg__image__home {
+  height: 70vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
 }
