@@ -10,7 +10,6 @@ export { default as HotelList } from './HotelList/HotelList'
 export { default as MainSection } from './MainSection/MainSection';
 export { default as SearchHome } from './Search/SearchHome/SearchHome';
 export { default as RoomDetailsModal } from './RoomDetailsModal/RoomDetailsModal'
-export { default as CityPopulerList } from './CityPolulerList/CityPopulerList';
 export { default as CityIntro } from './CityIntro/CityIntro';
 export { default as CheckoutForm } from './CheckoutForm/CheckoutForm'
 export { default as HomeFooter } from './HomeFooter/HomeFooter';

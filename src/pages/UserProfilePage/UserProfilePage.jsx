@@ -46,14 +46,14 @@ const UserProfilePage = () => {
                     style={{ borderRight: '1.5px solid #e6ebef' }}
                   >
                     {' '}
-                    <h1>Full Name</h1>
+                    <h1>{userData.fullName}</h1>
                     <span
                       className="account_email"
                       style={{ color: 'rgb(79, 111, 143)' }}
                     >
                       {t('profile.account_email')}
                     </span>
-                    <p>email@gmail.com</p>
+                    <p>{userData.email}</p>
                   </div>
                 </Col>
                 <Col lg={3} md={6} sm={6} xs={24}>

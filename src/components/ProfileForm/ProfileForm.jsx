@@ -33,9 +33,6 @@ const ProfileForm = (props) => {
       }}
     >
       <div className="checkout__form__item guest__info">
-        <div className="guest__info__notice">
-          <div>{t('profile.edit_profile')}</div>
-        </div>
         <h2 className="form__item__title">{t('profile.info')}</h2>
         <Form.Item
           name="fullName"
