@@ -8,8 +8,10 @@ const ClientLayout = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
-      <Footer />
+      <div style={{ paddingLeft: '5rem', paddingTop: '79px' }}>
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 };
