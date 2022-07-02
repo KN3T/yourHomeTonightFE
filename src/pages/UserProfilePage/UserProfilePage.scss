@@ -1,4 +1,4 @@
-.checkout {
+.profile {
   &__container {
     width: 100%;
     display: flex;
@@ -10,7 +10,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 79px;
     padding-bottom: 40px;
     .user_profile_banner {
       width: 100%;
@@ -257,7 +256,7 @@
 }
 
 @media screen and (max-width: 579px) {
-  .checkout {
+  .profile {
     &__container {
       width: 100%;
       display: flex;
@@ -269,7 +268,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin-top: 79px;
       padding-bottom: 40px;
       .user_profile_banner {
         width: 100%;

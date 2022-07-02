@@ -18,8 +18,8 @@ const UserProfilePage = () => {
   };
 
   return (
-    <div className="checkout__container">
-      <div className="checkout__wrapper">
+    <div className="profile__container">
+      <div className="profile__wrapper">
         <div className="user_profile_banner">
           <img
             className="user_profile_bg"
@@ -29,7 +29,7 @@ const UserProfilePage = () => {
           />
         </div>
 
-        <section className="checkout__content ctn">
+        <section className="profile__content ctn">
           <Row
             gutter={16}
             style={{ justifyContent: 'center', paddingBottom: 70 }}
@@ -37,7 +37,7 @@ const UserProfilePage = () => {
             <Col span={18} style={{ marginTop: -80 }}>
               <Row
                 gutter={16}
-                className="checkout__content__summary"
+                className="profile__content__summary"
                 style={{ background: 'white', padding: 25 }}
               >
                 <Col lg={12} md={12} sm={12} xs={24}>
@@ -81,7 +81,7 @@ const UserProfilePage = () => {
           </Row>
         </section>
 
-        <section className="checkout__content ctn">
+        <section className="profile__content ctn">
           <Row gutter={[16, 0]} style={{ justifyContent: 'center' }}>
             <Col lg={16} md={24} sm={24} xs={24}>
               <div className="checkout__content__form">
@@ -93,23 +93,23 @@ const UserProfilePage = () => {
               </div>
             </Col>
             <Col lg={7} md={24} sm={24} xs={24} style={{ paddingTop: 15 }}>
-              <div className="checkout__content__summary">
-                <div className="checkout__content__summary__list">
-                  <div className="checkout__content__summary__item">
+              <div className="profile__content__summary">
+                <div className="profile__content__summary__list">
+                  <div className="profile__content__summary__item">
                     <span>{t('profile.not_trip')}</span>
                   </div>
-                  <div className="checkout__content__summary__item">
+                  <div className="profile__content__summary__item">
                     <span>
                       <a>{t('profile.find_trip')}</a>
                     </span>
                   </div>
-                  <div className="checkout__content__summary__item">
+                  <div className="profile__content__summary__item">
                     <span>
                       <a>{t('profile.top_faq')}</a>
                     </span>
                   </div>
                 </div>
-                <div className="checkout__content__summary__total">
+                <div className="profile__content__summary__total">
                   <span>{t('profile.need_help')}</span>
                 </div>
               </div>
