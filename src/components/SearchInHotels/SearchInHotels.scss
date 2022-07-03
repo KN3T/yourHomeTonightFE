@@ -1,0 +1,95 @@
+.search__hotels__wrapper {
+  .spin__search {
+    position: absolute;
+    top: 29%;
+    right: 10px;
+  }
+
+  .input {
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+
+  .ant-picker.ant-picker-range.ant-picker-large.input {
+    width: 100%;
+  }
+
+  .popover__guests {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    .popover__antd {
+      transition: 0.5s;
+      background-color: #fff;
+      height: 45px;
+      border: none;
+      border-radius: 5px;
+      flex: 1;
+
+      &:hover {
+        background-color: #fff;
+        border: none;
+      }
+    }
+
+    .search__btn {
+      margin-left: 10px;
+      button {
+        height: 45px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .input {
+      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .popover__guests {
+      display: inline-block;
+      max-width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+
+      .popover__antd {
+        width: 100%;
+      }
+
+      .search__btn {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+        button {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.bg__image__home {
+  height: 70vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}

@@ -1,14 +1,5 @@
 /* eslint-disable no-unused-vars */
-import {
-  AutoComplete,
-  Button,
-  Form,
-  Input,
-  Layout,
-  Popover,
-  Rate,
-  Slider,
-} from 'antd';
+import { Layout, Popover, Rate, Slider } from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -16,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { cityApi, hotelApi } from '../../api';
-import { HotelList } from '../../components';
+import { hotelApi } from '../../api';
+import { HotelList, SearchInHotels } from '../../components';
 import './HotelInCityPage.scss';
 
 const { Content, Sider } = Layout;
@@ -26,8 +17,6 @@ const HotelInCityPage = () => {
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
   const [hotelsData, setHotelsData] = useState([]);
-  const [options, setOptions] = useState([]);
-  const [searchValue, setSearchValue] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
@@ -47,6 +36,9 @@ const HotelInCityPage = () => {
     order: searchParams.get('order') ? searchParams.get('order') : 'desc',
     checkIn: searchParams.get('checkIn') ? searchParams.get('checkIn') : 0,
     checkOut: searchParams.get('checkOut') ? searchParams.get('checkOut') : 0,
+    beds: searchParams.get('beds') ? searchParams.get('beds') : 1,
+    adults: searchParams.get('adults') ? searchParams.get('adults') : 1,
+    children: searchParams.get('children') ? searchParams.get('children') : 1,
     minPrice: searchParams.get('minPrice')
       ? parseInt(searchParams.get('minPrice'))
       : 0,
@@ -113,40 +105,24 @@ const HotelInCityPage = () => {
     </div>
   );
 
-  const search = _.debounce(async (e) => {
-    const response = await cityApi.search(e);
-    setOptions(
-      response.data.data.map((item) => {
-        return {
-          label: item.city && item.city,
-          value: item.city && item.city,
-        };
-      })
-    );
-  }, 300);
-
-  const handleSearch = (value) => {
-    if (value && value !== '') {
-      search(value);
-    } else if (value === '') {
-      setSearchValue('');
-      setOptions([]);
-    }
-  };
-
-  const onSelect = (value) => {
-    setSearchValue(value);
-  };
-
-  const onClickSearch = () => {
+  const onClickSearch = (values) => {
     setParams({
       ...params,
-      city: searchValue,
+      city: values.city,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+      beds: values.beds,
+      adults: values.adults,
+      children: values.children,
     });
     if (currentParams) {
-      navigate(`/hotels${currentParams}&city=${searchValue}`);
+      navigate(
+        `/hotels${currentParams}&city=${values.city}&checkIn=${values.checkIn}&checkOut=${values.checkOut}&beds=${values.beds}&adults=${values.adults}&children=${values.children}`
+      );
     } else {
-      navigate(`/hotels?city=${searchValue}`);
+      navigate(
+        `/hotels?city=${values.city}&checkIn=${values.checkIn}&checkOut=${values.checkOut}&beds=${values.beds}&adults=${values.adults}&children=${values.children}`
+      );
     }
   };
 
@@ -161,39 +137,14 @@ const HotelInCityPage = () => {
         `/hotels${currentParams}&minPrice=${value[0]}&maxPrice=${value[1]}`
       );
     } else {
-      navigate(`/hotels?city=${searchValue}`);
+      navigate(`/hotels?&minPrice=${value[0]}&maxPrice=${value[1]}`);
     }
   };
+
   return (
     <div className="hotelpage__container">
       <Layout className="hotelpage__wrapper">
         <Sider className="hotelpage__sider" width={300}>
-          <div className="search__section">
-            <Form layout="vertical">
-              <Form.Item label={t('hotels.destination')} name="destination">
-                <AutoComplete
-                  dropdownMatchSelectWidth={300}
-                  options={options}
-                  onSelect={onSelect}
-                  onSearch={handleSearch}
-                >
-                  <Input
-                    size="large"
-                    placeholder={t('hotels.search_placeholder')}
-                    allowClear={true}
-                  />
-                </AutoComplete>
-              </Form.Item>
-              <Button
-                className="search__btn"
-                type="primary"
-                onClick={onClickSearch}
-              >
-                {t('hotels.search')}
-              </Button>
-            </Form>
-          </div>
-
           <div className="filter__section">
             <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
             <div className="filter__item">
@@ -221,10 +172,21 @@ const HotelInCityPage = () => {
           </div>
         </Sider>
         <Content className="hotels__section">
+          <SearchInHotels onClickSearch={onClickSearch} />
           <div className="sort__button__wrapper">
-            <div className="result__list">
-              {hotelsData && hotelsData.length} {t('hotels.properties')}
-            </div>
+            {hotelsData ? (
+              <div className="result__list">
+                {hotelsData && hotelsData.length} {t('hotels.properties')}{' '}
+                {params.city
+                  ? t('hotels.related_to') + ' ' + params.city
+                  : 'of all city'}
+              </div>
+            ) : (
+              <div className="result__list">
+                No results found for {params.city}
+              </div>
+            )}
+
             <Popover
               content={sortOptions}
               placement="bottomRight"
