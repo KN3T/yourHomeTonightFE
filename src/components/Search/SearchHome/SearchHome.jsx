@@ -15,25 +15,32 @@ import _ from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { IoBedSharp } from 'react-icons/io5';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { cityApi } from '../../../api';
 import homeBg from '../../../assets/images/homeBg.jpg';
+import { addSearchDate } from '../../../store/Slice/Booking/BookingSlice';
 import './index.scss';
 
 const { RangePicker } = DatePicker;
 
 const SearchHome = () => {
-  const dateFormat = 'YYYY/MM/DD';
+  const DATE_FORMAT = 'DD-MM-YYYY';
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const searchDate = useSelector((state) => state.booking.searchDate);
 
   const [visible, setVisible] = useState(false);
   const [checkIn, setCheckIn] = useState(moment());
   const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
-  const [date] = useState([
-    moment(),
-    moment(moment().add(3, 'day').format(dateFormat)),
-  ]);
+  const [date] =
+    searchDate.checkIn && searchDate.checkOut
+      ? useState([
+          moment(searchDate.checkIn * 1000),
+          moment(searchDate.checkOut * 1000),
+        ])
+      : useState([moment(), moment(moment().add(3, 'day'))]);
   const [options, setOptions] = useState([]);
   const [children, setChildren] = useState(1);
   const [adults, setAdults] = useState(1);
@@ -55,8 +62,15 @@ const SearchHome = () => {
 
   const onFinish = (value) => {
     setCityName(value.city);
-    setCheckIn(value.date[0].format('YYYY-MM-DD'));
-    setCheckOut(value.date[1].format('YYYY-MM-DD'));
+    setCheckIn(value.date[0]);
+    setCheckOut(value.date[1]);
+
+    dispatch(
+      addSearchDate({
+        checkIn: parseInt(value.date[0].format('X')),
+        checkOut: parseInt(value.date[1].format('X')),
+      })
+    );
 
     navigate({
       pathname: '/hotels',
@@ -88,8 +102,8 @@ const SearchHome = () => {
   );
 
   const onChange = (value) => {
-    setCheckIn(value[0].format('YYYY-MM-DD'));
-    setCheckOut(value[1].format('YYYY-MM-DD'));
+    setCheckIn(value[0].format(DATE_FORMAT));
+    setCheckOut(value[1].format(DATE_FORMAT));
   };
 
   const search = _.debounce(async (e) => {
@@ -177,7 +191,7 @@ const SearchHome = () => {
                   className="input"
                   size="large"
                   loading={loading}
-                  placeholder={`Search your favarite city. EX: ${cityName}`}
+                  placeholder={`Search your favorite city. EX: ${cityName}`}
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
@@ -195,11 +209,8 @@ const SearchHome = () => {
                 className="input"
                 size="large"
                 onChange={(value) => onChange(value)}
-                defaultValue={[
-                  moment(),
-                  moment(moment().add(3, 'day').format(dateFormat)),
-                ]}
                 allowClear={false}
+                format={DATE_FORMAT}
               />
             </Form.Item>
           </Col>

@@ -10,6 +10,7 @@ import {
   Row,
   Skeleton,
 } from 'antd';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
@@ -33,8 +34,12 @@ const DetailsHotelPage = () => {
   const [roomImages, setRoomImages] = useState([]);
 
   const { t, i18n } = useTranslation();
-  const [dateCheckin, setDateCheckin] = useState();
-  const [dateCheckout, setDateCheckout] = useState();
+  const [dateCheckin, setDateCheckin] = useState(
+    parseInt(moment().format('X'))
+  );
+  const [dateCheckout, setDateCheckout] = useState(
+    parseInt(moment().add(3, 'day').format('X'))
+  );
 
   const currentLanguage = i18n.language;
   //this is for modal room
@@ -83,7 +88,7 @@ const DetailsHotelPage = () => {
   // list of image after remove first image in an array
   let images = [];
 
-  //handle whether data is recieved
+  //handle whether data is received
   if (hotelData) {
     firstImage = hotelData.images !== undefined && hotelData.images[0].src;
     images = hotelData.images !== undefined && [...hotelData.images.slice(1)];
@@ -300,7 +305,11 @@ const DetailsHotelPage = () => {
               xs={{ span: 24 }}
             >
               <h1>{t('details__hotel.available_rates')}</h1>
-              <SearchRoom onClickSearch={handleSearch} />
+              <SearchRoom
+                onClickSearch={handleSearch}
+                setDateCheckin={setDateCheckin}
+                setDateCheckout={setDateCheckout}
+              />
               <Skeleton loading={loadingRooms}>
                 <List
                   itemLayout="horizontal"

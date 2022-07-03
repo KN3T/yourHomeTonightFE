@@ -1,10 +1,12 @@
 .search__home__wrapper {
-  margin-top: 5rem;
+  margin-top: 2rem;
+
   .spin__search {
     position: absolute;
     top: 29%;
     right: 10px;
   }
+
   .input {
     border-radius: 5px;
     background-color: #f0f3f5;
@@ -19,13 +21,16 @@
       background-color: #a1a8ac;
     }
   }
+
   .ant-picker.ant-picker-range.ant-picker-large.input {
     width: 100%;
   }
+
   .popover__guests {
     position: relative;
     display: flex;
     justify-content: space-between;
+
     .popover__antd {
       transition: 0.5s;
       background-color: #f0f3f5;
@@ -33,12 +38,14 @@
       border: none;
       border-radius: 5px;
       flex: 1;
+
       &:hover {
         background-color: #a1a8ac;
         color: white;
         border: none;
       }
     }
+
     .search__btn {
       margin-left: 10px;
       button {
@@ -50,14 +57,11 @@
 
   @media screen and (max-width: 992px) {
     .input {
-      // max-width: 310px;
       max-width: 90%;
       left: 50%;
       transform: translateX(-50%);
     }
-    .ant-picker.ant-picker-range.ant-picker-large.input {
-      // max-width: 100%;
-    }
+
     .popover__guests {
       display: inline-block;
       max-width: 90%;
@@ -65,12 +69,10 @@
       transform: translateX(-50%);
       width: 100%;
 
-      // width: 90%;
       .popover__antd {
         width: 100%;
       }
       .search__btn {
-        // margin-left: 10px;
         margin-top: 20px;
         width: 100%;
         display: flex;
