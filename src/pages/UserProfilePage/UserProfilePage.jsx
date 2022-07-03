@@ -1,10 +1,12 @@
 import { TransactionOutlined, UserOutlined } from '@ant-design/icons';
-import { Col, Form, Row, Table } from 'antd';
+import { Col, Form, List, Menu, Row, Skeleton, Space, Table } from 'antd';
 import { Tabs } from 'antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ProfileForm } from '../../components';
+import { axiosInstance } from '../../api/axiosInstance';
+import bookingApi from '../../api/bookingApi';
+import { ProfileForm, Transaction } from '../../components';
 import './UserProfilePage.scss';
 
 const { TabPane } = Tabs;
@@ -12,49 +14,62 @@ const { TabPane } = Tabs;
 const UserProfilePage = () => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
+  const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const getAllBooking = async () => {
+      const response = await bookingApi.getAll();
+      const { data } = response.data;
+      data && setBookings(data);
+    };
+    getAllBooking();
+  }, []);
+
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 
-  const handleSubmitForm = (values) => {
-    console.log(values);
-  };
+  const handleSubmitForm = (values) => {};
 
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      roomType: 'King room',
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      roomType: 'Queen room',
-      address: '10 Downing Street',
-    },
-  ];
+  // const dataSource = [
+  //   {
+  //     key: '1',
+  //     name: 'Mike',
+  //     roomType: 'King room',
+  //     address: '10 Downing Street',
+  //   },
+  //   {
+  //     key: '2',
+  //     name: 'John',
+  //     roomType: 'Queen room',
+  //     address: '10 Downing Street',
+  //   },
+  // ];
 
-  const columns = [
-    {
-      title: 'Hotel Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Room type',
-      dataIndex: 'roomType',
-      key: 'roomType',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
+  // const columns = [
+  //   {
+  //     title: 'Hotel Name',
+  //     dataIndex: 'name',
+  //     key: 'name',
+  //   },
+  //   {
+  //     title: 'Room type',
+  //     dataIndex: 'roomType',
+  //     key: 'roomType',
+  //   },
+  //   {
+  //     title: 'Address',
+  //     dataIndex: 'address',
+  //     key: 'address',
+  //   },
+  //   {
+  //     title: 'Total payments',
+  //     dataIndex: 'total',
+  //     key: 'total',
+  //   },
+  // ];
 
   return (
     <div className="profile__container">
@@ -174,7 +189,8 @@ const UserProfilePage = () => {
             }
             key="2"
           >
-            <Table dataSource={dataSource} columns={columns} />
+            {/* <Table dataSource={dataSource} columns={columns} /> */}
+            {bookings && <Transaction bookings={bookings} />}
           </TabPane>
         </Tabs>
       </div>

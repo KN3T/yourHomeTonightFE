@@ -1,0 +1,17 @@
+.transaction__wrapper {
+  @media screen and (max-width: 1300px) {
+    padding: 0 5rem;
+  }
+  .space {
+    width: 100%;
+    justify-content: space-between;
+    .horizontal__space {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .booking__username {
+    color: var(--primary-color);
+  }
+}

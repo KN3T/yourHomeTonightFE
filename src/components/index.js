@@ -18,4 +18,5 @@ export {default as Segmented} from './Segmented/Segmented'
 export {default as PopConfirm} from './PopConfirm/PopConfirm'
 export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';
 export { default as ProfileForm } from './ProfileForm/ProfileForm'
-
+export {default as Transaction} from './Transaction/Transaction'
+export {default as Feedback} from './Feedback/Feedback'
