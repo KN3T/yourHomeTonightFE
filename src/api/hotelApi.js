@@ -11,9 +11,9 @@ const hotelApi = {
   },
 
   get: async (params) => {
-    const {limit, offset, order, checkIn, checkOut, beds, adults, children, minPrice, maxPrice, city} = params;
+    const {limit, offset, order, checkIn, checkOut, adults, children, minPrice, maxPrice, city} = params;
     const response = await axiosInstance.get(
-      `${DEFAULT_URL}?limit=${limit}&offset=${offset}&order=${order}&checkIn=${checkIn}&checkOut=${checkOut}&beds=${beds}&adults=${adults}&children=${children}&minPrice=${minPrice}&maxPrice=${maxPrice}&city=${city ? city: ""}`
+      `${DEFAULT_URL}?limit=${limit}&offset=${offset}&order=${order}&checkIn=${checkIn}&checkOut=${checkOut}&&adults=${adults}&children=${children}&minPrice=${minPrice}&maxPrice=${maxPrice}&city=${city ? city: ""}`
       )
     return response;
   },
@@ -29,6 +29,10 @@ const hotelApi = {
   delete(id){
     return axiosInstance.delete(`${DEFAULT_URL}/${id}}`)
   },
+
+  getPrices() {
+    return axiosInstance.get('getPrices')
+  }
 };
 
 export default hotelApi;

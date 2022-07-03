@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Layout, Popover, Rate, Slider } from 'antd';
+import { Form, Layout, Popover, Rate, Slider } from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -14,6 +14,7 @@ import './HotelInCityPage.scss';
 const { Content, Sider } = Layout;
 
 const HotelInCityPage = () => {
+  const [form] = Form.useForm();
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
   const [hotelsData, setHotelsData] = useState([]);
@@ -23,6 +24,9 @@ const HotelInCityPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentParams, setCurrentParams] = useState(location.search);
+
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
 
   useEffect(() => {
     setCurrentParams(location.search);
@@ -53,8 +57,23 @@ const HotelInCityPage = () => {
     setHotelsData(response.data.data.hotels);
   };
 
+  const getPrices = async () => {
+    const response = await hotelApi.getPrices();
+    if (response.data.status === 'success') {
+      setMinPrice(response.data.data.minPrice);
+      setMaxPrice(response.data.data.maxPrice);
+    }
+  };
+
+  useEffect(() => {
+    form.setFieldsValue({
+      price: [minPrice, maxPrice],
+    });
+  }, [minPrice, maxPrice]);
+
   useEffect(() => {
     getHotel(params);
+    getPrices();
   }, [params]);
 
   const onClickHigh = () => {
@@ -145,31 +164,37 @@ const HotelInCityPage = () => {
     <div className="hotelpage__container">
       <Layout className="hotelpage__wrapper">
         <Sider className="hotelpage__sider" width={300}>
-          <div className="filter__section">
-            <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
-            <div className="filter__item">
-              <div className="filter__rating">
-                <h3 className="filter__title">{t('hotels.rating')}</h3>
-                <Rate allowHalf defaultValue={1} />
+          <Form form={form}>
+            <div className="filter__section">
+              <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
+              <div className="filter__item">
+                <div className="filter__rating">
+                  <h3 className="filter__title">{t('hotels.rating')}</h3>
+                  <Form.Item name="rating">
+                    <Rate allowHalf defaultValue={1} />
+                  </Form.Item>
+                </div>
+              </div>
+              <div className="filter__item">
+                <div className="filter__price">
+                  <h3 className="filter__title">
+                    {t('hotels.your_budget')} ({t('hotels.per_night')})
+                  </h3>
+                  <Form.Item name="price">
+                    <Slider
+                      className="filter__slider"
+                      range
+                      defaultValue={[minPrice, maxPrice]}
+                      min={minPrice}
+                      max={maxPrice}
+                      tooltipVisible
+                      onAfterChange={onFilterPrice}
+                    />
+                  </Form.Item>
+                </div>
               </div>
             </div>
-            <div className="filter__item">
-              <div className="filter__price">
-                <h3 className="filter__title">
-                  {t('hotels.your_budget')} ({t('hotels.per_night')})
-                </h3>
-                <Slider
-                  className="filter__slider"
-                  range
-                  defaultValue={[0, 200]}
-                  min={0}
-                  max={300}
-                  tooltipVisible
-                  onAfterChange={onFilterPrice}
-                />
-              </div>
-            </div>
-          </div>
+          </Form>
         </Sider>
         <Content className="hotels__section">
           <SearchInHotels onClickSearch={onClickSearch} />

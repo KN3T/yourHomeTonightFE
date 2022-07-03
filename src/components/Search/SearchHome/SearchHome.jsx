@@ -14,6 +14,7 @@ import {
 import _ from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { IoBedSharp } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
 import { cityApi } from '../../../api';
@@ -29,12 +30,11 @@ const SearchHome = () => {
   const [visible, setVisible] = useState(false);
   const [checkIn, setCheckIn] = useState(moment());
   const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
-  const [date, setDate] = useState([
+  const [date] = useState([
     moment(),
     moment(moment().add(3, 'day').format(dateFormat)),
   ]);
   const [options, setOptions] = useState([]);
-  const [beds, setBeds] = useState(1);
   const [children, setChildren] = useState(1);
   const [adults, setAdults] = useState(1);
   const [cityName, setCityName] = useState('');
@@ -64,7 +64,7 @@ const SearchHome = () => {
         'X'
       )}&checkOut=${moment(checkOut).format(
         'X'
-      )}&beds=${beds}&adults=${adults}&children=${children}`,
+      )}&adults=${adults}&children=${children}`,
     });
   };
 
@@ -74,14 +74,10 @@ const SearchHome = () => {
         span: 10,
       }}
       initialValues={{
-        beds: beds,
         adults: adults,
         children: children,
       }}
     >
-      <Form.Item name="beds" label="Beds">
-        <InputNumber onChange={(e) => setBeds(e)} min={1} />
-      </Form.Item>
       <Form.Item name="adults" label="Adults">
         <InputNumber onChange={(e) => setAdults(e)} min={1} />
       </Form.Item>
@@ -103,8 +99,30 @@ const SearchHome = () => {
       setOptions(
         response.data.data.map((item) => {
           return {
-            label: item.city && item.city,
             value: item.city && item.city,
+            label: (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
+                {item.city && item.city}
+                <span
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <IoBedSharp
+                    style={{
+                      marginRight: '2px',
+                    }}
+                  />
+                  {item.count_hotel && item.count_hotel}
+                </span>
+              </div>
+            ),
           };
         })
       );
@@ -131,7 +149,6 @@ const SearchHome = () => {
         onFinish={onFinish}
         initialValues={{
           city: cityName,
-          beds: beds,
           children: children,
           adults: adults,
           date: date,
@@ -147,7 +164,7 @@ const SearchHome = () => {
           >
             <Form.Item name="city">
               <AutoComplete
-                dropdownMatchSelectWidth={500}
+                dropdownMatchSelectWidth={200}
                 options={options}
                 onSelect={onSelect}
                 onSearch={handleSearch}
@@ -208,7 +225,7 @@ const SearchHome = () => {
                     onClick={handleVisibleChange}
                   >
                     {' '}
-                    {beds} Beds, {adults} Adults, {children} Children
+                    {adults} Adults, {children} Children
                   </Button>
                 </Popover>
                 <div className="search__btn">

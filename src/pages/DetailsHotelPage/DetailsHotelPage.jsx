@@ -1,47 +1,41 @@
-import { PhoneOutlined, SearchOutlined } from '@ant-design/icons';
+import { PhoneOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
   Col,
   Divider,
-  Form,
   Image,
-  InputNumber,
   List,
   Rate,
   Row,
   Skeleton,
-  Space,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
+import { hotelApi } from '../../api';
+import { roomsApi } from '../../api/roomsApi';
 import {
-  RangePickerInHotels,
   RoomDetailsModal,
   RoomInDetailsHotel,
+  SearchRoom,
 } from '../../components';
-import { getByIdAsync } from '../../store/Slice/Hotels/HotelsSlice';
-import { filterRoomsByBedsAsync } from '../../store/Slice/Rooms/FilterRoomsSlice';
-import { getAllRoomAsync } from '../../store/Slice/Rooms/RoomsSlice';
 import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
 const DetailsHotelPage = () => {
-  //data from store redux
-  const loading = useSelector((state) => state.hotels.loading);
-  const singleHotel = useSelector((state) => state.hotels.singleHotel);
-  const rooms = useSelector((state) => state.rooms.list);
-  const loadingRooms = useSelector((state) => state.rooms.loading);
-  const roomsFilter = useSelector((state) => state.filterRooms.list);
+  const [hotelData, setHotelData] = useState({});
+  const [loadingHotel, setLoadingHotel] = useState(false);
+  const [roomData, setRoomData] = useState({});
+  const [loadingRooms, setLoadingRooms] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState({});
   const [roomImages, setRoomImages] = useState([]);
+
   const { t, i18n } = useTranslation();
-  const [beds, setBeds] = useState(1);
   const [dateCheckin, setDateCheckin] = useState();
   const [dateCheckout, setDateCheckout] = useState();
+
   const currentLanguage = i18n.language;
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,27 +45,52 @@ const DetailsHotelPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  //dispatch to get data from store
-  const dispatch = useDispatch();
+  const getRooms = async (id) => {
+    setLoadingRooms(true);
+    const response = await roomsApi.getAll(id);
+    if (response.data.status === 'success') {
+      setRoomData(response.data.data.rooms);
+      setLoadingRooms(false);
+    }
+  };
+
+  const filterRooms = async (params) => {
+    setLoadingRooms(true);
+    const response = await roomsApi.filter(params);
+    if (response.data.status === 'success') {
+      setRoomData(response.data.data.rooms);
+      setLoadingRooms(false);
+    }
+  };
+
+  const getHotelById = async (id) => {
+    setLoadingHotel(true);
+    const response = await hotelApi.getById(id);
+    if (response.data.status === 'success') {
+      setLoadingHotel(false);
+      setHotelData(response.data.data);
+    }
+  };
+
   useEffect(() => {
-    dispatch(getByIdAsync(id));
-    dispatch(getAllRoomAsync(id));
+    getRooms(id);
+    getHotelById(id);
   }, [id]);
+
   //get first image to render ui
   let firstImage = '';
 
   // list of image after remove first image in an array
   let images = [];
+
   //handle whether data is recieved
-  if (singleHotel) {
-    firstImage = singleHotel.images !== undefined && singleHotel.images[0].src;
-    images = singleHotel.images !== undefined && [
-      ...singleHotel.images.slice(1),
-    ];
+  if (hotelData) {
+    firstImage = hotelData.images !== undefined && hotelData.images[0].src;
+    images = hotelData.images !== undefined && [...hotelData.images.slice(1)];
   }
   const showModal = (idRoom) => {
     setIsModalVisible(true);
-    const room = rooms.find((room) => room.id === idRoom);
+    const room = roomData.find((room) => room.id === idRoom);
     setSelectedRoom(room);
     setRoomImages(room.images);
   };
@@ -86,21 +105,28 @@ const DetailsHotelPage = () => {
   const dataOrder = {
     dateCheckin,
     dateCheckout,
-    hotelAddress: singleHotel.address,
-    rating: singleHotel.rating,
+    hotelAddress: hotelData.address,
+    rating: hotelData.rating,
     selectedRoom,
   };
-  const onFinish = (value) => {
-    setBeds(value.beds);
+
+  const handleSearch = (values) => {
+    setDateCheckin(values.checkIn);
+    setDateCheckout(values.checkOut);
+
+    filterRooms({
+      id: id,
+      adults: values.adults,
+      children: values.children,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+    });
   };
-  const handleFilter = (hotelId, beds) => {
-    dispatch(filterRoomsByBedsAsync({ hotelId, beds }));
-    console.log(roomsFilter);
-  };
+
   return (
     <div className="details__hotel__wrapper">
-      <Skeleton loading={loading}>
-        {singleHotel.images ? (
+      <Skeleton loading={loadingHotel}>
+        {hotelData.images ? (
           <Row className="details__hotel__row ctn" gutter={[20, 40]}>
             <Col
               lg={{ span: 24 }}
@@ -116,10 +142,10 @@ const DetailsHotelPage = () => {
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
                   <a onClick={() => history.back()}>
-                    {singleHotel.address.province}
+                    {hotelData.address.province}
                   </a>
                 </Breadcrumb.Item>
-                <Breadcrumb.Item>{singleHotel.name}</Breadcrumb.Item>
+                <Breadcrumb.Item>{hotelData.name}</Breadcrumb.Item>
               </Breadcrumb>
             </Col>
 
@@ -129,7 +155,7 @@ const DetailsHotelPage = () => {
               md={{ span: 24 }}
               sm={{ span: 24 }}
               xs={{ span: 24 }}
-              className="details__title__wrappper"
+              className="details__title__wrapper"
             >
               <Divider />
               <Row gutter={[10, 0]}>
@@ -141,15 +167,15 @@ const DetailsHotelPage = () => {
                   xs={{ span: 24 }}
                 >
                   <h1 style={{ textTransform: 'capitalize' }}>
-                    {singleHotel.name} <Rate disabled defaultValue={5} />
+                    {hotelData.name} <Rate disabled defaultValue={5} />
                   </h1>
                   <h4>
                     <PhoneOutlined />{' '}
-                    <a href={`tel:${singleHotel.phone}`}>{singleHotel.phone}</a>
+                    <a href={`tel:${hotelData.phone}`}>{hotelData.phone}</a>
                   </h4>
                   <h4
                     style={{ textTransform: 'capitalize' }}
-                  >{`${singleHotel.address.city}, ${singleHotel.address.province}, ${singleHotel.address.address}`}</h4>
+                  >{`${hotelData.address.city}, ${hotelData.address.province}, ${hotelData.address.address}`}</h4>
                   <h5>
                     <span className="details__rating__number">999</span>
                     {t('details__hotel.wonderful_reviews')}
@@ -166,7 +192,7 @@ const DetailsHotelPage = () => {
                     <h1>
                       <span>{t('details__hotel.from')}</span>{' '}
                       {t('details__hotel.price_value', {
-                        val: formatCurrency(singleHotel.price, currentLanguage),
+                        val: formatCurrency(hotelData.price, currentLanguage),
                       })}
                       /
                       <span style={{ fontSize: '15px' }}>
@@ -234,7 +260,7 @@ const DetailsHotelPage = () => {
                   <h1>{t('details__hotel.overview')}</h1>
                   <p>
                     {t('details__hotel.description', {
-                      description: singleHotel.description,
+                      description: hotelData.description,
                     })}
                   </p>
                 </Col>
@@ -249,7 +275,7 @@ const DetailsHotelPage = () => {
                   <Rate disabled defaultValue={5} />
                   <p>
                     {t('details__hotel.based_on', {
-                      review: singleHotel.ratingCount,
+                      review: hotelData.ratingCount,
                     })}
                   </p>
                 </Col>
@@ -274,43 +300,11 @@ const DetailsHotelPage = () => {
               xs={{ span: 24 }}
             >
               <h1>{t('details__hotel.available_rates')}</h1>
-              <Form
-                onFinish={onFinish}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                }}
-                initialValues={{
-                  beds: beds,
-                }}
-              >
-                <Space>
-                  <Form.Item>
-                    <RangePickerInHotels
-                      setDateCheckin={setDateCheckin}
-                      setDateCheckout={setDateCheckout}
-                    />
-                  </Form.Item>
-                  <Form.Item label="beds" name="beds">
-                    <InputNumber onChange={(value) => setBeds(value)} min={1} />
-                  </Form.Item>
-                  <Form.Item>
-                    <Button
-                      onClick={() => handleFilter(id, beds)}
-                      htmlType="submit"
-                      type="primary"
-                    >
-                      <SearchOutlined />
-                    </Button>
-                  </Form.Item>
-                </Space>
-              </Form>
+              <SearchRoom onClickSearch={handleSearch} />
               <Skeleton loading={loadingRooms}>
                 <List
                   itemLayout="horizontal"
-                  dataSource={
-                    roomsFilter && roomsFilter.length > 0 ? roomsFilter : rooms
-                  }
+                  dataSource={roomData && roomData.length > 0 ? roomData : []}
                   renderItem={(item) => (
                     <List.Item>
                       {' '}
