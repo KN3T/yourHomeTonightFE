@@ -45,6 +45,8 @@ const HotelInCityPage = () => {
       ? parseInt(searchParams.get('offset'))
       : 0,
     order: searchParams.get('order') ? searchParams.get('order') : 'desc',
+    checkIn: searchParams.get('checkIn') ? searchParams.get('checkIn') : 0,
+    checkOut: searchParams.get('checkOut') ? searchParams.get('checkOut') : 0,
     minPrice: searchParams.get('minPrice')
       ? parseInt(searchParams.get('minPrice'))
       : 0,
@@ -208,7 +210,7 @@ const HotelInCityPage = () => {
                 <Slider
                   className="filter__slider"
                   range
-                  defaultValue={[0, 50]}
+                  defaultValue={[0, 200]}
                   min={0}
                   max={300}
                   tooltipVisible

@@ -5,23 +5,24 @@ import { useTranslation } from 'react-i18next';
 import { AiFillPhone } from 'react-icons/ai';
 import { MdLocationOn } from 'react-icons/md';
 import { RiHotelFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import formatCurrency from '../../utils/formatCurrency';
 import './HotelItem.scss';
 
 const HotelItem = ({ hotelData }) => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  console.log(hotelData.id);
   const currentLanguage = i18n.language;
 
   return (
-    <div className="hotel__item__container">
+    <div
+      className="hotel__item__container"
+      onClick={() => navigate(`/hotels/${hotelData.id}`)}
+    >
       <div className="hotel__item__top">
         <div className="hotel__info">
-          <Link to={`/hotels/${hotelData.id}`}>
-            <h3>{hotelData.hotelName}</h3>
-          </Link>
+          <h3>{hotelData.hotelName}</h3>
           <div className="hotel__location">
             <MdLocationOn className="icon" />
             <span>
@@ -32,7 +33,7 @@ const HotelItem = ({ hotelData }) => {
         </div>
 
         <div className="hotel__rating">
-          <Rate value={hotelData.rating} className="rating" />
+          <Rate value={hotelData.rating} className="rating" disabled={true} />
           <span>
             {hotelData.ratingCount ? hotelData.ratingCount : 0}{' '}
             {t('hotels.reviews')}
@@ -66,9 +67,7 @@ const HotelItem = ({ hotelData }) => {
                 })}
               </span>
               <span className="per__night">{t('hotels.per_night')}</span>
-              <Link to={`/hotels/${hotelData.id}`}>
-                <Button type="primary">View</Button>
-              </Link>
+              <Button type="primary">View</Button>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { SearchOutlined, UserOutlined } from '@ant-design/icons';
+import { SearchOutlined } from '@ant-design/icons';
 import {
   AutoComplete,
   Button,
@@ -94,8 +94,8 @@ const SearchHome = () => {
   const onChange = (value) => {
     setCheckIn(value[0].format('YYYY-MM-DD'));
     setCheckOut(value[1].format('YYYY-MM-DD'));
-    // console.log(value);
   };
+
   const search = _.debounce(async (e) => {
     setLoading(true);
     const response = await cityApi.search(e);
@@ -176,13 +176,13 @@ const SearchHome = () => {
             <Form.Item name="date">
               <RangePicker
                 className="input"
-                // style={{ maxWidth: '310px' }}
                 size="large"
                 onChange={(value) => onChange(value)}
                 defaultValue={[
                   moment(),
                   moment(moment().add(3, 'day').format(dateFormat)),
                 ]}
+                allowClear={false}
               />
             </Form.Item>
           </Col>

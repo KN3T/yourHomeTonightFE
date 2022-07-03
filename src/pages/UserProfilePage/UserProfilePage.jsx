@@ -27,13 +27,13 @@ const UserProfilePage = () => {
     {
       key: '1',
       name: 'Mike',
-      roomType: 32,
+      roomType: 'King room',
       address: '10 Downing Street',
     },
     {
       key: '2',
       name: 'John',
-      roomType: 42,
+      roomType: 'Queen room',
       address: '10 Downing Street',
     },
   ];
@@ -174,7 +174,7 @@ const UserProfilePage = () => {
             }
             key="2"
           >
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table dataSource={dataSource} columns={columns} />
           </TabPane>
         </Tabs>
       </div>

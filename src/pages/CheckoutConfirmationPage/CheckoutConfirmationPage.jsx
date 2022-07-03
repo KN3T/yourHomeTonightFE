@@ -36,7 +36,6 @@ const CheckoutPageConfirmation = () => {
 
   const onClickDown = () => {
     const element = document.getElementById('content');
-    console.log(element);
 
     element.scrollIntoView({
       behavior: 'smooth',
