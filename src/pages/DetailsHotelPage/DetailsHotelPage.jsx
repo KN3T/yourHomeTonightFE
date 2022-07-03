@@ -1,4 +1,8 @@
-import { PhoneOutlined, SearchOutlined } from '@ant-design/icons';
+import {
+  CaretDownOutlined,
+  PhoneOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
@@ -13,7 +17,7 @@ import {
   Skeleton,
   Space,
 } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -46,7 +50,7 @@ const DetailsHotelPage = () => {
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
   let { id } = useParams(); //get id from url
-
+  const ref = useRef(null);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -97,6 +101,12 @@ const DetailsHotelPage = () => {
     dispatch(filterRoomsByBedsAsync({ hotelId, beds }));
     console.log(roomsFilter);
   };
+
+  const handleScrollIntoView = () => {
+    const list__rooms = document.getElementById('list__rooms');
+    list__rooms.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="details__hotel__wrapper">
       <Skeleton loading={loading}>
@@ -171,8 +181,9 @@ const DetailsHotelPage = () => {
                         {t('details__hotel.night')}
                       </span>
                     </h1>
-                    <Button type="primary">
-                      {t('details__hotel.view_details')}
+                    <Button onClick={handleScrollIntoView} type="primary">
+                      {t('details__hotel.view__rooms')}
+                      <CaretDownOutlined />
                     </Button>
                   </div>
                 </Col>
@@ -243,7 +254,7 @@ const DetailsHotelPage = () => {
                   sm={{ span: 24 }}
                   xs={{ span: 24 }}
                 >
-                  <h1>{t('details__hotel.rating')}</h1>
+                  <h1 id="list__rooms">{t('details__hotel.rating')}</h1>
                   <Rate disabled defaultValue={5} />
                   <p>
                     {t('details__hotel.based_on', {
