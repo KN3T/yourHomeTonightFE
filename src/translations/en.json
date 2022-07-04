@@ -1,7 +1,7 @@
 {
   "hotel": {
     "rating": "Rating",
-    "per_night": "Night",
+    "per_night": "night",
     "populer_hotel_title": "Our Most Populer Hotel",
     "populer_hotel_content": "This summer, make your dream trip a reality. Book and stay for less before Sep 30, 2022",
     "start_from": "Start from:",
@@ -37,6 +37,7 @@
     "your_budget": "Your budget",
     "per_night": "Per night",
     "properties": "properties",
+    "related_to": "related to",
     "sort_by": "Sort by",
     "price": "Price",
     "low_to_high": "(low to high)",
@@ -59,7 +60,7 @@
   "details__hotel": {
     "home": "Home",
     "from": "from",
-    "night": "Night",
+    "night": "night",
     "price_value": "{{val, currency(currency: USD)}}",
     "overview": "Overview",
     "rating": "Rating",

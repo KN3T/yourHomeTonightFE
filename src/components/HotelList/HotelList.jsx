@@ -20,7 +20,7 @@ const HotelList = ({ hotelListData }) => {
 
   return (
     <div className="hotel__list__container">
-      {hotelListData.map((hotel) => {
+      {sliceData.map((hotel) => {
         return <HotelItem hotelData={hotel} key={hotel.id} />;
       })}
 

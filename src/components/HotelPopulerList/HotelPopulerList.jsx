@@ -29,13 +29,6 @@ const HotelPopulerList = () => {
       <Title className="title_section" level={2}>
         {t('hotel.populer_hotel_title')}
       </Title>
-      <Row className="content_section">
-        <Col span={12} offset={6}>
-          <p className="content_section_center">
-            {t('hotel.populer_hotel_content')}
-          </p>
-        </Col>
-      </Row>
       <Row className="hotel_list" gutter={[16, 0]}>
         {data.slice(0, NumberOfHotels).map((item, index) => {
           return (
