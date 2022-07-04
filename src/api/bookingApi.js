@@ -17,6 +17,9 @@ const bookingApi = {
     get: async (id) => {
         useLocalToken()
         return axiosInstance.get(`bookings/${id}`)
+    },
+    repay: async(id) => {
+        return axiosInstance.post(`bookings/${id}/repay`)
     }
 }
 

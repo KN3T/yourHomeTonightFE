@@ -6,6 +6,7 @@ import {
   CheckoutConfirmationPage,
   CheckoutPage,
   CheckoutVerifyPage,
+  DetailsBookingPage,
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
@@ -24,6 +25,7 @@ const Router = () => {
           <Route path="/hotels/:id" element={<DetailsHotelPage />} />
           <Route path="/userProfile" element={<UserProfilePage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/detailsBooking/:id" element={<DetailsBookingPage />} />
           <Route
             path="/checkoutConfirmation/:id"
             element={<CheckoutConfirmationPage />}

@@ -1,13 +1,12 @@
 import { Button, Card, Col, Image, Modal, Row, Space, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import BookingFeedback from '../Feedback/BookingFeedback';
 import './index.scss';
 
 const Transaction = ({ bookings }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalFb, setModalFb] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -18,18 +17,6 @@ const Transaction = ({ bookings }) => {
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const showModalFb = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOkFb = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancelFb = () => {
     setIsModalVisible(false);
   };
 
@@ -62,7 +49,7 @@ const Transaction = ({ bookings }) => {
   const renderButton = (status) => {
     switch (status) {
       case 2:
-        return <Button onClick={showModalFb}>Give feedback</Button>;
+        return <Button>Give feedback</Button>;
       case 3:
         return '';
       default:
@@ -103,7 +90,6 @@ const Transaction = ({ bookings }) => {
                 <span>Price</span>
                 <span>${booking.total}</span>
               </Space>
-
               <Space>
                 <Tag color={handleTypeBtn(booking.status)}>
                   {' '}
@@ -111,7 +97,9 @@ const Transaction = ({ bookings }) => {
                 </Tag>
               </Space>
               <Space className="space__type__btn">
-                <Button onClick={showModal}>View details</Button>
+                <Link to={`/detailsBooking/${booking.id}`}>
+                  <Button>View details</Button>
+                </Link>
                 {renderButton(booking.status)}
               </Space>
             </Card>
@@ -121,10 +109,6 @@ const Transaction = ({ bookings }) => {
       <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p>Some contents...</p>
         <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-      <Modal visible={modalFb} onOk={handleOkFb} onCancel={handleCancelFb}>
-        <BookingFeedback />
       </Modal>
     </div>
   );
