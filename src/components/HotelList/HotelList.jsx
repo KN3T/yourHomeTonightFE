@@ -24,7 +24,7 @@ const HotelList = ({ hotelListData }) => {
         return <HotelItem hotelData={hotel} key={hotel.id} />;
       })}
 
-      {sliceData.length > 0 && (
+      {sliceData.length > 0 && hotelListData.length > sliceData.length && (
         <Pagination
           style={{
             display: 'flex',
