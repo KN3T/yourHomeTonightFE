@@ -1,8 +1,13 @@
 import { axiosInstance } from "./axiosInstance"
 
 export const feedbackApi = {
-    addFeedback: async (feedback) => {
-        
-        return axiosInstance.post(`/bookings/${feedback.id}/rating`, feedback)
-    }
+    getAll: async (id) => {
+        return axiosInstance.get(`/hotels/${id}/ratings`)
+    },
+    addFeedback: async (params) => {
+        const {id, ...feedback} = params
+        return axiosInstance.post(`/bookings/${id}/rating`, feedback)
+        // return console.log(feedback, id)
+    },
+    
 }
