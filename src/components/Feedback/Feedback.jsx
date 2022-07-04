@@ -1,43 +1,39 @@
-import { Button, Comment, Form, Input, Rate } from 'antd';
-import React, { useState } from 'react';
+import { Avatar, Comment, Tooltip } from 'antd';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { feedbackApi } from '../../api/feedbackApi';
 
-const { TextArea } = Input;
-const Feedback = ({ bookingId }) => {
-  const [cmt, setCmt] = useState('');
-  const [rate, setRate] = useState();
-  const [dataFeedback, setDataFeedback] = useState({});
-  const onFinish = (value) => {
-    setCmt(value.cmt);
-    setDataFeedback({
-      content: cmt,
-      rating: rate,
-    });
-  };
+const FeedBack = ({ hotelId }) => {
+  const [feedback, setFeedback] = useState([]);
+  useEffect(() => {
+    const getAllFeedback = async () => {
+      const response = await feedbackApi.getAll(hotelId);
+      response && setFeedback(response.data.data.reviews);
+    };
 
+    getAllFeedback();
+  }, []);
+  console.log(feedback);
   return (
     <div>
-      <Rate onChange={(e) => setRate(e)} />
-      <Comment
-        content={
-          <Form
-            onFinish={onFinish}
-            initialValues={{
-              cmt: cmt,
-            }}
-          >
-            <Form.Item name="cmt">
-              <TextArea onChange={(e) => setCmt(e.target.value)} />
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit">Submit</Button>
-            </Form.Item>
-          </Form>
-        }
-      />
+      {feedback &&
+        feedback.map((fb, key) => (
+          <Comment
+            key={key}
+            author={<Link to="/profile">{fb.user.fullName}</Link>}
+            avatar={<Avatar>{fb.user.fullName[0]}</Avatar>}
+            content={<p>{fb.content}</p>}
+            datetime={
+              <Tooltip>
+                <span>{moment(fb.createdAt.date).format('MM-DD-YYYY')}</span>
+              </Tooltip>
+            }
+          />
+        ))}
     </div>
   );
 };
 
-export default Feedback;
+export default FeedBack;

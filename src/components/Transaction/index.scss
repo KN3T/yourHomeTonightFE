@@ -1,4 +1,9 @@
 .transaction__wrapper {
+  .space__glimpse {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
   .space {
     width: 100%;
     justify-content: space-between;
@@ -15,5 +20,10 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+  .space__type__btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
   }
 }

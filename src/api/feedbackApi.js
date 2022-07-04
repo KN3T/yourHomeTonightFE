@@ -9,5 +9,8 @@ export const feedbackApi = {
         return axiosInstance.post(`/bookings/${id}/rating`, feedback)
         // return console.log(feedback, id)
     },
+    getFeedbackPerBooking: async (idBooking) => {
+        return axiosInstance.get(`/bookings/${idBooking}/rating`)
+    }
     
 }

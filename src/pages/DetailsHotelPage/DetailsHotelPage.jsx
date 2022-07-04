@@ -18,6 +18,7 @@ import { Link, useParams } from 'react-router-dom';
 import { hotelApi } from '../../api';
 import { roomsApi } from '../../api/roomsApi';
 import {
+  Feedback,
   RoomDetailsModal,
   RoomInDetailsHotel,
   SearchRoom,
@@ -32,7 +33,6 @@ const DetailsHotelPage = () => {
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState({});
   const [roomImages, setRoomImages] = useState([]);
-
   const { t, i18n } = useTranslation();
   const [dateCheckin, setDateCheckin] = useState(
     parseInt(moment().format('X'))
@@ -326,7 +326,16 @@ const DetailsHotelPage = () => {
                 />
               </Skeleton>
             </Col>
-
+            <Col
+              lg={{ span: 24 }}
+              xl={{ span: 24 }}
+              md={{ span: 24 }}
+              sm={{ span: 24 }}
+              xs={{ span: 24 }}
+            >
+              <Divider />
+              <Feedback hotelId={id} />
+            </Col>
             <Col
               lg={{ span: 24 }}
               xl={{ span: 24 }}

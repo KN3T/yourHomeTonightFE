@@ -217,7 +217,7 @@ const UserProfilePage = () => {
             tab={
               <span>
                 <TransactionOutlined />
-                Transaction
+                History
               </span>
             }
             key="2"
