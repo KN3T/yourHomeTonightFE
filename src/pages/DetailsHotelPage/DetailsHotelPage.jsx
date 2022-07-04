@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { PhoneOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
@@ -10,10 +11,11 @@ import {
   Row,
   Skeleton,
 } from 'antd';
+import { set } from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 
 import { hotelApi } from '../../api';
 import { roomsApi } from '../../api/roomsApi';
@@ -34,12 +36,15 @@ const DetailsHotelPage = () => {
   const [roomImages, setRoomImages] = useState([]);
 
   const { t, i18n } = useTranslation();
-  const [dateCheckin, setDateCheckin] = useState(
-    parseInt(moment().format('X'))
-  );
-  const [dateCheckout, setDateCheckout] = useState(
-    parseInt(moment().add(3, 'day').format('X'))
-  );
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [date, setDate] = useState([
+    moment(searchParams.get('checkIn') * 1000),
+    moment(searchParams.get('checkOut') * 1000),
+  ]);
+
+  const [adults, setAdults] = useState(searchParams.get('adults'));
+  const [children, setChildren] = useState(searchParams.get('children'));
 
   const currentLanguage = i18n.language;
   //this is for modal room
@@ -50,15 +55,6 @@ const DetailsHotelPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const getRooms = async (id) => {
-    setLoadingRooms(true);
-    const response = await roomsApi.getAll(id);
-    if (response.data.status === 'success') {
-      setRoomData(response.data.data.rooms);
-      setLoadingRooms(false);
-    }
-  };
-
   const filterRooms = async (params) => {
     setLoadingRooms(true);
     const response = await roomsApi.filter(params);
@@ -67,6 +63,11 @@ const DetailsHotelPage = () => {
       setLoadingRooms(false);
     }
   };
+  const [dataOrder, setDataOrder] = useState({
+    checkIn: parseInt(moment(date[0]).format('X')),
+    checkOut: parseInt(moment(date[1]).format('X')),
+    selectedRoom,
+  });
 
   const getHotelById = async (id) => {
     setLoadingHotel(true);
@@ -74,11 +75,22 @@ const DetailsHotelPage = () => {
     if (response.data.status === 'success') {
       setLoadingHotel(false);
       setHotelData(response.data.data);
+      setDataOrder({
+        ...dataOrder,
+        hotelAddress: response.data.data.address,
+        rating: response.data.data.rating,
+      });
     }
   };
 
   useEffect(() => {
-    getRooms(id);
+    filterRooms({
+      id: id,
+      adults: adults,
+      children: children,
+      checkIn: parseInt(moment(date[0]).format('X')),
+      checkOut: parseInt(moment(date[1]).format('X')),
+    });
     getHotelById(id);
   }, [id]);
 
@@ -97,6 +109,10 @@ const DetailsHotelPage = () => {
     setIsModalVisible(true);
     const room = roomData.find((room) => room.id === idRoom);
     setSelectedRoom(room);
+    setDataOrder({
+      ...dataOrder,
+      selectedRoom: room,
+    });
     setRoomImages(room.images);
   };
 
@@ -107,17 +123,24 @@ const DetailsHotelPage = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  const dataOrder = {
-    dateCheckin,
-    dateCheckout,
-    hotelAddress: hotelData.address,
-    rating: hotelData.rating,
-    selectedRoom,
-  };
 
   const handleSearch = (values) => {
-    setDateCheckin(values.checkIn);
-    setDateCheckout(values.checkOut);
+    setDataOrder({
+      ...dataOrder,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+      hotelAddress: hotelData && hotelData.address,
+      rating: hotelData && hotelData.rating,
+      selectedRoom,
+    });
+
+    setSearchParams({
+      ...searchParams,
+      adults: values.adults,
+      children: values.children,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+    });
 
     filterRooms({
       id: id,
@@ -307,8 +330,9 @@ const DetailsHotelPage = () => {
               <h1>{t('details__hotel.available_rates')}</h1>
               <SearchRoom
                 onClickSearch={handleSearch}
-                setDateCheckin={setDateCheckin}
-                setDateCheckout={setDateCheckout}
+                dateDefault={date}
+                adultsDefault={adults}
+                childrenDefault={children}
               />
               <Skeleton loading={loadingRooms}>
                 <List

@@ -16,11 +16,9 @@ import _ from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { IoBedSharp } from 'react-icons/io5';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { cityApi, hotelApi } from '../../../api';
-import { addSearchDate } from '../../../store/Slice/Booking/BookingSlice';
 import './index.scss';
 
 const { RangePicker } = DatePicker;
@@ -28,19 +26,11 @@ const { RangePicker } = DatePicker;
 const SearchHome = () => {
   const DATE_FORMAT = 'DD-MM-YYYY';
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const searchDate = useSelector((state) => state.booking.searchDate);
 
   const [visible, setVisible] = useState(false);
-  const [checkIn, setCheckIn] = useState(moment());
-  const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
-  const [date] =
-    searchDate.checkIn && searchDate.checkOut
-      ? useState([
-          moment(searchDate.checkIn * 1000),
-          moment(searchDate.checkOut * 1000),
-        ])
-      : useState([moment(), moment(moment().add(3, 'day'))]);
+
+  const [date, setDate] = useState([moment(), moment(moment().add(3, 'day'))]);
+
   const [options, setOptions] = useState([]);
   const [children, setChildren] = useState(1);
   const [adults, setAdults] = useState(1);
@@ -78,29 +68,12 @@ const SearchHome = () => {
       error();
     } else {
       setCityName(value.city);
-      setCheckIn(value.date[0]);
-      setCheckOut(value.date[1]);
-
-      dispatch(
-        addSearchDate({
-          checkIn: parseInt(value.date[0].format('X')),
-          checkOut: parseInt(value.date[1].format('X')),
-        })
-      );
-
-      window.localStorage.setItem(
-        'searchData',
-        JSON.stringify({
-          checkIn: parseInt(value.date[0].format('X')),
-          checkOut: parseInt(value.date[1].format('X')),
-        })
-      );
 
       navigate({
         pathname: '/hotels',
         search: `?city=${cityName}&minPrice=${minPrice}&maxPrice=${maxPrice}&checkIn=${moment(
-          checkIn
-        ).format('X')}&checkOut=${moment(checkOut).format(
+          date[0]
+        ).format('X')}&checkOut=${moment(date[1]).format(
           'X'
         )}&adults=${adults}&children=${children}&order=desc`,
       });
@@ -125,11 +98,6 @@ const SearchHome = () => {
       </Form.Item>
     </Form>
   );
-
-  const onChange = (value) => {
-    setCheckIn(value[0].format(DATE_FORMAT));
-    setCheckOut(value[1].format(DATE_FORMAT));
-  };
 
   const search = _.debounce(async (e) => {
     setLoading(true);
@@ -233,9 +201,9 @@ const SearchHome = () => {
               <RangePicker
                 className="input"
                 size="large"
-                onChange={(value) => onChange(value)}
                 allowClear={false}
                 format={DATE_FORMAT}
+                onCalendarChange={setDate}
               />
             </Form.Item>
           </Col>

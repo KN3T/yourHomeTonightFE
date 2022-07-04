@@ -1,5 +1,15 @@
 /* eslint-disable no-unused-vars */
-import { Col, Form, Layout, Popover, Rate, Row, Skeleton, Slider } from 'antd';
+import {
+  Col,
+  Form,
+  Input,
+  Layout,
+  Popover,
+  Rate,
+  Row,
+  Skeleton,
+  Slider,
+} from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -9,9 +19,10 @@ import { useSearchParams } from 'react-router-dom';
 
 import { hotelApi } from '../../api';
 import { HotelList, SearchInHotels } from '../../components';
+import formatCurrency from '../../utils/formatCurrency';
 import './HotelInCityPage.scss';
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 const HotelInCityPage = () => {
   const [form] = Form.useForm();
@@ -20,7 +31,8 @@ const HotelInCityPage = () => {
   const [hotelsData, setHotelsData] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   const [params, setParams] = useState({
     limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
@@ -37,7 +49,8 @@ const HotelInCityPage = () => {
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 1000000000000,
+      : 10000,
+    rating: searchParams.get('rating') ? searchParams.get('rating') : 0,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });
 
@@ -131,6 +144,17 @@ const HotelInCityPage = () => {
     });
   };
 
+  const onChangeRating = (value) => {
+    setParams({
+      ...params,
+      rating: value,
+    });
+    setSearchParams({
+      ...params,
+      rating: value,
+    });
+  };
+
   return (
     <div className="hotelpage__container">
       <Row className="hotelpage__wrapper ctn" gutter={10}>
@@ -143,7 +167,11 @@ const HotelInCityPage = () => {
                   <div className="filter__rating">
                     <h3 className="filter__title">{t('hotels.rating')}</h3>
                     <Form.Item name="rating">
-                      <Rate allowHalf defaultValue={1} />
+                      <Rate
+                        allowHalf
+                        defaultValue={1}
+                        onChange={onChangeRating}
+                      />
                     </Form.Item>
                   </div>
                 </div>
@@ -153,9 +181,17 @@ const HotelInCityPage = () => {
                       {t('hotels.your_budget')} ({t('hotels.per_night')})
                     </h3>
                     <Form.Item name="price">
-                      <span>${params.minPrice}</span>
-                      <span> to </span>
-                      <span>${params.maxPrice}</span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(params.minPrice, currentLanguage),
+                        })}
+                      </span>
+                      <span> {t('hotels.to')} </span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(params.maxPrice, currentLanguage),
+                        })}
+                      </span>
                       <Slider
                         tooltipVisible={false}
                         className="filter__slider"
@@ -177,7 +213,11 @@ const HotelInCityPage = () => {
             <SearchInHotels
               onClickSearch={onClickSearch}
               setSelectedCity={setSelectedCity}
-              city={params.city}
+              cityDefault={params.city}
+              adultsDefault={params.adults}
+              childrenDefault={params.children}
+              checkInDefault={params.checkIn}
+              checkOutDefault={params.checkOut}
             />
             <div className="sort__button__wrapper">
               {hotelsData ? (
@@ -214,7 +254,16 @@ const HotelInCityPage = () => {
                 </a>
               </Popover>
             </div>
-            {hotelsData && <HotelList hotelListData={hotelsData} />}
+            {hotelsData && (
+              <HotelList
+                hotelListData={hotelsData}
+                cityDefault={params.city}
+                adultsDefault={params.adults}
+                childrenDefault={params.children}
+                checkInDefault={params.checkIn}
+                checkOutDefault={params.checkOut}
+              />
+            )}
           </Content>
         </Col>
       </Row>

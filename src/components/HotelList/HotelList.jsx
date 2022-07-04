@@ -5,7 +5,14 @@ import React, { useState } from 'react';
 import HotelItem from '../HotelItem/HotelItem';
 import './HotelList.scss';
 
-const HotelList = ({ hotelListData }) => {
+const HotelList = ({
+  hotelListData,
+  cityDefault,
+  adultsDefault,
+  childrenDefault,
+  checkInDefault,
+  checkOutDefault,
+}) => {
   const NUM_EACH_PAGE = 5;
 
   const [minValue, setMinValue] = useState(0);
@@ -21,7 +28,17 @@ const HotelList = ({ hotelListData }) => {
   return (
     <div className="hotel__list__container">
       {sliceData.map((hotel) => {
-        return <HotelItem hotelData={hotel} key={hotel.id} />;
+        return (
+          <HotelItem
+            hotelData={hotel}
+            key={hotel.id}
+            cityDefault={cityDefault}
+            adultsDefault={adultsDefault}
+            childrenDefault={childrenDefault}
+            checkInDefault={checkInDefault}
+            checkOutDefault={checkOutDefault}
+          />
+        );
       })}
 
       {sliceData.length > 0 && hotelListData.length > sliceData.length && (

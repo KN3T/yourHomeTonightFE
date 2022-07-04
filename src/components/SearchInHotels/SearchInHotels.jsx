@@ -15,47 +15,38 @@ import {
 } from 'antd';
 import _ from 'lodash';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IoBedSharp } from 'react-icons/io5';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { cityApi } from '../../api';
-import { addSearchDate } from '../../store/Slice/Booking/BookingSlice';
 import './SearchInHotels.scss';
 
 const { RangePicker } = DatePicker;
 
-const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
+const SearchInHotels = ({
+  onClickSearch,
+  setSelectedCity,
+  cityDefault,
+  adultsDefault,
+  childrenDefault,
+  checkInDefault,
+  checkOutDefault,
+}) => {
   const DATE_FORMAT = 'DD-MM-YYYY';
-  const searchDate = useSelector((state) => state.booking.searchDate);
 
   const [visible, setVisible] = useState(false);
-  const [checkIn, setCheckIn] = useState(moment());
-  const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
-  const [date] =
-    searchDate.checkIn && searchDate.checkOut
-      ? useState([
-          moment(searchDate.checkIn * 1000),
-          moment(searchDate.checkOut * 1000),
-        ])
-      : useState([moment(), moment(moment().add(3, 'day'))]);
 
-  const dispatch = useDispatch();
+  const [date, setDate] = useState(
+    checkInDefault && checkOutDefault
+      ? [moment(checkInDefault * 1000), moment(checkOutDefault * 1000)]
+      : [moment(), moment().add(3, 'day')]
+  );
 
   const [options, setOptions] = useState([]);
-  const [children, setChildren] = useState(1);
-  const [adults, setAdults] = useState(1);
-  const [cityName, setCityName] = useState('');
+  const [children, setChildren] = useState(childrenDefault);
+  const [adults, setAdults] = useState(adultsDefault);
+  const [cityName, setCityName] = useState(cityDefault);
   const [loading, setLoading] = useState(false);
-
-  const getFirstCity = async () => {
-    const response = await cityApi.getAll();
-    return setCityName(response.data.data[0].city);
-  };
-
-  useEffect(() => {
-    getFirstCity();
-  }, []);
 
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
@@ -73,20 +64,11 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
       error();
     } else {
       setCityName(value.city);
-      setCheckIn(value.date[0]);
-      setCheckOut(value.date[1]);
-
-      dispatch(
-        addSearchDate({
-          checkIn: parseInt(value.date[0].format('X')),
-          checkOut: parseInt(value.date[1].format('X')),
-        })
-      );
 
       onClickSearch({
         city: cityName,
-        checkIn: parseInt(moment(checkIn).format('X')),
-        checkOut: parseInt(moment(checkOut).format('X')),
+        checkIn: parseInt(moment(date[0]).format('X')),
+        checkOut: parseInt(moment(date[1]).format('X')),
         adults: adults,
         children: children,
       });
@@ -111,11 +93,6 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
       </Form.Item>
     </Form>
   );
-
-  const onChange = (value) => {
-    setCheckIn(value[0].format(DATE_FORMAT));
-    setCheckOut(value[1].format(DATE_FORMAT));
-  };
 
   const search = _.debounce(async (e) => {
     setLoading(true);
@@ -202,8 +179,9 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
                   style={{ paddingRight: '50px' }}
                   className="input"
                   size="large"
-                  loading={loading}
-                  placeholder={city ? city : 'Search your favorite city'}
+                  placeholder={
+                    cityDefault ? cityDefault : 'Search your favorite city'
+                  }
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
@@ -220,8 +198,8 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
               <RangePicker
                 className="input"
                 size="large"
-                onChange={(value) => onChange(value)}
                 format={DATE_FORMAT}
+                onCalendarChange={setDate}
                 allowClear={false}
               />
             </Form.Item>
