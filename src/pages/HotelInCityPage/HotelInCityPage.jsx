@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Form, Layout, Popover, Rate, Slider } from 'antd';
+import { Form, Layout, Popover, Rate, Skeleton, Slider } from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { hotelApi } from '../../api';
 import { HotelList, SearchInHotels } from '../../components';
@@ -21,16 +21,6 @@ const HotelInCityPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [currentParams, setCurrentParams] = useState(location.search);
-
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
-
-  useEffect(() => {
-    setCurrentParams(location.search);
-  }, [location.search]);
 
   const [params, setParams] = useState({
     limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
@@ -40,7 +30,6 @@ const HotelInCityPage = () => {
     order: searchParams.get('order') ? searchParams.get('order') : 'desc',
     checkIn: searchParams.get('checkIn') ? searchParams.get('checkIn') : 0,
     checkOut: searchParams.get('checkOut') ? searchParams.get('checkOut') : 0,
-    beds: searchParams.get('beds') ? searchParams.get('beds') : 1,
     adults: searchParams.get('adults') ? searchParams.get('adults') : 1,
     children: searchParams.get('children') ? searchParams.get('children') : 1,
     minPrice: searchParams.get('minPrice')
@@ -48,32 +37,21 @@ const HotelInCityPage = () => {
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 100,
+      : 1000000000000,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });
+
+  const [selectedCity, setSelectedCity] = useState(params.city);
+  const [minPrice] = useState(params.minPrice);
+  const [maxPrice] = useState(params.maxPrice);
 
   const getHotel = async (params) => {
     const response = await hotelApi.get(params);
     setHotelsData(response.data.data.hotels);
   };
 
-  const getPrices = async () => {
-    const response = await hotelApi.getPrices();
-    if (response.data.status === 'success') {
-      setMinPrice(response.data.data.minPrice);
-      setMaxPrice(response.data.data.maxPrice);
-    }
-  };
-
-  useEffect(() => {
-    form.setFieldsValue({
-      price: [minPrice, maxPrice],
-    });
-  }, [minPrice, maxPrice]);
-
   useEffect(() => {
     getHotel(params);
-    getPrices();
   }, [params]);
 
   const onClickHigh = () => {
@@ -83,12 +61,10 @@ const HotelInCityPage = () => {
       ...params,
       order: 'desc',
     });
-    if (currentParams) {
-      console.log(123);
-      navigate(`/hotels${currentParams}&order=desc`);
-    } else {
-      navigate(`/hotels/?order=desc`);
-    }
+    setSearchParams({
+      ...params,
+      order: 'desc',
+    });
   };
 
   const onClickLow = () => {
@@ -98,11 +74,10 @@ const HotelInCityPage = () => {
       ...params,
       order: 'asc',
     });
-    if (currentParams) {
-      navigate(`/hotels${currentParams}&order=asc`);
-    } else {
-      navigate(`/hotels/?order=asc`);
-    }
+    setSearchParams({
+      ...params,
+      order: 'asc',
+    });
   };
 
   const sortOptions = (
@@ -125,24 +100,23 @@ const HotelInCityPage = () => {
   );
 
   const onClickSearch = (values) => {
+    console.log(values);
     setParams({
       ...params,
-      city: values.city,
+      city: values.city ? values.city : selectedCity,
       checkIn: values.checkIn,
       checkOut: values.checkOut,
-      beds: values.beds,
       adults: values.adults,
       children: values.children,
     });
-    if (currentParams) {
-      navigate(
-        `/hotels${currentParams}&city=${values.city}&checkIn=${values.checkIn}&checkOut=${values.checkOut}&beds=${values.beds}&adults=${values.adults}&children=${values.children}`
-      );
-    } else {
-      navigate(
-        `/hotels?city=${values.city}&checkIn=${values.checkIn}&checkOut=${values.checkOut}&beds=${values.beds}&adults=${values.adults}&children=${values.children}`
-      );
-    }
+    setSearchParams({
+      ...searchParams,
+      city: values.city ? values.city : selectedCity,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+      adults: values.adults,
+      children: values.children,
+    });
   };
 
   const onFilterPrice = (value) => {
@@ -151,13 +125,11 @@ const HotelInCityPage = () => {
       minPrice: value[0],
       maxPrice: value[1],
     });
-    if (currentParams) {
-      navigate(
-        `/hotels${currentParams}&minPrice=${value[0]}&maxPrice=${value[1]}`
-      );
-    } else {
-      navigate(`/hotels?&minPrice=${value[0]}&maxPrice=${value[1]}`);
-    }
+    setSearchParams({
+      ...params,
+      minPrice: value[0],
+      maxPrice: value[1],
+    });
   };
 
   return (
@@ -181,14 +153,17 @@ const HotelInCityPage = () => {
                     {t('hotels.your_budget')} ({t('hotels.per_night')})
                   </h3>
                   <Form.Item name="price">
+                    <span>${params.minPrice}</span>
+                    <span> to </span>
+                    <span>${params.maxPrice}</span>
                     <Slider
+                      tooltipVisible={false}
                       className="filter__slider"
                       range
                       defaultValue={[minPrice, maxPrice]}
                       min={minPrice}
                       max={maxPrice}
-                      tooltipVisible
-                      onAfterChange={onFilterPrice}
+                      onChange={onFilterPrice}
                     />
                   </Form.Item>
                 </div>
@@ -197,7 +172,10 @@ const HotelInCityPage = () => {
           </Form>
         </Sider>
         <Content className="hotels__section">
-          <SearchInHotels onClickSearch={onClickSearch} />
+          <SearchInHotels
+            onClickSearch={onClickSearch}
+            setSelectedCity={setSelectedCity}
+          />
           <div className="sort__button__wrapper">
             {hotelsData ? (
               <div className="result__list">

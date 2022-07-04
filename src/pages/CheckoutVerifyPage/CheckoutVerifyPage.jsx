@@ -16,22 +16,26 @@ const CheckoutVerifyPage = () => {
   const navigate = useNavigate();
 
   const verifyPayment = async (params) => {
-    const response = await bookingApi.verify(params);
-    if (response.data.status === 'success') {
-      dispatch(
-        addConfirmation({
-          booking: response.data.data.booking,
-          payment: response.data.data.paymentInfo,
-        })
-      );
-      window.localStorage.setItem(
-        'confirmation',
-        JSON.stringify({
-          booking: response.data.data.booking,
-          payment: response.data.data.paymentInfo,
-        })
-      );
-      navigate('/checkoutConfirmation');
+    try {
+      const response = await bookingApi.verify(params);
+      if (response.data.status === 'success') {
+        dispatch(
+          addConfirmation({
+            booking: response.data.data.booking,
+            payment: response.data.data.paymentInfo,
+          })
+        );
+        window.localStorage.setItem(
+          'confirmation',
+          JSON.stringify({
+            booking: response.data.data.booking,
+            payment: response.data.data.paymentInfo,
+          })
+        );
+        navigate(`/checkoutConfirmation/${bookingId}`);
+      }
+    } catch (err) {
+      navigate(`/checkoutConfirmation/${bookingId}`);
     }
   };
 

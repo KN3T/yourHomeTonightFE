@@ -24,7 +24,7 @@ import './SearchInHotels.scss';
 
 const { RangePicker } = DatePicker;
 
-const SearchInHotels = ({ onClickSearch }) => {
+const SearchInHotels = ({ onClickSearch, setSelectedCity }) => {
   const DATE_FORMAT = 'DD-MM-YYYY';
   const searchDate = useSelector((state) => state.booking.searchDate);
 
@@ -154,6 +154,7 @@ const SearchInHotels = ({ onClickSearch }) => {
 
   const onSelect = (value) => {
     setCityName(value);
+    setSelectedCity(value);
   };
 
   return (

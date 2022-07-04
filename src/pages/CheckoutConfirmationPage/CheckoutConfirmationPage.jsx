@@ -10,7 +10,9 @@ import { MdSecurity } from 'react-icons/md';
 import { MdOutlineChildCare } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import bookingApi from '../../api/bookingApi';
 import formatCurrency from '../../utils/formatCurrency';
 import './CheckoutConfirmationPage.scss';
 
@@ -25,6 +27,19 @@ const CheckoutPageConfirmation = () => {
   const { t, i18n } = useTranslation();
 
   const currentLanguage = i18n.language;
+  const params = useParams();
+
+  const getBookingData = async (id) => {
+    const response = await bookingApi.get(id);
+    console.log(response);
+  };
+  useEffect(() => {
+    getBookingData(params.id);
+  }, [params.id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const checkIn = moment(confirmationData.booking.checkIn.date);
   const checkOut = moment(confirmationData.booking.checkOut.date);
@@ -41,10 +56,6 @@ const CheckoutPageConfirmation = () => {
     confirmationData &&
     confirmationData.booking &&
     confirmationData.booking.total;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const onClickDown = () => {
     const element = document.getElementById('content');

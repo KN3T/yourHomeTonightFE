@@ -9,6 +9,11 @@ const bookingApi = {
     verify: async (params) => {
         useLocalToken()
         return axiosInstance.post('payment/check', params)
+    },
+
+    get: async (id) => {
+        useLocalToken()
+        return axiosInstance.get(`bookings/${id}`)
     }
 }
 

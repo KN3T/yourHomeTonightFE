@@ -7,6 +7,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Modal,
   Popover,
   Row,
   Spin,
@@ -18,8 +19,7 @@ import { IoBedSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { cityApi } from '../../../api';
-import homeBg from '../../../assets/images/homeBg.jpg';
+import { cityApi, hotelApi } from '../../../api';
 import { addSearchDate } from '../../../store/Slice/Booking/BookingSlice';
 import './index.scss';
 
@@ -47,39 +47,64 @@ const SearchHome = () => {
   const [cityName, setCityName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const getFirstCity = async () => {
-    const response = await cityApi.getAll();
-    return setCityName(response.data.data[0].city);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000);
+
+  const getPrices = async () => {
+    const response = await hotelApi.getPrices();
+    if (response.data.status === 'success') {
+      setMinPrice(response.data.data.minPrice);
+      setMaxPrice(response.data.data.maxPrice);
+    }
   };
 
   useEffect(() => {
-    getFirstCity();
+    getPrices();
   }, []);
 
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
   };
 
-  const onFinish = (value) => {
-    setCityName(value.city);
-    setCheckIn(value.date[0]);
-    setCheckOut(value.date[1]);
-
-    dispatch(
-      addSearchDate({
-        checkIn: parseInt(value.date[0].format('X')),
-        checkOut: parseInt(value.date[1].format('X')),
-      })
-    );
-
-    navigate({
-      pathname: '/hotels',
-      search: `?city=${cityName}&checkIn=${moment(checkIn).format(
-        'X'
-      )}&checkOut=${moment(checkOut).format(
-        'X'
-      )}&adults=${adults}&children=${children}`,
+  const error = () => {
+    Modal.error({
+      title: 'Search your favorite city',
+      content: 'Please, enter a city...',
     });
+  };
+
+  const onFinish = (value) => {
+    if (cityName === '') {
+      error();
+    } else {
+      setCityName(value.city);
+      setCheckIn(value.date[0]);
+      setCheckOut(value.date[1]);
+
+      dispatch(
+        addSearchDate({
+          checkIn: parseInt(value.date[0].format('X')),
+          checkOut: parseInt(value.date[1].format('X')),
+        })
+      );
+
+      window.localStorage.setItem(
+        'searchData',
+        JSON.stringify({
+          checkIn: parseInt(value.date[0].format('X')),
+          checkOut: parseInt(value.date[1].format('X')),
+        })
+      );
+
+      navigate({
+        pathname: '/hotels',
+        search: `?city=${cityName}&minPrice=${minPrice}&maxPrice=${maxPrice}&checkIn=${moment(
+          checkIn
+        ).format('X')}&checkOut=${moment(checkOut).format(
+          'X'
+        )}&adults=${adults}&children=${children}&order=desc`,
+      });
+    }
   };
 
   const content = (
@@ -191,7 +216,7 @@ const SearchHome = () => {
                   className="input"
                   size="large"
                   loading={loading}
-                  placeholder={`Search your favorite city. EX: ${cityName}`}
+                  placeholder={'Search your favorite city'}
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
@@ -254,10 +279,6 @@ const SearchHome = () => {
           </Col>
         </Row>
       </Form>
-      <div
-        className="ctn bg__image__home"
-        style={{ backgroundImage: `url(${homeBg})` }}
-      ></div>
     </div>
   );
 };
