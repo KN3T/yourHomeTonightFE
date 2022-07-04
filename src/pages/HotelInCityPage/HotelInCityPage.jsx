@@ -100,7 +100,6 @@ const HotelInCityPage = () => {
   );
 
   const onClickSearch = (values) => {
-    console.log(values);
     setParams({
       ...params,
       city: values.city ? values.city : selectedCity,
@@ -175,6 +174,7 @@ const HotelInCityPage = () => {
           <SearchInHotels
             onClickSearch={onClickSearch}
             setSelectedCity={setSelectedCity}
+            city={params.city}
           />
           <div className="sort__button__wrapper">
             {hotelsData ? (

@@ -8,6 +8,7 @@ import {
   Form,
   Input,
   InputNumber,
+  Modal,
   Popover,
   Row,
   Spin,
@@ -24,7 +25,7 @@ import './SearchInHotels.scss';
 
 const { RangePicker } = DatePicker;
 
-const SearchInHotels = ({ onClickSearch, setSelectedCity }) => {
+const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
   const DATE_FORMAT = 'DD-MM-YYYY';
   const searchDate = useSelector((state) => state.booking.searchDate);
 
@@ -60,25 +61,36 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity }) => {
     setVisible(newVisible);
   };
 
-  const onFinish = (value) => {
-    setCityName(value.city);
-    setCheckIn(value.date[0]);
-    setCheckOut(value.date[1]);
-
-    dispatch(
-      addSearchDate({
-        checkIn: parseInt(value.date[0].format('X')),
-        checkOut: parseInt(value.date[1].format('X')),
-      })
-    );
-
-    onClickSearch({
-      city: cityName,
-      checkIn: parseInt(moment(checkIn).format('X')),
-      checkOut: parseInt(moment(checkOut).format('X')),
-      adults: adults,
-      children: children,
+  const error = () => {
+    Modal.error({
+      title: 'Search your favorite city',
+      content: 'Please, enter a city...',
     });
+  };
+
+  const onFinish = (value) => {
+    if (cityName === '') {
+      error();
+    } else {
+      setCityName(value.city);
+      setCheckIn(value.date[0]);
+      setCheckOut(value.date[1]);
+
+      dispatch(
+        addSearchDate({
+          checkIn: parseInt(value.date[0].format('X')),
+          checkOut: parseInt(value.date[1].format('X')),
+        })
+      );
+
+      onClickSearch({
+        city: cityName,
+        checkIn: parseInt(moment(checkIn).format('X')),
+        checkOut: parseInt(moment(checkOut).format('X')),
+        adults: adults,
+        children: children,
+      });
+    }
   };
 
   const content = (
@@ -191,7 +203,7 @@ const SearchInHotels = ({ onClickSearch, setSelectedCity }) => {
                   className="input"
                   size="large"
                   loading={loading}
-                  placeholder="Search your favorite city"
+                  placeholder={city ? city : 'Search your favorite city'}
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
