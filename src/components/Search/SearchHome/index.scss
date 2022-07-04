@@ -12,18 +12,35 @@
     background-color: #f0f3f5;
     outline: none;
     border: none;
-    transition: 0.5s;
+    transition: 0.3s linear;
     padding: 10px 20px;
 
     cursor: pointer;
 
+    &::placeholder {
+      transition: 0.3s linear;
+    }
+
     &:hover {
       background-color: #a1a8ac;
+
+      &::placeholder {
+        color: #fff;
+      }
     }
   }
 
   .ant-picker.ant-picker-range.ant-picker-large.input {
     width: 100%;
+    input {
+      transition: 0.3s linear;
+      cursor: pointer;
+    }
+    &:hover {
+      input {
+        color: #fff;
+      }
+    }
   }
 
   .popover__guests {
