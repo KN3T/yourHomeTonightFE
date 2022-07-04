@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { ClientLayout } from '../components';
-import AdminLayout from '../components/AdminLayout/AdminLayout';
+import AdminLayout from '../components/Admin/AdminLayout/AdminLayout';
 import {
   CheckoutConfirmationPage,
   CheckoutPage,
@@ -14,6 +14,9 @@ import {
   RegisterPage,
   UserProfilePage,
 } from '../pages';
+import AdminManagement from '../pages/Admin/AdminManagement/AdminManagement';
+import CreateHotel from '../pages/Admin/CreateHotel/CreateHotel';
+import Dashboard from '../pages/Admin/Dashboard/Dashboard';
 import HotelManagement from '../pages/Admin/HotelManagement/HotelManagement';
 
 const Router = () => {
@@ -34,6 +37,8 @@ const Router = () => {
 
         <Route element={<AdminLayout />}>
           <Route path="/manageHotel" element={<HotelManagement />} />
+          <Route path="/dashBoard" element={<Dashboard />} />
+          <Route path="/manageAdmin" element={<AdminManagement />} />
         </Route>
 
         <Route path="/login" element={<LoginPage />} />

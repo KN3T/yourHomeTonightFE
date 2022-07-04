@@ -40,7 +40,7 @@ const CreateHotel = () => {
       uid: '-1',
       name: 'image.png',
       status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      url: 'https://api.yourhometonight.com/api/images',
     },
   ]);
 
@@ -76,6 +76,7 @@ const CreateHotel = () => {
       console.log(formdata);
 
       // const upload = await roomsApi.uploadImage();
+      // const upload = await roomsApi.uploadButton();
     } catch (error) {
       console.log(error);
     }
@@ -138,7 +139,7 @@ const CreateHotel = () => {
           placeholder="Number"
           value={data.number}
           onChange={(e) => handleChangeForm(e, 'number')}
-          prefix={<UserOutlined />}
+          // prefix={<UserOutlined />}
         />
         <Input
           size="large"
@@ -233,7 +234,7 @@ const CreateHotel = () => {
         <div className="button">
           <>
             <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              action="https://api.yourhometonight.com/api/images"
               listType="picture-card"
               fileList={fileList}
               onPreview={handlePreview}

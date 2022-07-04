@@ -6,8 +6,8 @@ import {
 import { Button, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import { roomsApi } from '../../api/roomsApi';
-import RoomDetailsHotel from '../RoomDetailsHotel/RoomDetailsHotel';
+import { roomsApi } from '../../../api/roomsApi';
+import RoomDetailsHotel from '../../RoomDetailsHotel/RoomDetailsHotel';
 
 const data = [
   {
