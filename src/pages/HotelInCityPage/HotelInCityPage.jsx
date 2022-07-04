@@ -1,43 +1,26 @@
 /* eslint-disable no-unused-vars */
-import {
-  AutoComplete,
-  Button,
-  Form,
-  Input,
-  Layout,
-  Popover,
-  Rate,
-  Slider,
-} from 'antd';
+import { Form, Layout, Popover, Rate, Skeleton, Slider } from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
-import { cityApi, hotelApi } from '../../api';
-import { HotelList } from '../../components';
+import { hotelApi } from '../../api';
+import { HotelList, SearchInHotels } from '../../components';
 import './HotelInCityPage.scss';
 
 const { Content, Sider } = Layout;
 
 const HotelInCityPage = () => {
+  const [form] = Form.useForm();
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
   const [hotelsData, setHotelsData] = useState([]);
-  const [options, setOptions] = useState([]);
-  const [searchValue, setSearchValue] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [currentParams, setCurrentParams] = useState(location.search);
-
-  useEffect(() => {
-    setCurrentParams(location.search);
-  }, [location.search]);
 
   const [params, setParams] = useState({
     limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
@@ -47,14 +30,20 @@ const HotelInCityPage = () => {
     order: searchParams.get('order') ? searchParams.get('order') : 'desc',
     checkIn: searchParams.get('checkIn') ? searchParams.get('checkIn') : 0,
     checkOut: searchParams.get('checkOut') ? searchParams.get('checkOut') : 0,
+    adults: searchParams.get('adults') ? searchParams.get('adults') : 1,
+    children: searchParams.get('children') ? searchParams.get('children') : 1,
     minPrice: searchParams.get('minPrice')
       ? parseInt(searchParams.get('minPrice'))
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 100,
+      : 1000000000000,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });
+
+  const [selectedCity, setSelectedCity] = useState(params.city);
+  const [minPrice] = useState(params.minPrice);
+  const [maxPrice] = useState(params.maxPrice);
 
   const getHotel = async (params) => {
     const response = await hotelApi.get(params);
@@ -72,12 +61,10 @@ const HotelInCityPage = () => {
       ...params,
       order: 'desc',
     });
-    if (currentParams) {
-      console.log(123);
-      navigate(`/hotels${currentParams}&order=desc`);
-    } else {
-      navigate(`/hotels/?order=desc`);
-    }
+    setSearchParams({
+      ...params,
+      order: 'desc',
+    });
   };
 
   const onClickLow = () => {
@@ -87,11 +74,10 @@ const HotelInCityPage = () => {
       ...params,
       order: 'asc',
     });
-    if (currentParams) {
-      navigate(`/hotels${currentParams}&order=asc`);
-    } else {
-      navigate(`/hotels/?order=asc`);
-    }
+    setSearchParams({
+      ...params,
+      order: 'asc',
+    });
   };
 
   const sortOptions = (
@@ -113,41 +99,23 @@ const HotelInCityPage = () => {
     </div>
   );
 
-  const search = _.debounce(async (e) => {
-    const response = await cityApi.search(e);
-    setOptions(
-      response.data.data.map((item) => {
-        return {
-          label: item.city && item.city,
-          value: item.city && item.city,
-        };
-      })
-    );
-  }, 300);
-
-  const handleSearch = (value) => {
-    if (value && value !== '') {
-      search(value);
-    } else if (value === '') {
-      setSearchValue('');
-      setOptions([]);
-    }
-  };
-
-  const onSelect = (value) => {
-    setSearchValue(value);
-  };
-
-  const onClickSearch = () => {
+  const onClickSearch = (values) => {
     setParams({
       ...params,
-      city: searchValue,
+      city: values.city ? values.city : selectedCity,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+      adults: values.adults,
+      children: values.children,
     });
-    if (currentParams) {
-      navigate(`/hotels${currentParams}&city=${searchValue}`);
-    } else {
-      navigate(`/hotels?city=${searchValue}`);
-    }
+    setSearchParams({
+      ...searchParams,
+      city: values.city ? values.city : selectedCity,
+      checkIn: values.checkIn,
+      checkOut: values.checkOut,
+      adults: values.adults,
+      children: values.children,
+    });
   };
 
   const onFilterPrice = (value) => {
@@ -156,75 +124,72 @@ const HotelInCityPage = () => {
       minPrice: value[0],
       maxPrice: value[1],
     });
-    if (currentParams) {
-      navigate(
-        `/hotels${currentParams}&minPrice=${value[0]}&maxPrice=${value[1]}`
-      );
-    } else {
-      navigate(`/hotels?city=${searchValue}`);
-    }
+    setSearchParams({
+      ...params,
+      minPrice: value[0],
+      maxPrice: value[1],
+    });
   };
+
   return (
     <div className="hotelpage__container">
       <Layout className="hotelpage__wrapper">
         <Sider className="hotelpage__sider" width={300}>
-          <div className="search__section">
-            <Form layout="vertical">
-              <Form.Item label={t('hotels.destination')} name="destination">
-                <AutoComplete
-                  dropdownMatchSelectWidth={300}
-                  options={options}
-                  onSelect={onSelect}
-                  onSearch={handleSearch}
-                >
-                  <Input
-                    size="large"
-                    placeholder={t('hotels.search_placeholder')}
-                    allowClear={true}
-                  />
-                </AutoComplete>
-              </Form.Item>
-              <Button
-                className="search__btn"
-                type="primary"
-                onClick={onClickSearch}
-              >
-                {t('hotels.search')}
-              </Button>
-            </Form>
-          </div>
-
-          <div className="filter__section">
-            <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
-            <div className="filter__item">
-              <div className="filter__rating">
-                <h3 className="filter__title">{t('hotels.rating')}</h3>
-                <Rate allowHalf defaultValue={1} />
+          <Form form={form}>
+            <div className="filter__section">
+              <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
+              <div className="filter__item">
+                <div className="filter__rating">
+                  <h3 className="filter__title">{t('hotels.rating')}</h3>
+                  <Form.Item name="rating">
+                    <Rate allowHalf defaultValue={1} />
+                  </Form.Item>
+                </div>
+              </div>
+              <div className="filter__item">
+                <div className="filter__price">
+                  <h3 className="filter__title">
+                    {t('hotels.your_budget')} ({t('hotels.per_night')})
+                  </h3>
+                  <Form.Item name="price">
+                    <span>${params.minPrice}</span>
+                    <span> to </span>
+                    <span>${params.maxPrice}</span>
+                    <Slider
+                      tooltipVisible={false}
+                      className="filter__slider"
+                      range
+                      defaultValue={[minPrice, maxPrice]}
+                      min={minPrice}
+                      max={maxPrice}
+                      onChange={onFilterPrice}
+                    />
+                  </Form.Item>
+                </div>
               </div>
             </div>
-            <div className="filter__item">
-              <div className="filter__price">
-                <h3 className="filter__title">
-                  {t('hotels.your_budget')} ({t('hotels.per_night')})
-                </h3>
-                <Slider
-                  className="filter__slider"
-                  range
-                  defaultValue={[0, 200]}
-                  min={0}
-                  max={300}
-                  tooltipVisible
-                  onAfterChange={onFilterPrice}
-                />
-              </div>
-            </div>
-          </div>
+          </Form>
         </Sider>
         <Content className="hotels__section">
+          <SearchInHotels
+            onClickSearch={onClickSearch}
+            setSelectedCity={setSelectedCity}
+            city={params.city}
+          />
           <div className="sort__button__wrapper">
-            <div className="result__list">
-              {hotelsData && hotelsData.length} {t('hotels.properties')}
-            </div>
+            {hotelsData ? (
+              <div className="result__list">
+                {hotelsData && hotelsData.length} {t('hotels.properties')}{' '}
+                {params.city
+                  ? t('hotels.related_to') + ' ' + params.city
+                  : 'of all city'}
+              </div>
+            ) : (
+              <div className="result__list">
+                No results found for {params.city}
+              </div>
+            )}
+
             <Popover
               content={sortOptions}
               placement="bottomRight"

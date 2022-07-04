@@ -20,3 +20,5 @@ export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels
 export { default as ProfileForm } from './ProfileForm/ProfileForm'
 export {default as Transaction} from './Transaction/Transaction'
 export {default as Feedback} from './Feedback/Feedback'
+export { default as SearchInHotels } from './SearchInHotels/SearchInHotels'
+export { default as SearchRoom } from './SearchRoom/SearchRoom'

@@ -1,6 +1,14 @@
 .main__section__wrapper {
   width: 100vw;
-  padding: 5rem 0 0 0;
+  padding: 2rem 0;
+
+  h1 {
+    color: #212a30;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
   @media screen and (max-width: 992px) {
     h1 {
       padding-left: 1.7rem;

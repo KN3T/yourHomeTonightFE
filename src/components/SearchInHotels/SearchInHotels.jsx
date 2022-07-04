@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { SearchOutlined } from '@ant-design/icons';
 import {
   AutoComplete,
@@ -17,18 +18,15 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { IoBedSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { cityApi, hotelApi } from '../../../api';
-import { addSearchDate } from '../../../store/Slice/Booking/BookingSlice';
-import './index.scss';
+import { cityApi } from '../../api';
+import { addSearchDate } from '../../store/Slice/Booking/BookingSlice';
+import './SearchInHotels.scss';
 
 const { RangePicker } = DatePicker;
 
-const SearchHome = () => {
+const SearchInHotels = ({ onClickSearch, setSelectedCity, city }) => {
   const DATE_FORMAT = 'DD-MM-YYYY';
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const searchDate = useSelector((state) => state.booking.searchDate);
 
   const [visible, setVisible] = useState(false);
@@ -41,25 +39,22 @@ const SearchHome = () => {
           moment(searchDate.checkOut * 1000),
         ])
       : useState([moment(), moment(moment().add(3, 'day'))]);
+
+  const dispatch = useDispatch();
+
   const [options, setOptions] = useState([]);
   const [children, setChildren] = useState(1);
   const [adults, setAdults] = useState(1);
   const [cityName, setCityName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(100000);
-
-  const getPrices = async () => {
-    const response = await hotelApi.getPrices();
-    if (response.data.status === 'success') {
-      setMinPrice(response.data.data.minPrice);
-      setMaxPrice(response.data.data.maxPrice);
-    }
+  const getFirstCity = async () => {
+    const response = await cityApi.getAll();
+    return setCityName(response.data.data[0].city);
   };
 
   useEffect(() => {
-    getPrices();
+    getFirstCity();
   }, []);
 
   const handleVisibleChange = (newVisible) => {
@@ -88,21 +83,12 @@ const SearchHome = () => {
         })
       );
 
-      window.localStorage.setItem(
-        'searchData',
-        JSON.stringify({
-          checkIn: parseInt(value.date[0].format('X')),
-          checkOut: parseInt(value.date[1].format('X')),
-        })
-      );
-
-      navigate({
-        pathname: '/hotels',
-        search: `?city=${cityName}&minPrice=${minPrice}&maxPrice=${maxPrice}&checkIn=${moment(
-          checkIn
-        ).format('X')}&checkOut=${moment(checkOut).format(
-          'X'
-        )}&adults=${adults}&children=${children}&order=desc`,
+      onClickSearch({
+        city: cityName,
+        checkIn: parseInt(moment(checkIn).format('X')),
+        checkOut: parseInt(moment(checkOut).format('X')),
+        adults: adults,
+        children: children,
       });
     }
   };
@@ -180,10 +166,11 @@ const SearchHome = () => {
 
   const onSelect = (value) => {
     setCityName(value);
+    setSelectedCity(value);
   };
 
   return (
-    <div className="search__home__wrapper">
+    <div className="search__hotels__wrapper">
       <Form
         onFinish={onFinish}
         initialValues={{
@@ -215,7 +202,8 @@ const SearchHome = () => {
                   style={{ paddingRight: '50px' }}
                   className="input"
                   size="large"
-                  placeholder={'Search your favorite city'}
+                  loading={loading}
+                  placeholder={city ? city : 'Search your favorite city'}
                 />
               </AutoComplete>
               <Spin className="spin__search" spinning={loading} />
@@ -233,8 +221,8 @@ const SearchHome = () => {
                 className="input"
                 size="large"
                 onChange={(value) => onChange(value)}
-                allowClear={false}
                 format={DATE_FORMAT}
+                allowClear={false}
               />
             </Form.Item>
           </Col>
@@ -282,4 +270,4 @@ const SearchHome = () => {
   );
 };
 
-export default SearchHome;
+export default SearchInHotels;

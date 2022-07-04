@@ -1,6 +1,4 @@
-.search__home__wrapper {
-  margin-top: 2rem;
-
+.search__hotels__wrapper {
   .spin__search {
     position: absolute;
     top: 29%;
@@ -9,7 +7,7 @@
 
   .input {
     border-radius: 5px;
-    background-color: #f0f3f5;
+    background-color: #fff;
     outline: none;
     border: none;
     transition: 0.5s;
@@ -18,7 +16,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #a1a8ac;
+      background-color: #fff;
     }
   }
 
@@ -33,15 +31,14 @@
 
     .popover__antd {
       transition: 0.5s;
-      background-color: #f0f3f5;
+      background-color: #fff;
       height: 45px;
       border: none;
       border-radius: 5px;
       flex: 1;
 
       &:hover {
-        background-color: #a1a8ac;
-        color: white;
+        background-color: #fff;
         border: none;
       }
     }
@@ -72,6 +69,7 @@
       .popover__antd {
         width: 100%;
       }
+
       .search__btn {
         margin-top: 20px;
         width: 100%;

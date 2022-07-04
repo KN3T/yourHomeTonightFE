@@ -34,9 +34,11 @@ const RoomDetailsModal = (props) => {
 
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+
   const handleBooking = () => {
     if (localStorage.getItem('userData')) {
       dispath(addOrder(dataOrder));
+      window.localStorage.setItem('bookingData', JSON.stringify(dataOrder));
       navigate('/checkout');
     } else {
       navigate('/login');

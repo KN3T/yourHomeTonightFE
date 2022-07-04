@@ -6,7 +6,7 @@ import stripe_logo_blue from '../../assets/images/stripe_logo_blue.png';
 import './CheckoutForm.scss';
 
 const CheckoutForm = (props) => {
-  const { handleSubmitForm, form, userData } = props;
+  const { handleSubmitForm, form, userData, loading } = props;
 
   const handleFinish = (values) => {
     handleSubmitForm(values);
@@ -108,6 +108,7 @@ const CheckoutForm = (props) => {
           className="checkout__form__button"
           type="primary"
           htmlType="submit"
+          loading={loading}
         >
           Complete Booking
         </Button>

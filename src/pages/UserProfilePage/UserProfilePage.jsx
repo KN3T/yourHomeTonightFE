@@ -71,6 +71,39 @@ const UserProfilePage = () => {
   //   },
   // ];
 
+  const dataSource = [
+    {
+      key: '1',
+      name: 'Mike',
+      roomType: 'King room',
+      address: '10 Downing Street',
+    },
+    {
+      key: '2',
+      name: 'John',
+      roomType: 'Queen room',
+      address: '10 Downing Street',
+    },
+  ];
+
+  const columns = [
+    {
+      title: 'Hotel Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Room type',
+      dataIndex: 'roomType',
+      key: 'roomType',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
+
   return (
     <div className="profile__container">
       <div className="profile__wrapper">
@@ -189,7 +222,6 @@ const UserProfilePage = () => {
             }
             key="2"
           >
-            {/* <Table dataSource={dataSource} columns={columns} /> */}
             {bookings && <Transaction bookings={bookings} />}
           </TabPane>
         </Tabs>

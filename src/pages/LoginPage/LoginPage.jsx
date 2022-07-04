@@ -26,7 +26,7 @@ const LoginPage = () => {
         localStorage.setItem('userData', JSON.stringify(data.data));
         setLoadingButton(false);
         useLocalToken();
-        navigate('/');
+        history.back();
         message.success('Login successfully');
       }
     } catch (error) {

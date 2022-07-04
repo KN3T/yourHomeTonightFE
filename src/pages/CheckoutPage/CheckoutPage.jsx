@@ -1,6 +1,6 @@
 import { Col, Form, Row, Steps } from 'antd';
 import moment from 'moment';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
@@ -17,18 +17,25 @@ import './CheckoutPage.scss';
 const { Step } = Steps;
 const CheckoutPage = () => {
   const [form] = Form.useForm();
-  const bookingData = useSelector((state) => state.booking.orders);
-  const { t, i18n } = useTranslation();
+  const bookingData = useSelector((state) => state.booking.orders.dateCheckin)
+    ? useSelector((state) => state.booking.orders)
+    : JSON.parse(localStorage.getItem('bookingData'));
 
+  const [loading, setLoading] = useState(false);
+  const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
-  const checkIn = moment(bookingData.dateCheckin);
-  const checkOut = moment(bookingData.dateCheckout);
-  const nights = checkOut.diff(checkIn, 'days');
-  const tax =
+  const nights = moment(bookingData.dateCheckout * 1000).diff(
+    moment(bookingData.dateCheckin * 1000),
+    'days'
+  );
+
+  const subTotal =
     bookingData &&
     bookingData.selectedRoom &&
-    bookingData.selectedRoom.price * 0.1;
+    bookingData.selectedRoom.price * nights;
+
+  const tax = subTotal * 0.1;
 
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 
@@ -37,10 +44,11 @@ const CheckoutPage = () => {
   }, []);
 
   const handleSubmitForm = async (values) => {
+    setLoading(true);
     const data = {
       ...values,
-      checkIn: parseInt(moment(bookingData.dateCheckin).format('X')),
-      checkOut: parseInt(moment(bookingData.dateCheckout).format('X')),
+      checkIn: bookingData.dateCheckin,
+      checkOut: bookingData.dateCheckout,
       userId: userData.id,
       roomId: bookingData.selectedRoom.id,
     };
@@ -116,7 +124,7 @@ const CheckoutPage = () => {
                       <div className="schedule__item">
                         <div className="title">CHECK-IN</div>
                         <div className="content">
-                          {moment(bookingData.dateCheckin).format(
+                          {moment(bookingData.dateCheckin * 1000).format(
                             'ddd, MMM Do YYYY'
                           )}
                         </div>
@@ -125,7 +133,7 @@ const CheckoutPage = () => {
                       <div className="schedule__item">
                         <div className="title">CHECK-OUT</div>
                         <div className="content">
-                          {moment(bookingData.dateCheckout).format(
+                          {moment(bookingData.dateCheckout * 1000).format(
                             'ddd, MMM Do YYYY'
                           )}
                         </div>
@@ -145,7 +153,7 @@ const CheckoutPage = () => {
                     </div>
                   </div>
                   <div className="checkout__content__bottom">
-                    <div className="room__type">{bookingData.tpe}</div>
+                    <div className="room__type">{bookingData.type}</div>
                     <div className="room__assets">
                       <ul>
                         <li className="room__assets__item">
@@ -172,6 +180,7 @@ const CheckoutPage = () => {
                     form={form}
                     handleSubmitForm={handleSubmitForm}
                     userData={userData}
+                    loading={loading}
                   />
                 </div>
               </Col>
@@ -192,6 +201,14 @@ const CheckoutPage = () => {
                     <div className="checkout__content__summary__item">
                       <span>Number of nights</span>
                       <span>{nights}</span>
+                    </div>
+                    <div className="checkout__content__summary__item">
+                      <span>Subtotal</span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(subTotal, currentLanguage),
+                        })}
+                      </span>
                     </div>
                     <div className="checkout__content__summary__item">
                       <span>Taxes and fees</span>
