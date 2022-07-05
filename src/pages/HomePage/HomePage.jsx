@@ -36,7 +36,7 @@ const HomePage = () => {
   const onSelect = (value) => {
     navigate({ pathname: '/hotels', search: `?city=${value}` });
   };
-
+  loadingContext.done();
   return (
     <div className="homepage__container">
       <MainSection
