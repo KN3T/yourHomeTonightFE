@@ -49,7 +49,6 @@ const RoomDetailsModal = (props) => {
       navigate('/login');
     }
   };
-
   return (
     <Modal
       visible={isModalVisible}

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { PhoneOutlined } from '@ant-design/icons';
+import { CaretDownOutlined, PhoneOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
@@ -13,13 +13,15 @@ import {
 } from 'antd';
 import { set } from 'lodash';
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
 import { roomsApi } from '../../api/roomsApi';
 import {
+  Feedback,
   RoomDetailsModal,
   RoomInDetailsHotel,
   SearchRoom,
@@ -60,7 +62,6 @@ const DetailsHotelPage = () => {
   //this is for modal room
   const [isModalVisible, setIsModalVisible] = useState(false);
   let { id } = useParams(); //get id from url
-  const ref = useRef(null);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -160,7 +161,7 @@ const DetailsHotelPage = () => {
       checkOut: values.checkOut,
     });
   };
-
+  loadingContext.done();
   return (
     <div className="details__hotel__wrapper">
       <Skeleton loading={loadingHotel}>
@@ -237,7 +238,7 @@ const DetailsHotelPage = () => {
                         {t('details__hotel.night')}
                       </span>
                     </h1>
-                    <Button onClick={handleScrollIntoView} type="primary">
+                    <Button type="primary">
                       {t('details__hotel.view__rooms')}
                       <CaretDownOutlined />
                     </Button>
