@@ -5,12 +5,15 @@ import { useParams } from 'react-router-dom';
 
 import { roomsApi } from '../../../api/roomsApi';
 import './HotelAdmin.scss';
+import ModalAdd from './ModalAdd';
 
 const HotelAdmin = () => {
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const id = params.id;
+
+  const [addVisible, setAddVisible] = useState(false);
 
   const getRooms = async (id) => {
     setLoading(true);
@@ -99,13 +102,16 @@ const HotelAdmin = () => {
   return (
     <Spin spinning={loading}>
       <Row>
+        <ModalAdd visible={addVisible} onCancel={() => setAddVisible(false)} />
         <Col span={24}>
           <Row gutter={12}>
             <Col span={8}>
               <Input className="search__input" />
             </Col>
             <Col>
-              <Button type="primary">Add new room</Button>
+              <Button onClick={() => setAddVisible(true)} type="primary">
+                Add new room
+              </Button>
             </Col>
           </Row>
         </Col>
