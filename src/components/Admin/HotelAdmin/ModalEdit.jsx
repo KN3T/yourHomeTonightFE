@@ -83,10 +83,10 @@ const ModalEdit = ({
       const data = await roomsApi.uploadImg({
         'images[]': fileList,
       });
-      // khi có data img
+
       setData({
         ...data,
-        images: [], // data cua img o tren
+        images: [],
       });
       // create
       const response = await roomsApi.updateRoom(data, 6);

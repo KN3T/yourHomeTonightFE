@@ -90,10 +90,10 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
       const data = await roomsApi.uploadImg({
         'images[]': fileList,
       });
-      // khi có data img
+
       setData({
         ...data,
-        images: [], // data cua img o tren
+        images: [],
       });
       // create
       const response = await roomsApi.addRoom(data);
@@ -124,7 +124,6 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
               max={100}
               value={data.number}
               onChange={(e) => handleChangeForm(e, 'number')}
-              // prefix={<UserOutlined />}
             />
             <Input
               size="large"
@@ -132,7 +131,6 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
               placeholder="Price"
               value={data.price}
               onChange={(e) => handleChangeForm(e, 'price')}
-              //   prefix={<BorderlessTableOutlined />}
             />
             <InputNumber
               size="large"
@@ -142,7 +140,6 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
               max={100}
               value={data.adults}
               onChange={(e) => handleChangeForm(e, 'adults')}
-              // prefix={<UserOutlined />}
             />
             <InputNumber
               size="large"
@@ -162,9 +159,8 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
               max={100}
               value={data.beds}
               onChange={(e) => handleChangeForm(e, 'beds')}
-              // prefix={<UserOutlined />}
             />
-            {/* <Input size="large" className='width-400' onChange={(e)=>handleChangeForm(e,'description')} value={data.description} placeholder="Description" prefix={<MessageOutlined />} /> */}
+
             <Select
               size="large"
               mode="multiple"

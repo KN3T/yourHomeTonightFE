@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { HotelAdmin } from '../../../components';
+import HotelAdmin from '../../../components/Admin/HotelAdmin/HotelAdmin';
 import './HotelManagement.scss';
 
 const HotelManagement = () => {

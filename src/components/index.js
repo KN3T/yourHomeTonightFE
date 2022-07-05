@@ -20,3 +20,4 @@ export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels
 export { default as ProfileForm } from './ProfileForm/ProfileForm'
 export { default as SearchInHotels } from './SearchInHotels/SearchInHotels'
 export { default as SearchRoom } from './SearchRoom/SearchRoom'
+export { default as HotelAdmin } from './Admin/AdminLayout/AdminLayout'
