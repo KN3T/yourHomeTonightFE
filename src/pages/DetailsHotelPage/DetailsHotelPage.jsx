@@ -28,6 +28,8 @@ import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
 const DetailsHotelPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [hotelData, setHotelData] = useState({});
   const [loadingHotel, setLoadingHotel] = useState(false);
   const [roomData, setRoomData] = useState({});
@@ -358,7 +360,16 @@ const DetailsHotelPage = () => {
                 />
               </Skeleton>
             </Col>
-
+            <Col
+              lg={{ span: 24 }}
+              xl={{ span: 24 }}
+              md={{ span: 24 }}
+              sm={{ span: 24 }}
+              xs={{ span: 24 }}
+            >
+              <Divider />
+              <Feedback hotelId={id} />
+            </Col>
             <Col
               lg={{ span: 24 }}
               xl={{ span: 24 }}

@@ -2,12 +2,17 @@ import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useNavigate } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
+
 import { loginApi } from '../../api';
 import useLocalToken from '../../api/helpers';
 import { LoginForm } from '../../components';
 import './LoginPage.scss';
 
 const LoginPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
 
@@ -37,7 +42,7 @@ const LoginPage = () => {
   const onFinishFailed = () => {
     console.log('something went wrong');
   };
-
+  loadingContext.done();
   return (
     <div className="login__container">
       <div className="login__wrapper">

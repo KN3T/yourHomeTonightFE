@@ -1,14 +1,16 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { cityApi } from '../../api';
 import { CityIntro, HotelPopulerList, MainSection } from '../../components';
 import './HomePage.scss';
 
 const HomePage = () => {
-  const [options, setOptions] = useState([]);
+  const loadingContext = useLoadingContext();
 
+  const [options, setOptions] = useState([]);
   const navigate = useNavigate();
 
   const search = _.debounce(async (e) => {

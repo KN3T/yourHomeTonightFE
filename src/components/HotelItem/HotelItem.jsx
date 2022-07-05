@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { AiFillPhone } from 'react-icons/ai';
 import { MdLocationOn } from 'react-icons/md';
 import { RiHotelFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import formatCurrency from '../../utils/formatCurrency';
@@ -21,6 +22,8 @@ const HotelItem = ({
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+  const searchDate = useSelector((state) => state.booking.searchDate);
+  console.log(searchDate);
 
   return (
     <div
