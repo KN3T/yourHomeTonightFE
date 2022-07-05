@@ -1,13 +1,20 @@
 import {
   DeleteOutlined,
   EditOutlined,
+  EyeOutlined,
+  MinusCircleOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
-import { Button, Table } from 'antd';
+import { Button, Modal, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { toast } from 'react-toastify';
 
 import { roomsApi } from '../../../api/roomsApi';
 import RoomDetailsHotel from '../../RoomDetailsHotel/RoomDetailsHotel';
+import ModalAdd from './ModalAdd';
+import ModalEdit from './ModalEdit';
 
 const data = [
   {
@@ -102,12 +109,32 @@ const HotelAdmin = () => {
   const [rooms, setRooms] = useState();
   const [detail, setDetail] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalAddVisible, setIsModalAddVisible] = useState(false);
+  const [isModalEditVisible, setIsModalEditVisible] = useState(false);
+  const [dataEdit, setDataEdit] = useState('');
+
   const handleOk = () => {
     setIsModalVisible(false);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+  };
+
+  const handleAddOk = () => {
+    setIsModalAddVisible(true);
+  };
+
+  const handleAddCancel = () => {
+    setIsModalAddVisible(false);
+  };
+
+  const handleEditOk = () => {
+    setIsModalEditVisible(true);
+  };
+
+  const handleEditCancel = () => {
+    setIsModalEditVisible(false);
   };
 
   const columns = [
@@ -141,18 +168,30 @@ const HotelAdmin = () => {
       render: (_, record) => {
         return (
           <>
-            <span
+            <a
+              style={{
+                marginRight: '12px',
+              }}
               onClick={() => {
                 setIsModalVisible(true);
                 setDetail(record);
               }}
             >
-              <EditOutlined />
-            </span>
+              <EyeOutlined />
+            </a>
+            <a>
+              <EditOutlined
+                onClick={() => {
+                  setIsModalEditVisible(true);
+                  setDataEdit(record);
+                }}
+              />
+            </a>
             <a
               style={{
                 marginLeft: '12px',
               }}
+              onClick={() => alertDialog(record.key)}
             >
               <DeleteOutlined />
             </a>
@@ -166,10 +205,8 @@ const HotelAdmin = () => {
     async function getRooms() {
       const hotelIds = [6, 8];
       let data = [];
-      for (let i = 0; i < hotelIds.length; i++) {
-        const result = await roomsApi.getAll(6);
-        data = [...data, ...convertRoomData(result.data.data.rooms)];
-      }
+      const result = await roomsApi.getAll(6);
+      data = [...data, ...convertRoomData(result.data.data.rooms)];
       setRooms(data);
     }
     getRooms();
@@ -177,11 +214,20 @@ const HotelAdmin = () => {
 
   const start = () => {
     setLoading(true); // ajax request after empty completing
-
-    setTimeout(() => {
-      setSelectedRowKeys([]);
+    // start delete
+    try {
+      newSelectedRowKeys.map(async (e) => {
+        const params = {
+          hotelId: 6,
+          beds: e,
+        };
+        await roomsApi.deleteRoom(params);
+      });
+      toast.success('Delete Success');
       setLoading(false);
-    }, 1000);
+    } catch (error) {
+      toast.error('Delete Fails');
+    }
   };
 
   const onSelectChange = (newSelectedRowKeys) => {
@@ -193,6 +239,38 @@ const HotelAdmin = () => {
     selectedRowKeys,
     onChange: onSelectChange,
   };
+
+  const alertDialog = (id) => {
+    confirmAlert({
+      title: 'Bạn có muốn xóa room này',
+      message: 'Bạn thực sự muốn xóa nó.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => handleDelete(id),
+        },
+        {
+          label: 'No',
+        },
+      ],
+    });
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const params = {
+        hotelId: 6,
+        beds: id,
+      };
+      let response = await roomsApi.deleteRoom(params);
+      if (response.status === 200) {
+        toast.success('Delete Success');
+      }
+    } catch (error) {
+      toast.error('Delete Fails');
+    }
+  };
+
   const hasSelected = selectedRowKeys.length > 0;
   return (
     <div>
@@ -203,19 +281,27 @@ const HotelAdmin = () => {
       >
         <Button
           type="primary"
+          style={{ marginRight: '20px' }}
           onClick={start}
           disabled={!hasSelected}
           loading={loading}
         >
+          <MinusCircleOutlined />
+        </Button>
+        {hasSelected ? (
+          <span
+            style={{
+              margin: '0 8px',
+            }}
+          >
+            Selected {selectedRowKeys.length} items
+          </span>
+        ) : (
+          ''
+        )}
+        <Button type="primary" onClick={handleAddOk}>
           <PlusCircleOutlined />
         </Button>
-        <span
-          style={{
-            marginLeft: 8,
-          }}
-        >
-          {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-        </span>
       </div>
       <Table
         rowSelection={rowSelection}
@@ -234,6 +320,20 @@ const HotelAdmin = () => {
           />
         )}
       </div>
+      <ModalAdd
+        isModalAddVisible={isModalAddVisible}
+        handleAddOk={handleAddOk}
+        handleCancel={handleAddCancel}
+      />
+
+      {data && (
+        <ModalEdit
+          isModalEditVisible={isModalEditVisible}
+          data={dataEdit}
+          handleEditOk={handleEditOk}
+          handleEditCancel={handleEditCancel}
+        />
+      )}
     </div>
   );
 };
