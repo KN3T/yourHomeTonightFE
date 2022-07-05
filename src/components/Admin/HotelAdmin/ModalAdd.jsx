@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { PlusOutlined } from '@ant-design/icons';
-import { Input, InputNumber, Modal, Upload } from 'antd';
+import { Form, Input, InputNumber, Modal, Upload } from 'antd';
 import { Select } from 'antd';
 import React, { useState } from 'react';
 
@@ -23,6 +23,8 @@ const ModalAdd = ({ visible, onCancel }) => {
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState([]);
+
+  const [form] = Form.useForm();
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -65,37 +67,65 @@ const ModalAdd = ({ visible, onCancel }) => {
     }
   };
 
-  console.log(imagesId);
+  const onCreate = async (values) => {
+    console.log(values, imagesId);
+  };
 
   return (
     <>
-      <Modal title="Add Room" visible={visible} onCancel={onCancel}>
-        <>
-          <Upload
-            multiple={true}
-            action={handleUploadImage}
-            listType="picture-card"
-            fileList={fileList}
-            onPreview={handlePreview}
-            onChange={handleChange}
-          >
-            {fileList.length >= 8 ? null : uploadButton}
-          </Upload>
-          <Modal
-            visible={previewVisible}
-            title={previewTitle}
-            footer={null}
-            onCancel={onCancel}
-          >
-            <img
-              alt="example"
-              style={{
-                width: '100%',
-              }}
-              src={previewImage}
-            />
-          </Modal>
-        </>
+      <Modal
+        visible={visible}
+        title="Create a new collection"
+        okText="Create"
+        cancelText="Cancel"
+        onCancel={onCancel}
+        onOk={() => {
+          form
+            .validateFields()
+            .then((values) => {
+              form.resetFields();
+              onCreate(values);
+            })
+            .catch((info) => {
+              console.log('Validate Failed:', info);
+            });
+        }}
+      >
+        <Form
+          form={form}
+          layout="vertical"
+          name="form_in_modal"
+          initialValues={{
+            modifier: 'public',
+          }}
+        >
+          <Form.Item name="images">
+            <Upload
+              multiple={true}
+              action={handleUploadImage}
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
+            <Modal
+              visible={previewVisible}
+              title={previewTitle}
+              footer={null}
+              onCancel={onCancel}
+            >
+              <img
+                alt="example"
+                style={{
+                  width: '100%',
+                }}
+                src={previewImage}
+              />
+            </Modal>
+          </Form.Item>
+        </Form>
       </Modal>
     </>
   );
