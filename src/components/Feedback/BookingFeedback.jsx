@@ -1,32 +1,46 @@
 import { EditOutlined } from '@ant-design/icons';
-import {
-  Avatar,
-  Button,
-  Collapse,
-  Comment,
-  Form,
-  Input,
-  Rate,
-  Space,
-  Tooltip,
-} from 'antd';
+import { Avatar, Button, Comment, Form, Input, Rate, Space } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 
 import { feedbackApi } from '../../api/feedbackApi';
 import './BookingFeedback.scss';
 
-const { Panel } = Collapse;
 const { TextArea } = Input;
+
+const Editor = ({
+  rating,
+  content,
+  onChangeRating,
+  onChangeContent,
+  onSubmit,
+}) => {
+  return (
+    <>
+      <Form.Item>
+        <Rate onChange={(value) => onChangeRating(value)} value={rating} />
+      </Form.Item>
+      <Form.Item>
+        <TextArea onChange={(e) => onChangeContent(e)} value={content} />
+      </Form.Item>
+      <Form.Item>
+        <Button onClick={onSubmit} htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </>
+  );
+};
+
 const BookingFeedback = ({ id, status }) => {
-  const [dataFeedback, setDataFeedback] = useState({});
   const [isFb, setIsFb] = useState(false);
   const [fbData, setFbData] = useState();
-  const onFinish = async (value) => {
-    const response = await feedbackApi.addFeedback(value);
-    // const { data } = response;
-    // data && setDataFeedback(data);
-  };
+
+  const [rating, setRating] = useState();
+  const [content, setContent] = useState();
+
+  const [newFb, setNewFb] = useState({});
+
   useEffect(() => {
     const getFbPerBooking = async () => {
       try {
@@ -34,13 +48,34 @@ const BookingFeedback = ({ id, status }) => {
         const { data } = response;
         data.status === 'success' && setIsFb(true);
         setFbData(data.data);
+        setRating(data.data.rating);
+        setContent(data.data.content);
       } catch (error) {
         console.log(error);
       }
     };
     getFbPerBooking();
   }, []);
-  console.log(isFb);
+
+  const onFinish = () => {
+    const addFbAsync = async () => {
+      const dataUpdate = await feedbackApi.addFeedback({ rating, content, id });
+      dataUpdate && setFbData(dataUpdate.data.data);
+    };
+    setIsFb(true);
+    addFbAsync();
+  };
+
+  const onChangeRating = (e) => {
+    setRating(e);
+    fbData.rating = e;
+  };
+
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
+    fbData.content = e.target.value;
+  };
+
   return (
     <Space className="booking__feedback__space" direction="vertical">
       {isFb ? (
@@ -54,19 +89,16 @@ const BookingFeedback = ({ id, status }) => {
                     {moment(fbData.createdAt.date).format('YYYY-MM-DD')}
                   </span>
                 </span>
-                <Rate disabled defaultValue={fbData.rating} />
+                <Rate
+                  disabled
+                  defaultValue={newFb.rating ? newFb.rating : fbData.rating}
+                />
               </Space>
             }
             avatar={
               <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
             }
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
+            content={<p>{newFb.content ? newFb.content : fbData.content}</p>}
           />
           <Button
             onClick={() => setIsFb(false)}
@@ -77,49 +109,18 @@ const BookingFeedback = ({ id, status }) => {
           </Button>
         </Space>
       ) : (
-        status === 2 && (
+        status === 4 && (
           <Space direction="vertical">
             <h3>Your feedback would be greatly appreciated</h3>
             <Comment
               content={
-                <Form
-                  onFinish={onFinish}
-                  initialValues={{
-                    id: id,
-                  }}
-                >
-                  <Form.Item style={{ display: 'none' }} name={'id'}>
-                    <Input />
-                  </Form.Item>
-                  <Form.Item
-                    name="rating"
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <Rate />
-                  </Form.Item>
-                  <Form.Item
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                    name="content"
-                  >
-                    <TextArea />
-                  </Form.Item>
-                  <Space className="feedback__space" direction="horizontal">
-                    <Form.Item>
-                      <Button htmlType="submit">Submit</Button>
-                    </Form.Item>
-                    <Form.Item>
-                      <Button>View feedback this room</Button>
-                    </Form.Item>
-                  </Space>
-                </Form>
+                <Editor
+                  rating={rating}
+                  content={content}
+                  onSubmit={onFinish}
+                  onChangeContent={onChangeContent}
+                  onChangeRating={onChangeRating}
+                />
               }
             />
           </Space>

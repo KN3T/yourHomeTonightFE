@@ -109,7 +109,6 @@ const CheckoutPageConfirmation = () => {
     }
   };
   loadingContext.done();
-
   return (
     <div className="details__booking__container">
       <div className="details__booking__wrapper">
@@ -366,7 +365,7 @@ const CheckoutPageConfirmation = () => {
                 </>
               )}
             </Row>
-            {confirmationData && (
+            {confirmationData.status === 4 && (
               <Row>
                 <Divider />
                 <Col xl={12} lg={12} md={24} sm={24} xs={24}>
