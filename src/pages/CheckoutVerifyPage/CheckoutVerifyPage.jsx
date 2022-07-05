@@ -3,11 +3,14 @@ import { Result, Spin } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
 import { addConfirmation } from '../../store/Slice/Booking/BookingSlice';
 
 const CheckoutVerifyPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const bookingId = searchParams.get('bookId');
   const session = searchParams.get('sessionId');
@@ -42,6 +45,7 @@ const CheckoutVerifyPage = () => {
   useEffect(() => {
     verifyPayment({ bookingId, session });
   }, [bookingId, session]);
+  loadingContext.done();
 
   return (
     <div className="checkout__check__page">

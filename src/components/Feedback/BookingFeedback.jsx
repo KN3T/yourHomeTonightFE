@@ -26,16 +26,12 @@ const BookingFeedback = ({ id, status }) => {
     const response = await feedbackApi.addFeedback(value);
     // const { data } = response;
     // data && setDataFeedback(data);
-    console.log(value);
-    console.log(id);
   };
-  console.log(status);
   useEffect(() => {
     const getFbPerBooking = async () => {
       try {
         const response = await feedbackApi.getFeedbackPerBooking(id);
         const { data } = response;
-        console.log(data);
         data.status === 'success' && setIsFb(true);
         setFbData(data.data);
       } catch (error) {
@@ -44,7 +40,7 @@ const BookingFeedback = ({ id, status }) => {
     };
     getFbPerBooking();
   }, []);
-  console.log(fbData);
+  console.log(isFb);
   return (
     <Space className="booking__feedback__space" direction="vertical">
       {isFb ? (
@@ -58,7 +54,7 @@ const BookingFeedback = ({ id, status }) => {
                     {moment(fbData.createdAt.date).format('YYYY-MM-DD')}
                   </span>
                 </span>
-                <Rate defaultValue={fbData.rating} />
+                <Rate disabled defaultValue={fbData.rating} />
               </Space>
             }
             avatar={

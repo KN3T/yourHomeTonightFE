@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useSearchParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
 import { HotelList, SearchInHotels } from '../../components';
@@ -14,6 +15,8 @@ import './HotelInCityPage.scss';
 const { Content, Sider } = Layout;
 
 const HotelInCityPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [form] = Form.useForm();
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
@@ -130,6 +133,7 @@ const HotelInCityPage = () => {
       maxPrice: value[1],
     });
   };
+  loadingContext.done();
 
   return (
     <div className="hotelpage__container">

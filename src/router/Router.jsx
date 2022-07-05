@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-loading';
 
 import { ClientLayout } from '../components';
 import {
@@ -20,12 +20,16 @@ const Router = () => {
     <>
       <Routes>
         <Route element={<ClientLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/hotels" element={<HotelInCityPage />} />
-          <Route path="/hotels/:id" element={<DetailsHotelPage />} />
-          <Route path="/userProfile" element={<UserProfilePage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/detailsBooking/:id" element={<DetailsBookingPage />} />
+          <Route path="/" element={<HomePage />} loading />
+          <Route path="/hotels" element={<HotelInCityPage />} loading />
+          <Route path="/hotels/:id" element={<DetailsHotelPage />} loading />
+          <Route path="/userProfile" element={<UserProfilePage />} loading />
+          <Route path="/checkout" element={<CheckoutPage />} loading />
+          <Route
+            path="/detailsBooking/:id"
+            element={<DetailsBookingPage />}
+            loading
+          />
           <Route
             path="/checkoutConfirmation/:id"
             element={<CheckoutConfirmationPage />}

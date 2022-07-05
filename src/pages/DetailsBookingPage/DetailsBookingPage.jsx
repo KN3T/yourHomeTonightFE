@@ -10,6 +10,7 @@ import { MdSecurity } from 'react-icons/md';
 import { MdOutlineChildCare } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
 import { BookingFeedback } from '../../components';
@@ -19,6 +20,8 @@ import './DetailsBookingPage.scss';
 const { Step } = Steps;
 
 const CheckoutPageConfirmation = () => {
+  const loadingContext = useLoadingContext();
+
   const [confirmationData, setConfirmationData] = useState();
   const { t, i18n } = useTranslation();
 
@@ -105,6 +108,7 @@ const CheckoutPageConfirmation = () => {
         return 'magenta';
     }
   };
+  loadingContext.done();
 
   return (
     <div className="details__booking__container">

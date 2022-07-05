@@ -3,8 +3,8 @@ import { Col, Form, List, Menu, Row, Skeleton, Space, Table } from 'antd';
 import { Tabs } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLoadingContext } from 'react-router-loading';
 
-import { axiosInstance } from '../../api/axiosInstance';
 import bookingApi from '../../api/bookingApi';
 import { ProfileForm, Transaction } from '../../components';
 import './UserProfilePage.scss';
@@ -12,6 +12,8 @@ import './UserProfilePage.scss';
 const { TabPane } = Tabs;
 
 const UserProfilePage = () => {
+  const loadingContext = useLoadingContext();
+
   const [form] = Form.useForm();
   const { t } = useTranslation();
   const [bookings, setBookings] = useState([]);
@@ -32,78 +34,7 @@ const UserProfilePage = () => {
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 
   const handleSubmitForm = (values) => {};
-
-  // const dataSource = [
-  //   {
-  //     key: '1',
-  //     name: 'Mike',
-  //     roomType: 'King room',
-  //     address: '10 Downing Street',
-  //   },
-  //   {
-  //     key: '2',
-  //     name: 'John',
-  //     roomType: 'Queen room',
-  //     address: '10 Downing Street',
-  //   },
-  // ];
-
-  // const columns = [
-  //   {
-  //     title: 'Hotel Name',
-  //     dataIndex: 'name',
-  //     key: 'name',
-  //   },
-  //   {
-  //     title: 'Room type',
-  //     dataIndex: 'roomType',
-  //     key: 'roomType',
-  //   },
-  //   {
-  //     title: 'Address',
-  //     dataIndex: 'address',
-  //     key: 'address',
-  //   },
-  //   {
-  //     title: 'Total payments',
-  //     dataIndex: 'total',
-  //     key: 'total',
-  //   },
-  // ];
-
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      roomType: 'King room',
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      roomType: 'Queen room',
-      address: '10 Downing Street',
-    },
-  ];
-
-  const columns = [
-    {
-      title: 'Hotel Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Room type',
-      dataIndex: 'roomType',
-      key: 'roomType',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-
+  loadingContext.done();
   return (
     <div className="profile__container">
       <div className="profile__wrapper">

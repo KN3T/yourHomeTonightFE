@@ -14,6 +14,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
 import { roomsApi } from '../../api/roomsApi';
@@ -27,6 +28,8 @@ import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
 const DetailsHotelPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [hotelData, setHotelData] = useState({});
   const [loadingHotel, setLoadingHotel] = useState(false);
   const [roomData, setRoomData] = useState({});
@@ -127,6 +130,7 @@ const DetailsHotelPage = () => {
       checkOut: values.checkOut,
     });
   };
+  loadingContext.done();
 
   return (
     <div className="details__hotel__wrapper">
