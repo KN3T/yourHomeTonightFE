@@ -1,13 +1,10 @@
 import React from 'react';
 
-// import { Typography } from 'antd'
 import './CityCard.scss';
 
-// const { Title } = Typography;
 const CityCard = () => {
   return (
     <div>
-      {/* <Title level={2}>Our Most Populer City</Title> */}
       <div className="city_card">
         <div className="city_card_wrapper">
           <div className="city_card_img_wrapper">

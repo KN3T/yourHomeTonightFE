@@ -2,6 +2,7 @@ import { Steps, message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { RegisterForm } from '../../components';
 import './RegisterPage.scss';
@@ -9,6 +10,8 @@ import './RegisterPage.scss';
 const { Step } = Steps;
 
 const RegisterPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [loadingButton, setLoadingButton] = useState(false);
   const [isHotel, setIsHotel] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -60,6 +63,7 @@ const RegisterPage = () => {
   const onFinishFailed = () => {
     console.log('something went wrong');
   };
+  loadingContext.done();
 
   return (
     <div className="register__container">

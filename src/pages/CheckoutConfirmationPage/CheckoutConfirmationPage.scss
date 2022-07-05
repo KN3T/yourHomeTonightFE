@@ -247,7 +247,6 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin: 16px;
 
           .title {
             color: rgb(79, 111, 143);
@@ -383,5 +382,14 @@
 .tag__highlight {
   b {
     background-color: rgb(255, 243, 192);
+  }
+}
+
+.button__purchase {
+  margin-top: 16px;
+  button {
+    border-radius: 10px;
+    width: 100%;
+    height: 45px;
   }
 }

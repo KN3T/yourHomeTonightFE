@@ -31,6 +31,7 @@
     "react-redux": "^8.0.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
+    "react-router-loading": "^1.0.0",
     "reselect": "^4.1.6",
     "sass": "^1.53.0",
     "swiper": "^8.2.5"
