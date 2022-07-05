@@ -15,8 +15,6 @@ import {
   RegisterPage,
   UserProfilePage,
 } from '../pages';
-import AdminManagement from '../pages/Admin/AdminManagement/AdminManagement';
-import CreateHotel from '../pages/Admin/CreateHotel/CreateHotel';
 import Dashboard from '../pages/Admin/Dashboard/Dashboard';
 import HotelManagement from '../pages/Admin/HotelManagement/HotelManagement';
 
@@ -37,10 +35,10 @@ const Router = () => {
           />
         </Route>
 
-        <Route element={<AdminLayout />}>
-          <Route path="/manageHotel" element={<HotelManagement />} />
-          <Route path="/dashBoard" element={<Dashboard />} />
-          <Route path="/manageAdmin" element={<AdminManagement />} />
+        <Route path="/manageHotel/:id" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="rooms" element={<HotelManagement />} />
         </Route>
 
         <Route path="/login" element={<LoginPage />} />

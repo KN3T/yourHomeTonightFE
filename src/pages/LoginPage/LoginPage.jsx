@@ -1,7 +1,6 @@
 import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { loginApi } from '../../api';
@@ -24,9 +23,12 @@ const LoginPage = () => {
       });
       const status = await response.data.status;
       const data = await response.data;
+      const role = await response.data.data.role;
+
       if (status === 'success') {
         localStorage.setItem('userData', JSON.stringify(data.data));
         localStorage.setItem('token', data.data.token);
+        localStorage.setItem('role', role);
         setLoadingButton(false);
         useLocalToken();
         history.back();

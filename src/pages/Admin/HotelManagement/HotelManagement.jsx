@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import HotelAdmin from '../../../components/Admin/HotelAdmin/HotelAdmin';
 import './HotelManagement.scss';

@@ -1,27 +1,12 @@
-import {
-  BorderlessTableOutlined,
-  BranchesOutlined,
-  DownloadOutlined,
-  HomeOutlined,
-  MailOutlined,
-  MessageOutlined,
-  PhoneOutlined,
-  PlusOutlined,
-  RollbackOutlined,
-  ShareAltOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import { Breadcrumb, Button, Input, InputNumber, Modal, Upload } from 'antd';
+/* eslint-disable react/prop-types */
+import { PlusOutlined } from '@ant-design/icons';
+import { Input, InputNumber, Modal, Upload } from 'antd';
 import { Select } from 'antd';
-import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
-import { roomsApi } from '../../../api/roomsApi';
+import React, { useState } from 'react';
 
 const { Option } = Select;
 
-const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
+const ModalAdd = ({ isModalAddVisible, handleCancel }) => {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
@@ -85,33 +70,11 @@ const ModalAdd = ({ isModalAddVisible, handleAddOk, handleCancel }) => {
     </div>
   );
 
-  const handleUploadData = async () => {
-    try {
-      const data = await roomsApi.uploadImg({
-        'images[]': fileList,
-      });
-
-      setData({
-        ...data,
-        images: [],
-      });
-      // create
-      const response = await roomsApi.addRoom(data);
-      if (response.status === 200) {
-        toast.success('create thanh cong');
-        // tat popup
-        handleCancel();
-      }
-    } catch (error) {
-      toast.error('fail to create');
-    }
-  };
   return (
     <>
       <Modal
         title="Add Room"
         visible={isModalAddVisible}
-        onOk={() => handleUploadData()}
         onCancel={handleCancel}
       >
         <div className="main_create">

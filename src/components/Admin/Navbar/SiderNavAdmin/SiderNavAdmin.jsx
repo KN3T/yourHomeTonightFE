@@ -52,21 +52,21 @@ const SiderNavAdmin = () => {
           style={{ margin: '14px 0' }}
         />
         <Space className="space">
-          <NavLink className="link" to="/dashBoard">
+          <NavLink className="link" to="dashboard">
             <HomeOutlined className="icon" />
-            <span className="text__icon">Home</span>
+            <span className="text__icon">Dashboard</span>
           </NavLink>
         </Space>
         <Space className="space">
-          <NavLink className="link" to="/ManageAdmin">
-            <UserSwitchOutlined className="icon" />
-            <span className="text__icon">Admin</span>
-          </NavLink>
-        </Space>
-        <Space className="space">
-          <NavLink className="link" to="/ManageHotel">
+          <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
-            <span className="text__icon">Hotels</span>
+            <span className="text__icon">Rooms</span>
+          </NavLink>
+        </Space>
+        <Space className="space">
+          <NavLink className="link" to="bookings">
+            <UserSwitchOutlined className="icon" />
+            <span className="text__icon">Bookings</span>
           </NavLink>
         </Space>
       </div>
