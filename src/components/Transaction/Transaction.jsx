@@ -1,25 +1,11 @@
-import { Button, Card, Col, Image, Modal, Row, Space, Tag } from 'antd';
+import { Button, Card, Col, Image, Row, Space, Tag } from 'antd';
 import moment from 'moment';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './index.scss';
 
 const Transaction = ({ bookings }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
   const handleStatusBooking = (status) => {
     switch (status) {
       case 2:
@@ -49,7 +35,7 @@ const Transaction = ({ bookings }) => {
   const renderButton = (status) => {
     switch (status) {
       case 2:
-        return <Button>Give feedback</Button>;
+        return '';
       case 3:
         return '';
       default:
@@ -106,10 +92,7 @@ const Transaction = ({ bookings }) => {
           </Col>
         ))}
       </Row>
-      <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+      =
     </div>
   );
 };

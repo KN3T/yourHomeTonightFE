@@ -15,7 +15,6 @@ const FeedBack = ({ hotelId }) => {
 
     getAllFeedback();
   }, []);
-  console.log(feedback);
   return (
     <div>
       {feedback &&
