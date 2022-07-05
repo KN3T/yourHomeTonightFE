@@ -16,12 +16,8 @@ export const BookingSlice = createSlice({
         addConfirmation: (state, action) => {
             state.confirmation = action.payload
         },
-
-        addSearchDate: (state, action) => {
-            state.searchDate = action.payload
-        }
     }
 })
 
-export const { addOrder,addConfirmation, addSearchDate } = BookingSlice.actions
+export const { addOrder,addConfirmation } = BookingSlice.actions
 export default BookingSlice.reducer

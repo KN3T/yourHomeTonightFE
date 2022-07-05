@@ -3,17 +3,20 @@ import useLocalToken from './helpers'
 
 const bookingApi = {
     book: async (params) => {
-        useLocalToken()
+        useLocalToken();
         return axiosInstance.post('bookings', params)
     },
     verify: async (params) => {
-        useLocalToken()
+        useLocalToken();
         return axiosInstance.post('payment/check', params)
     },
-
     get: async (id) => {
-        useLocalToken()
+        useLocalToken();
         return axiosInstance.get(`bookings/${id}`)
+    },
+    repay: async(id) => {
+        useLocalToken();
+        return axiosInstance.post(`bookings/${id}/repay`)
     }
 }
 

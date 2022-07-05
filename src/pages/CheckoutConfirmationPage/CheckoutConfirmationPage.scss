@@ -385,3 +385,12 @@
     background-color: rgb(255, 243, 192);
   }
 }
+
+.button__purchase {
+  margin-top: 16px;
+  button {
+    border-radius: 10px;
+    width: 100%;
+    height: 45px;
+  }
+}

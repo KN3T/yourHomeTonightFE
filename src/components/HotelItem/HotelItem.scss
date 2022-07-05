@@ -18,8 +18,7 @@
 
   &__top {
     margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
 
     .hotel {
       &__info {
@@ -50,6 +49,10 @@
       }
 
       &__rating {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
         .rating {
           font-size: 16px;
           margin-right: 15px;
@@ -59,42 +62,53 @@
   }
 
   &__bottom {
-    display: flex;
+    margin-top: 16px;
+    width: 100%;
+    height: 100%;
+
     .photo__container {
-      position: relative;
+      width: 100%;
+      height: 100%;
 
       .photo {
-        width: 212px;
-        height: 212px;
+        width: 100%;
+        height: 100%;
         border-radius: 8px;
       }
     }
 
     .content {
-      &__container {
-        width: 100%;
-        min-height: 220px;
-        margin-left: 16px;
-      }
-
       &__wrapper {
         display: flex;
-        justify-content: space-between;
         padding: 8px 0;
-        border-top: 1px solid #d9e2e8;
         width: 100%;
         cursor: pointer;
-        min-height: 56px;
+        min-height: 200px;
 
         .description__wrapper {
           div {
             display: flex;
             align-items: center;
+          }
 
-            svg {
-              font-size: 16px;
-              margin-right: 4px;
-            }
+          svg {
+            font-size: 16px;
+            margin-right: 4px;
+          }
+        }
+
+        .description__hotel {
+          display: flex;
+          align-items: center;
+
+          p {
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
           }
         }
 
@@ -130,5 +144,35 @@
         }
       }
     }
+  }
+}
+
+.hotel__item__line {
+  height: 1px;
+  background-color: #ccc;
+}
+
+@media only screen and (max-width: 576px) {
+  .hotel__item__top {
+    .hotel__rating {
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .hotel__item__bottom {
+    .content__wrapper {
+      display: block;
+
+      .price__wrapper {
+        align-items: flex-start;
+      }
+    }
+  }
+  .hotel__item__bottom .content__wrapper .price__wrapper button {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
   }
 }

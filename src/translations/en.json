@@ -32,7 +32,7 @@
     "destination": "Destination",
     "search": "Search",
     "search_placeholder": "Search by city",
-    "filter_by": "Filer by",
+    "filter_by": "Filter by",
     "rating": "Rating",
     "your_budget": "Your budget",
     "per_night": "Per night",
@@ -43,7 +43,8 @@
     "low_to_high": "(low to high)",
     "high_to_low": "(high to low)",
     "reviews": "reviews",
-    "price_value": "{{val, currency(currency: USD)}}"
+    "price_value": "{{val, currency(currency: USD)}}",
+    "to": "to"
   },
 
   "main": {
