@@ -2,14 +2,19 @@ import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { loginApi } from '../../api';
+import useLocalToken from '../../api/helpers';
 import { LoginForm } from '../../components';
 import './LoginPage.scss';
 
 const LoginPage = () => {
+  const loadingContext = useLoadingContext();
+
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
@@ -21,10 +26,19 @@ const LoginPage = () => {
       });
       const status = await response.data.status;
       const data = await response.data;
+      const role = await response.data.data.role;
+
       if (status === 'success') {
         localStorage.setItem('userData', JSON.stringify(data.data));
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('role', role);
         setLoadingButton(false);
-        navigate('/');
+        useLocalToken();
+        if (role === 'ROLE_HOTEL') {
+          navigate(`/manageHotel/${response.data.data.hotelId}`);
+        } else if (role === 'ROLE_USER') {
+          history.back();
+        }
         message.success('Login successfully');
       }
     } catch (error) {
@@ -36,7 +50,7 @@ const LoginPage = () => {
   const onFinishFailed = () => {
     console.log('something went wrong');
   };
-
+  loadingContext.done();
   return (
     <div className="login__container">
       <div className="login__wrapper">

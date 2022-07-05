@@ -26,23 +26,29 @@ const RoomDetailsModal = (props) => {
 
   const navigate = useNavigate();
   const [bigImage, setBigImage] = useState(roomImages[0]);
-  const dispath = useDispatch();
+  const [orderData, setOrderData] = useState(dataOrder);
+  const dispach = useDispatch();
 
   useEffect(() => {
     setBigImage(roomImages[0]);
   }, [roomData]);
 
+  useEffect(() => {
+    setOrderData(dataOrder);
+  }, [dataOrder]);
+
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
+
   const handleBooking = () => {
     if (localStorage.getItem('userData')) {
-      dispath(addOrder(dataOrder));
+      dispach(addOrder(orderData));
+      window.localStorage.setItem('bookingData', JSON.stringify(dataOrder));
       navigate('/checkout');
     } else {
       navigate('/login');
     }
   };
-
   return (
     <Modal
       visible={isModalVisible}
@@ -121,7 +127,7 @@ const RoomDetailsModal = (props) => {
               </strong>
             </div>
             <div className="booking__button">
-              {dataOrder.dateCheckin && dataOrder.dateCheckout ? (
+              {dataOrder.checkIn && dataOrder.checkOut ? (
                 <Button
                   onClick={() => {
                     handleBooking();

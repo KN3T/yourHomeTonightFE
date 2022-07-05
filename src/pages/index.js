@@ -7,3 +7,6 @@ export { default as CheckoutPage} from './CheckoutPage/CheckoutPage'
 export { default as CheckoutVerifyPage } from './CheckoutVerifyPage/CheckoutVerifyPage'
 export { default as CheckoutConfirmationPage } from './CheckoutConfirmationPage/CheckoutConfirmationPage'
 export { default as UserProfilePage } from './UserProfilePage/UserProfilePage'
+export {default as DetailsBookingPage} from './DetailsBookingPage/DetailsBookingPage'
+
+

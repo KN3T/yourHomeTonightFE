@@ -148,18 +148,12 @@
 
         .booking__button {
           button {
-            background: var(--background-btn);
             border-radius: 5px;
             color: #fff;
             font-weight: bold;
             font-size: 15px;
-            width: 120px;
+            width: 130px;
             height: 40px;
-            transition: all 0.2s linear;
-
-            &:hover {
-              background: var(--background-btn-hover);
-            }
           }
         }
       }

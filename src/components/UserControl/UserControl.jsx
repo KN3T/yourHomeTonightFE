@@ -1,5 +1,6 @@
 import { Dropdown, Menu } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 const UserControl = () => {
@@ -12,18 +13,20 @@ const UserControl = () => {
     location.reload();
   };
 
+  const { t } = useTranslation();
+
   const menu = (
     <Menu
       items={[
         {
-          label: <Link to={'/userprofile'}>Your profile</Link>,
+          label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
           key: '0',
         },
         {
           type: 'divider',
         },
         {
-          label: <span onClick={logout}>Logout</span>,
+          label: <span onClick={logout}>{t('navbar.logout')}</span>,
           key: '1',
         },
       ]}

@@ -1,7 +1,7 @@
 {
   "hotel": {
     "rating": "Rating",
-    "per_night": "Night",
+    "per_night": "night",
     "populer_hotel_title": "Our Most Populer Hotel",
     "populer_hotel_content": "This summer, make your dream trip a reality. Book and stay for less before Sep 30, 2022",
     "start_from": "Start from:",
@@ -32,21 +32,24 @@
     "destination": "Destination",
     "search": "Search",
     "search_placeholder": "Search by city",
-    "filter_by": "Filer by",
+    "filter_by": "Filter by",
     "rating": "Rating",
     "your_budget": "Your budget",
     "per_night": "Per night",
     "properties": "properties",
+    "related_to": "related to",
     "sort_by": "Sort by",
     "price": "Price",
     "low_to_high": "(low to high)",
     "high_to_low": "(high to low)",
     "reviews": "reviews",
-    "price_value": "{{val, currency(currency: USD)}}"
+    "price_value": "{{val, currency(currency: USD)}}",
+    "to": "to",
+    "view": "View"
   },
 
   "main": {
-    "search_your_perfect_place_to_stay": "Search your perfect place to stay..."
+    "slogan": "Find the stay that's right for you."
   },
 
   "navbar": {
@@ -54,12 +57,14 @@
     "about": "About",
     "hotels": "Hotels",
     "contact": "Contact",
-    "login": "Login"
+    "login": "Login",
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "details__hotel": {
     "home": "Home",
     "from": "from",
-    "night": "Night",
+    "night": "night",
     "price_value": "{{val, currency(currency: USD)}}",
     "overview": "Overview",
     "rating": "Rating",
@@ -156,5 +161,52 @@
     "account_email": "Account Email",
     "congrats": "Congrats on being a VIP!",
     "congrats_vip": "Each completed booking gets you closer to the next VIP tier and even more benefits."
+  },
+
+  "search": {
+    "adults": "Adults",
+    "children": "Children",
+    "search_placeholder": "Search your favorite city"
+  },
+
+  "checkout": {
+    "secure_transactions": "SECURE TRANSACTIONS",
+    "24_hours": "24-HOUR SERVICE",
+    "trusted_payment": "TRUSTED PAYMENTS",
+    "choose_rom": "Choose Room",
+    "guest_payment": "Guest & Payment Details",
+    "booking_confirmation": "Booking Confirmation",
+    "almost_done": "Almost done!",
+    "enter_and_complete": "Enter your details and complete your booking now.",
+    "check_in": "CHECK-IN",
+    "check_out": "CHECK-OUT",
+    "nights": "NIGHTS",
+    "room": "ROOMS",
+    "beds": "Beds",
+    "adults": "Adults",
+    "children": "Children",
+    "noti": "The guest checking into each hotel room must be 21 or older, present a valid Photo ID and credit card.",
+    "guest_name": "Guest Name",
+    "contact": "Contact",
+    "payment": "Payment Method",
+    "complete_booking": "Complete Booking",
+    "cost_per_night": "Cost per night",
+    "num_of_nights": "Number of nights",
+    "sub_total": "Subtotal",
+    "tax_and_fee": "Taxes and fees",
+    "total_charges": "Total charges",
+    "policy_confirm": "By selecting Complete Booking you agree to the",
+    "and": " and",
+    "booking_conditions": " Booking Condition,",
+    "term_and_conditions": " Terms and Conditions,",
+    "privacy_policy": " Privacy Policy",
+    "status": "Status",
+    "noti_repay": "Your booking will expire in five minutes, please complete the payment in time",
+    "repay_now": "Repay Now",
+    "your_trip_to": "Your trip to",
+    "check_in_text": "Check-In",
+    "check_in_note": " after 12:00 PM",
+    "booking_id": "Booking ID",
+    "email_confirm": "Email confirm: "
   }
 }
