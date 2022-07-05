@@ -97,7 +97,7 @@ const HotelItem = ({
                       })}
                     </span>
                     <span className="per__night">{t('hotels.per_night')}</span>
-                    <Button type="primary">View</Button>
+                    <Button type="primary">{t('hotels.view')}</Button>
                   </div>
                 </Col>
               </div>

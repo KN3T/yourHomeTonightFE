@@ -16,6 +16,7 @@ import {
 import _ from 'lodash';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IoBedSharp } from 'react-icons/io5';
 
 import { cityApi } from '../../api';
@@ -41,6 +42,8 @@ const SearchInHotels = ({
       ? [moment(checkInDefault * 1000), moment(checkOutDefault * 1000)]
       : [moment(), moment().add(3, 'day')]
   );
+
+  const { t } = useTranslation();
 
   const [options, setOptions] = useState([]);
   const [children, setChildren] = useState(childrenDefault);
@@ -78,17 +81,17 @@ const SearchInHotels = ({
   const content = (
     <Form
       labelCol={{
-        span: 10,
+        span: 12,
       }}
       initialValues={{
         adults: adults,
         children: children,
       }}
     >
-      <Form.Item name="adults" label="Adults">
+      <Form.Item name="adults" label={t('search.adults')}>
         <InputNumber onChange={(e) => setAdults(e)} min={1} />
       </Form.Item>
-      <Form.Item name="children" label="Children">
+      <Form.Item name="children" label={t('search.children')}>
         <InputNumber onChange={(e) => setChildren(e)} min={1} />
       </Form.Item>
     </Form>
@@ -180,7 +183,7 @@ const SearchInHotels = ({
                   className="input"
                   size="large"
                   placeholder={
-                    cityDefault ? cityDefault : 'Search your favorite city'
+                    cityDefault ? cityDefault : t('search.search_placeholder')
                   }
                 />
               </AutoComplete>
@@ -225,8 +228,8 @@ const SearchInHotels = ({
                     size="large"
                     onClick={handleVisibleChange}
                   >
-                    {' '}
-                    {adults} Adults, {children} Children
+                    {adults} {t('search.adults')}, {children}{' '}
+                    {t('search.children')}
                   </Button>
                 </Popover>
                 <div className="search__btn">

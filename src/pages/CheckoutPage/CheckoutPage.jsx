@@ -66,30 +66,30 @@ const CheckoutPage = () => {
           <div className="checkout__banner__content">
             <div className="checkout__banner__item">
               <RiShieldCheckFill />
-              <span>SECURE TRANSACTIONS</span>
+              <span>{t('checkout.secure_transactions')}</span>
             </div>
             <div className="checkout__banner__item">
               <BiTimeFive />
-              <span>24-HOUR SERVICE</span>
+              <span>{t('checkout.24_hours')}</span>
             </div>
             <div className="checkout__banner__item">
               <MdSecurity />
-              <span>TRUSTED PAYMENTS</span>
+              <span>{t('checkout.trusted_payment')}</span>
             </div>
           </div>
         </div>
         <div className="checkout__progress">
           <Steps current={1} size="small">
-            <Step title="Choose Room" />
-            <Step title="Guest & Payment Details" />
-            <Step title="Booking Confirmation" />
+            <Step title={t('checkout.choose_rom')} />
+            <Step title={t('checkout.guest_payment')} />
+            <Step title={t('checkout.booking_confirmation')} />
           </Steps>
         </div>
 
         <section className="checkout__content ctn">
           <div className="checkout__content__heading">
-            <span>Almost done!</span>
-            <span>Enter your details and complete your booking now.</span>
+            <span>{t('checkout.almost_done')}</span>
+            <span>{t('checkout.enter_and_complete')}</span>
           </div>
           {bookingData && bookingData.selectedRoom && (
             <Row gutter={[16, 0]}>
@@ -109,32 +109,24 @@ const CheckoutPage = () => {
                         {bookingData.hotelAddress.city},{' '}
                         {bookingData.hotelAddress.province}
                       </p>
-                      <div className="checkout__content__rating">
-                        <div>
-                          {bookingData.hotelRating
-                            ? bookingData.hotelRating
-                            : 0}{' '}
-                        </div>
-                        <span>GUEST RATING</span>
-                      </div>
                     </div>
                   </div>
                   <div className="checkout__content__itinerary">
                     <div className="schedule">
                       <div className="schedule__item">
-                        <div className="title">CHECK-IN</div>
+                        <div className="title">{t('checkout.check_in')}</div>
                         <div className="content">
                           {moment(bookingData.checkIn * 1000).format(
-                            'ddd, MMM Do YYYY'
+                            'ddd, MMM Do'
                           )}
                         </div>
                       </div>
                       <hr />
                       <div className="schedule__item">
-                        <div className="title">CHECK-OUT</div>
+                        <div className="title">{t('checkout.check_out')}</div>
                         <div className="content">
                           {moment(bookingData.checkOut * 1000).format(
-                            'ddd, MMM Do YYYY'
+                            'ddd, MMM Do'
                           )}
                         </div>
                       </div>
@@ -142,12 +134,12 @@ const CheckoutPage = () => {
 
                     <div className="room__info">
                       <div className="room__info__item">
-                        <div className="title">Nights</div>
+                        <div className="title">{t('checkout.nights')}</div>
                         <div className="content">{nights}</div>
                       </div>
                       <hr />
                       <div className="room__info__item">
-                        <div className="title">ROOMS</div>
+                        <div className="title">{t('checkout.room')}</div>
                         <div className="content">1</div>
                       </div>
                     </div>
@@ -158,16 +150,25 @@ const CheckoutPage = () => {
                       <ul>
                         <li className="room__assets__item">
                           <IoBedSharp />
-                          <span>Beds {bookingData.selectedRoom.beds}</span>
+                          <span>
+                            {t('checkout.beds')}
+                            {': '} {bookingData.selectedRoom.beds}
+                          </span>
                         </li>
                         <li className="room__assets__item">
                           <BsFillPeopleFill />
-                          <span>Adults {bookingData.selectedRoom.adults}</span>
+                          <span>
+                            {t('checkout.adults')}
+                            {': '}
+                            {bookingData.selectedRoom.adults}
+                          </span>
                         </li>
                         <li className="room__assets__item">
                           <MdOutlineChildCare />
                           <span>
-                            Children {bookingData.selectedRoom.children}
+                            {t('checkout.children')}
+                            {': '}
+                            {bookingData.selectedRoom.children}
                           </span>
                         </li>
                       </ul>
@@ -188,7 +189,7 @@ const CheckoutPage = () => {
                 <div className="checkout__content__summary">
                   <div className="checkout__content__summary__list">
                     <div className="checkout__content__summary__item">
-                      <span>Cost per night</span>
+                      <span>{t('checkout.cost_per_night')}</span>
                       <span>
                         {t('hotels.price_value', {
                           val: formatCurrency(
@@ -199,11 +200,11 @@ const CheckoutPage = () => {
                       </span>
                     </div>
                     <div className="checkout__content__summary__item">
-                      <span>Number of nights</span>
+                      <span>{t('checkout.num_of_nights')}</span>
                       <span>{nights}</span>
                     </div>
                     <div className="checkout__content__summary__item">
-                      <span>Subtotal</span>
+                      <span>{t('checkout.sub_total')}</span>
                       <span>
                         {t('hotels.price_value', {
                           val: formatCurrency(subTotal, currentLanguage),
@@ -211,7 +212,7 @@ const CheckoutPage = () => {
                       </span>
                     </div>
                     <div className="checkout__content__summary__item">
-                      <span>Taxes and fees</span>
+                      <span>{t('checkout.tax_and_fee')}</span>
                       <span>
                         {t('hotels.price_value', {
                           val: formatCurrency(tax, currentLanguage),
@@ -220,7 +221,7 @@ const CheckoutPage = () => {
                     </div>
                   </div>
                   <div className="checkout__content__summary__total">
-                    <span>Total charges</span>
+                    <span>{t('checkout.total_charges')}</span>
                     <span>
                       {t('hotels.price_value', {
                         val: formatCurrency(
