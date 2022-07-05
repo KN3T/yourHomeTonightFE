@@ -6,6 +6,11 @@ const cityApi = {
     return response;
   },
 
+  getAll: async () => {
+    const response = await axiosInstance.get('/city');
+    return response;
+  }
+
 };
 
 export default cityApi;

@@ -1,4 +1,5 @@
-import { Button, Form, Input, Radio } from 'antd';
+/* eslint-disable react/prop-types */
+import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -24,7 +25,7 @@ const ProfileForm = (props) => {
             console.log(err);
           });
       }}
-      className="checkout__form__wrapper"
+      className="profile__form__wrapper"
       size="large"
       form={form}
       initialValues={{
@@ -32,7 +33,7 @@ const ProfileForm = (props) => {
         email: userData.email,
       }}
     >
-      <div className="checkout__form__item guest__info">
+      <div className="profile__form__item guest__info">
         <h2 className="form__item__title">{t('profile.info')}</h2>
         <Form.Item
           name="fullName"
@@ -82,9 +83,9 @@ const ProfileForm = (props) => {
         </Form.Item>
       </div>
 
-      <div className="checkout__form__item">
+      <div className="profile__form__item">
         <Button
-          className="checkout__form__button"
+          className="profile__form__button"
           type="primary"
           htmlType="submit"
         >

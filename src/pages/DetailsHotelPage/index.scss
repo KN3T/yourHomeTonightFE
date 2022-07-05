@@ -6,19 +6,13 @@
   justify-content: center;
 
   button {
-    background: var(--background-btn);
-    transition: all 0.3s linear;
     border-radius: 5px;
-
-    &:hover {
-      background: var(--background-btn-hover);
-    }
   }
 
   .details__hotel__row {
     width: 100%;
 
-    .details__title__wrappper {
+    .details__title__wrapper {
       .details__rating__number {
         background: #158f50;
         padding: 5px 10px;

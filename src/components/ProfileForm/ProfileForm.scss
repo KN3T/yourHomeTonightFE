@@ -1,4 +1,4 @@
-.checkout__form {
+.profile__form {
   &__wrapper {
     .guest__info {
       &__notice {
@@ -60,11 +60,6 @@
     width: 100%;
     border-radius: 12px;
     height: 45px;
-    background: var(--background-btn);
-
-    &:hover {
-      background: var(--background-btn-hover);
-    }
   }
 
   &__agreement {

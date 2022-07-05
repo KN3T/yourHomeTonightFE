@@ -37,12 +37,14 @@
     "your_budget": "Ngân sách của bạn",
     "per_night": "mỗi đêm",
     "properties": "kết quả",
+    "related_to": "liên quan đến",
     "sort_by": "Sắp xếp theo",
     "price": "Giá",
     "low_to_high": "(thấp đến cao)",
     "high_to_low": "(cao đến thấp)",
     "reviews": "đánh giá",
-    "price_value": "{{val, currency(currency: VND)}}"
+    "price_value": "{{val, currency(currency: VND)}}",
+    "to": "đến"
   },
 
   "main": {

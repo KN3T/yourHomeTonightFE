@@ -13,6 +13,7 @@
 
     .room_card_img {
       height: 100%;
+      width: 100%;
       object-fit: cover;
     }
 
@@ -33,8 +34,11 @@
 
     .room_name {
       cursor: pointer;
-      font-size: 30px;
+      font-size: 24px;
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .room_rating {
@@ -43,7 +47,7 @@
     }
 
     .room_price {
-      color: #fc4c4c;
+      color: var(--primary-color);
       font-size: 28px;
       font-weight: 750;
     }

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { loginApi } from '../../api';
+import useLocalToken from '../../api/helpers';
 import { LoginForm } from '../../components';
 import './LoginPage.scss';
 
@@ -24,7 +25,8 @@ const LoginPage = () => {
       if (status === 'success') {
         localStorage.setItem('userData', JSON.stringify(data.data));
         setLoadingButton(false);
-        navigate('/');
+        useLocalToken();
+        history.back();
         message.success('Login successfully');
       }
     } catch (error) {

@@ -42,7 +42,6 @@ const HeaderNav = () => {
   useEffect(() => {
     i18n.changeLanguage(defaultLanguage);
   }, []);
-
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('lng', lng);

@@ -4,7 +4,9 @@ export const BookingSlice = createSlice({
     name: 'booking',
     initialState: {
         orders: {},
-        confirmation: {}
+        confirmation: {},
+        searchDate: {}
+
     },
     reducers: {
         addOrder: (state, action) => {
@@ -13,7 +15,7 @@ export const BookingSlice = createSlice({
 
         addConfirmation: (state, action) => {
             state.confirmation = action.payload
-        }
+        },
     }
 })
 

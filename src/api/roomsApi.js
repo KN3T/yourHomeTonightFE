@@ -5,9 +5,10 @@ export const roomsApi = {
         const url = `/hotels/${id}/rooms`
         return axiosInstance.get(url)
     },
-    filterByBeds(params){
-        const {hotelId, beds} = params
-        const url = `/hotels/${hotelId}/rooms?beds=${beds}`
+    filter(params){
+        console.log(params);
+        const {id, children, adults, checkIn, checkOut} = params
+        const url = `/hotels/${id}/rooms?checkIn=${checkIn}&checkOut=${checkOut}${children ? `&children=${children}` : "" }${adults ? `&adults=${adults}` : "" }`
         return axiosInstance.get(url)
     }
 }
