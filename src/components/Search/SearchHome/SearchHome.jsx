@@ -27,6 +27,8 @@ const { RangePicker } = DatePicker;
 const SearchHome = () => {
   const DATE_FORMAT = 'DD-MM-YYYY';
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const searchDate = useSelector((state) => state.booking.searchDate);
 
   const { t } = useTranslation();
 

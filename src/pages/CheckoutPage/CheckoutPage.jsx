@@ -8,6 +8,7 @@ import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare, MdSecurity } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
+import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
 import { CheckoutForm } from '../../components';
@@ -58,6 +59,7 @@ const CheckoutPage = () => {
       location.replace(response.data.data[0]);
     }
   };
+  loadingContext.done();
 
   return (
     <div className="checkout__container">

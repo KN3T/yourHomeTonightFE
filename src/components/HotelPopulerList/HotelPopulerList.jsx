@@ -2,6 +2,7 @@ import { Col, Row, Typography } from 'antd';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLoadingContext } from 'react-router-loading';
 
 import { HotelCard } from '..';
 import { hotelApi } from '../../api';
@@ -10,6 +11,8 @@ import './HotelPopulerList.scss';
 const { Title } = Typography;
 
 const HotelPopulerList = () => {
+  const loadingContext = useLoadingContext();
+
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const NumberOfHotels = 3;
@@ -19,6 +22,7 @@ const HotelPopulerList = () => {
     console.log(result);
     const { data } = result;
     setData(data.data.hotels);
+    data && loadingContext.done();
   };
 
   useEffect(() => {

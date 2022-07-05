@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-loading';
 
 import { ClientLayout } from '../components';
 import AdminLayout from '../components/Admin/AdminLayout/AdminLayout';
@@ -7,6 +7,7 @@ import {
   CheckoutConfirmationPage,
   CheckoutPage,
   CheckoutVerifyPage,
+  DetailsBookingPage,
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
@@ -29,6 +30,7 @@ const Router = () => {
           <Route path="/hotels/:id" element={<DetailsHotelPage />} />
           <Route path="/userProfile" element={<UserProfilePage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/detailsBooking/:id" element={<DetailsBookingPage />} />
           <Route
             path="/checkoutConfirmation/:id"
             element={<CheckoutConfirmationPage />}
