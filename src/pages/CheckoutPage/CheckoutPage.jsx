@@ -95,8 +95,8 @@ const CheckoutPage = () => {
             <span>{t('checkout.enter_and_complete')}</span>
           </div>
           {bookingData && bookingData.selectedRoom && (
-            <Row gutter={[16, 0]}>
-              <Col span={16}>
+            <Row gutter={[16, 16]}>
+              <Col xxl={16} xl={15} lg={15} md={14} sm={22} xs={20}>
                 <div className="checkout__content__info">
                   <div className="checkout__content__top">
                     <div className="checkout__content__image">
@@ -188,7 +188,7 @@ const CheckoutPage = () => {
                   />
                 </div>
               </Col>
-              <Col span={8}>
+              <Col xxl={8} xl={7} lg={7} md={8} sm={22} xs={20}>
                 <div className="checkout__content__summary">
                   <div className="checkout__content__summary__list">
                     <div className="checkout__content__summary__item">
