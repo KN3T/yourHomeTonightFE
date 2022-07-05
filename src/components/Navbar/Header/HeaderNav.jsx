@@ -42,6 +42,7 @@ const HeaderNav = () => {
   useEffect(() => {
     i18n.changeLanguage(defaultLanguage);
   }, []);
+
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('lng', lng);
@@ -52,7 +53,9 @@ const HeaderNav = () => {
   return (
     <div className="navbar__header__wrapper">
       <Select
-        defaultValue={defaultLanguage}
+        defaultValue={
+          defaultLanguage === 'en' ? languageOptions[0] : languageOptions[1]
+        }
         options={languageOptions}
         onChange={changeLanguage}
       />

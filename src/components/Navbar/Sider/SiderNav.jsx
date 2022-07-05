@@ -1,6 +1,7 @@
 import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import UserControl from '../../UserControl/UserControl';
@@ -21,6 +22,8 @@ const SiderNav = () => {
     }
   });
 
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="navbar__sider__wrapper">
@@ -37,7 +40,7 @@ const SiderNav = () => {
           <Space className="space">
             <NavLink className="link" to="/login">
               <UserOutlined className="icon" />
-              <span className="text__icon">Login</span>
+              <span className="text__icon">{t('navbar.login')}</span>
             </NavLink>
           </Space>
         )}
@@ -49,13 +52,13 @@ const SiderNav = () => {
         <Space className="space">
           <NavLink className="link" to="/">
             <HomeOutlined className="icon" />
-            <span className="text__icon">Home</span>
+            <span className="text__icon">{t('navbar.home')}</span>
           </NavLink>
         </Space>
         <Space className="space">
           <NavLink className="link" to="/hotels">
             <TwitterOutlined className="icon" />
-            <span className="text__icon">Hotels</span>
+            <span className="text__icon">{t('navbar.hotels')}</span>
           </NavLink>
         </Space>
       </div>

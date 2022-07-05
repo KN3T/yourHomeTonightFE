@@ -1,6 +1,7 @@
 import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -14,7 +15,6 @@ const LoginPage = () => {
 
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoadingButton(true);
@@ -27,6 +27,7 @@ const LoginPage = () => {
       const data = await response.data;
       if (status === 'success') {
         localStorage.setItem('userData', JSON.stringify(data.data));
+        localStorage.setItem('token', data.data.token);
         setLoadingButton(false);
         useLocalToken();
         history.back();

@@ -44,11 +44,12 @@
     "high_to_low": "(cao đến thấp)",
     "reviews": "đánh giá",
     "price_value": "{{val, currency(currency: VND)}}",
-    "to": "đến"
+    "to": "đến",
+    "view": "Chi tiết"
   },
 
   "main": {
-    "search_your_perfect_place_to_stay": "Tìm chỗ ở thích hợp..."
+    "slogan": "Tìm chổ ở phù hợp với bạn."
   },
 
   "navbar": {
@@ -56,7 +57,9 @@
     "about": "Về chúng tôi",
     "hotels": "Khách sạn",
     "contact": "Liên hệ",
-    "login": "Đăng nhập"
+    "login": "Đăng nhập",
+    "profile": "Tài khoản",
+    "logout": "Đăng xuất"
   },
   "details__hotel": {
     "home": "Trang chủ",
@@ -157,5 +160,52 @@
     "account_email": "Tài khoản email",
     "congrats": "Chúc mừng bạn đã trở thành VIP!!",
     "congrats_vip": "Mỗi lần đặt hoàn thành sẽ giúp bạn tiến gần hơn đến hạng VIP tiếp theo và thậm chí còn nhiều lợi ích hơn nữa."
+  },
+
+  "search": {
+    "adults": "Người lớn",
+    "children": "Trẻ em",
+    "search_placeholder": "Tìm thành phố yêu thích"
+  },
+
+  "checkout": {
+    "secure_transactions": "GIAO DỊCH AN TOÀN",
+    "24_hours": "DỊCH VỤ 24 GIỜ",
+    "trusted_payment": "THANH TOÁN ĐÁNG TIN CẬY",
+    "choose_rom": "Chọn Phòng",
+    "guest_payment": "Chi tiết phòng và thanh toán",
+    "booking_confirmation": "Xác nhận đặt phòng",
+    "almost_done": "Gần như đã hoàn thành!",
+    "enter_and_complete": "Nhập chi tiết của bạn và hoàn thành đặt phòng của bạn ngay bây giờ.",
+    "check_in": "NGÀY NHẬN PHÒNG",
+    "check_out": "NGÀY TRẢ PHÒNG",
+    "nights": "SỐ ĐÊM",
+    "room": "SỐ PHÒNG",
+    "beds": "Số giường",
+    "adults": "Số người lớn",
+    "children": "Số trẻ em",
+    "noti": "Khách kiểm tra vào mỗi phòng khách sạn phải từ 21 tuổi trở lên, xuất trình ID ảnh và thẻ tín dụng hợp lệ.",
+    "guest_name": "Tên Khách Hàng",
+    "contact": "Liên Hệ",
+    "payment": "Phương thức thanh toán",
+    "complete_booking": "Hoàn Thành Thanh Toán",
+    "cost_per_night": "Giá mỗi đêm",
+    "num_of_nights": "Tổng số đêm",
+    "sub_total": "Tạm tính",
+    "tax_and_fee": "Thuế và phí",
+    "total_charges": "Tổng phí",
+    "policy_confirm": "Bằng cách chọn hoàn thành đặt phòng, bạn đồng ý với",
+    "and": " và",
+    "booking_conditions": " Các điều kiện,",
+    "term_and_conditions": " Điều khoản và điều kiện đặt phòng,",
+    "privacy_policy": " Chính sách bảo mật",
+    "status": "Trạng thái",
+    "noti_repay": "Đặt phòng của bạn sẽ hết hạn trong năm phút, vui lòng hoàn thành thanh toán kịp thời",
+    "repay_now": "Thanh toán ngay",
+    "your_trip_to": "Chuyến đi của bạn đến",
+    "check_in_text": "Nhận phòng",
+    "check_in_note": " sau 12 giờ trưa",
+    "booking_id": "Mã đặt phòng",
+    "email_confirm": "Email xác nhận: "
   }
 }
