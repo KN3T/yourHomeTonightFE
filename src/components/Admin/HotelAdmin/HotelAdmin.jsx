@@ -5,14 +5,13 @@ import {
   MinusCircleOutlined,
   PlusCircleOutlined,
 } from '@ant-design/icons';
-import { Button, Modal, Table } from 'antd';
+import { Button, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { toast } from 'react-toastify';
 
 import { roomsApi } from '../../../api/roomsApi';
-import RoomDetailsHotel from '../../RoomDetailsHotel/RoomDetailsHotel';
 import ModalAdd from './ModalAdd';
 import ModalEdit from './ModalEdit';
 
@@ -309,7 +308,7 @@ const HotelAdmin = () => {
         dataSource={rooms}
         pagination={false}
       />
-      <div>
+      {/* <div>
         {rooms && detail && (
           <RoomDetailsHotel
             isModalVisible={isModalVisible}
@@ -319,7 +318,7 @@ const HotelAdmin = () => {
             setIsModalVisible={setIsModalVisible}
           />
         )}
-      </div>
+      </div> */}
       <ModalAdd
         isModalAddVisible={isModalAddVisible}
         handleAddOk={handleAddOk}

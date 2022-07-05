@@ -12,12 +12,12 @@ export { default as RoomDetailsModal } from './RoomDetailsModal/RoomDetailsModal
 export { default as CityIntro } from './CityIntro/CityIntro';
 export { default as CheckoutForm } from './CheckoutForm/CheckoutForm'
 export { default as HomeFooter } from './HomeFooter/HomeFooter';
-export {default as PopoverDetailsHotel} from './Popover/PopoverDetailsHotel/PopoverDetailsHotel'
-export {default as RoomInDetailsHotel} from './Room/RoomInDetailsHotel/RoomInDetailsHotel'
-export {default as Segmented} from './Segmented/Segmented'
-export {default as PopConfirm} from './PopConfirm/PopConfirm'
-export { default as RangePickerInHotels} from './RangePicker/RangePickerInHotels';
+export { default as PopoverDetailsHotel } from './Popover/PopoverDetailsHotel/PopoverDetailsHotel'
+export { default as Segmented } from './Segmented/Segmented'
+export { default as PopConfirm } from './PopConfirm/PopConfirm'
+export { default as RangePickerInHotels } from './RangePicker/RangePickerInHotels';
 export { default as ProfileForm } from './ProfileForm/ProfileForm'
 export { default as SearchInHotels } from './SearchInHotels/SearchInHotels'
 export { default as SearchRoom } from './SearchRoom/SearchRoom'
 export { default as HotelAdmin } from './Admin/AdminLayout/AdminLayout'
+export { default as RoomInDetailsHotel } from './Room/RoomInDetailsHotel/RoomInDetailsHotel'
