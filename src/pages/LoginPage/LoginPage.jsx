@@ -15,6 +15,8 @@ const LoginPage = () => {
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   const onFinish = async (values) => {
     setLoadingButton(true);
     try {
@@ -24,12 +26,19 @@ const LoginPage = () => {
       });
       const status = await response.data.status;
       const data = await response.data;
+      const role = await response.data.data.role;
+
       if (status === 'success') {
         localStorage.setItem('userData', JSON.stringify(data.data));
         localStorage.setItem('token', data.data.token);
+        localStorage.setItem('role', role);
         setLoadingButton(false);
         useLocalToken();
-        history.back();
+        if (role === 'ROLE_HOTEL') {
+          navigate(`/manageHotel/${response.data.data.hotelId}`);
+        } else if (role === 'ROLE_USER') {
+          history.back();
+        }
         message.success('Login successfully');
       }
     } catch (error) {
