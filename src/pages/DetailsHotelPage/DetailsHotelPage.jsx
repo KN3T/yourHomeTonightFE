@@ -39,8 +39,16 @@ const DetailsHotelPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [date, setDate] = useState([
-    moment(searchParams.get('checkIn') * 1000),
-    moment(searchParams.get('checkOut') * 1000),
+    moment(
+      searchParams.get('checkIn')
+        ? searchParams.get('checkIn') * 1000
+        : moment()
+    ),
+    moment(
+      searchParams.get('checkOut')
+        ? searchParams.get('checkOut') * 1000
+        : moment().add(3, 'day')
+    ),
   ]);
 
   const [adults, setAdults] = useState(searchParams.get('adults'));

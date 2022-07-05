@@ -147,11 +147,11 @@ const HotelInCityPage = () => {
   const onChangeRating = (value) => {
     setParams({
       ...params,
-      rating: value,
+      rating: parseInt(value),
     });
     setSearchParams({
       ...params,
-      rating: value,
+      rating: parseInt(value),
     });
   };
 
@@ -169,7 +169,7 @@ const HotelInCityPage = () => {
                     <Form.Item name="rating">
                       <Rate
                         allowHalf
-                        defaultValue={1}
+                        defaultValue={0}
                         onChange={onChangeRating}
                       />
                     </Form.Item>
