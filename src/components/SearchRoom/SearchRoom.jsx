@@ -3,54 +3,38 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, InputNumber, Popover, Row } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { addSearchDate } from '../../store/Slice/Booking/BookingSlice';
 import './SearchRoom.scss';
 
 const { RangePicker } = DatePicker;
 
-const SearchRoom = ({ onClickSearch, setDateCheckin, setDateCheckout }) => {
+const SearchRoom = ({
+  onClickSearch,
+  adultsDefault,
+  childrenDefault,
+  dateDefault,
+}) => {
   const DATE_FORMAT = 'DD-MM-YYYY';
-  const searchDate = useSelector((state) => state.booking.searchDate);
 
   const [visible, setVisible] = useState(false);
-  const [checkIn, setCheckIn] = useState(moment());
-  const [checkOut, setCheckOut] = useState(moment().add(3, 'day'));
-  const [date] =
-    searchDate.checkIn && searchDate.checkOut
-      ? useState([
-          moment(searchDate.checkIn * 1000),
-          moment(searchDate.checkOut * 1000),
-        ])
-      : useState([moment(), moment(moment().add(3, 'day'))]);
-
-  const dispatch = useDispatch();
-
-  const [children, setChildren] = useState(1);
-  const [adults, setAdults] = useState(1);
+  const [date, setDate] = useState(dateDefault);
+  const [children, setChildren] = useState(childrenDefault);
+  const [adults, setAdults] = useState(adultsDefault);
 
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
   };
 
   const onFinish = (value) => {
-    setCheckIn(value.date[0].format(DATE_FORMAT));
-    setCheckOut(value.date[1].format(DATE_FORMAT));
-
-    dispatch(
-      addSearchDate({
-        checkIn: parseInt(value.date[0].format('X')),
-        checkOut: parseInt(value.date[1].format('X')),
-      })
-    );
-
-    onClickSearch({
-      checkIn: parseInt(moment(checkIn).format('X')),
-      checkOut: parseInt(moment(checkOut).format('X')),
-      adults: adults,
-      children: children,
-    });
+    if (value) {
+      setDate(value.date);
+      onClickSearch({
+        checkIn: parseInt(moment(date[0]).format('X')),
+        checkOut: parseInt(moment(date[1]).format('X')),
+        adults: adults,
+        children: children,
+      });
+    }
   };
 
   const content = (
@@ -72,20 +56,13 @@ const SearchRoom = ({ onClickSearch, setDateCheckin, setDateCheckout }) => {
     </Form>
   );
 
-  const onChange = (value) => {
-    setCheckIn(value[0]);
-    setCheckOut(value[1]);
-    setDateCheckin(parseInt(moment(value[0]).format('X')));
-    setDateCheckout(parseInt(moment(value[1]).format('X')));
-  };
-
   return (
     <div className="search__room__wrapper">
       <Form
         onFinish={onFinish}
         initialValues={{
-          children: children,
-          adults: adults,
+          children: childrenDefault,
+          adults: adultsDefault,
           date: date,
         }}
       >
@@ -102,7 +79,7 @@ const SearchRoom = ({ onClickSearch, setDateCheckin, setDateCheckout }) => {
                 format={DATE_FORMAT}
                 className="input"
                 size="large"
-                onChange={(value) => onChange(value)}
+                onCalendarChange={setDate}
                 allowClear={false}
               />
             </Form.Item>

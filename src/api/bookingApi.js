@@ -7,7 +7,7 @@ const bookingApi = {
         return axiosInstance.post('bookings', params)
     },
     verify: async (params) => {
-        useLocalToken()
+        useLocalToken();
         return axiosInstance.post('payment/check', params)
     },
     getAll: async () => {
@@ -15,10 +15,11 @@ const bookingApi = {
         return axiosInstance.get('/profile/bookings')
     },
     get: async (id) => {
-        useLocalToken()
+        useLocalToken();
         return axiosInstance.get(`bookings/${id}`)
     },
     repay: async(id) => {
+        useLocalToken();
         return axiosInstance.post(`bookings/${id}/repay`)
     }
 }

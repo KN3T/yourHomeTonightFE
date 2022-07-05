@@ -16,10 +16,6 @@ export const BookingSlice = createSlice({
         addConfirmation: (state, action) => {
             state.confirmation = action.payload
         },
-
-        addSearchDate: (state, action) => {
-            state.searchDate = action.payload
-        }
     }
 })
 

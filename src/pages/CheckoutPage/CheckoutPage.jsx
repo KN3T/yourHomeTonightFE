@@ -17,10 +17,8 @@ import './CheckoutPage.scss';
 
 const { Step } = Steps;
 const CheckoutPage = () => {
-  const loadingContext = useLoadingContext();
-
   const [form] = Form.useForm();
-  const bookingData = useSelector((state) => state.booking.orders.dateCheckin)
+  const bookingData = useSelector((state) => state.booking.orders.checkIn)
     ? useSelector((state) => state.booking.orders)
     : JSON.parse(localStorage.getItem('bookingData'));
 
@@ -28,8 +26,8 @@ const CheckoutPage = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
-  const nights = moment(bookingData.dateCheckout * 1000).diff(
-    moment(bookingData.dateCheckin * 1000),
+  const nights = moment(bookingData.checkOut * 1000).diff(
+    moment(bookingData.checkIn * 1000),
     'days'
   );
 
@@ -50,8 +48,8 @@ const CheckoutPage = () => {
     setLoading(true);
     const data = {
       ...values,
-      checkIn: bookingData.dateCheckin,
-      checkOut: bookingData.dateCheckout,
+      checkIn: bookingData.checkIn,
+      checkOut: bookingData.checkOut,
       userId: userData.id,
       roomId: bookingData.selectedRoom.id,
     };
@@ -128,7 +126,7 @@ const CheckoutPage = () => {
                       <div className="schedule__item">
                         <div className="title">CHECK-IN</div>
                         <div className="content">
-                          {moment(bookingData.dateCheckin * 1000).format(
+                          {moment(bookingData.checkIn * 1000).format(
                             'ddd, MMM Do YYYY'
                           )}
                         </div>
@@ -137,7 +135,7 @@ const CheckoutPage = () => {
                       <div className="schedule__item">
                         <div className="title">CHECK-OUT</div>
                         <div className="content">
-                          {moment(bookingData.dateCheckout * 1000).format(
+                          {moment(bookingData.checkOut * 1000).format(
                             'ddd, MMM Do YYYY'
                           )}
                         </div>

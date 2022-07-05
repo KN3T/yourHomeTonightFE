@@ -1,29 +1,38 @@
 /* eslint-disable no-unused-vars */
-import { Form, Layout, Popover, Rate, Skeleton, Slider } from 'antd';
+import {
+  Col,
+  Form,
+  Input,
+  Layout,
+  Popover,
+  Rate,
+  Row,
+  Skeleton,
+  Slider,
+} from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useSearchParams } from 'react-router-dom';
-import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
 import { HotelList, SearchInHotels } from '../../components';
+import formatCurrency from '../../utils/formatCurrency';
 import './HotelInCityPage.scss';
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 
 const HotelInCityPage = () => {
-  const loadingContext = useLoadingContext();
-
   const [form] = Form.useForm();
   const [sortValue, setSortValue] = useState('high to low');
   const [visibleSortOption, setVisibleSortOption] = useState(false);
   const [hotelsData, setHotelsData] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   const [params, setParams] = useState({
     limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')) : 10,
@@ -40,7 +49,8 @@ const HotelInCityPage = () => {
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 1000000000000,
+      : 10000,
+    rating: searchParams.get('rating') ? searchParams.get('rating') : 0,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });
 
@@ -133,91 +143,130 @@ const HotelInCityPage = () => {
       maxPrice: value[1],
     });
   };
-  loadingContext.done();
+
+  const onChangeRating = (value) => {
+    setParams({
+      ...params,
+      rating: parseInt(value),
+    });
+    setSearchParams({
+      ...params,
+      rating: parseInt(value),
+    });
+  };
 
   return (
     <div className="hotelpage__container">
-      <Layout className="hotelpage__wrapper">
-        <Sider className="hotelpage__sider" width={300}>
-          <Form form={form}>
-            <div className="filter__section">
-              <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
-              <div className="filter__item">
-                <div className="filter__rating">
-                  <h3 className="filter__title">{t('hotels.rating')}</h3>
-                  <Form.Item name="rating">
-                    <Rate allowHalf defaultValue={1} />
-                  </Form.Item>
+      <Row className="hotelpage__wrapper ctn" gutter={10}>
+        <Col xxl={6} xl={6} lg={6} md={24} xs={24}>
+          <div className="hotelpage__sider">
+            <Form form={form}>
+              <div className="filter__section">
+                <h2 className="filter__heading">{t('hotels.filter_by')}:</h2>
+                <div className="filter__item">
+                  <div className="filter__rating">
+                    <h3 className="filter__title">{t('hotels.rating')}</h3>
+                    <Form.Item name="rating">
+                      <Rate
+                        allowHalf
+                        defaultValue={0}
+                        onChange={onChangeRating}
+                      />
+                    </Form.Item>
+                  </div>
+                </div>
+                <div className="filter__item">
+                  <div className="filter__price">
+                    <h3 className="filter__title">
+                      {t('hotels.your_budget')} ({t('hotels.per_night')})
+                    </h3>
+                    <Form.Item name="price">
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(params.minPrice, currentLanguage),
+                        })}
+                      </span>
+                      <span> {t('hotels.to')} </span>
+                      <span>
+                        {t('hotels.price_value', {
+                          val: formatCurrency(params.maxPrice, currentLanguage),
+                        })}
+                      </span>
+                      <Slider
+                        tooltipVisible={false}
+                        className="filter__slider"
+                        range
+                        defaultValue={[minPrice, maxPrice]}
+                        min={minPrice}
+                        max={maxPrice}
+                        onChange={onFilterPrice}
+                      />
+                    </Form.Item>
+                  </div>
                 </div>
               </div>
-              <div className="filter__item">
-                <div className="filter__price">
-                  <h3 className="filter__title">
-                    {t('hotels.your_budget')} ({t('hotels.per_night')})
-                  </h3>
-                  <Form.Item name="price">
-                    <span>${params.minPrice}</span>
-                    <span> to </span>
-                    <span>${params.maxPrice}</span>
-                    <Slider
-                      tooltipVisible={false}
-                      className="filter__slider"
-                      range
-                      defaultValue={[minPrice, maxPrice]}
-                      min={minPrice}
-                      max={maxPrice}
-                      onChange={onFilterPrice}
-                    />
-                  </Form.Item>
-                </div>
-              </div>
-            </div>
-          </Form>
-        </Sider>
-        <Content className="hotels__section">
-          <SearchInHotels
-            onClickSearch={onClickSearch}
-            setSelectedCity={setSelectedCity}
-            city={params.city}
-          />
-          <div className="sort__button__wrapper">
-            {hotelsData ? (
-              <div className="result__list">
-                {hotelsData && hotelsData.length} {t('hotels.properties')}{' '}
-                {params.city
-                  ? t('hotels.related_to') + ' ' + params.city
-                  : 'of all city'}
-              </div>
-            ) : (
-              <div className="result__list">
-                No results found for {params.city}
-              </div>
-            )}
-
-            <Popover
-              content={sortOptions}
-              placement="bottomRight"
-              visible={visibleSortOption}
-              onClick={() => setVisibleSortOption(!visibleSortOption)}
-            >
-              <a className="sort__button">
-                {t('hotels.sort_by')}{' '}
-                <b>
-                  {' '}
-                  {t('hotels.price')}{' '}
-                  {sortValue === 'high to low'
-                    ? t('hotels.high_to_low')
-                    : t('hotels.low_to_high')}
-                </b>
-                <span>
-                  <IoIosArrowDown />
-                </span>
-              </a>
-            </Popover>
+            </Form>
           </div>
-          {hotelsData && <HotelList hotelListData={hotelsData} />}
-        </Content>
-      </Layout>
+        </Col>
+        <Col xxl={18} xl={18} lg={18} md={24} xs={24}>
+          <Content className="hotels__section">
+            <SearchInHotels
+              onClickSearch={onClickSearch}
+              setSelectedCity={setSelectedCity}
+              cityDefault={params.city}
+              adultsDefault={params.adults}
+              childrenDefault={params.children}
+              checkInDefault={params.checkIn}
+              checkOutDefault={params.checkOut}
+            />
+            <div className="sort__button__wrapper">
+              {hotelsData ? (
+                <div className="result__list">
+                  {hotelsData && hotelsData.length} {t('hotels.properties')}{' '}
+                  {params.city
+                    ? t('hotels.related_to') + ' ' + params.city
+                    : 'of all city'}
+                </div>
+              ) : (
+                <div className="result__list">
+                  No results found for {params.city}
+                </div>
+              )}
+
+              <Popover
+                content={sortOptions}
+                placement="bottomRight"
+                visible={visibleSortOption}
+                onClick={() => setVisibleSortOption(!visibleSortOption)}
+              >
+                <a className="sort__button">
+                  {t('hotels.sort_by')}{' '}
+                  <b>
+                    {' '}
+                    {t('hotels.price')}{' '}
+                    {sortValue === 'high to low'
+                      ? t('hotels.high_to_low')
+                      : t('hotels.low_to_high')}
+                  </b>
+                  <span>
+                    <IoIosArrowDown />
+                  </span>
+                </a>
+              </Popover>
+            </div>
+            {hotelsData && (
+              <HotelList
+                hotelListData={hotelsData}
+                cityDefault={params.city}
+                adultsDefault={params.adults}
+                childrenDefault={params.children}
+                checkInDefault={params.checkIn}
+                checkOutDefault={params.checkOut}
+              />
+            )}
+          </Content>
+        </Col>
+      </Row>
     </div>
   );
 };
