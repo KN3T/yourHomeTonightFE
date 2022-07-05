@@ -3,6 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Col, DatePicker, Form, InputNumber, Popover, Row } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import './SearchRoom.scss';
 
@@ -37,20 +38,22 @@ const SearchRoom = ({
     }
   };
 
+  const { t } = useTranslation();
+
   const content = (
     <Form
       labelCol={{
-        span: 10,
+        span: 12,
       }}
       initialValues={{
         adults: adults,
         children: children,
       }}
     >
-      <Form.Item name="adults" label="Adults">
+      <Form.Item name="adults" label={t('search.adults')}>
         <InputNumber onChange={(e) => setAdults(e)} min={1} />
       </Form.Item>
-      <Form.Item name="children" label="Children">
+      <Form.Item name="children" label={t('search.children')}>
         <InputNumber onChange={(e) => setChildren(e)} min={1} />
       </Form.Item>
     </Form>
@@ -106,7 +109,8 @@ const SearchRoom = ({
                     onClick={handleVisibleChange}
                   >
                     {' '}
-                    {adults} Adults, {children} Children
+                    {adults} {t('search.adults')}, {children}{' '}
+                    {t('search.children')}
                   </Button>
                 </Popover>
                 <div className="search__btn">
