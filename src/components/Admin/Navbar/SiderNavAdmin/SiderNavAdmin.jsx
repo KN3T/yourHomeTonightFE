@@ -1,9 +1,4 @@
-import {
-  HomeOutlined,
-  TwitterOutlined,
-  UserOutlined,
-  UserSwitchOutlined,
-} from '@ant-design/icons';
+import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -61,12 +56,6 @@ const SiderNavAdmin = () => {
           <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
             <span className="text__icon">Rooms</span>
-          </NavLink>
-        </Space>
-        <Space className="space">
-          <NavLink className="link" to="bookings">
-            <UserSwitchOutlined className="icon" />
-            <span className="text__icon">Bookings</span>
           </NavLink>
         </Space>
       </div>

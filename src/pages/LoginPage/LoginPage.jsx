@@ -1,6 +1,7 @@
 import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { loginApi } from '../../api';
@@ -13,6 +14,8 @@ const LoginPage = () => {
 
   const [loadingButton, setLoadingButton] = useState(false);
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoadingButton(true);
@@ -31,7 +34,11 @@ const LoginPage = () => {
         localStorage.setItem('role', role);
         setLoadingButton(false);
         useLocalToken();
-        history.back();
+        if (role === 'ROLE_HOTEL') {
+          navigate(`/manageHotel/${response.data.data.hotelId}`);
+        } else if (role === 'ROLE_USER') {
+          history.back();
+        }
         message.success('Login successfully');
       }
     } catch (error) {
