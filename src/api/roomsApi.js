@@ -26,6 +26,7 @@ export const roomsApi = {
     } ,
 
     add: (params) => {
+        useLocalToken();
         return axiosInstance.post(`/hotels/${params.id}/rooms`, {
             number: params.number,
             type: params.type,
@@ -37,5 +38,25 @@ export const roomsApi = {
             description: params.description,
             images: params.images
         })
+    },
+
+    update: (params) => {
+        useLocalToken();
+        return axiosInstance.put(`/hotels/${params.hotelId}/rooms/${params.roomId}`, {
+            number: params.number,
+            type: params.type,
+            price: params.price,
+            adults: params.adults,
+            children: params.children,
+            asset: params.asset,
+            beds: params.beds,
+            description: params.description,
+            images: params.images
+        })
+    },
+
+    delete: (params) => {
+        useLocalToken();
+        return axiosInstance.delete(`/hotels/${params.id}/rooms/${params.roomId}`)
     }
 }
