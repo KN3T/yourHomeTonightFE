@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Table, Tag } from 'antd';
 import { Card, Col, Divider, Image, Row } from 'antd';
+import moment from 'moment';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -102,32 +103,26 @@ const RoomDetail = () => {
 
   const params = useParams();
 
-  // const customData = (data) => {
-  //   let array = [];
-  //   data &&
-  //     data.map((e) => {
-  //       array.push({
-  //         key: e.id,
-  //         id: e.id,
-  //         fullName: e.fullName,
-  //         phone: e.phone,
-  //         email: e.email,
-  //         status: e.status,
-  //         total: e.total,
-  //         checkIn: new Date(e.checkIn.date)
-  //           .toLocaleString('vi-VN')
-  //           .split('00:00:00,'),
-  //         checkOut: new Date(e.checkOut.date)
-  //           .toLocaleString('vi-VN')
-  //           .split('00:00:00,'),
-  //         createdAt: new Date(e.createdAt.date)
-  //           .toLocaleString('vi-VN')
-  //           .split('00:00:00,'),
-  //       });
-  //     });
+  const customData = (data) => {
+    let array = [];
+    data &&
+      data.map((e) => {
+        array.push({
+          key: e.id,
+          id: e.id,
+          fullName: e.fullName,
+          phone: e.phone,
+          email: e.email,
+          status: e.status,
+          total: e.total,
+          checkIn: moment(e.checkIn.date).format('DD-MM-YYYY'),
+          checkOut: moment(e.checkOut.date).format('DD-MM-YYYY'),
+          createdAt: moment(e.createdAt.date).format('DD-MM-YYYY'),
+        });
+      });
 
-  //   return array;
-  // };
+    return array;
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -143,7 +138,7 @@ const RoomDetail = () => {
   useEffect(() => {
     const fetchRoom = async () => {
       const room = await bookingApi.bookingById(params.id, params.roomId);
-      setListDetail(room.data.data.bookings);
+      setListDetail(customData(room.data.data.bookings));
     };
     fetchRoom();
   }, [detailRoom]);
@@ -152,7 +147,7 @@ const RoomDetail = () => {
     <Row>
       <Col span={24}>
         <div className="card_container">
-          <div className="card ctn">
+          <div className="card">
             <div className="site-card-border-less-wrapper">
               <Card
                 title="Room Detail"
@@ -261,7 +256,7 @@ const RoomDetail = () => {
           <Divider />
         </div>
         <div className="card_container">
-          <div className="card ctn">
+          <div className="card">
             <h1 className="title">Booking Information</h1>
             <Table
               dataSource={listDetail}
