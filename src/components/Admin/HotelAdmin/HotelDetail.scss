@@ -19,6 +19,9 @@
         .ant-card-head-title {
           color: #ff690f;
           font-size: 30px;
+          p.ant-col {
+            vertical-align: middle;
+          }
         }
       }
     }

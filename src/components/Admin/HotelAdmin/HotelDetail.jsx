@@ -79,6 +79,8 @@ const HotelDetail = () => {
         fullName: e.fullName,
         phone: e.phone,
         email: e.email,
+        status: e.status,
+        total: e.total,
         checkIn: new Date(e.checkIn.date)
           .toLocaleString('vi-VN')
           .split('00:00:00,'),
@@ -96,13 +98,9 @@ const HotelDetail = () => {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const data = await roomsApi.getDetail(9, 56);
-        if (data.status === 200) {
-          setDetailRoom(data.data.data);
-        }
-      } catch (error) {
-        console.log(error);
+      const data = await roomsApi.getDetail(9, 56);
+      if (data.status === 200) {
+        setDetailRoom(data.data.data);
       }
     }
 
@@ -112,12 +110,8 @@ const HotelDetail = () => {
   useEffect(() => {
     if (detailRoom) {
       async function fetchRoom() {
-        try {
-          const room = await bookingApi.bookingById(9, detailRoom.id);
-          setListDetail(customData(room.data.data.bookings));
-        } catch (error) {
-          console.log(error);
-        }
+        const room = await bookingApi.bookingById(9, detailRoom.id);
+        setListDetail(customData(room.data.data.bookings));
       }
 
       fetchRoom();
@@ -138,89 +132,95 @@ const HotelDetail = () => {
                 }}
               >
                 <Row>
-                  <Col span={8} style={{ paddingTop: '35px' }}>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <ContactsOutlined />
-                      </span>{' '}
-                      <span> Room name: </span>
-                      <span>{detailRoom.number}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <DollarOutlined />
-                      </span>{' '}
-                      <span> Price: </span>
-                      <span>{detailRoom.price}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <UserOutlined />
-                      </span>{' '}
-                      <span> Adults: </span>
-                      <span>{detailRoom.adults}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        <LaptopOutlined />
-                      </span>{' '}
-                      <span> Assets: </span>
-                      <span>
-                        {detailRoom.asset && detailRoom.asset.toString()}
-                      </span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        <FileTextOutlined />
-                      </span>{' '}
-                      <span> Description: </span>
-                      <span>{detailRoom.description}</span>
-                    </p>
-                  </Col>
-                  <Col span={8} style={{ paddingTop: '35px' }}>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <ProfileOutlined />{' '}
-                      </span>{' '}
-                      <span> Type: </span>
-                      <span>{detailRoom.type}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <RedditOutlined />
-                      </span>{' '}
-                      <span> Beds: </span>
-                      <span>{detailRoom.beds}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <TeamOutlined />
-                      </span>{' '}
-                      <span> Children: </span>
-                      <span>{detailRoom.children}</span>
-                    </p>
-                    <p>
-                      <span className="icon">
-                        {' '}
-                        <SmileOutlined />{' '}
-                      </span>{' '}
-                      <span> Rating: </span>
-                      <span>{detailRoom.rating}</span>
-                    </p>
+                  <Col span={8}>
+                    <div className="room_wrapper">
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <ContactsOutlined />
+                        </span>{' '}
+                        <span> Room name: </span>
+                        <span>{detailRoom.number}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <DollarOutlined />
+                        </span>{' '}
+                        <span> Price: </span>
+                        <span>{detailRoom.price}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <UserOutlined />
+                        </span>{' '}
+                        <span> Adults: </span>
+                        <span>{detailRoom.adults}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          <LaptopOutlined />
+                        </span>{' '}
+                        <span> Assets: </span>
+                        <span>
+                          {detailRoom.asset && detailRoom.asset.toString()}
+                        </span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          <FileTextOutlined />
+                        </span>{' '}
+                        <span> Description: </span>
+                        <span>{detailRoom.description}</span>
+                      </p>
+                    </div>
                   </Col>
                   <Col span={8}>
-                    <div>
-                      <Image
-                        className="img_rooms"
-                        src={detailRoom.images[0].src}
-                      />
+                    <div className="room_wrapper">
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <ProfileOutlined />{' '}
+                        </span>{' '}
+                        <span> Type: </span>
+                        <span>{detailRoom.type}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <RedditOutlined />
+                        </span>{' '}
+                        <span> Beds: </span>
+                        <span>{detailRoom.beds}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <TeamOutlined />
+                        </span>{' '}
+                        <span> Children: </span>
+                        <span>{detailRoom.children}</span>
+                      </p>
+                      <p>
+                        <span className="icon">
+                          {' '}
+                          <SmileOutlined />{' '}
+                        </span>{' '}
+                        <span> Rating: </span>
+                        <span>{detailRoom.rating}</span>
+                      </p>
                     </div>
+                  </Col>
+                  <Col span={8}>
+                    {detailRoom.images && (
+                      <div className="room_wrapper">
+                        <Image
+                          className="img_rooms"
+                          src={detailRoom?.images[0]?.src}
+                        />
+                      </div>
+                    )}
                   </Col>
                 </Row>
               </Card>
