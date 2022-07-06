@@ -1,4 +1,4 @@
-import { Input, Skeleton, Space, Table, Tag } from 'antd';
+import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 
@@ -68,6 +68,12 @@ const TableBookings = ({ bookings }) => {
       title: 'Total',
       dataIndex: 'total',
       key: 'total',
+    },
+    {
+      title: 'Action',
+      dataIndex: '',
+      key: '',
+      render: () => <Button danger>Mark as done</Button>,
     },
   ];
 

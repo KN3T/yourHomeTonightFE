@@ -92,7 +92,6 @@ const Transaction = ({ bookings }) => {
           </Col>
         ))}
       </Row>
-      =
     </div>
   );
 };
