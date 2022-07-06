@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button, Card, Col, Image, Row, Space, Tag } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -9,7 +10,7 @@ const Transaction = ({ bookings }) => {
   const handleStatusBooking = (status) => {
     switch (status) {
       case 2:
-        return 'Success';
+        return 'Paid';
       case 3:
         return 'Cancelled';
       case 4:
@@ -57,8 +58,19 @@ const Transaction = ({ bookings }) => {
             xs={{ span: 24 }}
           >
             <Card hoverable>
-              <Space style={{ marginBottom: 10 }}>
-                <Image key={key} src={booking.room.images[0].src} />
+              <Space
+                style={{
+                  marginBottom: 10,
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <Image
+                  height={200}
+                  key={key}
+                  src={booking.room.images[0].src}
+                />
               </Space>
               <Space className="space__glimpse">
                 <span>Hotel</span>
@@ -92,7 +104,6 @@ const Transaction = ({ bookings }) => {
           </Col>
         ))}
       </Row>
-      =
     </div>
   );
 };
