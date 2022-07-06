@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-loading';
 
 import { ClientLayout } from '../components';
 import AdminLayout from '../components/Admin/AdminLayout/AdminLayout';
-import HotelDetail from '../components/Admin/HotelAdmin/HotelDetail/';
+import RoomDetail from '../components/Admin/HotelAdmin/RoomDetail/RoomDetail';
 import {
   CheckoutConfirmationPage,
   CheckoutPage,
@@ -40,10 +40,9 @@ const Router = () => {
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="rooms" element={<HotelManagement />} />
-          {/* <Route path="/roomDetail/:id" element={<HotelDetail />} /> */}
         </Route>
         <Route element={<AdminLayout />}>
-          <Route path="/roomDetail" element={<HotelDetail />} />
+          <Route path="/roomDetail" element={<RoomDetail />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

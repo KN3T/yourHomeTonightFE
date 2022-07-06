@@ -14,11 +14,11 @@ import { Card, Col, Divider, Image, Row } from 'antd';
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import bookingApi from '../../../api/bookingApi';
-import { roomsApi } from '../../../api/roomsApi';
-import './HotelDetail.scss';
+import bookingApi from '../../../../api/bookingApi';
+import { roomsApi } from '../../../../api/roomsApi';
+import './RoomDetail.scss';
 
-const HotelDetail = () => {
+const RoomDetail = () => {
   const columns = [
     {
       title: 'Id',
@@ -244,4 +244,4 @@ const HotelDetail = () => {
   );
 };
 
-export default HotelDetail;
+export default RoomDetail;
