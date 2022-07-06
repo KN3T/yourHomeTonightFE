@@ -126,7 +126,7 @@ const ModalEdit = ({ visible, onCancel, handleEditRoom, editRoomData }) => {
         width={800}
         visible={visible}
         title="Edit room"
-        okText="Create"
+        okText="Update room"
         cancelText="Cancel"
         onCancel={onCancel}
         onOk={() => {

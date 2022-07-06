@@ -23,13 +23,6 @@ const UserControl = () => {
       <Menu
         items={[
           {
-            label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
-            key: '0',
-          },
-          {
-            type: 'divider',
-          },
-          {
             label: <Link to={`/manageHotel/${hotelId}`}>My Hotel</Link>,
             key: '1',
           },

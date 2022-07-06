@@ -165,6 +165,7 @@ const HotelAdmin = () => {
   };
 
   const handleAddRoom = async (values) => {
+    setAddVisible(false);
     setLoading(true);
     try {
       const response = await roomsApi.add({ ...values, id });
@@ -199,10 +200,8 @@ const HotelAdmin = () => {
                 images: values.imagesSrc,
               },
             ]);
-        setAddVisible(false);
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
+        setLoading(false);
+        message.success(`Room ${response.data.data.number} is added!!!`);
       }
     } catch (error) {
       setLoading(false);
@@ -212,6 +211,7 @@ const HotelAdmin = () => {
 
   const handleEditRoom = async (values) => {
     setLoading(true);
+    setEditVisible(false);
     try {
       const response = await roomsApi.update({
         ...values,
@@ -236,10 +236,8 @@ const HotelAdmin = () => {
           images: response.data.data.images,
         };
         setDataSource(initialData);
-        setEditVisible(false);
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
+        setLoading(false);
+        message.success(`Room ${response.data.data.number} is updated!!!`);
       }
     } catch (error) {
       setLoading(false);
