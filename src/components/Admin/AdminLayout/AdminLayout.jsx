@@ -7,7 +7,7 @@ const AdminLayout = () => {
   const role = window.localStorage.getItem('role');
 
   if (role !== 'ROLE_HOTEL') {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return (
