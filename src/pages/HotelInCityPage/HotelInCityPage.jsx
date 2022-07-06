@@ -94,7 +94,6 @@ const HotelInCityPage = () => {
       order: 'asc',
     });
   };
-  loadingContext.done();
   const sortOptions = (
     <div className="sort__options">
       <ul>
@@ -156,6 +155,7 @@ const HotelInCityPage = () => {
       rating: parseInt(value),
     });
   };
+  loadingContext.done();
 
   return (
     <div className="hotelpage__container">

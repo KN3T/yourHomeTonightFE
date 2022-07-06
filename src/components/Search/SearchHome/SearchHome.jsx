@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { IoBedSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { cityApi, hotelApi } from '../../../api';
 import './index.scss';
@@ -26,6 +27,7 @@ import './index.scss';
 const { RangePicker } = DatePicker;
 
 const SearchHome = () => {
+  const loadingContext = useLoadingContext();
   const DATE_FORMAT = 'DD-MM-YYYY';
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -155,7 +157,7 @@ const SearchHome = () => {
   const onSelect = (value) => {
     setCityName(value);
   };
-
+  loadingContext.done();
   return (
     <div className="search__home__wrapper">
       <Form
