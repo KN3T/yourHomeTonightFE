@@ -20,8 +20,6 @@ import Dashboard from '../pages/Admin/Dashboard/Dashboard';
 import HotelManagement from '../pages/Admin/HotelManagement/HotelManagement';
 
 const Router = () => {
-  const role = window.localStorage.getItem('role');
-
   return (
     <>
       <Routes>
@@ -38,13 +36,11 @@ const Router = () => {
           />
         </Route>
 
-        {role && role === 'ROLE_HOTEL' && (
-          <Route path="/manageHotel/:id" element={<AdminLayout />} loading>
-            <Route index element={<Dashboard />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="rooms" element={<HotelManagement />} />
-          </Route>
-        )}
+        <Route path="/manageHotel/:id" element={<AdminLayout />} loading>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="rooms" element={<HotelManagement />} />
+        </Route>
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
