@@ -61,7 +61,7 @@ const Dashboard = () => {
               className="dashboard__row__card__revenue__tag__countUp"
               color="cyan"
             >
-              {<CountUp end={total.totalRevenue} />}
+              {<CountUp duration={1} end={total.totalRevenue} />}
             </Tag>
           </Tag>
           <Tag className="dashboard__row__card__bookings__tag" color="blue">
@@ -70,7 +70,7 @@ const Dashboard = () => {
               className="dashboard__row__card__bookings__tag__countUp"
               color="blue"
             >
-              {<CountUp end={total.totalBookings} />}
+              {<CountUp duration={1} end={total.totalBookings} />}
             </Tag>
           </Tag>
         </Col>

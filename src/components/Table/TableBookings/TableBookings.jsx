@@ -2,6 +2,7 @@ import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 
+import { hotelApi } from '../../../api';
 import handleTag from '../../../utils/handleTag';
 import './TableBookings.scss';
 
@@ -17,6 +18,10 @@ const TableBookings = ({ bookings }) => {
   }));
 
   const [dataSearch, setDataSearch] = useState(data);
+
+  const handleMarkAsDone = async (id) => {
+    await hotelApi.markAsDoneBooking(id);
+  };
 
   const columns = [
     {
@@ -59,8 +64,8 @@ const TableBookings = ({ bookings }) => {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
-      render: (_, { record }) => {
-        const { color, text } = handleTag(record);
+      render: (item) => {
+        const { color, text } = handleTag(item);
         return <Tag color={color}>{text}</Tag>;
       },
     },
@@ -71,9 +76,13 @@ const TableBookings = ({ bookings }) => {
     },
     {
       title: 'Action',
-      dataIndex: '',
+      dataIndex: 'id',
       key: '',
-      render: () => <Button danger>Mark as done</Button>,
+      render: (id) => (
+        <Button onClick={() => handleMarkAsDone(id)} danger>
+          Mark as done
+        </Button>
+      ),
     },
   ];
 
