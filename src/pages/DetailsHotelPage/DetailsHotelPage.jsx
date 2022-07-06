@@ -1,5 +1,8 @@
-/* eslint-disable no-unused-vars */
-import { CaretDownOutlined, PhoneOutlined } from '@ant-design/icons';
+import {
+  CaretDownOutlined,
+  PhoneOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
@@ -161,6 +164,12 @@ const DetailsHotelPage = () => {
       checkOut: values.checkOut,
     });
   };
+
+  const handleScrollIntoView = () => {
+    const list__rooms = document.getElementById('list__rooms');
+    list__rooms.scrollIntoView({ behavior: 'smooth' });
+  };
+
   loadingContext.done();
   return (
     <div className="details__hotel__wrapper">
@@ -238,7 +247,7 @@ const DetailsHotelPage = () => {
                         {t('details__hotel.night')}
                       </span>
                     </h1>
-                    <Button type="primary">
+                    <Button onClick={handleScrollIntoView} type="primary">
                       {t('details__hotel.view__rooms')}
                       <CaretDownOutlined />
                     </Button>
