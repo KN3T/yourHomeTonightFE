@@ -74,7 +74,6 @@ const CheckoutPageConfirmation = () => {
   const handleRepay = async () => {
     setLoading(true);
     const response = await bookingApi.repay(bookingId);
-    console.log(response);
     if (response.data.status === 'success') {
       location.replace(response.data.data[0]);
       setLoading(false);
@@ -84,7 +83,7 @@ const CheckoutPageConfirmation = () => {
   const handleStatusBooking = (status) => {
     switch (status) {
       case 2:
-        return 'SUCCESS';
+        return 'PAID';
       case 3:
         return 'CANCELED';
       case 4:

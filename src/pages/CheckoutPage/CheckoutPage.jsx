@@ -41,9 +41,7 @@ const CheckoutPage = () => {
 
   const tax = subTotal * 0.1;
 
-  const userData =
-    window.localStorage.getItem('useData') &&
-    JSON.parse(window.localStorage.getItem('userData'));
+  const userData = JSON.parse(localStorage.getItem('userData'));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,6 +65,9 @@ const CheckoutPage = () => {
     } catch (error) {
       if (error.response.status === 403) {
         message.error("It's seem like you are not a regular user!!!");
+        setLoading(false);
+      } else {
+        message.error(error.response.data.message);
         setLoading(false);
       }
     }
@@ -192,14 +193,16 @@ const CheckoutPage = () => {
                   </div>
                 </div>
 
-                <div className="checkout__content__form">
-                  <CheckoutForm
-                    form={form}
-                    handleSubmitForm={handleSubmitForm}
-                    userData={userData}
-                    loading={loading}
-                  />
-                </div>
+                {userData && (
+                  <div className="checkout__content__form">
+                    <CheckoutForm
+                      form={form}
+                      handleSubmitForm={handleSubmitForm}
+                      userData={userData}
+                      loading={loading}
+                    />
+                  </div>
+                )}
               </Col>
               <Col xxl={8} xl={7} lg={7} md={24} sm={24} xs={24}>
                 <div className="checkout__content__summary">

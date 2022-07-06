@@ -1,14 +1,11 @@
-import { Button, Card, Col, Divider, Row, Steps, Tag } from 'antd';
+import { Button, Card, Col, Divider, Row, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BiTimeFive } from 'react-icons/bi';
 import { BsArrowDownCircle, BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import { IoBedSharp } from 'react-icons/io5';
-import { MdSecurity } from 'react-icons/md';
 import { MdOutlineChildCare } from 'react-icons/md';
-import { RiShieldCheckFill } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -16,8 +13,6 @@ import bookingApi from '../../api/bookingApi';
 import { BookingFeedback } from '../../components';
 import formatCurrency from '../../utils/formatCurrency';
 import './DetailsBookingPage.scss';
-
-const { Step } = Steps;
 
 const CheckoutPageConfirmation = () => {
   const loadingContext = useLoadingContext();
@@ -76,7 +71,6 @@ const CheckoutPageConfirmation = () => {
   const handleRepay = async () => {
     setLoading(true);
     const response = await bookingApi.repay(bookingId);
-    console.log(response);
     if (response.data.status === 'success') {
       location.replace(response.data.data[0]);
       setLoading(false);
@@ -86,7 +80,7 @@ const CheckoutPageConfirmation = () => {
   const handleStatusBooking = (status) => {
     switch (status) {
       case 2:
-        return 'SUCCESS';
+        return 'PAID';
       case 3:
         return 'CANCELED';
       case 4:
