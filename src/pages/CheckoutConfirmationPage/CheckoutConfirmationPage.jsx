@@ -68,7 +68,6 @@ const CheckoutPageConfirmation = () => {
       behavior: 'smooth',
     });
   };
-  loadingContext.done();
 
   const [loading, setLoading] = useState(false);
 
@@ -107,6 +106,8 @@ const CheckoutPageConfirmation = () => {
         return 'magenta';
     }
   };
+
+  loadingContext.done();
 
   return (
     <div className="checkout__confirmation__container">

@@ -41,6 +41,10 @@ const hotelApi = {
   getTotalRevenue: async(id) => {
     useLocalToken()
     return axiosInstance.get(`/hotels/${id}/revenue/last3Months`)
+  },
+  markAsDoneBooking: async(id) => {
+    useLocalToken()
+    return axiosInstance.post(`/bookings/${id}/done`)
   }
   
 };
