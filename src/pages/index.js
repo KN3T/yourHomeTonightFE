@@ -8,5 +8,5 @@ export { default as CheckoutVerifyPage } from './CheckoutVerifyPage/CheckoutVeri
 export { default as CheckoutConfirmationPage } from './CheckoutConfirmationPage/CheckoutConfirmationPage'
 export { default as UserProfilePage } from './UserProfilePage/UserProfilePage'
 export {default as DetailsBookingPage} from './DetailsBookingPage/DetailsBookingPage'
-
+export { default as NotFoundPage}  from './404/NotFound.jsx'
 
