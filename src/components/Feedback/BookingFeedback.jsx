@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { EditOutlined } from '@ant-design/icons';
 import { Avatar, Button, Comment, Form, Input, Rate, Space } from 'antd';
 import moment from 'moment';
@@ -38,6 +39,7 @@ const BookingFeedback = ({ id, status }) => {
 
   const [rating, setRating] = useState();
   const [content, setContent] = useState();
+  const [isEdit, setIsEdit] = useState(false);
 
   const [newFb, setNewFb] = useState({});
 
@@ -57,23 +59,34 @@ const BookingFeedback = ({ id, status }) => {
     getFbPerBooking();
   }, []);
 
-  const onFinish = () => {
-    const addFbAsync = async () => {
+  const onFinish = async () => {
+    if (!isEdit) {
       const dataUpdate = await feedbackApi.addFeedback({ rating, content, id });
       dataUpdate && setFbData(dataUpdate.data.data);
-    };
+    } else {
+      const dataUpdate = await feedbackApi.updateFeedback({
+        rating,
+        content,
+        id,
+      });
+      dataUpdate && setFbData(dataUpdate.data.data);
+    }
+
     setIsFb(true);
-    addFbAsync();
   };
 
   const onChangeRating = (e) => {
     setRating(e);
     fbData.rating = e;
   };
-
   const onChangeContent = (e) => {
     setContent(e.target.value);
     fbData.content = e.target.value;
+  };
+
+  const onClickEdit = () => {
+    setIsFb(false);
+    setIsEdit(true);
   };
 
   return (
@@ -100,11 +113,7 @@ const BookingFeedback = ({ id, status }) => {
             }
             content={<p>{newFb.content ? newFb.content : fbData.content}</p>}
           />
-          <Button
-            onClick={() => setIsFb(false)}
-            type="text"
-            className="btn__edit"
-          >
+          <Button type="text" className="btn__edit" onClick={onClickEdit}>
             <EditOutlined />
           </Button>
         </Space>

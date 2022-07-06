@@ -70,7 +70,7 @@ const Dashboard = () => {
               className="dashboard__row__card__bookings__tag__countUp"
               color="blue"
             >
-              {<CountUp end={total.Bookings} />}
+              {<CountUp end={total.totalBookings} />}
             </Tag>
           </Tag>
         </Col>

@@ -15,23 +15,50 @@ const UserControl = () => {
 
   const { t } = useTranslation();
 
-  const menu = (
-    <Menu
-      items={[
-        {
-          label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
-          key: '0',
-        },
-        {
-          type: 'divider',
-        },
-        {
-          label: <span onClick={logout}>{t('navbar.logout')}</span>,
-          key: '1',
-        },
-      ]}
-    />
-  );
+  const userRole = localStorage.getItem('role');
+  const hotelId = userData.hotelId;
+
+  const menu =
+    userRole === 'ROLE_HOTEL' ? (
+      <Menu
+        items={[
+          {
+            label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
+            key: '0',
+          },
+          {
+            type: 'divider',
+          },
+          {
+            label: <Link to={`/manageHotel/${hotelId}`}>My Hotel</Link>,
+            key: '1',
+          },
+          {
+            type: 'divider',
+          },
+          {
+            label: <span onClick={logout}>{t('navbar.logout')}</span>,
+            key: '3',
+          },
+        ]}
+      />
+    ) : (
+      <Menu
+        items={[
+          {
+            label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
+            key: '0',
+          },
+          {
+            type: 'divider',
+          },
+          {
+            label: <span onClick={logout}>{t('navbar.logout')}</span>,
+            key: '1',
+          },
+        ]}
+      />
+    );
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
