@@ -1,4 +1,5 @@
 import { axiosInstance } from "./axiosInstance";
+import useLocalToken from './helpers'
 
 const DEFAULT_URL = 'hotels';
 
@@ -33,7 +34,16 @@ const hotelApi = {
 
   getPrices() {
     return axiosInstance.get('getPrices')
+  },
+  revenue: async(id) => {
+    useLocalToken()
+    return axiosInstance.get(`/hotels/${id}/revenue`)
+  },
+  getTotalRevenue: async(id) => {
+    useLocalToken()
+    return axiosInstance.get(`/hotels/${id}/revenue/last3Months`)
   }
+  
 };
 
 export default hotelApi;
