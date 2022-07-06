@@ -35,6 +35,7 @@ const UserProfilePage = () => {
 
   const handleSubmitForm = (values) => {};
   loadingContext.done();
+
   return (
     <div className="profile__container">
       <div className="profile__wrapper">

@@ -6,8 +6,12 @@ export const feedbackApi = {
     },
     addFeedback: async (params) => {
         const {id, ...feedback} = params
-        return axiosInstance.put(`/bookings/${id}/rating`, feedback)
+        return axiosInstance.post(`/bookings/${id}/rating`, feedback)
+    },
 
+    updateFeedback: async (params) => {
+        const {id, ...feedback} = params
+        return axiosInstance.put(`/bookings/${id}/rating`, feedback)
     },
     getFeedbackPerBooking: async (idBooking) => {
         return axiosInstance.get(`/bookings/${idBooking}/rating`)
