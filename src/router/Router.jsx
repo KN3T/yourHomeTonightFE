@@ -23,31 +23,40 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route element={<GuestLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/hotels" element={<HotelInCityPage />} />
-          <Route path="/hotels/:id" element={<DetailsHotelPage />} />
+        <Route element={<GuestLayout />} loading>
+          <Route path="/" element={<HomePage />} loading />
+          <Route path="/hotels" element={<HotelInCityPage />} loading />
+          <Route path="/hotels/:id" element={<DetailsHotelPage />} loading />
         </Route>
 
-        <Route element={<ClientLayout />}>
-          <Route path="/userProfile" element={<UserProfilePage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/detailsBooking/:id" element={<DetailsBookingPage />} />
+        <Route element={<ClientLayout />} loading>
+          <Route path="/userProfile" element={<UserProfilePage />} loading />
+          <Route path="/checkout" element={<CheckoutPage />} loading />
+          <Route
+            path="/detailsBooking/:id"
+            element={<DetailsBookingPage />}
+            loading
+          />
           <Route
             path="/checkoutConfirmation/:id"
             element={<CheckoutConfirmationPage />}
+            loading
           />
         </Route>
 
         <Route path="/manageHotel/:id" element={<AdminLayout />} loading>
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="rooms" element={<HotelManagement />} />
+          <Route index element={<Dashboard />} loading />
+          <Route path="dashboard" element={<Dashboard />} loading />
+          <Route path="rooms" element={<HotelManagement />} loading />
         </Route>
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/checkoutVerify" element={<CheckoutVerifyPage />} />
+        <Route path="/login" element={<LoginPage />} loading />
+        <Route path="/register" element={<RegisterPage />} loading />
+        <Route
+          path="/checkoutVerify"
+          element={<CheckoutVerifyPage />}
+          loading
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

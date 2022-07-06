@@ -71,6 +71,7 @@ const CheckoutPage = () => {
       }
     }
   };
+
   loadingContext.done();
 
   return bookingData ? (

@@ -50,7 +50,9 @@ const LoginPage = () => {
   const onFinishFailed = () => {
     console.log('something went wrong');
   };
+
   loadingContext.done();
+
   return (
     <div className="login__container">
       <div className="login__wrapper">

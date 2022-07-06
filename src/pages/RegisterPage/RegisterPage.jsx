@@ -63,6 +63,7 @@ const RegisterPage = () => {
   const onFinishFailed = () => {
     console.log('something went wrong');
   };
+
   loadingContext.done();
 
   return (
