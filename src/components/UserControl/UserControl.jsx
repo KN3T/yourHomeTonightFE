@@ -14,10 +14,12 @@ const UserControl = () => {
   };
 
   const { t } = useTranslation();
-  const role = userData.role;
+
+  const userRole = localStorage.getItem('role');
+  const hotelId = userData.hotelId;
 
   const menu =
-    role === 'ROLE_HOTEL' ? (
+    userRole === 'ROLE_HOTEL' ? (
       <Menu
         items={[
           {
@@ -28,9 +30,7 @@ const UserControl = () => {
             type: 'divider',
           },
           {
-            label: (
-              <Link to={`/manageHotel/${userData.hotelId}`}>My Hotel</Link>
-            ),
+            label: <Link to={`/manageHotel/${hotelId}`}>My Hotel</Link>,
             key: '1',
           },
           {
@@ -38,7 +38,7 @@ const UserControl = () => {
           },
           {
             label: <span onClick={logout}>{t('navbar.logout')}</span>,
-            key: '2',
+            key: '3',
           },
         ]}
       />
