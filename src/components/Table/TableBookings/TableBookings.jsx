@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';

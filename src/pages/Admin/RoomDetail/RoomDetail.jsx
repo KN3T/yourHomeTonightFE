@@ -9,13 +9,16 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Table } from 'antd';
+import { Button, Table, Tag } from 'antd';
 import { Card, Col, Divider, Image, Row } from 'antd';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import bookingApi from '../../../../api/bookingApi';
-import { roomsApi } from '../../../../api/roomsApi';
+import { hotelApi } from '../../../api';
+import bookingApi from '../../../api/bookingApi';
+import { roomsApi } from '../../../api/roomsApi';
+import handleTag from '../../../utils/handleTag';
 import './RoomDetail.scss';
 
 const RoomDetail = () => {
@@ -26,19 +29,49 @@ const RoomDetail = () => {
       key: 'id',
     },
     {
-      title: 'Full Name',
+      title: 'Name',
       dataIndex: 'fullName',
       key: 'fullName',
     },
+    {
+      title: 'Check In',
+      dataIndex: 'checkIn',
+      key: 'checkIn',
+    },
+    {
+      title: 'Check Out',
+      dataIndex: 'checkOut',
+      key: 'checkOut',
+    },
+    {
+      title: 'Created At',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+
     {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (item) => {
+        console.log(item);
+        const { color, text, icon } = handleTag(item);
+        return (
+          <Tag color={color} icon={icon}>
+            {text}
+          </Tag>
+        );
+      },
     },
     {
       title: 'Total',
@@ -46,59 +79,59 @@ const RoomDetail = () => {
       key: 'total',
     },
     {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-    },
-    {
-      title: 'CheckIn',
-      dataIndex: 'checkIn',
-      key: 'checkIn',
-    },
-    {
-      title: 'CheckOut',
-      dataIndex: 'checkOut',
-      key: 'checkOut',
-    },
-    {
-      title: 'createdAt',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
+      title: 'Action',
+      dataIndex: 'id',
+      key: '',
+      render: (_, record) =>
+        record.status !== 4 && (
+          <Button onClick={() => handleMarkAsDone(record.id)} danger>
+            Mark as done
+          </Button>
+        ),
     },
   ];
+
+  const handleMarkAsDone = async (id) => {
+    await hotelApi.markAsDoneBooking(id);
+  };
 
   const [detailRoom, setDetailRoom] = useState('');
   const [listDetail, setListDetail] = useState([]);
 
-  const customData = (data) => {
-    let array = [];
-    data.map((e) => {
-      array.push({
-        key: e.id,
-        id: e.id,
-        fullName: e.fullName,
-        phone: e.phone,
-        email: e.email,
-        status: e.status,
-        total: e.total,
-        checkIn: new Date(e.checkIn.date)
-          .toLocaleString('vi-VN')
-          .split('00:00:00,'),
-        checkOut: new Date(e.checkOut.date)
-          .toLocaleString('vi-VN')
-          .split('00:00:00,'),
-        createdAt: new Date(e.createdAt.date)
-          .toLocaleString('vi-VN')
-          .split('00:00:00,'),
-      });
-    });
+  console.log(listDetail);
 
-    return array;
-  };
+  const params = useParams();
+
+  // const customData = (data) => {
+  //   let array = [];
+  //   data &&
+  //     data.map((e) => {
+  //       array.push({
+  //         key: e.id,
+  //         id: e.id,
+  //         fullName: e.fullName,
+  //         phone: e.phone,
+  //         email: e.email,
+  //         status: e.status,
+  //         total: e.total,
+  //         checkIn: new Date(e.checkIn.date)
+  //           .toLocaleString('vi-VN')
+  //           .split('00:00:00,'),
+  //         checkOut: new Date(e.checkOut.date)
+  //           .toLocaleString('vi-VN')
+  //           .split('00:00:00,'),
+  //         createdAt: new Date(e.createdAt.date)
+  //           .toLocaleString('vi-VN')
+  //           .split('00:00:00,'),
+  //       });
+  //     });
+
+  //   return array;
+  // };
 
   useEffect(() => {
     async function fetchData() {
-      const data = await roomsApi.getDetail(9, 56);
+      const data = await roomsApi.getDetail(params.id, params.roomId);
       if (data.status === 200) {
         setDetailRoom(data.data.data);
       }
@@ -108,21 +141,18 @@ const RoomDetail = () => {
   }, []);
 
   useEffect(() => {
-    if (detailRoom) {
-      async function fetchRoom() {
-        const room = await bookingApi.bookingById(9, detailRoom.id);
-        setListDetail(customData(room.data.data.bookings));
-      }
-
-      fetchRoom();
-    }
+    const fetchRoom = async () => {
+      const room = await bookingApi.bookingById(params.id, params.roomId);
+      setListDetail(room.data.data.bookings);
+    };
+    fetchRoom();
   }, [detailRoom]);
 
   return (
-    <>
-      <Row>
-        <Col className="card_container">
-          <div className="card">
+    <Row>
+      <Col span={24}>
+        <div className="card_container">
+          <div className="card ctn">
             <div className="site-card-border-less-wrapper">
               <Card
                 title="Room Detail"
@@ -226,11 +256,12 @@ const RoomDetail = () => {
               </Card>
             </div>
           </div>
-          <div className="card">
-            {' '}
-            <Divider />{' '}
-          </div>
-          <div className="card">
+        </div>
+        <div className="card">
+          <Divider />
+        </div>
+        <div className="card_container">
+          <div className="card ctn">
             <h1 className="title">Booking Information</h1>
             <Table
               dataSource={listDetail}
@@ -238,9 +269,9 @@ const RoomDetail = () => {
               pagination={false}
             />
           </div>
-        </Col>
-      </Row>
-    </>
+        </div>
+      </Col>
+    </Row>
   );
 };
 
