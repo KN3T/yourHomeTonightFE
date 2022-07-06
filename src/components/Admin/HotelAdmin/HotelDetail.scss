@@ -1,0 +1,33 @@
+.card {
+  width: 97%;
+  border-radius: 7px;
+  box-shadow: 0px 0px 2px 0px;
+  padding: 20px;
+  margin: 20px;
+
+  .title {
+    color: #ff690f;
+    padding-bottom: 10px;
+    &__center {
+      color: #ff690f;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+    }
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-around;
+  }
+  .item {
+    display: flex;
+    margin: 10px 0;
+    span {
+      margin-left: 10px;
+    }
+  }
+  .icon {
+    color: #ff690f;
+    font-weight: 700;
+  }
+}
