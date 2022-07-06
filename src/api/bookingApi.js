@@ -25,7 +25,12 @@ const bookingApi = {
     bookingById: async (idHotel ,idRoom) => {
         useLocalToken();
         return axiosInstance.get(`/hotels/${idHotel}/rooms/${idRoom}/bookings`);
-    }
+    },
+    getAllBookingHotel: async(id) => {
+        useLocalToken()
+        return axiosInstance.get(`/hotels/${id}/bookings`)
+    },
+
 }
 
 export default bookingApi

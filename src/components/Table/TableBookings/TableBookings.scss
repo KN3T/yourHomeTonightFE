@@ -1,0 +1,25 @@
+.table__bookings {
+  display: flex;
+  width: 100%;
+  border: 1px solid #a7d9f1;
+  padding: 0 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 10px;
+  &__space {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__tag {
+      font-size: 2rem;
+    }
+    &__search {
+      width: 50%;
+      margin-left: 50%;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

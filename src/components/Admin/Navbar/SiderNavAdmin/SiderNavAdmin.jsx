@@ -55,7 +55,7 @@ const SiderNavAdmin = () => {
         <Space className="space">
           <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
-            <span className="text__icon">Rooms</span>
+            <span className="text__icon">Manage Rooms</span>
           </NavLink>
         </Space>
       </div>
