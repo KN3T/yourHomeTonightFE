@@ -117,7 +117,6 @@ const ModalEdit = ({
               max={100}
               value={data.number}
               onChange={(e) => handleChangeForm(e, 'number')}
-              // prefix={<UserOutlined />}
             />
             <Input
               size="large"
@@ -125,7 +124,6 @@ const ModalEdit = ({
               placeholder="Price"
               value={data.price}
               onChange={(e) => handleChangeForm(e, 'price')}
-              //   prefix={<BorderlessTableOutlined />}
             />
             <InputNumber
               size="large"
@@ -135,7 +133,6 @@ const ModalEdit = ({
               max={100}
               value={data.adults}
               onChange={(e) => handleChangeForm(e, 'adults')}
-              // prefix={<UserOutlined />}
             />
             <InputNumber
               size="large"
@@ -145,7 +142,6 @@ const ModalEdit = ({
               max={100}
               value={data.children}
               onChange={(e) => handleChangeForm(e, 'children')}
-              // prefix={<UserOutlined />}
             />
             <InputNumber
               size="large"
@@ -155,9 +151,8 @@ const ModalEdit = ({
               max={100}
               value={data.beds}
               onChange={(e) => handleChangeForm(e, 'beds')}
-              // prefix={<UserOutlined />}
             />
-            {/* <Input size="large" className='width-400' onChange={(e)=>handleChangeForm(e,'description')} value={data.description} placeholder="Description" prefix={<MessageOutlined />} /> */}
+
             <Select
               size="large"
               mode="multiple"

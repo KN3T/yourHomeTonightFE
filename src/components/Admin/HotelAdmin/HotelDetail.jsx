@@ -1,6 +1,18 @@
+import {
+  ContactsOutlined,
+  DollarOutlined,
+  FileTextOutlined,
+  LaptopOutlined,
+  ProfileOutlined,
+  RedditOutlined,
+  SmileOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { Table } from 'antd';
+import { Card, Col, Divider, Image, Row } from 'antd';
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 import bookingApi from '../../../api/bookingApi';
 import { roomsApi } from '../../../api/roomsApi';
@@ -27,6 +39,16 @@ const HotelDetail = () => {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
+    },
+    {
+      title: 'Total',
+      dataIndex: 'total',
+      key: 'total',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
     },
     {
       title: 'CheckIn',
@@ -75,7 +97,7 @@ const HotelDetail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await roomsApi.getDetail(7, 14);
+        const data = await roomsApi.getDetail(9, 56);
         if (data.status === 200) {
           setDetailRoom(data.data.data);
         }
@@ -91,7 +113,7 @@ const HotelDetail = () => {
     if (detailRoom) {
       async function fetchRoom() {
         try {
-          const room = await bookingApi.bookingById(7, detailRoom.id);
+          const room = await bookingApi.bookingById(9, detailRoom.id);
           setListDetail(customData(room.data.data.bookings));
         } catch (error) {
           console.log(error);
@@ -104,51 +126,120 @@ const HotelDetail = () => {
 
   return (
     <>
-      <div className="card">
-        <h1 className="title">Room Detail</h1>
-        <div className="main">
-          <div className="col-left">
-            <div className="item">
-              <span className="icon">Tên Phòng: </span>
-              <span>{detailRoom.number}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Price: </span>
-              <span>{detailRoom.price}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Adults: </span>
-              <span>{detailRoom.adults}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Assets: </span>
-              <span>{detailRoom.asset && detailRoom.asset.toString()}</span>
+      <Row>
+        <Col className="card_container">
+          <div className="card">
+            <div className="site-card-border-less-wrapper">
+              <Card
+                title="Room Detail"
+                bordered={false}
+                style={{
+                  width: 300,
+                }}
+              >
+                <Row>
+                  <Col span={8} style={{ paddingTop: '35px' }}>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <ContactsOutlined />
+                      </span>{' '}
+                      <span> Room name: </span>
+                      <span>{detailRoom.number}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <DollarOutlined />
+                      </span>{' '}
+                      <span> Price: </span>
+                      <span>{detailRoom.price}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <UserOutlined />
+                      </span>{' '}
+                      <span> Adults: </span>
+                      <span>{detailRoom.adults}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        <LaptopOutlined />
+                      </span>{' '}
+                      <span> Assets: </span>
+                      <span>
+                        {detailRoom.asset && detailRoom.asset.toString()}
+                      </span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        <FileTextOutlined />
+                      </span>{' '}
+                      <span> Description: </span>
+                      <span>{detailRoom.description}</span>
+                    </p>
+                  </Col>
+                  <Col span={8} style={{ paddingTop: '35px' }}>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <ProfileOutlined />{' '}
+                      </span>{' '}
+                      <span> Type: </span>
+                      <span>{detailRoom.type}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <RedditOutlined />
+                      </span>{' '}
+                      <span> Beds: </span>
+                      <span>{detailRoom.beds}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <TeamOutlined />
+                      </span>{' '}
+                      <span> Children: </span>
+                      <span>{detailRoom.children}</span>
+                    </p>
+                    <p>
+                      <span className="icon">
+                        {' '}
+                        <SmileOutlined />{' '}
+                      </span>{' '}
+                      <span> Rating: </span>
+                      <span>{detailRoom.rating}</span>
+                    </p>
+                  </Col>
+                  <Col span={8}>
+                    <div>
+                      <Image
+                        className="img_rooms"
+                        src={detailRoom.images[0].src}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              </Card>
             </div>
           </div>
-          <div className="col-right">
-            <div className="item">
-              <span className="icon">Type: </span>
-              <span>{detailRoom.type}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Beds: </span>
-              <span>{detailRoom.beds}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Children: </span>
-              <span>{detailRoom.children}</span>
-            </div>
-            <div className="item">
-              <span className="icon">Rating: </span>
-              <span>{detailRoom.rating}</span>
-            </div>
+          <div className="card">
+            {' '}
+            <Divider />{' '}
           </div>
-        </div>
-      </div>
-      <div className="card">
-        <h1 className="title">Booking Information</h1>
-        <Table dataSource={listDetail} columns={columns} pagination={false} />
-      </div>
+          <div className="card">
+            <h1 className="title">Booking Information</h1>
+            <Table
+              dataSource={listDetail}
+              columns={columns}
+              pagination={false}
+            />
+          </div>
+        </Col>
+      </Row>
     </>
   );
 };

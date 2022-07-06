@@ -112,7 +112,6 @@ const ModalAdd = ({ isModalAddVisible, handleCancel }) => {
               max={100}
               value={data.children}
               onChange={(e) => handleChangeForm(e, 'children')}
-              // prefix={<UserOutlined />}
             />
             <InputNumber
               size="large"

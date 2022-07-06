@@ -1,33 +1,57 @@
-.card {
-  width: 97%;
-  border-radius: 7px;
-  box-shadow: 0px 0px 2px 0px;
-  padding: 20px;
-  margin: 20px;
-
-  .title {
-    color: #ff690f;
-    padding-bottom: 10px;
-    &__center {
+.card_container {
+  justify-content: center;
+  justify-items: center;
+  align-content: space-between;
+  .card {
+    width: 90%;
+    padding: 20px;
+    margin: 20px;
+    .site-card-border-less-wrapper {
+      p {
+        font-size: 16px;
+      }
+      padding: 30px;
+      background: #ececec;
+      border-radius: 30px;
+      .ant-card {
+        width: 100% !important;
+        border-radius: 30px;
+        .ant-card-head-title {
+          color: #ff690f;
+          font-size: 30px;
+        }
+      }
+    }
+    .title {
       color: #ff690f;
       padding-bottom: 10px;
-      text-transform: uppercase;
+      &__center {
+        color: #ff690f;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+      }
     }
-  }
-
-  .main {
-    display: flex;
-    justify-content: space-around;
-  }
-  .item {
-    display: flex;
-    margin: 10px 0;
-    span {
-      margin-left: 10px;
+    .main {
+      display: flex;
+      justify-content: space-around;
     }
-  }
-  .icon {
-    color: #ff690f;
-    font-weight: 700;
+    .item {
+      display: flex;
+      margin: 10px 0;
+      span {
+        margin-left: 10px;
+      }
+    }
+    .icon {
+      color: #ff690f;
+      font-weight: 700;
+    }
+    .img_rooms {
+      width: 100%;
+      vertical-align: middle;
+    }
+    .img_rooms:hover {
+      opacity: 0.8;
+    }
   }
 }
