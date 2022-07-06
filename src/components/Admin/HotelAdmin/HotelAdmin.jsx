@@ -24,6 +24,7 @@ const { confirm } = Modal;
 
 const HotelAdmin = () => {
   const [dataSource, setDataSource] = useState([]);
+  const [roomData, setRoomData] = useState([]);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const id = params.id;
@@ -36,7 +37,7 @@ const HotelAdmin = () => {
     setLoading(true);
     const response = await roomsApi.getAll(id);
     if (response.data.status === 'success') {
-      setDataSource(
+      setRoomData(
         response.data.data &&
           response.data.data.rooms &&
           response.data.data.rooms.length > 0 &&
@@ -62,6 +63,10 @@ const HotelAdmin = () => {
   useEffect(() => {
     getRooms(id);
   }, [id]);
+
+  useEffect(() => {
+    setDataSource(roomData);
+  }, [roomData]);
 
   const columns = [
     {
@@ -163,7 +168,6 @@ const HotelAdmin = () => {
     setLoading(true);
     try {
       const response = await roomsApi.add({ ...values, id });
-      console.log(response);
       if (response.data.status === 'success') {
         dataSource && dataSource.length > 0
           ? setDataSource((prev) => [
@@ -201,7 +205,6 @@ const HotelAdmin = () => {
         }, 500);
       }
     } catch (error) {
-      console.log(error);
       setLoading(false);
       message.error('Something went wrong, please try it again!');
     }
@@ -215,7 +218,6 @@ const HotelAdmin = () => {
         hotelId: id,
         roomId: editRoomData.id,
       });
-      console.log(response);
       if (response.data.status === 'success') {
         const index = dataSource.findIndex(
           (item) => item.id === editRoomData.id
@@ -240,10 +242,25 @@ const HotelAdmin = () => {
         }, 500);
       }
     } catch (error) {
-      console.log(error);
       setLoading(false);
       message.error('Something went wrong, please try it again!');
     }
+  };
+
+  const [searchValue, setSearchValue] = useState('');
+  // Handle search product by name
+  const onSearch = (value) => {
+    const currValue = value;
+    setSearchValue(value);
+    const filteredData = roomData.filter(
+      (entry) =>
+        entry.number.toString().includes(currValue) ||
+        entry.number.toString().includes(currValue) ||
+        entry.price.toString().includes(currValue) ||
+        entry.type.toLowerCase().includes(currValue) ||
+        entry.type.toUpperCase().includes(currValue)
+    );
+    setDataSource(filteredData);
   };
 
   return (
@@ -263,7 +280,11 @@ const HotelAdmin = () => {
         <Col span={24}>
           <Row gutter={12}>
             <Col span={8}>
-              <Input className="search__input" />
+              <Input
+                className="search__input"
+                onChange={(e) => onSearch(e.target.value)}
+                value={searchValue}
+              />
             </Col>
             <Col>
               <Button
