@@ -44,6 +44,7 @@ const Dashboard = () => {
     data && loadingContext.done();
   }, []);
 
+  loadingContext.done();
   return (
     <Space className="dashboard">
       <Row gutter={[0, 20]} className="dashboard__row">

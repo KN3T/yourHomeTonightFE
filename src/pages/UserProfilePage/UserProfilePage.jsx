@@ -34,6 +34,7 @@ const UserProfilePage = () => {
   const userData = JSON.parse(window.localStorage.getItem('userData'));
 
   const handleSubmitForm = (values) => {};
+
   loadingContext.done();
 
   return (
