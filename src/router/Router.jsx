@@ -35,7 +35,7 @@ const Router = () => {
           />
         </Route>
 
-        <Route path="/manageHotel/:id" element={<AdminLayout />}>
+        <Route path="/manageHotel/:id" element={<AdminLayout />} loading>
           <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="rooms" element={<HotelManagement />} />
