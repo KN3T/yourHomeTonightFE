@@ -60,6 +60,7 @@ const CheckoutPage = () => {
       location.replace(response.data.data[0]);
     }
   };
+
   loadingContext.done();
 
   return (

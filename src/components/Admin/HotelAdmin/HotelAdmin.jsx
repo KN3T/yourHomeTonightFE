@@ -13,7 +13,7 @@ import {
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { roomsApi } from '../../../api/roomsApi';
 import './HotelAdmin.scss';
@@ -68,11 +68,21 @@ const HotelAdmin = () => {
     setDataSource(roomData);
   }, [roomData]);
 
+  const navigate = useNavigate();
+
   const columns = [
     {
       title: 'Number',
       dataIndex: 'number',
       key: 'number',
+      render: (_, record) => (
+        <Button
+          onClick={() => navigate(`/manageHotel/${id}/rooms/${record.id}`)}
+          type="link"
+        >
+          {record.number}
+        </Button>
+      ),
     },
     {
       title: 'Type',

@@ -1,4 +1,4 @@
-import { Card, Col, Row, Skeleton, Space, Tag } from 'antd';
+import { Col, Row, Space, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { useParams } from 'react-router-dom';
@@ -44,6 +44,7 @@ const Dashboard = () => {
     data && loadingContext.done();
   }, []);
 
+  loadingContext.done();
   return (
     <Space className="dashboard">
       <Row gutter={[0, 20]} className="dashboard__row">

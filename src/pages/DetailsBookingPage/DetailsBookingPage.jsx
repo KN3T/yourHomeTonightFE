@@ -108,7 +108,9 @@ const CheckoutPageConfirmation = () => {
         return 'magenta';
     }
   };
+
   loadingContext.done();
+
   return (
     <div className="details__booking__container">
       <div className="details__booking__wrapper">

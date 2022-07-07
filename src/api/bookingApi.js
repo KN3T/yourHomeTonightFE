@@ -22,6 +22,10 @@ const bookingApi = {
         useLocalToken();
         return axiosInstance.post(`bookings/${id}/repay`)
     },
+    bookingById: async (idHotel ,idRoom) => {
+        useLocalToken();
+        return axiosInstance.get(`/hotels/${idHotel}/rooms/${idRoom}/bookings`);
+    },
     getAllBookingHotel: async(id) => {
         useLocalToken()
         return axiosInstance.get(`/hotels/${id}/bookings`)

@@ -45,6 +45,7 @@ const CheckoutVerifyPage = () => {
   useEffect(() => {
     verifyPayment({ bookingId, session });
   }, [bookingId, session]);
+
   loadingContext.done();
 
   return (
