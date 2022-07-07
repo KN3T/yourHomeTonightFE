@@ -208,5 +208,33 @@
     "check_in_note": " sau 12 giờ trưa",
     "booking_id": "Mã đặt phòng",
     "email_confirm": "Email xác nhận: "
+  },
+  "admin": {
+    "profile": "Hồ Sơ",
+    "myhotel": "Khách sạn",
+    "logout": "Đăng Xuất",
+    "dashboard": "Bảng điều khiển",
+    "managerooms": "Quản lý phòng",
+    "totalrevenue": "Tổng doanh thu trong ba tháng qua",
+    "totalbookings": "Tổng số lượt đặt trong ba tháng qua",
+    "bookings": "Tổng lượt đặt",
+    "place_search": "Tìm kiếm mã, email, tên, ...",
+    "id": "Mã",
+    "name": "Tên",
+    "checkin": "Check In",
+    "checkout": "Check Out",
+    "createdat": "CreateAt",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "status": "Trạng thái",
+    "total": "Tổng",
+    "action": "Hành động",
+    "number": "Tên phòng",
+    "type": "Loại",
+    "beds": "Số giường",
+    "adults": "Người lớn",
+    "children": "Trẻ em",
+    "price": "giá",
+    "add_room": "Thêm phòng mới"
   }
 }

@@ -1,12 +1,14 @@
 import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import UserControl from '../../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNavAdmin = () => {
+  const { t } = useTranslation();
   const userData = window.localStorage.getItem('userData')
     ? JSON.parse(window.localStorage.getItem('userData'))
     : '';
@@ -49,13 +51,13 @@ const SiderNavAdmin = () => {
         <Space className="space">
           <NavLink className="link" to="dashboard">
             <HomeOutlined className="icon" />
-            <span className="text__icon">Dashboard</span>
+            <span className="text__icon">{t('admin.dashboard')}</span>
           </NavLink>
         </Space>
         <Space className="space">
           <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
-            <span className="text__icon">Manage Rooms</span>
+            <span className="text__icon">{t('admin.managerooms')}</span>
           </NavLink>
         </Space>
       </div>
