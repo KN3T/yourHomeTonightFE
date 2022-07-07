@@ -19,6 +19,7 @@ const UserProfilePage = () => {
     const response = await hotelApi.getById(id);
     if (response.data.status === 'success') {
       setHotelData(response.data.data);
+      loadingContext.done();
     }
   };
   useEffect(() => {
@@ -53,8 +54,6 @@ const UserProfilePage = () => {
       console.log(error);
     }
   };
-
-  loadingContext.done();
 
   return (
     <Spin spinning={loading}>

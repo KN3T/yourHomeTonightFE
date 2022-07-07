@@ -56,9 +56,12 @@ const ModalEdit = ({ visible, onCancel, handleEditRoom, editRoomData }) => {
       });
     data &&
       setFileList(
-        data.images.map((item) => {
+        data.images.map((item, index) => {
           return {
-            thumbUrl: item.src,
+            uid: item.id,
+            url: item.src,
+            status: 'done',
+            name: `Image-${index + 1}`,
           };
         })
       );
@@ -293,6 +296,15 @@ const ModalEdit = ({ visible, onCancel, handleEditRoom, editRoomData }) => {
               fileList={fileList}
               onChange={handleChangeImage}
               onPreview={handlePreview}
+              progress={{
+                strokeColor: {
+                  '0%': '#108ee9',
+                  '100%': '#87d068',
+                },
+                strokeWidth: 3,
+                format: (percent) =>
+                  percent && `${parseFloat(percent.toFixed(2))}%`,
+              }}
             >
               {fileList && fileList.length >= 8 ? null : uploadButton}
             </Upload>

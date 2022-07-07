@@ -2,6 +2,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Col, Form, Input, Modal, Row, Upload } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
 import './HotelProfileForm.scss';
@@ -20,6 +21,7 @@ const getBase64 = (file) =>
 
 const HotelProfileForm = (props) => {
   const { handleUpdateHotel, form, hotelData } = props;
+  const loadingContext = useLoadingContext();
 
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -40,12 +42,16 @@ const HotelProfileForm = (props) => {
 
     hotelData &&
       setFileList(
-        hotelData.images.map((item) => {
+        hotelData.images.map((item, index) => {
           return {
-            thumbUrl: item.src,
+            uid: item.id,
+            url: item.src,
+            status: 'done',
+            name: `Image-${index + 1}`,
           };
         })
       );
+    loadingContext.done();
   }, [hotelData]);
 
   const handleCancel = () => setPreviewVisible(false);

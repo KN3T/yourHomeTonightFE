@@ -19,9 +19,11 @@ const HotelPopulerList = () => {
 
   const fetchHotels = async () => {
     let result = await hotelApi.getAll();
-    const { data } = result;
-    setData(data.data.hotels);
-    data && loadingContext.done();
+    if (result.data.status === 'success') {
+      const { data } = result;
+      setData(data.data.hotels);
+      loadingContext.done();
+    }
   };
 
   useEffect(() => {
