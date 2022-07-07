@@ -9,5 +9,10 @@ export default defineConfig({
             '/api': 'http://api.yourhometonight.com/api/login',
         },
         cors: true,
-    }
+    },
+    test: {
+        globals: true,
+        environment: "jsdom",
+        setupFiles: "./src/setupTests.js",
+    },
 })
