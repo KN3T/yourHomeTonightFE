@@ -6,12 +6,14 @@ import {
 } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import UserControl from '../../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNavAdmin = () => {
+  const { t } = useTranslation();
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
       const navbar = document.querySelector('.navbar__logo__wrapper');
@@ -47,7 +49,7 @@ const SiderNavAdmin = () => {
         <Space className="space">
           <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
-            <span className="text__icon">Manage Rooms</span>
+            <span className="text__icon">{t('admin.managerooms')}</span>
           </NavLink>
         </Space>
         <Space className="space">

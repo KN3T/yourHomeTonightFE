@@ -3,6 +3,7 @@ import { CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { hotelApi } from '../../../api';
 import handleTag from '../../../utils/handleTag';
@@ -11,6 +12,7 @@ import './TableBookings.scss';
 const { Search } = Input;
 
 const TableBookings = ({ bookings }) => {
+  const { t } = useTranslation();
   const data = bookings.map((booking) => ({
     ...booking,
     checkIn: moment(booking.checkIn.date).format('DD-MM-YYYY'),
@@ -132,10 +134,10 @@ const TableBookings = ({ bookings }) => {
   return (
     <Space className="table__bookings" direction="vertical">
       <Space className="table__bookings__space">
-        <h1 className="table__bookings__space__tag">Total bookings</h1>
+        <h1 className="table__bookings__space__tag">{t('admin.bookings')}</h1>
         <Search
           onChange={(e) => handleChange(e.target.value)}
-          placeholder="Search id, email, name ..."
+          placeholder={t('admin.place_search')}
           className="table__bookings__space__search"
         />
       </Space>

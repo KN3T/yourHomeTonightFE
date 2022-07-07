@@ -210,5 +210,33 @@
     "check_in_note": " after 12:00 PM",
     "booking_id": "Booking ID",
     "email_confirm": "Email confirm: "
+  },
+  "admin": {
+    "profile": "Profile",
+    "myhotel": "My Hotel",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "managerooms": "Manage Rooms",
+    "totalrevenue": "Total Revenue of the last three months",
+    "totalbookings": "Total Bookings of the last three months",
+    "bookings": "Total bookings",
+    "place_search": "Search id, email, name, ...",
+    "id": "Id",
+    "name": "Name",
+    "checkin": "Check In",
+    "checkout": "Check Out",
+    "createdat": "CreateAt",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status",
+    "total": "Total",
+    "action": "Action",
+    "number": "Number",
+    "type": "Type",
+    "beds": "Beds",
+    "adults": "Adults",
+    "children": "Children",
+    "price": "Price",
+    "add_room": "Add new room"
   }
 }
