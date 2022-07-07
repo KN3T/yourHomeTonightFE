@@ -1,4 +1,9 @@
-import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  BarChartOutlined,
+  ProfileOutlined,
+  TwitterOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -7,10 +12,6 @@ import UserControl from '../../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNavAdmin = () => {
-  const userData = window.localStorage.getItem('userData')
-    ? JSON.parse(window.localStorage.getItem('userData'))
-    : '';
-
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
       const navbar = document.querySelector('.navbar__logo__wrapper');
@@ -24,23 +25,14 @@ const SiderNavAdmin = () => {
   return (
     <>
       <div className="navbar__sider__wrapper">
-        {userData.token ? (
-          <Space className="space">
-            <a className="link">
-              <UserOutlined className="icon" />
-              <span className="text__icon">
-                <UserControl />
-              </span>
-            </a>
-          </Space>
-        ) : (
-          <Space className="space">
-            <NavLink className="link" to="/login">
-              <UserOutlined className="icon" />
-              <span className="text__icon">Login</span>
-            </NavLink>
-          </Space>
-        )}
+        <Space className="space">
+          <a className="link">
+            <UserOutlined className="icon" />
+            <span className="text__icon">
+              <UserControl />
+            </span>
+          </a>
+        </Space>
 
         <Divider
           className="navbar__sider__divider"
@@ -48,7 +40,7 @@ const SiderNavAdmin = () => {
         />
         <Space className="space">
           <NavLink className="link" to="dashboard">
-            <HomeOutlined className="icon" />
+            <BarChartOutlined className="icon" />
             <span className="text__icon">Dashboard</span>
           </NavLink>
         </Space>
@@ -56,6 +48,12 @@ const SiderNavAdmin = () => {
           <NavLink className="link" to="rooms">
             <TwitterOutlined className="icon" />
             <span className="text__icon">Manage Rooms</span>
+          </NavLink>
+        </Space>
+        <Space className="space">
+          <NavLink className="link" to="profile">
+            <ProfileOutlined className="icon" />
+            <span className="text__icon">Hotel Profile</span>
           </NavLink>
         </Space>
       </div>
