@@ -1,13 +1,14 @@
-import { CheckCircleOutlined } from '@ant-design/icons';
-import { Avatar, Comment, Rate, Space, Tag, Tooltip } from 'antd';
+import { StarFilled } from '@ant-design/icons';
+import { Avatar, Col, Comment, List, Rate, Row, Space, Table } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { feedbackApi } from '../../api/feedbackApi';
+import handleRating from '../../utils/handleRating';
 
-const FeedBack = ({ hotelId }) => {
+const FeedBack = ({ hotelId, hotelData }) => {
   const loadingContext = useLoadingContext();
 
   const [feedback, setFeedback] = useState([]);
@@ -20,43 +21,67 @@ const FeedBack = ({ hotelId }) => {
     getAllFeedback();
   }, [hotelId]);
 
-  loadingContext.done();
-  return (
-    <div>
-      <h2>Reviews</h2>
-      <Space
-        style={{ display: 'flex', alignItem: 'center', background: 'red' }}
-      >
-        <h1>4.5</h1>
-        <Space direction="vertical">
-          <h3 style={{ lineHeight: 0 }}>Very good</h3>
-          <h5 style={{ lineHeight: 0 }}>
-            Based on {feedback.total} verified guest reviews
-          </h5>
-        </Space>
-      </Space>
-      {feedback.reviews &&
-        feedback.reviews.map((fb, key) => (
+  const columns = [
+    {
+      title: 'What customers say about our services',
+      key: '',
+      render: (_, record) => {
+        return (
           <Comment
-            key={key}
-            author={<Link to="/userprofile">{fb.user.fullName}</Link>}
+            author={<Link to="/userprofile">{record.user.fullName}</Link>}
             avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
             content={
               <Space direction="vertical">
-                <Rate disabled defaultValue={fb.rating} />
-                <p>{fb.content}</p>
+                <Rate disabled defaultValue={record.rating} />
+                <p>{record.content}</p>
               </Space>
             }
             datetime={
               <Space style={{ width: '100%' }}>
-                <span>{moment(fb.createdAt.date).format('MM-DD-YYYY')}</span>
-                <Tag style={{ marginLeft: '10px' }} color="success">
-                  <CheckCircleOutlined /> verified
-                </Tag>
+                <span>
+                  {moment(record.createdAt.date).format('MM-DD-YYYY')}
+                </span>
               </Space>
             }
           />
-        ))}
+        );
+      },
+    },
+  ];
+
+  loadingContext.done();
+  return (
+    <div>
+      <Space>
+        <h1
+          style={{
+            fontSize: '2.5rem',
+            background: '#158F50',
+            color: 'white',
+            padding: '1rem 2rem',
+            borderRadius: '10px',
+          }}
+        >
+          {hotelData.rating}
+          <span style={{ position: 'absolute', top: '10.2%' }}>
+            <StarFilled style={{ fontSize: '15px' }} />
+          </span>
+        </h1>
+        <div style={{ marginTop: '-20px', marginLeft: '10px' }}>
+          <span style={{ display: 'block', fontSize: '15px' }}>
+            {handleRating(hotelData.rating)}
+          </span>
+          <span style={{ display: 'block', fontSize: '15px' }}>
+            Based on {hotelData.ratingCount} verified guest reviews
+          </span>
+        </div>
+      </Space>
+      <Table
+        pagination={{ pageSize: 3 }}
+        rowKey="id"
+        dataSource={feedback.reviews}
+        columns={columns}
+      />
     </div>
   );
 };

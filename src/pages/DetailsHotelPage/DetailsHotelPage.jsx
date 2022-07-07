@@ -382,7 +382,12 @@ const DetailsHotelPage = () => {
               xs={{ span: 24 }}
             >
               <Divider />
-              <Feedback hotelId={id} />
+              <h1>Reviews</h1>
+              {hotelData.ratingCount > 0 ? (
+                <Feedback hotelId={id} hotelData={hotelData} />
+              ) : (
+                <h3>This hotel has no review yet</h3>
+              )}
               <Divider />
             </Col>
 
