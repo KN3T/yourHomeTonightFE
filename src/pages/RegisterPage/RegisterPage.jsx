@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
+import { hotelApi } from '../../api';
+import registerApi from '../../api/registerApi';
 import { RegisterForm } from '../../components';
 import './RegisterPage.scss';
 
@@ -22,10 +24,10 @@ const RegisterPage = () => {
 
   const steps = [
     {
-      title: 'Choose user type',
+      title: 'Choose User Type',
     },
     {
-      title: 'Fill information',
+      title: 'Fill Out Information',
     },
   ];
 
@@ -49,15 +51,30 @@ const RegisterPage = () => {
 
   const onFinish = async (values) => {
     setLoadingButton(true);
-    setTimeout(() => {
-      console.log({
-        ...values,
+    try {
+      const data = {
+        fullName: values.fullName,
+        email: values.email,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
         isHotel: isHotel,
-      });
-      setLoadingButton(false);
-      navigate('/login');
-      message.success('Register successfully');
-    }, 3000);
+      };
+
+      const response = await registerApi.register(data);
+
+      if (response.data.status === 'success') {
+        isHotel &&
+          (await hotelApi.create({
+            token: response.data.data.token,
+            hotelName: values.hotelName,
+          }));
+        setLoadingButton(false);
+        navigate('/login');
+        message.success('Register successfully!!!');
+      }
+    } catch (error) {
+      message.error('Something went wrong, please try it later!!!');
+    }
   };
 
   const onFinishFailed = () => {

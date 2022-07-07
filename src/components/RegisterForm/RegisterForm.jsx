@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Col, Form, Input, Row, Select } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -30,6 +30,7 @@ const RegisterForm = (props) => {
   return (
     <>
       <Form
+        width={800}
         labelCol={layout.labelCol}
         wrapperCol={layout.wrapperCol}
         className="register__form"
@@ -74,54 +75,94 @@ const RegisterForm = (props) => {
                 <Input placeholder={t('login.name_placeholder')} />
               </Form.Item>
             )}
+            <Row gutter={12}>
+              <Col span={12}>
+                <Form.Item
+                  label={t('login.full_name')}
+                  name="fullName"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your full name!',
+                    },
+                  ]}
+                >
+                  <Input placeholder={t('login.full_name_placeholder')} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label={t('login.email')}
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your email!',
+                    },
+                    {
+                      type: 'email',
+                      message: 'The input is not valid E-mail!',
+                    },
+                  ]}
+                >
+                  <Input placeholder={t('login.email_placeholder')} />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row gutter={12}>
+              <Col span={12}>
+                <Form.Item
+                  label={t('login.password')}
+                  name="password"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please enter your password!',
+                    },
+                  ]}
+                >
+                  <Input.Password
+                    placeholder={t('login.password_placeholder')}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label={t('login.confirm_password')}
+                  name="confirmPassword"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please confirm your password!',
+                    },
+                    ({ getFieldValue }) => ({
+                      validator(_, value) {
+                        if (!value || getFieldValue('password') === value) {
+                          return Promise.resolve();
+                        }
 
-            <Form.Item
-              label={t('login.full_name')}
-              name="fullName"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your full name!',
-                },
-              ]}
-            >
-              <Input placeholder={t('login.full_name_placeholder')} />
-            </Form.Item>
-            <Form.Item
-              label={t('login.email')}
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your email!',
-                },
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-              ]}
-            >
-              <Input placeholder={t('login.email_placeholder')} />
-            </Form.Item>
-
-            <Form.Item
-              label={t('login.password')}
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please enter your password!',
-                },
-              ]}
-            >
-              <Input.Password placeholder={t('login.password_placeholder')} />
-            </Form.Item>
+                        return Promise.reject(
+                          new Error(
+                            'The two passwords that you entered do not match!'
+                          )
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input.Password
+                    placeholder={t('login.confirm_password_placeholder')}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
             <Form.Item>
               <div className="register__form__link">
                 <span>{t('login.already_have_account')}</span>
                 <Link to="/login">{t('login.login_now')}</Link>
               </div>
             </Form.Item>
+
             <Form.Item>
               <Button
                 type="primary"
