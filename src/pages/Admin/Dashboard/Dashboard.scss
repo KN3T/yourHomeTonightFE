@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   &__row {
-    width: calc(78vw);
+    // width: calc(78vw);
+    width: 90vw;
     &__card {
       display: flex;
       justify-content: space-around;
