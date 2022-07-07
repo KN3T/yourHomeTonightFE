@@ -41,7 +41,6 @@ const ProfileForm = () => {
     setButtonLoading(true);
     try {
       await profileApi.update(values);
-      getUserInfo();
       setButtonLoading(false);
       message.success('Update profile successfully!!!');
     } catch (error) {
