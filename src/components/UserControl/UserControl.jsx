@@ -4,14 +4,22 @@ import {
   ZoomOutOutlined,
 } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { profileApi } from '../../api/profileApi';
+
 const UserControl = () => {
-  const userData = window.localStorage.getItem('userData')
-    ? JSON.parse(window.localStorage.getItem('userData'))
-    : '';
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const { data } = await profileApi.get();
+      data && setUserData(data.data);
+    };
+    getProfile();
+  }, [userData]);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -85,7 +93,7 @@ const UserControl = () => {
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
-      <span>{userData.email}</span>
+      <span>{userData.fullName}</span>
     </Dropdown>
   );
 };
