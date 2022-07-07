@@ -1,4 +1,5 @@
 import {
+  CheckCircleOutlined,
   ContactsOutlined,
   DollarOutlined,
   FileTextOutlined,
@@ -83,23 +84,44 @@ const RoomDetail = () => {
       title: 'Action',
       dataIndex: 'id',
       key: '',
-      render: (_, record) =>
-        record.status !== 4 && (
-          <Button onClick={() => handleMarkAsDone(record.id)} danger>
-            Mark as done
+      render: (_, record) => {
+        return record.status === 2 ? (
+          <Button
+            shape="circle"
+            onClick={() => handleMarkAsDone(record.id)}
+            danger
+          >
+            <CheckCircleOutlined />
           </Button>
-        ),
+        ) : (
+          <Button
+            disabled
+            shape="circle"
+            onClick={() => handleMarkAsDone(record.id)}
+            danger
+          >
+            <CheckCircleOutlined />
+          </Button>
+        );
+      },
     },
   ];
 
   const handleMarkAsDone = async (id) => {
     await hotelApi.markAsDoneBooking(id);
+    const newData = listDetail.map((item) => {
+      if (item.id === id) {
+        item.status = 4;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    setListDetail(newData);
   };
 
   const [detailRoom, setDetailRoom] = useState('');
   const [listDetail, setListDetail] = useState([]);
-
-  console.log(listDetail);
 
   const params = useParams();
 

@@ -1,22 +1,23 @@
 import { Dropdown, Menu } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserControl = () => {
   const userData = window.localStorage.getItem('userData')
     ? JSON.parse(window.localStorage.getItem('userData'))
     : '';
 
-  const logout = () => {
-    window.localStorage.clear();
-    location.reload();
-  };
-
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const userRole = localStorage.getItem('role');
   const hotelId = userData.hotelId;
+
+  const logout = () => {
+    userRole === 'ROLE_USER' ? location.reload() : navigate('/');
+    window.localStorage.clear();
+  };
 
   const menu =
     userRole === 'ROLE_HOTEL' ? (
