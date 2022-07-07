@@ -1,8 +1,12 @@
-import { HomeOutlined, LogoutOutlined } from '@ant-design/icons';
+import {
+  HomeOutlined,
+  LogoutOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserControl = () => {
   const userData = window.localStorage.getItem('userData')
@@ -53,7 +57,15 @@ const UserControl = () => {
       <Menu
         items={[
           {
-            label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
+            label: (
+              <Button
+                icon={<ZoomOutOutlined />}
+                type="link"
+                onClick={() => navigate(`/userprofile`)}
+              >
+                {t('navbar.profile')}
+              </Button>
+            ),
             key: '0',
           },
           {
@@ -61,7 +73,7 @@ const UserControl = () => {
           },
           {
             label: (
-              <Button icon={<LogoutOutlined />} onClick={logout}>
+              <Button type="link" icon={<LogoutOutlined />} onClick={logout}>
                 {t('navbar.logout')}
               </Button>
             ),
