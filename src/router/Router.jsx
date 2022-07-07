@@ -1,49 +1,59 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-loading';
 
-import { ClientLayout } from '../components';
-import AdminLayout from '../components/Admin/AdminLayout/AdminLayout';
+import { AdminLayout, ClientLayout } from '../components';
 import {
   CheckoutConfirmationPage,
   CheckoutPage,
   CheckoutVerifyPage,
+  Dashboard,
   DetailsBookingPage,
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
+  HotelManagement,
   LoginPage,
   RegisterPage,
+  RoomDetail,
   UserProfilePage,
 } from '../pages';
-import Dashboard from '../pages/Admin/Dashboard/Dashboard';
-import HotelManagement from '../pages/Admin/HotelManagement/HotelManagement';
 
 const Router = () => {
   return (
     <>
       <Routes>
-        <Route element={<ClientLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/hotels" element={<HotelInCityPage />} />
-          <Route path="/hotels/:id" element={<DetailsHotelPage />} />
-          <Route path="/userProfile" element={<UserProfilePage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/detailsBooking/:id" element={<DetailsBookingPage />} />
+        <Route element={<ClientLayout />} loading>
+          <Route path="/" element={<HomePage />} loading />
+          <Route path="/hotels" element={<HotelInCityPage />} loading />
+          <Route path="/hotels/:id" element={<DetailsHotelPage />} loading />
+          <Route path="/userProfile" element={<UserProfilePage />} loading />
+          <Route path="/checkout" element={<CheckoutPage />} loading />
+          <Route
+            path="/detailsBooking/:id"
+            element={<DetailsBookingPage />}
+            loading
+          />
           <Route
             path="/checkoutConfirmation/:id"
             element={<CheckoutConfirmationPage />}
+            loading
           />
         </Route>
 
-        <Route path="/manageHotel/:id" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="rooms" element={<HotelManagement />} />
+        <Route path="/manageHotel/:id" element={<AdminLayout />} loading>
+          <Route index element={<Dashboard />} loading />
+          <Route path="dashboard" element={<Dashboard />} loading />
+          <Route path="rooms" element={<HotelManagement />} loading />
+          <Route path="rooms/:roomId" element={<RoomDetail />} loading />
         </Route>
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/checkoutVerify" element={<CheckoutVerifyPage />} />
+        <Route path="/login" element={<LoginPage />} loading />
+        <Route path="/register" element={<RegisterPage />} loading />
+        <Route
+          path="/checkoutVerify"
+          element={<CheckoutVerifyPage />}
+          loading
+        />
       </Routes>
     </>
   );

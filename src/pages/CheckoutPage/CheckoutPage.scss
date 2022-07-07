@@ -4,7 +4,6 @@
     display: flex;
     justify-content: center;
   }
-
   &__wrapper {
     width: 100%;
     display: flex;
@@ -13,7 +12,6 @@
     align-items: center;
     padding-bottom: 40px;
   }
-
   &__banner {
     width: 100%;
     height: 33px;
@@ -23,50 +21,42 @@
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ccc;
-
     &__content {
       max-width: 620px;
       width: 100%;
       display: flex;
       justify-content: space-between;
     }
-
     &__item {
       padding: 12px 16px;
       display: flex;
       justify-content: center;
       align-items: center;
       color: rgb(79, 111, 143);
-
       svg {
         margin-right: 4px;
       }
     }
   }
-
   &__progress {
     width: 50%;
     margin-top: 20px;
   }
-
   &__content {
     width: 100%;
-
+    padding: 30px;
     &__heading {
       margin-top: 20px;
       margin-bottom: 16px;
-
       span {
         font-size: 16px;
         color: #001833;
       }
-
       span:first-child {
         font-weight: 700;
         margin-right: 4px;
       }
     }
-
     &__info {
       border-radius: 16px;
       padding: 16px;
@@ -74,11 +64,9 @@
       box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
         rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
     }
-
     &__top {
       display: flex;
     }
-
     &__image {
       width: 40%;
       height: 80%;
@@ -86,7 +74,6 @@
       min-height: 80px;
       min-width: 80px;
       overflow: hidden;
-
       img {
         display: block;
         max-width: 100%;
@@ -95,27 +82,22 @@
         border-radius: 16px;
       }
     }
-
     &__description {
       margin-left: 16px;
       min-width: 142px;
-
       h2 {
         font-size: 20px;
         font-weight: 700;
       }
-
       p {
         color: rgb(79, 111, 143);
         font-size: 14px;
         font-weight: 700;
       }
     }
-
     &__rating {
       display: flex;
       align-items: center;
-
       div {
         display: inline-block;
         font-size: 14px;
@@ -128,7 +110,6 @@
         color: rgb(255, 255, 255);
         border-radius: 8px;
       }
-
       span {
         margin-left: 8px;
         margin-right: 8px;
@@ -136,19 +117,16 @@
         font-weight: 700;
       }
     }
-
     &__summary {
       border-radius: 16px;
       padding: 16px 0;
       border: 1px solid rgb(192, 202, 213);
       box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
         rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
-
       &__list {
         border-bottom: 1px solid #ccc;
         padding: 0 16px 8px 16px;
       }
-
       &__item {
         display: flex;
         -webkit-box-align: baseline;
@@ -157,20 +135,17 @@
         justify-content: space-between;
         margin-bottom: 0px;
         padding-bottom: 8px;
-
         span {
           color: #001833;
           font-size: 16px;
           line-height: 19.6px;
         }
       }
-
       &__total {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 16px 16px 0 16px;
-
         span {
           color: rgb(0, 170, 0);
           font-size: 18px;
@@ -178,7 +153,6 @@
         }
       }
     }
-
     &__itinerary {
       background-color: rgb(244, 246, 248);
       display: flex;
@@ -186,62 +160,52 @@
       border-radius: 16px;
       height: 70px;
       flex-direction: row;
-
       .schedule {
         display: flex;
         align-items: center;
         padding: 32px;
         width: 66.6667%;
-
         &__item {
           display: flex;
           flex-direction: column;
           align-items: center;
           margin: 16px;
-
           .title {
             color: rgb(79, 111, 143);
             font-size: 14px;
             font-weight: 700;
           }
-
           .content {
             font-size: 16px;
             color: rgb(0, 24, 51);
             font-weight: 700;
           }
         }
-
         hr {
           transform: rotate(90deg);
           width: 40px;
           background-color: rgb(192, 202, 213);
         }
       }
-
       .room__info {
         display: flex;
         align-items: center;
         padding: 32px;
-
         &__item {
           display: flex;
           flex-direction: column;
           align-items: center;
-
           .title {
             color: rgb(79, 111, 143);
             font-size: 14px;
             font-weight: 700;
           }
-
           .content {
             font-size: 16px;
             color: rgb(0, 24, 51);
             font-weight: 700;
           }
         }
-
         hr {
           transform: rotate(90deg);
           width: 40px;
@@ -249,23 +213,19 @@
         }
       }
     }
-
     &__bottom {
       margin-top: 16px;
-
       .room {
         &__type {
           font-size: 16px;
           font-weight: 700;
         }
-
         &__assets {
           ul {
             width: 70%;
             column-count: 3;
             margin-bottom: 0;
           }
-
           &__item {
             display: flex;
             align-items: center;
@@ -275,7 +235,6 @@
             page-break-inside: avoid;
             break-inside: avoid-column;
             width: 100%;
-
             svg {
               font-size: 20px;
               margin-right: 2px;
@@ -283,6 +242,294 @@
               display: inline-block;
               vertical-align: middle;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1144px) {
+  .checkout {
+    &__container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__content {
+      width: 100%;
+      padding: 30px;
+
+      &__itinerary {
+        background-color: rgb(244, 246, 248);
+        display: flex;
+        margin-top: 16px;
+        border-radius: 16px;
+        height: 80px;
+        flex-direction: row;
+        .schedule {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          width: 66.6667%;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 16px;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 12px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 14px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+        .room__info {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 12px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 14px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .checkout {
+    &__container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__content {
+      &__itinerary {
+        background-color: rgb(244, 246, 248);
+        display: flex;
+        margin-top: 16px;
+        border-radius: 16px;
+        height: 70px;
+        flex-direction: row;
+        .schedule {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          width: 66.6667%;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 16px;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+        .room__info {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .checkout {
+    &__container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    &__content {
+      &__itinerary {
+        background-color: rgb(244, 246, 248);
+        display: flex;
+        margin-top: 16px;
+        border-radius: 16px;
+        height: 110px;
+        flex-direction: row;
+        .schedule {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          width: 66.6667%;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 16px;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+        .room__info {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 558px) {
+  .checkout {
+    &__container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__content {
+      &__itinerary {
+        background-color: rgb(244, 246, 248);
+        display: flex;
+        margin-top: 16px;
+        border-radius: 16px;
+        height: 110px;
+        flex-direction: row;
+        .schedule {
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          width: 66.6667%;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 16px;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            transform: rotate(90deg);
+            width: 40px;
+            background-color: rgb(192, 202, 213);
+          }
+        }
+        .room__info {
+          margin-left: -30px;
+          display: flex;
+          align-items: center;
+          padding: 32px;
+          &__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title {
+              color: rgb(79, 111, 143);
+              font-size: 10px;
+              font-weight: 700;
+            }
+            .content {
+              font-size: 12px;
+              color: rgb(0, 24, 51);
+              font-weight: 700;
+            }
+          }
+          hr {
+            display: none;
           }
         }
       }

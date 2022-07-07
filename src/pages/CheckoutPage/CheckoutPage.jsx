@@ -60,6 +60,7 @@ const CheckoutPage = () => {
       location.replace(response.data.data[0]);
     }
   };
+
   loadingContext.done();
 
   return (
@@ -81,6 +82,7 @@ const CheckoutPage = () => {
             </div>
           </div>
         </div>
+
         <div className="checkout__progress">
           <Steps current={1} size="small">
             <Step title={t('checkout.choose_rom')} />
@@ -95,8 +97,8 @@ const CheckoutPage = () => {
             <span>{t('checkout.enter_and_complete')}</span>
           </div>
           {bookingData && bookingData.selectedRoom && (
-            <Row gutter={[16, 0]}>
-              <Col span={16}>
+            <Row gutter={[16, 16]}>
+              <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                 <div className="checkout__content__info">
                   <div className="checkout__content__top">
                     <div className="checkout__content__image">
@@ -188,7 +190,7 @@ const CheckoutPage = () => {
                   />
                 </div>
               </Col>
-              <Col span={8}>
+              <Col xxl={8} xl={7} lg={7} md={24} sm={24} xs={24}>
                 <div className="checkout__content__summary">
                   <div className="checkout__content__summary__list">
                     <div className="checkout__content__summary__item">

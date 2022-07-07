@@ -1,9 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import NavbarAdmin from '../Navbar/NavbarAdmin';
 
 const AdminLayout = () => {
+  const loadingContext = useLoadingContext();
+
+  loadingContext.done();
+
   return (
     <>
       <NavbarAdmin />

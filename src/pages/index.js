@@ -7,6 +7,7 @@ export { default as CheckoutPage} from './CheckoutPage/CheckoutPage'
 export { default as CheckoutVerifyPage } from './CheckoutVerifyPage/CheckoutVerifyPage'
 export { default as CheckoutConfirmationPage } from './CheckoutConfirmationPage/CheckoutConfirmationPage'
 export { default as UserProfilePage } from './UserProfilePage/UserProfilePage'
-export {default as DetailsBookingPage} from './DetailsBookingPage/DetailsBookingPage'
-
-
+export { default as DetailsBookingPage } from './DetailsBookingPage/DetailsBookingPage'
+export { default as RoomDetail } from "./Admin/RoomDetail/RoomDetail"
+export { default as Dashboard } from './Admin/Dashboard/Dashboard'
+export { default as HotelManagement } from './Admin/HotelManagement/HotelManagement'
