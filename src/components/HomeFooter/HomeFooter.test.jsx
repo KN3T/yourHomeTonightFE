@@ -19,7 +19,7 @@ describe('HomeFooter test', () => {
   });
 });
 
-// test('HomeFooter should render', () => {
-//   render(<HomeFooter />);
-//   expect(screen.getByText('©2022 Yourhome29.')).toBeInTheDocument();
-// });
+test('HomeFooter should render', () => {
+  render(<HomeFooter />);
+  expect(screen.getByText('©2022 Yourhome29.')).toBeInTheDocument();
+});
