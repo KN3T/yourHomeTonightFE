@@ -158,7 +158,7 @@
     "full_name": "Full name *",
     "email": "Email address *",
     "phone": "Mobile phone number *",
-    "account_email": "Account Email",
+    "account_email": "email",
     "congrats": "Congrats on being a VIP!",
     "congrats_vip": "Each completed booking gets you closer to the next VIP tier and even more benefits."
   },

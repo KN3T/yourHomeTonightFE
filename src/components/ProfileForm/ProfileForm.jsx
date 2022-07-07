@@ -1,98 +1,101 @@
 /* eslint-disable react/prop-types */
-import { Button, Form, Input } from 'antd';
-import React from 'react';
+import { Button, Form, Input, Skeleton, message } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLoadingContext } from 'react-router-loading';
 
+import { profileApi } from '../../api/profileApi';
 import './ProfileForm.scss';
 
-const ProfileForm = (props) => {
-  const { t } = useTranslation();
-  const { handleSubmitForm, form, userData } = props;
+const ProfileForm = () => {
+  const loadingContext = useLoadingContext();
 
-  const handleFinish = (values) => {
-    handleSubmitForm(values);
+  const { t } = useTranslation();
+  const [userData, setUserData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getUserInfo = async () => {
+    const { data } = await profileApi.get();
+    data && setUserData(data.data);
+    data && setIsLoading(false);
   };
 
-  return (
-    <Form
-      onFinish={() => {
-        form
-          .validateFields()
-          .then((values) => {
-            handleFinish(values);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }}
-      className="profile__form__wrapper"
-      size="large"
-      form={form}
-      initialValues={{
-        fullName: userData.fullName,
-        email: userData.email,
-      }}
-    >
-      <div className="profile__form__item guest__info">
-        <h2 className="form__item__title">{t('profile.info')}</h2>
-        <Form.Item
-          name="fullName"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input
-            className="form__item__input"
-            placeholder={t('profile.full_name')}
-          />
-        </Form.Item>
-        <Form.Item
-          name="email"
-          rules={[
-            {
-              required: true,
-            },
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-          ]}
-        >
-          <Input
-            className="form__item__input"
-            placeholder={t('profile.email')}
-          />
-        </Form.Item>
-        <Form.Item
-          name="phone"
-          style={{
-            marginBottom: '10px',
-          }}
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input
-            className="form__item__input"
-            placeholder={t('profile.phone')}
-          />
-        </Form.Item>
-      </div>
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
-      <div className="profile__form__item">
-        <Button
-          className="profile__form__button"
-          type="primary"
-          htmlType="submit"
+  const handleFinish = async (values) => {
+    setIsLoading(true);
+    await profileApi.update(values);
+    getUserInfo();
+    message.success(
+      `It'll take a while to display your change in every where on the website`
+    );
+  };
+
+  loadingContext.done();
+  return (
+    userData.fullName && (
+      <Skeleton loading={isLoading}>
+        <Form
+          onFinish={handleFinish}
+          className="profile__form__wrapper"
+          size="large"
+          initialValues={{
+            fullName: userData.fullName,
+            phone: userData.phone,
+          }}
+          labelCol={{
+            span: 3,
+          }}
         >
-          {t('profile.update')}
-        </Button>
-      </div>
-    </Form>
+          <div className="profile__form__item guest__info">
+            <h2 className="form__item__title">{t('profile.info')}</h2>
+            <Form.Item
+              label="Fullname"
+              name="fullName"
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input
+                className="form__item__input"
+                placeholder={t('profile.full_name')}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Phone"
+              name="phone"
+              style={{
+                marginBottom: '10px',
+              }}
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Input
+                className="form__item__input"
+                placeholder={t('profile.phone')}
+              />
+            </Form.Item>
+          </div>
+
+          <div className="profile__form__item">
+            <Button
+              className="profile__form__button"
+              type="primary"
+              htmlType="submit"
+            >
+              {t('profile.update')}
+            </Button>
+          </div>
+        </Form>
+      </Skeleton>
+    )
   );
 };
 

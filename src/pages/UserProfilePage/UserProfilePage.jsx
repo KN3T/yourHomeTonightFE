@@ -1,17 +1,5 @@
 import { TransactionOutlined, UserOutlined } from '@ant-design/icons';
-import {
-  Avatar,
-  Card,
-  Col,
-  Form,
-  Image,
-  List,
-  Menu,
-  Row,
-  Skeleton,
-  Space,
-  Table,
-} from 'antd';
+import { Avatar, Card, Col, Row } from 'antd';
 import { Tabs } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +14,6 @@ const { TabPane } = Tabs;
 const UserProfilePage = () => {
   const loadingContext = useLoadingContext();
 
-  const [form] = Form.useForm();
   const { t } = useTranslation();
   const [bookings, setBookings] = useState([]);
 
@@ -43,10 +30,6 @@ const UserProfilePage = () => {
     getAllBooking();
   }, []);
 
-  const userData = JSON.parse(window.localStorage.getItem('userData'));
-
-  const handleSubmitForm = (values) => {};
-
   loadingContext.done();
   return (
     <div className="profile__container">
@@ -57,22 +40,9 @@ const UserProfilePage = () => {
             <Row gutter={[0, 10]}>
               <Col className="profile__content__image" xl={24} lg={24}>
                 <Avatar
-                  size={100}
+                  size={150}
                   src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 />
-                <div
-                  style={{ display: 'inline-block', marginLeft: 20 }}
-                  className="border_vip"
-                >
-                  <h1>{userData.fullName}</h1>
-                  <span
-                    className="account_email"
-                    style={{ color: 'rgb(79, 111, 143)' }}
-                  >
-                    {t('profile.account_email')}
-                  </span>
-                  <p>{userData.email}</p>
-                </div>
               </Col>
             </Row>
           </Card>
@@ -90,11 +60,7 @@ const UserProfilePage = () => {
             <Row gutter={[16, 0]}>
               <Col lg={16} md={24} sm={24} xs={24}>
                 <div className="checkout__content__form">
-                  <ProfileForm
-                    form={form}
-                    handleSubmitForm={handleSubmitForm}
-                    userData={userData}
-                  />
+                  <ProfileForm />
                 </div>
               </Col>
               <Col lg={7} md={24} sm={24} xs={24} style={{ paddingTop: 15 }}>

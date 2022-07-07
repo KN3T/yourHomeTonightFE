@@ -48,6 +48,8 @@ const HeaderNav = () => {
     localStorage.setItem('lng', lng);
   };
 
+  console.log(userData);
+
   const defaultLanguage = window.localStorage.getItem('lng');
 
   return (

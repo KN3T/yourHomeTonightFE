@@ -1,8 +1,7 @@
 import { StarFilled } from '@ant-design/icons';
-import { Avatar, Col, Comment, List, Rate, Row, Space, Table } from 'antd';
+import { Avatar, Col, Comment, Rate, Space, Table } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { feedbackApi } from '../../api/feedbackApi';
@@ -28,7 +27,7 @@ const FeedBack = ({ hotelId, hotelData }) => {
       render: (_, record) => {
         return (
           <Comment
-            author={<Link to="/userprofile">{record.user.fullName}</Link>}
+            author={record.user.fullName}
             avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
             content={
               <Space direction="vertical">
