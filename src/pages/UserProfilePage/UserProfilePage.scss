@@ -70,8 +70,6 @@
       border-radius: 16px;
       padding: 16px;
       border: 1px solid rgb(192, 202, 213);
-      box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
-        rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
     }
     &__top {
       display: flex;
@@ -324,8 +322,6 @@
         border-radius: 16px;
         padding: 16px;
         border: 1px solid rgb(192, 202, 213);
-        box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
-          rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
       }
       &__top {
         display: flex;
@@ -384,8 +380,6 @@
         border-radius: 16px;
         padding: 16px 0;
         border: 1px solid rgb(192, 202, 213);
-        box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
-          rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
         .border_vip {
           border: none !important;
         }
