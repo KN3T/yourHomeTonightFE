@@ -28,3 +28,4 @@ export {default as BarChart} from './BarChart/BarChart'
 export {default as TableBookings} from './Table/TableBookings/TableBookings'
 export { default as GuestLayout } from './GuestLayout/GuestLayout'
 export { default as AdminLayout } from "./Admin/AdminLayout/AdminLayout"
+export { default as HotelProfileForm } from "./HotelProfileForm/HotelProfileForm"
