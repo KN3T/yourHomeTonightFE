@@ -19,12 +19,36 @@ const hotelApi = {
     return response;
   },
 
-  create(newHotel){
-    return axiosInstance.post(DEFAULT_URL, newHotel)
+  create(params){
+    const { token, hotelName } = params;
+
+    console.log(token);
+    console.log(hotelName);
+    axiosInstance.interceptors.request.use((config) => {
+      config.headers.Authorization = token ? `Bearer ${token}` : '';
+      return config;
+    });
+    return axiosInstance.post(DEFAULT_URL, {
+      name: hotelName
+    })
   },
 
-  update(newHotel){
-    return axiosInstance.put(`${DEFAULT_URL}/${newHotel.id}`, newHotel)
+  uploadImage: (images) => {
+    useLocalToken();
+    return axiosInstance.post(
+        'https://api.yourhometonight.com/api/images',
+        images,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+  },
+
+  update({data, hotelId}){
+    useLocalToken();
+    return axiosInstance.put(`${DEFAULT_URL}/${hotelId}`, data)
   },
   
   delete(id){

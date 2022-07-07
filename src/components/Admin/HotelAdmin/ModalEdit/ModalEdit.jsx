@@ -69,7 +69,6 @@ const ModalEdit = ({ visible, onCancel, handleEditRoom, editRoomData }) => {
   const handleCancel = () => setPreviewVisible(false);
 
   const handlePreview = async (file) => {
-    console.log(file);
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
