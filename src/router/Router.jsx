@@ -11,6 +11,7 @@ import {
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
+  HotelInfo,
   HotelManagement,
   LoginPage,
   NotFoundPage,
@@ -49,6 +50,7 @@ const Router = () => {
           <Route path="dashboard" element={<Dashboard />} loading />
           <Route path="rooms" element={<HotelManagement />} loading />
           <Route path="rooms/:roomId" element={<RoomDetail />} loading />
+          <Route path="profile" element={<HotelInfo />} loading />
         </Route>
 
         <Route path="/login" element={<LoginPage />} loading />

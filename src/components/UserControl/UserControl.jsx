@@ -1,7 +1,12 @@
-import { Dropdown, Menu } from 'antd';
+import {
+  HomeOutlined,
+  LogoutOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons';
+import { Button, Dropdown, Menu } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserControl = () => {
   const userData = window.localStorage.getItem('userData')
@@ -24,15 +29,27 @@ const UserControl = () => {
       <Menu
         items={[
           {
-            label: <Link to={`/manageHotel/${hotelId}`}>My Hotel</Link>,
-            key: '1',
+            label: (
+              <Button
+                icon={<HomeOutlined />}
+                type="link"
+                onClick={() => navigate(`/manageHotel/${hotelId}`)}
+              >
+                My Hotel
+              </Button>
+            ),
+            key: '0',
           },
           {
             type: 'divider',
           },
           {
-            label: <span onClick={logout}>{t('navbar.logout')}</span>,
-            key: '3',
+            label: (
+              <Button type="link" icon={<LogoutOutlined />} onClick={logout}>
+                {t('navbar.logout')}
+              </Button>
+            ),
+            key: '1',
           },
         ]}
       />
@@ -40,14 +57,26 @@ const UserControl = () => {
       <Menu
         items={[
           {
-            label: <Link to={'/userprofile'}>{t('navbar.profile')}</Link>,
+            label: (
+              <Button
+                icon={<ZoomOutOutlined />}
+                type="link"
+                onClick={() => navigate(`/userprofile`)}
+              >
+                {t('navbar.profile')}
+              </Button>
+            ),
             key: '0',
           },
           {
             type: 'divider',
           },
           {
-            label: <span onClick={logout}>{t('navbar.logout')}</span>,
+            label: (
+              <Button type="link" icon={<LogoutOutlined />} onClick={logout}>
+                {t('navbar.logout')}
+              </Button>
+            ),
             key: '1',
           },
         ]}

@@ -12,3 +12,4 @@ export { default as NotFoundPage}  from './404/NotFound.jsx'
 export { default as RoomDetail } from "./Admin/RoomDetail/RoomDetail"
 export { default as Dashboard } from './Admin/Dashboard/Dashboard'
 export { default as HotelManagement } from './Admin/HotelManagement/HotelManagement'
+export { default as HotelInfo } from './Admin/HotelInfo/HotelInfo'
