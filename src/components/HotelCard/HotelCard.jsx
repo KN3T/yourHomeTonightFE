@@ -16,12 +16,14 @@ const HotelCard = (props) => {
   return (
     <div className="room_card">
       <div className="room_card_img_wrapper">
-        <img
-          className="room_card_img"
-          src={images[0].src}
-          alt="room_card_img"
-          onClick={() => navigate(`/hotels/${id}`)}
-        />
+        {images[0] !== undefined && (
+          <img
+            className="room_card_img"
+            src={images[0].src}
+            alt="room_card_img"
+            onClick={() => navigate(`/hotels/${id}`)}
+          />
+        )}
       </div>
       <div className="room_card_info">
         <div className="room_name" onClick={() => navigate(`/hotels/${id}`)}>
