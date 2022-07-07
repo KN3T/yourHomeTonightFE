@@ -11,7 +11,9 @@ import { useNavigate } from 'react-router-dom';
 import { profileApi } from '../../api/profileApi';
 
 const UserControl = () => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem('userData'))
+  );
 
   useEffect(() => {
     const getProfile = async () => {
