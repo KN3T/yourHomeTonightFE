@@ -10,7 +10,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Button, Table, Tag } from 'antd';
+import { Breadcrumb, Button, Table, Tag } from 'antd';
 import { Card, Col, Divider, Image, Row } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -165,9 +165,27 @@ const RoomDetail = () => {
     fetchRoom();
   }, [detailRoom]);
 
+  console.log(detailRoom);
   return (
     <Row>
       <Col span={24}>
+        <Row className="header ctn">
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            style={{ width: '100%' }}
+          >
+            <Breadcrumb>
+              <Breadcrumb.Item>
+                <a onClick={() => history.back()}>Rooms</a>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>Room No.{detailRoom.number}</Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
         <div className="card_container">
           <div className="card">
             <div className="site-card-border-less-wrapper">
