@@ -1,6 +1,7 @@
 import { Col, Row, Space, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -10,6 +11,7 @@ import { BarChart, TableBookings } from '../../../components';
 import './Dashboard.scss';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const [bookings, setBookings] = useState();
   const [data, setData] = useState();
   const [total, setTotal] = useState({});
@@ -58,7 +60,7 @@ const Dashboard = () => {
           xs={24}
         >
           <Tag className="dashboard__row__card__revenue__tag" color="cyan">
-            Total Revenue of the last three months
+            {t('admin.totalrevenue')}
             <Tag
               className="dashboard__row__card__revenue__tag__countUp"
               color="cyan"
@@ -67,7 +69,7 @@ const Dashboard = () => {
             </Tag>
           </Tag>
           <Tag className="dashboard__row__card__bookings__tag" color="blue">
-            Total Bookings of the last three months
+            {t('admin.totalbookings')}
             <Tag
               className="dashboard__row__card__bookings__tag__countUp"
               color="blue"

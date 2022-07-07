@@ -12,6 +12,7 @@ import {
   message,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ import ModalEdit from './ModalEdit/ModalEdit';
 const { confirm } = Modal;
 
 const HotelAdmin = () => {
+  const { t } = useTranslation();
   const [dataSource, setDataSource] = useState([]);
   const [roomData, setRoomData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -300,7 +302,7 @@ const HotelAdmin = () => {
                 type="primary"
                 icon={<PlusOutlined />}
               >
-                Add new room
+                {t('admin.add_room')}
               </Button>
             </Col>
           </Row>
