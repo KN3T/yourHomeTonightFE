@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-loading';
 
-import { ClientLayout } from '../components';
-import AdminLayout from '../components/Admin/AdminLayout/AdminLayout';
+import { AdminLayout, ClientLayout } from '../components';
 import {
   CheckoutConfirmationPage,
   CheckoutPage,
   CheckoutVerifyPage,
+  Dashboard,
   DetailsBookingPage,
   DetailsHotelPage,
   HomePage,
   HotelInCityPage,
+  HotelManagement,
   LoginPage,
   RegisterPage,
+  RoomDetail,
   UserProfilePage,
 } from '../pages';
-import Dashboard from '../pages/Admin/Dashboard/Dashboard';
-import HotelManagement from '../pages/Admin/HotelManagement/HotelManagement';
 
 const Router = () => {
   return (
@@ -44,6 +44,7 @@ const Router = () => {
           <Route index element={<Dashboard />} loading />
           <Route path="dashboard" element={<Dashboard />} loading />
           <Route path="rooms" element={<HotelManagement />} loading />
+          <Route path="rooms/:roomId" element={<RoomDetail />} loading />
         </Route>
 
         <Route path="/login" element={<LoginPage />} loading />
