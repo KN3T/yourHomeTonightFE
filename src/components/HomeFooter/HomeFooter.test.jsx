@@ -18,3 +18,8 @@ describe('HomeFooter test', () => {
     expect(screen.getAllByRole('combobox')).toHaveLength(2);
   });
 });
+
+test('HomeFooter should render', () => {
+  render(<HomeFooter />);
+  expect(screen.getByText('©2022 Yourhome29.')).toBeInTheDocument();
+});
