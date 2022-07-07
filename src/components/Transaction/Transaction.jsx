@@ -33,17 +33,6 @@ const Transaction = ({ bookings }) => {
     }
   };
 
-  const renderButton = (status) => {
-    switch (status) {
-      case 2:
-        return '';
-      case 3:
-        return '';
-      default:
-        return <Button>Purchase now</Button>;
-    }
-  };
-
   return (
     <div className="transaction__wrapper">
       <Row gutter={[30, 30]}>
@@ -98,7 +87,6 @@ const Transaction = ({ bookings }) => {
                 <Link to={`/detailsBooking/${booking.id}`}>
                   <Button>View details</Button>
                 </Link>
-                {renderButton(booking.status)}
               </Space>
             </Card>
           </Col>

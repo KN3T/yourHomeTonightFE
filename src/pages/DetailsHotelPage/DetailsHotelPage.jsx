@@ -29,6 +29,7 @@ import {
   RoomInDetailsHotel,
   SearchRoom,
 } from '../../components';
+import FeedBack from '../../components/Feedback/Feedback';
 import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
@@ -380,7 +381,9 @@ const DetailsHotelPage = () => {
             >
               <Divider />
               <Feedback hotelId={id} />
+              <Divider />
             </Col>
+
             <Col
               lg={{ span: 24 }}
               xl={{ span: 24 }}
