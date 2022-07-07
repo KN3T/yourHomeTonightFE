@@ -1,4 +1,4 @@
-import { Col, Form, Row, Steps } from 'antd';
+import { Col, Form, Row, Steps, message } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,10 +27,12 @@ const CheckoutPage = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
-  const nights = moment(bookingData.checkOut * 1000).diff(
-    moment(bookingData.checkIn * 1000),
-    'days'
-  );
+  const nights =
+    bookingData &&
+    moment(bookingData.checkOut * 1000).diff(
+      moment(bookingData.checkIn * 1000),
+      'days'
+    );
 
   const subTotal =
     bookingData &&
@@ -39,7 +41,7 @@ const CheckoutPage = () => {
 
   const tax = subTotal * 0.1;
 
-  const userData = JSON.parse(window.localStorage.getItem('userData'));
+  const userData = JSON.parse(localStorage.getItem('userData'));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,15 +57,25 @@ const CheckoutPage = () => {
       roomId: bookingData.selectedRoom.id,
     };
 
-    const response = await bookingApi.book(data);
-    if (response.data.status === 'success') {
-      location.replace(response.data.data[0]);
+    try {
+      const response = await bookingApi.book(data);
+      if (response.data.status === 'success') {
+        location.replace(response.data.data[0]);
+      }
+    } catch (error) {
+      if (error.response.status === 403) {
+        message.error("It's seem like you are not a regular user!!!");
+        setLoading(false);
+      } else {
+        message.error(error.response.data.message);
+        setLoading(false);
+      }
     }
   };
 
   loadingContext.done();
 
-  return (
+  return bookingData ? (
     <div className="checkout__container">
       <div className="checkout__wrapper">
         <div className="checkout__banner">
@@ -181,14 +193,16 @@ const CheckoutPage = () => {
                   </div>
                 </div>
 
-                <div className="checkout__content__form">
-                  <CheckoutForm
-                    form={form}
-                    handleSubmitForm={handleSubmitForm}
-                    userData={userData}
-                    loading={loading}
-                  />
-                </div>
+                {userData && (
+                  <div className="checkout__content__form">
+                    <CheckoutForm
+                      form={form}
+                      handleSubmitForm={handleSubmitForm}
+                      userData={userData}
+                      loading={loading}
+                    />
+                  </div>
+                )}
               </Col>
               <Col xxl={8} xl={7} lg={7} md={24} sm={24} xs={24}>
                 <div className="checkout__content__summary">
@@ -243,6 +257,8 @@ const CheckoutPage = () => {
         </section>
       </div>
     </div>
+  ) : (
+    <div>Booking is not found</div>
   );
 };
 

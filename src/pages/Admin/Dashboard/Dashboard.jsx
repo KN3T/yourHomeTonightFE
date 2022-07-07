@@ -38,6 +38,7 @@ const Dashboard = () => {
       const { data } = await hotelApi.getTotalRevenue(id);
       setTotal(data.data[0]);
     };
+
     getAllBookings();
     getRevenueAllYear();
     getTotalRevenue3Months();

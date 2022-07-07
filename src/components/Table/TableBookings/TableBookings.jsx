@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
@@ -21,7 +22,7 @@ const TableBookings = ({ bookings }) => {
   const [dataSearch, setDataSearch] = useState(data);
 
   const handleMarkAsDone = async (id) => {
-    const { data } = await hotelApi.markAsDoneBooking(id);
+    await hotelApi.markAsDoneBooking(id);
     const newData = dataSearch.map((item) => {
       if (item.id === id) {
         item.status = 4;
@@ -75,8 +76,12 @@ const TableBookings = ({ bookings }) => {
       dataIndex: 'status',
       key: 'status',
       render: (item) => {
-        const { color, text } = handleTag(item);
-        return <Tag color={color}>{text}</Tag>;
+        const { color, text, icon } = handleTag(item);
+        return (
+          <Tag color={color} icon={icon}>
+            {text}
+          </Tag>
+        );
       },
     },
     {
@@ -88,33 +93,26 @@ const TableBookings = ({ bookings }) => {
       title: 'Action',
       dataIndex: 'id',
       key: '',
-      render: (id) =>
-        dataSearch.map((item) => {
-          if (item.status !== 2 && item.id === id) {
-            return (
-              <Button
-                shape="circle"
-                disabled
-                onClick={() => handleMarkAsDone(id)}
-                danger
-              >
-                <CheckCircleOutlined />
-              </Button>
-            );
-          }
-
-          if (item.status === 2 && item.id === id) {
-            return (
-              <Button
-                shape="circle"
-                onClick={() => handleMarkAsDone(id)}
-                danger
-              >
-                <CheckCircleOutlined />
-              </Button>
-            );
-          }
-        }),
+      render: (_, record) => {
+        return record.status === 2 ? (
+          <Button
+            shape="circle"
+            onClick={() => handleMarkAsDone(record.id)}
+            danger
+          >
+            <CheckCircleOutlined />
+          </Button>
+        ) : (
+          <Button
+            disabled
+            shape="circle"
+            onClick={() => handleMarkAsDone(record.id)}
+            danger
+          >
+            <CheckCircleOutlined />
+          </Button>
+        );
+      },
     },
   ];
 

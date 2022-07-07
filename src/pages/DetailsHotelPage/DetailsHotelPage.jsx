@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   CaretDownOutlined,
   PhoneOutlined,
@@ -14,7 +15,6 @@ import {
   Row,
   Skeleton,
 } from 'antd';
-import { set } from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -215,7 +215,7 @@ const DetailsHotelPage = () => {
                   xs={{ span: 24 }}
                 >
                   <h1 style={{ textTransform: 'capitalize' }}>
-                    {hotelData.name} <Rate disabled defaultValue={5} />
+                    {hotelData.name}
                   </h1>
                   <h4>
                     <PhoneOutlined />{' '}
@@ -225,7 +225,9 @@ const DetailsHotelPage = () => {
                     style={{ textTransform: 'capitalize' }}
                   >{`${hotelData.address.city}, ${hotelData.address.province}, ${hotelData.address.address}`}</h4>
                   <h5>
-                    <span className="details__rating__number">999</span>
+                    <span className="details__rating__number">
+                      {hotelData.ratingCount}
+                    </span>
                     {t('details__hotel.wonderful_reviews')}
                   </h5>
                 </Col>
@@ -321,7 +323,7 @@ const DetailsHotelPage = () => {
                   xs={{ span: 24 }}
                 >
                   <h1 id="list__rooms">{t('details__hotel.rating')}</h1>
-                  <Rate disabled defaultValue={5} />
+                  <Rate disabled defaultValue={hotelData.rating} />
                   <p>
                     {t('details__hotel.based_on', {
                       review: hotelData.ratingCount,

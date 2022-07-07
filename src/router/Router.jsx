@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-loading';
 
-import { AdminLayout, ClientLayout } from '../components';
+import { AdminLayout, ClientLayout, GuestLayout } from '../components';
 import {
   CheckoutConfirmationPage,
   CheckoutPage,
@@ -13,6 +13,7 @@ import {
   HotelInCityPage,
   HotelManagement,
   LoginPage,
+  NotFoundPage,
   RegisterPage,
   RoomDetail,
   UserProfilePage,
@@ -22,10 +23,13 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route element={<ClientLayout />} loading>
+        <Route element={<GuestLayout />} loading>
           <Route path="/" element={<HomePage />} loading />
           <Route path="/hotels" element={<HotelInCityPage />} loading />
           <Route path="/hotels/:id" element={<DetailsHotelPage />} loading />
+        </Route>
+
+        <Route element={<ClientLayout />} loading>
           <Route path="/userProfile" element={<UserProfilePage />} loading />
           <Route path="/checkout" element={<CheckoutPage />} loading />
           <Route
@@ -54,6 +58,7 @@ const Router = () => {
           element={<CheckoutVerifyPage />}
           loading
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
