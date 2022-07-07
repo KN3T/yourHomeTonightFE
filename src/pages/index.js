@@ -9,3 +9,6 @@ export { default as CheckoutConfirmationPage } from './CheckoutConfirmationPage/
 export { default as UserProfilePage } from './UserProfilePage/UserProfilePage'
 export {default as DetailsBookingPage} from './DetailsBookingPage/DetailsBookingPage'
 export { default as NotFoundPage}  from './404/NotFound.jsx'
+export { default as RoomDetail } from "./Admin/RoomDetail/RoomDetail"
+export { default as Dashboard } from './Admin/Dashboard/Dashboard'
+export { default as HotelManagement } from './Admin/HotelManagement/HotelManagement'
