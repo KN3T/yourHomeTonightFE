@@ -38,13 +38,14 @@ const Dashboard = () => {
       const { data } = await hotelApi.getTotalRevenue(id);
       setTotal(data.data[0]);
     };
+
     getAllBookings();
     getRevenueAllYear();
     getTotalRevenue3Months();
     data && loadingContext.done();
   }, []);
 
-  loadingContext.done();
+  // loadingContext.done();
   return (
     <Space className="dashboard">
       <Row gutter={[0, 20]} className="dashboard__row">
