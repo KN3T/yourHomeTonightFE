@@ -1,3 +1,4 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
@@ -20,7 +21,16 @@ const TableBookings = ({ bookings }) => {
   const [dataSearch, setDataSearch] = useState(data);
 
   const handleMarkAsDone = async (id) => {
-    await hotelApi.markAsDoneBooking(id);
+    const { data } = await hotelApi.markAsDoneBooking(id);
+    const newData = dataSearch.map((item) => {
+      if (item.id === id) {
+        item.status = 4;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    setDataSearch(newData);
   };
 
   const columns = [
@@ -78,17 +88,43 @@ const TableBookings = ({ bookings }) => {
       title: 'Action',
       dataIndex: 'id',
       key: '',
-      render: (id) => (
-        <Button onClick={() => handleMarkAsDone(id)} danger>
-          Mark as done
-        </Button>
-      ),
+      render: (id) =>
+        dataSearch.map((item) => {
+          if (item.status !== 2 && item.id === id) {
+            return (
+              <Button
+                shape="circle"
+                disabled
+                onClick={() => handleMarkAsDone(id)}
+                danger
+              >
+                <CheckCircleOutlined />
+              </Button>
+            );
+          }
+
+          if (item.status === 2 && item.id === id) {
+            return (
+              <Button
+                shape="circle"
+                onClick={() => handleMarkAsDone(id)}
+                danger
+              >
+                <CheckCircleOutlined />
+              </Button>
+            );
+          }
+        }),
     },
   ];
 
   const handleChange = (e) => {
     const newData = data.filter((item) => {
-      if (item.fullName.toLowerCase().includes(e.toLowerCase())) {
+      if (
+        item.fullName.toLowerCase().includes(e.toLowerCase()) ||
+        item.id + '' === e ||
+        item.email.includes(e.toLowerCase())
+      ) {
         return item;
       }
     });
@@ -101,8 +137,8 @@ const TableBookings = ({ bookings }) => {
         <h1 className="table__bookings__space__tag">Total bookings</h1>
         <Search
           onChange={(e) => handleChange(e.target.value)}
-          placeholder="Search..."
-          className="table__bookings__search"
+          placeholder="Search id, email, name ..."
+          className="table__bookings__space__search"
         />
       </Space>
       <Skeleton loading={dataSearch.length < 0}>
