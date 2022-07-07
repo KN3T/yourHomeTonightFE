@@ -33,17 +33,6 @@ const Transaction = ({ bookings }) => {
     }
   };
 
-  const renderButton = (status) => {
-    switch (status) {
-      case 2:
-        return '';
-      case 3:
-        return '';
-      default:
-        return <Button>Purchase now</Button>;
-    }
-  };
-
   return (
     <div className="transaction__wrapper">
       <Row gutter={[30, 30]}>
@@ -72,33 +61,42 @@ const Transaction = ({ bookings }) => {
                   src={booking.room.images[0].src}
                 />
               </Space>
-              <Space className="space__glimpse">
-                <span>Hotel</span>
-                <span>{booking.hotel.name}</span>
-              </Space>
-              <Space className="space__glimpse">
-                <span>Check in</span>
-                <span>{moment(booking.checkIn.date).format('MM-DD-YYYY')}</span>
-              </Space>
-              <Space className="space__glimpse">
-                <span>Check out</span>
-                <span>{moment(booking.checkIn.date).format('MM-DD-YYYY')}</span>
-              </Space>
-              <Space className="space__glimpse">
-                <span>Price</span>
-                <span>${booking.total}</span>
-              </Space>
-              <Space>
-                <Tag color={handleTypeBtn(booking.status)}>
-                  {' '}
-                  {handleStatusBooking(booking.status)}{' '}
-                </Tag>
-              </Space>
+              <Link
+                style={{ color: 'black' }}
+                to={`/detailsBooking/${booking.id}`}
+              >
+                <Space className="space__glimpse">
+                  <span>Hotel</span>
+                  <span>{booking.hotel.name}</span>
+                </Space>
+                <Space className="space__glimpse">
+                  <span>Check in</span>
+                  <span>
+                    {moment(booking.checkIn.date).format('MM-DD-YYYY')}
+                  </span>
+                </Space>
+                <Space className="space__glimpse">
+                  <span>Check out</span>
+                  <span>
+                    {moment(booking.checkIn.date).format('MM-DD-YYYY')}
+                  </span>
+                </Space>
+                <Space className="space__glimpse">
+                  <span>Price</span>
+                  <span>${booking.total}</span>
+                </Space>
+                <Space>
+                  <Tag color={handleTypeBtn(booking.status)}>
+                    {' '}
+                    {handleStatusBooking(booking.status)}{' '}
+                  </Tag>
+                </Space>
+              </Link>
+
               <Space className="space__type__btn">
                 <Link to={`/detailsBooking/${booking.id}`}>
                   <Button>View details</Button>
                 </Link>
-                {renderButton(booking.status)}
               </Space>
             </Card>
           </Col>
