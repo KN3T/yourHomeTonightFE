@@ -29,6 +29,7 @@ import {
   RoomInDetailsHotel,
   SearchRoom,
 } from '../../components';
+import FeedBack from '../../components/Feedback/Feedback';
 import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
@@ -381,8 +382,15 @@ const DetailsHotelPage = () => {
               xs={{ span: 24 }}
             >
               <Divider />
-              <Feedback hotelId={id} />
+              <h1>Reviews</h1>
+              {hotelData.ratingCount > 0 ? (
+                <Feedback hotelId={id} hotelData={hotelData} />
+              ) : (
+                <h3>This hotel has no review yet</h3>
+              )}
+              <Divider />
             </Col>
+
             <Col
               lg={{ span: 24 }}
               xl={{ span: 24 }}
