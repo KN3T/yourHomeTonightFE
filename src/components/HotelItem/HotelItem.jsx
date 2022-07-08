@@ -36,7 +36,7 @@ const HotelItem = ({
           <Row gutter={10}>
             <Col xxl={16} xl={16} lg={16} md={16} sm={12} xs={24}>
               <div className="hotel__info">
-                <h3>{hotelData.hotelName}</h3>
+                <h3>{hotelData.name}</h3>
                 <div className="hotel__location">
                   <MdLocationOn className="icon" />
                   <span>
