@@ -81,7 +81,7 @@ const RoomDetailsModal = (props) => {
             </div>
           </Col>
           <Col className="info__section" span={10}>
-            <h2 className="info__name">{roomData.name}</h2>
+            <h2 className="info__name">{roomData.type}</h2>
             <div className="info__description">
               <h2 className="info__title">{t('room.description')}</h2>
               <ul>
