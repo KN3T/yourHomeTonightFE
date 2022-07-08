@@ -1,6 +1,7 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 
 import HotelAdmin from './HotelAdmin';
@@ -22,15 +23,14 @@ describe('HotelAdmin test', () => {
     expect(homeEle).not.toBeInTheDocument();
   });
 
-  it('HotelAdmin should have a search-input', () => {
-    render(<MockHotelAdmin />);
-
-    expect(screen.getByTestId('search-input')).toBeInTheDocument();
-  });
-
-  it('HotelAdmin should have a room-table', () => {
-    render(<MockHotelAdmin />);
-
-    expect(screen.getByTestId('room-table')).toBeInTheDocument();
+  test('HotelAdmin should render', () => {
+    render(
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<HotelAdmin />} />
+        </Routes>
+      </BrowserRouter>
+    );
+    expect(screen.getByText('admin.add_room')).toBeInTheDocument();
   });
 });
