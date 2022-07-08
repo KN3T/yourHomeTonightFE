@@ -16,9 +16,12 @@ module.exports = {
       sourceType: 'module',
     },
     plugins: ['react'],
-    rules: {},
     globals: {
         window: true,
         module: true
-      }
+      },
+    rules: {
+        "no-unused-vars": 0,
+        "no-self-assign": 0
+    }
   };
