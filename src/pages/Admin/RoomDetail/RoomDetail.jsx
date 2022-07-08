@@ -10,11 +10,12 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Button, Table, Tag } from 'antd';
+import { Breadcrumb, Button, Rate, Table, Tag } from 'antd';
 import { Card, Col, Divider, Image, Row } from 'antd';
 import moment from 'moment';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { AiOutlineCheck } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -208,7 +209,7 @@ const RoomDetail = () => {
                           {' '}
                           <ContactsOutlined />
                         </span>{' '}
-                        <span> Room name: </span>
+                        <span> Room number: </span>
                         <span>{detailRoom.number}</span>
                       </p>
                       <p>
@@ -233,7 +234,19 @@ const RoomDetail = () => {
                         </span>{' '}
                         <span> Assets: </span>
                         <span>
-                          {detailRoom.asset && detailRoom.asset.toString()}
+                          <ul className="list__asset">
+                            {detailRoom.asset &&
+                              detailRoom.asset.map((item, index) => {
+                                return (
+                                  <li key={index}>
+                                    <span>
+                                      <AiOutlineCheck />
+                                      {item}
+                                    </span>
+                                  </li>
+                                );
+                              })}
+                          </ul>
                         </span>
                       </p>
                       <p>
@@ -277,7 +290,9 @@ const RoomDetail = () => {
                           <SmileOutlined />{' '}
                         </span>{' '}
                         <span> Rating: </span>
-                        <span>{detailRoom.rating}</span>
+                        <span>
+                          <Rate disabled value={detailRoom.rating} />
+                        </span>
                       </p>
                     </div>
                   </Col>
