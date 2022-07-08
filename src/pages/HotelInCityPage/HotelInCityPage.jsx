@@ -53,7 +53,7 @@ const HotelInCityPage = () => {
       : 0,
     maxPrice: searchParams.get('maxPrice')
       ? parseInt(searchParams.get('maxPrice'))
-      : 10000,
+      : 1000,
     rating: searchParams.get('rating') ? searchParams.get('rating') : 0,
     city: searchParams.get('city') ? searchParams.get('city') : '',
   });

@@ -1,4 +1,4 @@
-import { Col, Form, Row, Steps, message } from 'antd';
+import { Col, Form, Image, Row, Steps, message } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -115,13 +115,9 @@ const CheckoutPage = () => {
                 <div className="checkout__content__info">
                   <div className="checkout__content__top">
                     <div className="checkout__content__image">
-                      <img
-                        src="https://q-xx.bstatic.com/xdata/images/hotel/max300/351902045.jpg?k=8c2f8bc5e9983ecc8791d4a219b89ad362bb41e5d83a501d93131db64a5bbe62&o="
-                        alt=""
-                      />
+                      <Image src="https://q-xx.bstatic.com/xdata/images/hotel/max300/351902045.jpg?k=8c2f8bc5e9983ecc8791d4a219b89ad362bb41e5d83a501d93131db64a5bbe62&o=" />
                     </div>
                     <div className="checkout__content__description">
-                      {console.log(bookingData)}
                       <h2>{bookingData.selectedRoom.type}</h2>
                       <p>
                         {bookingData.hotelAddress.address},{' '}

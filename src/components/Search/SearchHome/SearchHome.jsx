@@ -43,7 +43,7 @@ const SearchHome = () => {
   const [loading, setLoading] = useState(false);
 
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(100000);
+  const [maxPrice, setMaxPrice] = useState(10000);
 
   const getPrices = async () => {
     const response = await hotelApi.getPrices();

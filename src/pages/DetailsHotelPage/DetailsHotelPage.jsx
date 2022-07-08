@@ -60,8 +60,27 @@ const DetailsHotelPage = () => {
     ),
   ]);
 
-  const [adults, setAdults] = useState(searchParams.get('adults'));
-  const [children, setChildren] = useState(searchParams.get('children'));
+  const [adults, setAdults] = useState(
+    searchParams.get('adults') ? searchParams.get('adults') : 1
+  );
+  const [children, setChildren] = useState(
+    searchParams.get('children') ? searchParams.get('children') : 1
+  );
+
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  const getPrices = async () => {
+    const response = await hotelApi.getPrices();
+    if (response.data.status === 'success') {
+      setMinPrice(response.data.data.minPrice);
+      setMaxPrice(response.data.data.maxPrice);
+    }
+  };
+
+  useEffect(() => {
+    getPrices();
+  }, []);
 
   const currentLanguage = i18n.language;
   //this is for modal room
@@ -180,7 +199,7 @@ const DetailsHotelPage = () => {
         moment(date[0]).format('X')
       )}&checkOut=${parseInt(
         moment(date[1]).format('X')
-      )}&adult=${adults}&children=${children}`
+      )}&adult=${adults}&children=${children}&minPrice=${minPrice}&maxPrice=${maxPrice}`
     );
   };
 
