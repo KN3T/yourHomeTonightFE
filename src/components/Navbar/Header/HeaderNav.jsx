@@ -48,15 +48,13 @@ const HeaderNav = () => {
     localStorage.setItem('lng', lng);
   };
 
-  console.log(userData);
-
   const defaultLanguage = window.localStorage.getItem('lng');
 
   return (
     <div className="navbar__header__wrapper">
       <Select
         defaultValue={
-          defaultLanguage === 'en' ? languageOptions[0] : languageOptions[1]
+          i18n.language === 'en' ? languageOptions[0] : languageOptions[1]
         }
         options={languageOptions}
         onChange={changeLanguage}

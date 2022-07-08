@@ -12,7 +12,9 @@ const ProfileForm = () => {
   const [form] = Form.useForm();
 
   const { t } = useTranslation();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem('userData'))
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -20,6 +22,7 @@ const ProfileForm = () => {
     const { data } = await profileApi.get();
     data && setUserData(data.data);
     data && setIsLoading(false);
+    loadingContext.done();
   };
 
   useEffect(() => {
@@ -31,13 +34,13 @@ const ProfileForm = () => {
       fullName: userData.fullName,
       phone: userData.phone,
     });
+    loadingContext.done();
   }, [userData]);
 
   const handleFinish = async (values) => {
     setButtonLoading(true);
     try {
       await profileApi.update(values);
-      getUserInfo();
       setButtonLoading(false);
       message.success('Update profile successfully!!!');
     } catch (error) {
@@ -46,7 +49,6 @@ const ProfileForm = () => {
     }
   };
 
-  loadingContext.done();
   return (
     userData.fullName && (
       <Skeleton loading={isLoading}>

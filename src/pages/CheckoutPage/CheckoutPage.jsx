@@ -18,6 +18,7 @@ import './CheckoutPage.scss';
 const { Step } = Steps;
 const CheckoutPage = () => {
   const loadingContext = useLoadingContext();
+
   const [form] = Form.useForm();
   const bookingData = useSelector((state) => state.booking.orders.checkIn)
     ? useSelector((state) => state.booking.orders)

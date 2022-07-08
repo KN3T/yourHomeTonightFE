@@ -15,6 +15,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { roomsApi } from '../../../api/roomsApi';
 import './HotelAdmin.scss';
@@ -34,6 +35,7 @@ const HotelAdmin = () => {
   const [addVisible, setAddVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [editRoomData, setEditRoomData] = useState();
+  const loadingContext = useLoadingContext();
 
   const getRooms = async (id) => {
     setLoading(true);
@@ -58,6 +60,7 @@ const HotelAdmin = () => {
             };
           })
       );
+      loadingContext.done();
       setLoading(false);
     }
   };
@@ -74,7 +77,7 @@ const HotelAdmin = () => {
 
   const columns = [
     {
-      title: 'Number',
+      title: 'Room Number',
       dataIndex: 'number',
       key: 'number',
       render: (_, record) => (
@@ -82,7 +85,7 @@ const HotelAdmin = () => {
           onClick={() => navigate(`/manageHotel/${id}/rooms/${record.id}`)}
           type="link"
         >
-          {record.number}
+          No. {record.number}
         </Button>
       ),
     },

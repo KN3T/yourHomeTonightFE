@@ -45,9 +45,9 @@ const Dashboard = () => {
     getRevenueAllYear();
     getTotalRevenue3Months();
     data && loadingContext.done();
+    loadingContext.done();
   }, []);
 
-  loadingContext.done();
   return (
     <Space className="dashboard">
       <Row gutter={[0, 20]} className="dashboard__row">

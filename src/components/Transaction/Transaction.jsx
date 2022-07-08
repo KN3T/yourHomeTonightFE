@@ -4,35 +4,10 @@ import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import handleTag from '../../utils/handleTag';
 import './index.scss';
 
 const Transaction = ({ bookings }) => {
-  const handleStatusBooking = (status) => {
-    switch (status) {
-      case 2:
-        return 'Paid';
-      case 3:
-        return 'Cancelled';
-      case 4:
-        return 'Done';
-      default:
-        return 'Pending';
-    }
-  };
-
-  const handleTypeBtn = (status) => {
-    switch (status) {
-      case 2:
-        return '#87d068';
-      case 3:
-        return '#f50';
-      case 4:
-        return '#87d068';
-      default:
-        return 'magenta';
-    }
-  };
-
   return (
     <div className="transaction__wrapper">
       <Row gutter={[30, 30]}>
@@ -86,9 +61,11 @@ const Transaction = ({ bookings }) => {
                   <span>${booking.total}</span>
                 </Space>
                 <Space>
-                  <Tag color={handleTypeBtn(booking.status)}>
-                    {' '}
-                    {handleStatusBooking(booking.status)}{' '}
+                  <Tag
+                    color={handleTag(booking.status).color}
+                    icon={handleTag(booking.status).icon}
+                  >
+                    {handleTag(booking.status).text}
                   </Tag>
                 </Space>
               </Link>

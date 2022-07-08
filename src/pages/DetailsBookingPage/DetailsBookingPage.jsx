@@ -26,7 +26,10 @@ const CheckoutPageConfirmation = () => {
 
   const getBookingData = async (id) => {
     const response = await bookingApi.get(id);
-    setConfirmationData(response.data.data);
+    if (response.data.status === 'success') {
+      setConfirmationData(response.data.data);
+      loadingContext.done();
+    }
   };
 
   useEffect(() => {
@@ -102,8 +105,6 @@ const CheckoutPageConfirmation = () => {
         return 'magenta';
     }
   };
-
-  loadingContext.done();
 
   return (
     <div className="details__booking__container">

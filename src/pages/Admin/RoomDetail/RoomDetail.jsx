@@ -16,6 +16,7 @@ import moment from 'moment';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../../api';
 import bookingApi from '../../../api/bookingApi';
@@ -146,11 +147,14 @@ const RoomDetail = () => {
     return array;
   };
 
+  const loadingContext = useLoadingContext();
+
   useEffect(() => {
     async function fetchData() {
       const data = await roomsApi.getDetail(params.id, params.roomId);
       if (data.status === 200) {
         setDetailRoom(data.data.data);
+        loadingContext.done();
       }
     }
 
@@ -163,9 +167,9 @@ const RoomDetail = () => {
       setListDetail(customData(room.data.data.bookings));
     };
     fetchRoom();
+    loadingContext.done();
   }, [detailRoom]);
 
-  console.log(detailRoom);
   return (
     <Row>
       <Col span={24}>

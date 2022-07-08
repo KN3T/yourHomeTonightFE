@@ -1,13 +1,9 @@
 import React from 'react';
-import { useLoadingContext } from 'react-router-loading';
 
 import { HotelAdmin } from '../../../components';
 import './HotelManagement.scss';
 
 const HotelManagement = () => {
-  const loadingContext = useLoadingContext();
-
-  loadingContext.done();
   return (
     <div
       style={{

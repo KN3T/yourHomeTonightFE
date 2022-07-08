@@ -63,6 +63,7 @@ const HotelInCityPage = () => {
   const getHotel = async (params) => {
     const response = await hotelApi.get(params);
     setHotelsData(response.data.data.hotels);
+    loadingContext.done();
   };
 
   useEffect(() => {
@@ -155,7 +156,6 @@ const HotelInCityPage = () => {
       rating: parseInt(value),
     });
   };
-  loadingContext.done();
 
   return (
     <div className="hotelpage__container">
