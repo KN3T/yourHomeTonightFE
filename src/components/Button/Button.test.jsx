@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
+import { describe, expect, it } from 'vitest';
 
-import { render, screen, waitFor } from '../../utils/test-utils';
+import { waitFor } from '../../utils/test-utils';
 import Button from './Button';
 
 describe('Button test', () => {
