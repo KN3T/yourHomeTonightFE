@@ -37,7 +37,7 @@ const LoginPage = () => {
         if (role === 'ROLE_HOTEL') {
           navigate(`/manageHotel/${response.data.data.hotelId}`);
         } else if (role === 'ROLE_USER' || role === 'ROLE_ADMIN') {
-          history.back();
+          navigate('/');
         }
         message.success('Login successfully');
       }

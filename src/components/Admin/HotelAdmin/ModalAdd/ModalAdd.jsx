@@ -83,10 +83,16 @@ const ModalAdd = ({ visible, onCancel, handleAddRoom }) => {
   };
 
   const onCreate = (values) => {
+    const imgData = imagesSrc.map((item, index) => {
+      return {
+        id: index,
+        src: item,
+      };
+    });
     handleAddRoom({
       ...values,
       images: imagesId,
-      imagesSrc: imagesSrc,
+      imagesSrc: imgData,
     });
 
     setFileList([]);
