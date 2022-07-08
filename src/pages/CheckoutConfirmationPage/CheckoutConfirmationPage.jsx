@@ -171,7 +171,14 @@ const CheckoutPageConfirmation = () => {
                   >
                     <div className="checkout__confirmation__content__top">
                       <div className="checkout__confirmation__content__image">
-                        <img src={confirmationData.room.images[0].src} alt="" />
+                        <img
+                          src={
+                            confirmationData.room.images[0] &&
+                            confirmationData.room.images[0].src &&
+                            confirmationData.room.images[0].src
+                          }
+                          alt=""
+                        />
                       </div>
                       <div className="checkout__confirmation__content__description">
                         <h2>{confirmationData.room.type}</h2>

@@ -16,7 +16,6 @@ const RoomInDetailsHotel = ({ room, showModal }) => {
       <span>
         {t('details__hotel.beds')} {room.number}
       </span>
-      <span>Room Type - {room.type}</span>
       <Image
         height={100}
         width={100}

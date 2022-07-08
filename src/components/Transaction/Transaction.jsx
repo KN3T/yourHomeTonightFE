@@ -33,7 +33,11 @@ const Transaction = ({ bookings }) => {
                 <Image
                   height={200}
                   key={key}
-                  src={booking.room.images[0].src}
+                  src={
+                    booking.room.images[0] &&
+                    booking.room.images[0].src &&
+                    booking.room.images[0].src
+                  }
                 />
               </Space>
               <Link
