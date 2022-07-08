@@ -270,7 +270,9 @@ const DetailsHotelPage = () => {
                 <div className="right">
                   <h1>
                     <span>{t('details__hotel.from')}</span>{' '}
-                    <span style={{ color: 'var(--primary-color)' }}>
+                    <span
+                      style={{ color: 'var(--primary-color)', fontWeight: 700 }}
+                    >
                       {t('details__hotel.price_value', {
                         val: formatCurrency(hotelData.price, currentLanguage),
                       })}
