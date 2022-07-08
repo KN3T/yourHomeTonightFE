@@ -32,6 +32,7 @@ const LoginPage = () => {
         localStorage.setItem('userData', JSON.stringify(data.data));
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('role', role);
+        localStorage.setItem('hotelId', data.data.hotelId);
         setLoadingButton(false);
         useLocalToken();
         if (role === 'ROLE_HOTEL') {
