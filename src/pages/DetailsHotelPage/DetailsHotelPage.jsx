@@ -95,6 +95,7 @@ const DetailsHotelPage = () => {
         hotelAddress: response.data.data.address,
         rating: response.data.data.rating,
       });
+      loadingContext.done();
     }
   };
 
@@ -171,7 +172,6 @@ const DetailsHotelPage = () => {
     list__rooms.scrollIntoView({ behavior: 'smooth' });
   };
 
-  loadingContext.done();
   return (
     <div className="details__hotel__wrapper">
       <Skeleton loading={loadingHotel}>

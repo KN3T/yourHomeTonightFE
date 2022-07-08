@@ -24,13 +24,15 @@ const UserProfilePage = () => {
   useEffect(() => {
     const getAllBooking = async () => {
       const response = await bookingApi.getAll();
-      const { data } = response.data;
-      data && setBookings(data);
+      if (response.data.status === 'success') {
+        const { data } = response.data;
+        setBookings(data);
+        loadingContext.done();
+      }
     };
     getAllBooking();
   }, []);
 
-  loadingContext.done();
   return (
     <div className="profile__container">
       <div className="profile__wrapper">

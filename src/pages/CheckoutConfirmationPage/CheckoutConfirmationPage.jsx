@@ -14,6 +14,7 @@ import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
 import formatCurrency from '../../utils/formatCurrency';
+import handleTag from '../../utils/handleTag';
 import './CheckoutConfirmationPage.scss';
 
 const { Step } = Steps;
@@ -29,7 +30,10 @@ const CheckoutPageConfirmation = () => {
 
   const getBookingData = async (id) => {
     const response = await bookingApi.get(id);
-    setConfirmationData(response.data.data);
+    if (response.data.status === 'success') {
+      setConfirmationData(response.data.data);
+      loadingContext.done();
+    }
   };
 
   useEffect(() => {
@@ -79,34 +83,6 @@ const CheckoutPageConfirmation = () => {
       setLoading(false);
     }
   };
-
-  const handleStatusBooking = (status) => {
-    switch (status) {
-      case 2:
-        return 'PAID';
-      case 3:
-        return 'CANCELED';
-      case 4:
-        return 'DONE';
-      default:
-        return 'PENDING';
-    }
-  };
-
-  const handleTypeBtn = (status) => {
-    switch (status) {
-      case 2:
-        return '#87d068';
-      case 3:
-        return '#f50';
-      case 4:
-        return '#87d068';
-      default:
-        return 'magenta';
-    }
-  };
-
-  loadingContext.done();
 
   return (
     <div className="checkout__confirmation__container">
@@ -315,8 +291,12 @@ const CheckoutPageConfirmation = () => {
                     <div className="checkout__confirmation__content__summary__list">
                       <div className="checkout__confirmation__content__summary__item">
                         <span>{t('checkout.status')}</span>
-                        <Tag color={handleTypeBtn(confirmationData.status)}>
-                          {handleStatusBooking(confirmationData.status)}
+
+                        <Tag
+                          color={handleTag(confirmationData.status).color}
+                          icon={handleTag(confirmationData.status).icon}
+                        >
+                          {handleTag(confirmationData.status).text}
                         </Tag>
                       </div>
                       <div className="checkout__confirmation__content__summary__item">
