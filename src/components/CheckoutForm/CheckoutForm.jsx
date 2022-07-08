@@ -32,6 +32,7 @@ const CheckoutForm = (props) => {
       initialValues={{
         fullName: userData.fullName,
         email: userData.email,
+        phone: userData.phone,
       }}
     >
       <div className="checkout__form__item guest__info">

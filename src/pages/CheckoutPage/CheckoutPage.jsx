@@ -121,7 +121,8 @@ const CheckoutPage = () => {
                       />
                     </div>
                     <div className="checkout__content__description">
-                      <h2>{bookingData.selectedRoom.name}</h2>
+                      {console.log(bookingData)}
+                      <h2>{bookingData.selectedRoom.type}</h2>
                       <p>
                         {bookingData.hotelAddress.address},{' '}
                         {bookingData.hotelAddress.city},{' '}
