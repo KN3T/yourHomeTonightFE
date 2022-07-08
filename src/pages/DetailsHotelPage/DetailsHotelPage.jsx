@@ -18,7 +18,12 @@ import {
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { hotelApi } from '../../api';
@@ -172,6 +177,8 @@ const DetailsHotelPage = () => {
     list__rooms.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="details__hotel__wrapper">
       <Skeleton loading={loadingHotel}>
@@ -190,8 +197,12 @@ const DetailsHotelPage = () => {
                   <Link to="/">{t('details__hotel.home')}</Link>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                  <a onClick={() => history.back()}>
-                    {hotelData.address.province}
+                  <a
+                    onClick={() =>
+                      navigate(`/hotels?city=${hotelData.address.city}`)
+                    }
+                  >
+                    {hotelData.address.city}
                   </a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>{hotelData.name}</Breadcrumb.Item>

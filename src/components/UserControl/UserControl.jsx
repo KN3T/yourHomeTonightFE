@@ -30,7 +30,7 @@ const UserControl = () => {
   const hotelId = userData.hotelId;
 
   const logout = () => {
-    userRole === 'ROLE_USER' ? location.reload() : navigate('/');
+    location.reload();
     window.localStorage.clear();
   };
 

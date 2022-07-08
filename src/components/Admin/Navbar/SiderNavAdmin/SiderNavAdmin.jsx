@@ -55,7 +55,7 @@ const SiderNavAdmin = () => {
         <Space className="space">
           <NavLink className="link" to="profile">
             <ProfileOutlined className="icon" />
-            <span className="text__icon">Hotel Profile</span>
+            <span className="text__icon">Hotel Info</span>
           </NavLink>
         </Space>
       </div>

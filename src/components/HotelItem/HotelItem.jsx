@@ -52,6 +52,7 @@ const HotelItem = ({
                   value={hotelData.rating}
                   className="rating"
                   disabled={true}
+                  allowHalf
                 />
                 <span>
                   {hotelData.ratingCount ? hotelData.ratingCount : 0}{' '}
