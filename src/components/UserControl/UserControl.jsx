@@ -21,7 +21,7 @@ const UserControl = () => {
       data && setUserData(data.data);
     };
     getProfile();
-  }, [userData]);
+  }, []);
 
   const navigate = useNavigate();
   const { t } = useTranslation();
