@@ -1,9 +1,5 @@
 /* eslint-disable no-unused-vars */
-import {
-  CaretDownOutlined,
-  PhoneOutlined,
-  SearchOutlined,
-} from '@ant-design/icons';
+import { CaretDownOutlined, PhoneOutlined } from '@ant-design/icons';
 import {
   Breadcrumb,
   Button,
@@ -14,6 +10,7 @@ import {
   Rate,
   Row,
   Skeleton,
+  Spin,
 } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
@@ -34,7 +31,6 @@ import {
   RoomInDetailsHotel,
   SearchRoom,
 } from '../../components';
-import FeedBack from '../../components/Feedback/Feedback';
 import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
@@ -93,8 +89,7 @@ const DetailsHotelPage = () => {
     setLoadingHotel(true);
     const response = await hotelApi.getById(id);
     if (response.data.status === 'success') {
-      setLoadingHotel(false);
-      setHotelData(response.data.data);
+      response.data.data && setHotelData(response.data.data);
       setDataOrder({
         ...dataOrder,
         hotelAddress: response.data.data.address,
@@ -179,266 +174,268 @@ const DetailsHotelPage = () => {
 
   const navigate = useNavigate();
 
+  const onClickCity = () => {
+    navigate(
+      `/hotels?city=${hotelData.address.city}&checkIn=${parseInt(
+        moment(date[0]).format('X')
+      )}&checkOut=${parseInt(
+        moment(date[1]).format('X')
+      )}&adult=${adults}&children=${children}`
+    );
+  };
+
   return (
     <div className="details__hotel__wrapper">
-      <Skeleton loading={loadingHotel}>
-        {hotelData.images ? (
-          <Row className="details__hotel__row ctn" gutter={[20, 40]}>
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-              style={{ width: '100%' }}
-            >
-              <Breadcrumb>
-                <Breadcrumb.Item>
-                  <Link to="/">{t('details__hotel.home')}</Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <a
-                    onClick={() =>
-                      navigate(`/hotels?city=${hotelData.address.city}`)
-                    }
-                  >
-                    {hotelData.address.city}
-                  </a>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>{hotelData.name}</Breadcrumb.Item>
-              </Breadcrumb>
-            </Col>
+      {hotelData.images && (
+        <Row className="details__hotel__row ctn" gutter={[20, 10]}>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            style={{ width: '100%' }}
+          >
+            <Breadcrumb>
+              <Breadcrumb.Item>
+                <Link to="/">{t('details__hotel.home')}</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <a onClick={onClickCity}>{hotelData.address.city}</a>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>{hotelData.name}</Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
 
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-              className="details__title__wrapper"
-            >
-              <Divider />
-              <Row gutter={[10, 0]}>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  xs={{ span: 24 }}
-                >
-                  <h1 style={{ textTransform: 'capitalize' }}>
-                    {hotelData.name}
-                  </h1>
-                  <h4>
-                    <PhoneOutlined />{' '}
-                    <a href={`tel:${hotelData.phone}`}>{hotelData.phone}</a>
-                  </h4>
-                  <h4
-                    style={{ textTransform: 'capitalize' }}
-                  >{`${hotelData.address.city}, ${hotelData.address.province}, ${hotelData.address.address}`}</h4>
-                  <h5>
-                    <span className="details__rating__number">
-                      {hotelData.ratingCount}
-                    </span>
-                    {t('details__hotel.wonderful_reviews')}
-                  </h5>
-                </Col>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  xs={{ span: 24 }}
-                >
-                  <div className="right">
-                    <h1>
-                      <span>{t('details__hotel.from')}</span>{' '}
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            className="details__title__wrapper"
+          >
+            <Divider />
+            <Row gutter={[10, 0]}>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
+              >
+                <h1 style={{ textTransform: 'capitalize' }}>
+                  {hotelData.name}
+                </h1>
+                <h4>
+                  <PhoneOutlined />{' '}
+                  <a href={`tel:${hotelData.phone}`}>{hotelData.phone}</a>
+                </h4>
+                <h4
+                  style={{ textTransform: 'capitalize' }}
+                >{`${hotelData.address.city}, ${hotelData.address.province}, ${hotelData.address.address}`}</h4>
+                <h5>
+                  <span className="details__rating__number">
+                    {hotelData.ratingCount}
+                  </span>
+                  {t('details__hotel.wonderful_reviews')}
+                </h5>
+              </Col>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
+              >
+                <div className="right">
+                  <h1>
+                    <span>{t('details__hotel.from')}</span>{' '}
+                    <span style={{ color: 'var(--primary-color)' }}>
                       {t('details__hotel.price_value', {
                         val: formatCurrency(hotelData.price, currentLanguage),
                       })}
-                      /
-                      <span style={{ fontSize: '15px' }}>
-                        {t('details__hotel.night')}
-                      </span>
-                    </h1>
-                    <Button onClick={handleScrollIntoView} type="primary">
-                      {t('details__hotel.view__rooms')}
-                      <CaretDownOutlined />
-                    </Button>
-                  </div>
-                </Col>
-              </Row>
-              <Divider />
-            </Col>
+                    </span>
+                    /
+                    <span style={{ fontSize: '15px' }}>
+                      {t('details__hotel.night')}
+                    </span>
+                  </h1>
+                  <Button onClick={handleScrollIntoView} type="primary">
+                    {t('details__hotel.view__rooms')}
+                    <CaretDownOutlined />
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+            <Divider />
+          </Col>
 
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-              className="details__gallery"
-            >
-              <Row gutter={[10, 10]}>
-                <Col lg={{ span: 12 }}>
-                  <Image
-                    className="details__hotel__image"
-                    height="100%"
-                    src={firstImage}
-                  />
-                </Col>
-                <Col className="images" lg={{ span: 12 }}>
-                  <Row gutter={[10, 10]}>
-                    {images.map((item, key) => (
-                      <Col key={key} lg={{ span: 12 }}>
-                        <Image
-                          className="details__hotel__image"
-                          height="100%"
-                          src={item.src}
-                        />
-                      </Col>
-                    ))}
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
-
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-              className="details__rating__wrapper"
-            >
-              <Divider />
-              <Row gutter={[20, 10]}>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  xs={{ span: 24 }}
-                >
-                  <h1>{t('details__hotel.overview')}</h1>
-                  <p>
-                    {t('details__hotel.description', {
-                      description: hotelData.description,
-                    })}
-                  </p>
-                </Col>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  xs={{ span: 24 }}
-                >
-                  <h1 id="list__rooms">{t('details__hotel.rating')}</h1>
-                  <Rate disabled defaultValue={hotelData.rating} />
-                  <p>
-                    {t('details__hotel.based_on', {
-                      review: hotelData.ratingCount,
-                    })}
-                  </p>
-                </Col>
-              </Row>
-              <Divider />
-            </Col>
-
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-              className="filter__wrapper"
-            ></Col>
-
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-            >
-              <h1>{t('details__hotel.available_rates')}</h1>
-              <SearchRoom
-                onClickSearch={handleSearch}
-                dateDefault={date}
-                adultsDefault={adults}
-                childrenDefault={children}
-              />
-              <Skeleton loading={loadingRooms}>
-                <List
-                  itemLayout="horizontal"
-                  dataSource={roomData && roomData.length > 0 ? roomData : []}
-                  renderItem={(item) => (
-                    <List.Item>
-                      {' '}
-                      <RoomInDetailsHotel
-                        showModal={showModal}
-                        room={item ? item : ''}
-                      />{' '}
-                    </List.Item>
-                  )}
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            className="details__gallery"
+          >
+            <Row gutter={[10, 10]}>
+              <Col lg={{ span: 12 }}>
+                <Image
+                  className="details__hotel__image"
+                  height="100%"
+                  src={firstImage}
                 />
-              </Skeleton>
-            </Col>
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-            >
-              <Divider />
-              <h1>Reviews</h1>
-              {hotelData.ratingCount > 0 ? (
-                <Feedback hotelId={id} hotelData={hotelData} />
-              ) : (
-                <h3>This hotel has no review yet</h3>
-              )}
-              <Divider />
-            </Col>
+              </Col>
+              <Col className="images" lg={{ span: 12 }}>
+                <Row gutter={[10, 10]}>
+                  {images.map((item, key) => (
+                    <Col key={key} lg={{ span: 12 }}>
+                      <Image
+                        className="details__hotel__image"
+                        height="100%"
+                        src={item.src}
+                      />
+                    </Col>
+                  ))}
+                </Row>
+              </Col>
+            </Row>
+          </Col>
 
-            <Col
-              lg={{ span: 24 }}
-              xl={{ span: 24 }}
-              md={{ span: 24 }}
-              sm={{ span: 24 }}
-              xs={{ span: 24 }}
-            >
-              <h1>{t('details__hotel.things_to_keep_in_mind')}</h1>
-              <Row gutter={[0, 20]}>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 12 }}
-                  sm={{ span: 12 }}
-                  xs={{ span: 12 }}
-                >
-                  <h3>{t('details__hotel.cancellation/prepayment')}</h3>
-                  <p>{t('details__hotel.policies')}</p>
-                </Col>
-                <Col
-                  lg={{ span: 12 }}
-                  xl={{ span: 12 }}
-                  md={{ span: 12 }}
-                  sm={{ span: 12 }}
-                  xs={{ span: 12 }}
-                >
-                  <h3>{t('details__hotel.checkin_checkout')}</h3>
-                  <p>{t('details__hotel.checkin')}</p>
-                </Col>
-              </Row>
-              <Divider />
-            </Col>
-          </Row>
-        ) : (
-          ''
-        )}
-      </Skeleton>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            className="details__rating__wrapper"
+          >
+            <Divider />
+            <Row gutter={[20, 10]}>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
+              >
+                <h1>{t('details__hotel.overview')}</h1>
+                <p>
+                  {t('details__hotel.description', {
+                    description: hotelData.description,
+                  })}
+                </p>
+              </Col>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 24 }}
+                sm={{ span: 24 }}
+                xs={{ span: 24 }}
+              >
+                <h1 id="list__rooms">{t('details__hotel.rating')}</h1>
+                <Rate disabled defaultValue={hotelData.rating} />
+                <p>
+                  {t('details__hotel.based_on', {
+                    review: hotelData.ratingCount,
+                  })}
+                </p>
+              </Col>
+            </Row>
+            <Divider />
+          </Col>
+
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+            className="filter__wrapper"
+          ></Col>
+
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <h1 style={{ margin: 0 }}>{t('details__hotel.available_rates')}</h1>
+            <SearchRoom
+              onClickSearch={handleSearch}
+              dateDefault={date}
+              adultsDefault={adults}
+              childrenDefault={children}
+            />
+            <Skeleton loading={loadingRooms}>
+              <List
+                itemLayout="horizontal"
+                dataSource={roomData && roomData.length > 0 ? roomData : []}
+                renderItem={(item) => (
+                  <List.Item>
+                    {' '}
+                    <RoomInDetailsHotel
+                      showModal={showModal}
+                      room={item ? item : ''}
+                    />{' '}
+                  </List.Item>
+                )}
+              />
+            </Skeleton>
+          </Col>
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <Divider />
+            <h1>Reviews</h1>
+            {hotelData.ratingCount > 0 ? (
+              <Feedback hotelId={id} hotelData={hotelData} />
+            ) : (
+              <h3>This hotel has no review yet</h3>
+            )}
+            <Divider />
+          </Col>
+
+          <Col
+            lg={{ span: 24 }}
+            xl={{ span: 24 }}
+            md={{ span: 24 }}
+            sm={{ span: 24 }}
+            xs={{ span: 24 }}
+          >
+            <h1>{t('details__hotel.things_to_keep_in_mind')}</h1>
+            <Row gutter={[0, 20]}>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h3>{t('details__hotel.cancellation/prepayment')}</h3>
+                <p>{t('details__hotel.policies')}</p>
+              </Col>
+              <Col
+                lg={{ span: 12 }}
+                xl={{ span: 12 }}
+                md={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 12 }}
+              >
+                <h3>{t('details__hotel.checkin_checkout')}</h3>
+                <p>{t('details__hotel.checkin')}</p>
+              </Col>
+            </Row>
+            <Divider />
+          </Col>
+        </Row>
+      )}
       {selectedRoom.images && (
         <RoomDetailsModal
           isModalVisible={isModalVisible}

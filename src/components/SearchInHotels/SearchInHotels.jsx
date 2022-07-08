@@ -204,6 +204,9 @@ const SearchInHotels = ({
                 format={DATE_FORMAT}
                 onCalendarChange={setDate}
                 allowClear={false}
+                disabledDate={(current) =>
+                  current.isBefore(moment().subtract(1, 'day'))
+                }
               />
             </Form.Item>
           </Col>

@@ -29,8 +29,6 @@ const UserControl = () => {
   const userRole = localStorage.getItem('role');
   const hotelId = localStorage.getItem('hotelId');
 
-  console.log('hotelId', hotelId);
-
   const logout = () => {
     location.reload();
     window.localStorage.clear();

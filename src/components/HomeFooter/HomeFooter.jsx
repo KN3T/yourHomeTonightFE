@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import dollar from '../../assets/images/dollar.jpg';
 import us from '../../assets/images/englandIcon.jpg';
+import usa from '../../assets/images/usa.svg';
 import vn from '../../assets/images/vietnamIcon.png';
 import vietnamdong from '../../assets/images/vietnamdong.jpg';
 import './HomeFooter.scss';
@@ -94,17 +95,17 @@ const HomeFooter = () => {
           </p>
           <div className="lng-select" style={{ paddingBottom: 10 }}>
             <Select
-              defaultValue="United Kingdom"
+              defaultValue="United State"
               style={{
                 width: 200,
               }}
               onChange={handleChange}
             >
               <OptGroup label="Site">
-                <Option value="United Kingdom">
+                <Option value="United State">
                   {' '}
-                  <img src={us} alt="" style={{ width: '20px' }} /> United
-                  Kingdom
+                  <img src={usa} alt="" style={{ width: '20px' }} /> United
+                  State
                 </Option>
                 <Option value="Vietnamese">
                   {' '}
@@ -114,7 +115,7 @@ const HomeFooter = () => {
             </Select>
           </div>
 
-          <div className="lng-select">
+          {/* <div className="lng-select">
             <Select
               defaultValue="&nbsp;£ &nbsp; Pound Sterling"
               style={{
@@ -133,7 +134,7 @@ const HomeFooter = () => {
                 </Option>
               </OptGroup>
             </Select>
-          </div>
+          </div> */}
         </div>
         <div className="item-5">
           <div className="footer-info">

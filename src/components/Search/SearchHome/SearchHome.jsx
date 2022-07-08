@@ -155,6 +155,7 @@ const SearchHome = () => {
     setCityName(value);
   };
   loadingContext.done();
+
   return (
     <div className="search__home__wrapper">
       <Form
@@ -209,6 +210,9 @@ const SearchHome = () => {
                 allowClear={false}
                 format={DATE_FORMAT}
                 onCalendarChange={setDate}
+                disabledDate={(current) =>
+                  current.isBefore(moment().subtract(1, 'day'))
+                }
               />
             </Form.Item>
           </Col>
