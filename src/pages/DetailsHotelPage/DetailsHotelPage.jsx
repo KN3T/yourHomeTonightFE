@@ -370,6 +370,27 @@ const DetailsHotelPage = () => {
               childrenDefault={children}
             />
             <Skeleton loading={loadingRooms}>
+              <Row gutter={[20, 20]}>
+                <Col span={6}>
+                  <b>Type of stay</b>
+                </Col>
+                <Col span={6}>
+                  <b>Facilities</b>
+                </Col>
+                <Col
+                  span={6}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <b>Nightly base price</b>
+                </Col>
+                <Col
+                  span={6}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <b>View in details</b>
+                </Col>
+              </Row>
+              <Divider style={{ margin: '12px' }} />
               <List
                 itemLayout="horizontal"
                 dataSource={roomData && roomData.length > 0 ? roomData : []}
