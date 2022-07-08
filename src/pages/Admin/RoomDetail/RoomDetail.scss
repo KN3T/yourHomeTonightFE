@@ -3,12 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   .card {
     width: 100%;
     padding: 20px;
     margin: 20px;
-
     .site-card-border-less-wrapper {
       p {
         font-size: 16px;
@@ -59,6 +57,7 @@
     }
     .img_rooms {
       width: 100%;
+      max-height: 230px;
       vertical-align: middle;
     }
     .img_rooms:hover {

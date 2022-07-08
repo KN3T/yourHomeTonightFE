@@ -9,10 +9,12 @@ import './ProfileForm.scss';
 
 const ProfileForm = () => {
   const loadingContext = useLoadingContext();
+  const [form] = Form.useForm();
 
   const { t } = useTranslation();
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const getUserInfo = async () => {
     const { data } = await profileApi.get();
@@ -24,13 +26,24 @@ const ProfileForm = () => {
     getUserInfo();
   }, []);
 
+  useEffect(() => {
+    form.setFieldsValue({
+      fullName: userData.fullName,
+      phone: userData.phone,
+    });
+  }, [userData]);
+
   const handleFinish = async (values) => {
-    setIsLoading(true);
-    await profileApi.update(values);
-    getUserInfo();
-    message.success(
-      `It'll take a while to display your change in every where on the website`
-    );
+    setButtonLoading(true);
+    try {
+      await profileApi.update(values);
+      getUserInfo();
+      setButtonLoading(false);
+      message.success('Update profile successfully!!!');
+    } catch (error) {
+      setButtonLoading(false);
+      message.error('Some thing went wrong');
+    }
   };
 
   loadingContext.done();
@@ -38,13 +51,10 @@ const ProfileForm = () => {
     userData.fullName && (
       <Skeleton loading={isLoading}>
         <Form
+          form={form}
           onFinish={handleFinish}
           className="profile__form__wrapper"
           size="large"
-          initialValues={{
-            fullName: userData.fullName,
-            phone: userData.phone,
-          }}
           labelCol={{
             span: 3,
           }}
@@ -52,7 +62,7 @@ const ProfileForm = () => {
           <div className="profile__form__item guest__info">
             <h2 className="form__item__title">{t('profile.info')}</h2>
             <Form.Item
-              label="Fullname"
+              label="Full Name"
               name="fullName"
               rules={[
                 {
@@ -89,6 +99,7 @@ const ProfileForm = () => {
               className="profile__form__button"
               type="primary"
               htmlType="submit"
+              loading={buttonLoading}
             >
               {t('profile.update')}
             </Button>

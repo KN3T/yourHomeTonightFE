@@ -15,8 +15,6 @@ const UserControl = () => {
     JSON.parse(window.localStorage.getItem('userData'))
   );
 
-  console.log(userData);
-
   useEffect(() => {
     const getProfile = async () => {
       const { data } = await profileApi.get();
