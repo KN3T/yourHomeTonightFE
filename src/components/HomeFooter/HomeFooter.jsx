@@ -114,6 +114,27 @@ const HomeFooter = () => {
               </OptGroup>
             </Select>
           </div>
+
+          {/* <div className="lng-select">
+            <Select
+              defaultValue="&nbsp;£ &nbsp; Pound Sterling"
+              style={{
+                width: 200,
+              }}
+              onChange={handleChange}
+            >
+              <OptGroup label="Most-Used Currencies">
+                <Option value="Euro">
+                  <img src={vietnamdong} alt="" style={{ width: '20px' }} />{' '}
+                  Vietnamese Dong
+                </Option>
+                <Option value="United States Dollars">
+                  <img src={dollar} alt="" style={{ width: '20px' }} /> United
+                  States Dollars
+                </Option>
+              </OptGroup>
+            </Select>
+          </div> */}
         </div>
         <div className="item-5">
           <div className="footer-info">
