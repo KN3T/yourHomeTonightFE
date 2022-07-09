@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import { loginApi } from '../../api';
@@ -16,6 +16,7 @@ const LoginPage = () => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onFinish = async (values) => {
     setLoadingButton(true);
@@ -38,7 +39,15 @@ const LoginPage = () => {
         if (role === 'ROLE_HOTEL') {
           navigate(`/manageHotel/${response.data.data.hotelId}`);
         } else if (role === 'ROLE_USER' || role === 'ROLE_ADMIN') {
-          navigate(-1);
+          if (location.state) {
+            const prePage = location.state;
+            const hotelId = prePage.slice(7);
+            console.log(hotelId);
+
+            navigate(`/hotels/${hotelId}`, { replace: true });
+          } else {
+            navigate('/');
+          }
         }
         message.success('Login successfully');
       }

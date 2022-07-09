@@ -2,7 +2,7 @@
 import { Button, Col, Form, Input, Row, Select } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import './RegisterForm.scss';
 
@@ -21,10 +21,16 @@ const RegisterForm = (props) => {
     onClickPreStep,
   } = props;
   const { t } = useTranslation();
+  const location = useLocation();
 
   const layout = {
     labelCol: { span: { sm: 24, md: 8, lg: 6 } },
     wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
+  };
+  const navigate = useNavigate();
+
+  const onClickToLogin = () => {
+    navigate('/login', { state: location.state });
   };
 
   return (
@@ -159,7 +165,7 @@ const RegisterForm = (props) => {
             <Form.Item>
               <div className="register__form__link">
                 <span>{t('login.already_have_account')}</span>
-                <Link to="/login">{t('login.login_now')}</Link>
+                <a onClick={onClickToLogin}>{t('login.login_now')}</a>
               </div>
             </Form.Item>
 
@@ -180,7 +186,7 @@ const RegisterForm = (props) => {
             <Form.Item>
               <div className="register__form__link">
                 <span>{t('login.already_have_account')}</span>
-                <Link to="/login">{t('login.login_now')}</Link>
+                <a onClick={onClickToLogin}>{t('login.login_now')}</a>
               </div>
             </Form.Item>
             <Button type="primary" onClick={onClickNextStep}>
