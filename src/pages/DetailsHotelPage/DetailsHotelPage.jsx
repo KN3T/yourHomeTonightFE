@@ -15,6 +15,7 @@ import {
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import {
   Link,
   useNavigate,
@@ -31,6 +32,7 @@ import {
   RoomInDetailsHotel,
   SearchRoom,
 } from '../../components';
+import { addOrder } from '../../store/Slice/Booking/BookingSlice';
 import formatCurrency from '../../utils/formatCurrency';
 import './index.scss';
 
@@ -151,10 +153,6 @@ const DetailsHotelPage = () => {
     setRoomImages(room.images);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -201,6 +199,18 @@ const DetailsHotelPage = () => {
         moment(date[1]).format('X')
       )}&adult=${adults}&children=${children}&minPrice=${minPrice}&maxPrice=${maxPrice}`
     );
+  };
+
+  const dispach = useDispatch();
+
+  const handleBooking = () => {
+    if (localStorage.getItem('userData')) {
+      dispach(addOrder(dataOrder));
+      window.localStorage.setItem('bookingData', JSON.stringify(dataOrder));
+      navigate('/checkout');
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -481,12 +491,12 @@ const DetailsHotelPage = () => {
       {selectedRoom.images && (
         <RoomDetailsModal
           isModalVisible={isModalVisible}
-          handleOk={handleOk}
           handleCancel={handleCancel}
           roomData={selectedRoom}
           roomImages={roomImages}
           dataOrder={dataOrder}
           setIsModalVisible={setIsModalVisible}
+          handleBooking={handleBooking}
         />
       )}
     </div>
