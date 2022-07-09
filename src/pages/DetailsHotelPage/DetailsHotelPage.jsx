@@ -186,10 +186,8 @@ const DetailsHotelPage = () => {
     });
   };
 
-  const handleScrollIntoView = () => {
-    const list__rooms = document.getElementById('list__rooms');
-    list__rooms.scrollIntoView({ behavior: 'smooth' });
-  };
+  const viewRoom = useRef(null);
+  const scrollToElement = () => viewRoom.current.scrollIntoView();
 
   const navigate = useNavigate();
 
@@ -282,7 +280,7 @@ const DetailsHotelPage = () => {
                       {t('details__hotel.night')}
                     </span>
                   </h1>
-                  <Button onClick={handleScrollIntoView} type="primary">
+                  <Button onClick={scrollToElement} type="primary">
                     {t('details__hotel.view__rooms')}
                     <CaretDownOutlined />
                   </Button>
@@ -373,16 +371,15 @@ const DetailsHotelPage = () => {
             md={{ span: 24 }}
             sm={{ span: 24 }}
             xs={{ span: 24 }}
-            className="filter__wrapper"
-          ></Col>
-
-          <Col
-            lg={{ span: 24 }}
-            xl={{ span: 24 }}
-            md={{ span: 24 }}
-            sm={{ span: 24 }}
-            xs={{ span: 24 }}
           >
+            <div
+              ref={viewRoom}
+              style={{
+                height: '7rem',
+                position: 'absolute',
+                bottom: '100%',
+              }}
+            />
             <h1 style={{ margin: 0 }}>{t('details__hotel.available_rates')}</h1>
             <SearchRoom
               onClickSearch={handleSearch}
@@ -412,6 +409,7 @@ const DetailsHotelPage = () => {
                 </Col>
               </Row>
               <Divider style={{ margin: '12px' }} />
+
               <List
                 itemLayout="horizontal"
                 dataSource={roomData && roomData.length > 0 ? roomData : []}
