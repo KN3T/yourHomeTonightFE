@@ -13,7 +13,7 @@ import {
 import { Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 
-import { roomsApi } from '../../../../api/roomsApi';
+import { roomsApi } from '../../../api/roomsApi';
 
 const { Option } = Select;
 const { TextArea } = Input;

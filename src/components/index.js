@@ -20,7 +20,6 @@ export {default as Transaction} from './Transaction/Transaction'
 export {default as Feedback} from './Feedback/Feedback'
 export { default as SearchInHotels } from './SearchInHotels/SearchInHotels'
 export { default as SearchRoom } from './SearchRoom/SearchRoom'
-export { default as HotelAdmin } from './Admin/HotelAdmin/HotelAdmin'
 export { default as RoomInDetailsHotel } from './Room/RoomInDetailsHotel/RoomInDetailsHotel'
 export {default as BookingFeedback} from './Feedback/BookingFeedback'
 export {default as BarChart} from './BarChart/BarChart'
@@ -28,3 +27,5 @@ export {default as TableBookings} from './Table/TableBookings/TableBookings'
 export { default as GuestLayout } from './GuestLayout/GuestLayout'
 export { default as AdminLayout } from "./Admin/AdminLayout/AdminLayout"
 export { default as HotelProfileForm } from "./HotelProfileForm/HotelProfileForm"
+export { default as ModalAdd } from "./Admin/ModalAdd/ModalAdd"
+export { default as ModalEdit } from "./Admin/ModalEdit/ModalEdit"

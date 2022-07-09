@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { StarFilled } from '@ant-design/icons';
-import { Avatar, Col, Comment, Rate, Space, Table } from 'antd';
+import { Avatar, Comment, Rate, Space, Table } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useLoadingContext } from 'react-router-loading';
