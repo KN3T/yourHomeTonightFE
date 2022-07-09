@@ -37,7 +37,7 @@ const LoginPage = () => {
         useLocalToken();
         if (role === 'ROLE_HOTEL') {
           navigate(`/manageHotel/${response.data.data.hotelId}`);
-        } else if (role === 'ROLE_USER' || role === 'ROLE_ADMIN') {
+        } else if (role === 'ROLE_USER') {
           navigate(-1);
         }
         message.success('Login successfully');
