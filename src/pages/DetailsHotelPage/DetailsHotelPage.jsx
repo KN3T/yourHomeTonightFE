@@ -480,6 +480,7 @@ const DetailsHotelPage = () => {
       )}
       {selectedRoom.images && (
         <RoomDetailsModal
+          hotelId={id}
           isModalVisible={isModalVisible}
           handleOk={handleOk}
           handleCancel={handleCancel}

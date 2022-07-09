@@ -22,6 +22,7 @@ const RoomDetailsModal = (props) => {
     roomImages,
     dataOrder,
     setIsModalVisible,
+    hotelId,
   } = props;
 
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const RoomDetailsModal = (props) => {
       window.localStorage.setItem('bookingData', JSON.stringify(dataOrder));
       navigate('/checkout');
     } else {
-      navigate('/login');
+      navigate('/login', { state: `hotels/${hotelId}` });
     }
   };
   return (
