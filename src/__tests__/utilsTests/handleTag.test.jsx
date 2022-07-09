@@ -11,7 +11,7 @@ test('handle tag testing', () => {
   expect(handleTag(2)).toEqual({
     color: 'processing',
     text: 'Paid',
-    icon: <SyncOutlined spin />,
+    icon: <ClockCircleOutlined />,
   });
 
   expect(handleTag(3)).toEqual({
@@ -29,12 +29,12 @@ test('handle tag testing', () => {
   expect(handleTag(1)).toEqual({
     color: 'warning',
     text: 'Pending',
-    icon: <ClockCircleOutlined />,
+    icon: <SyncOutlined spin />,
   });
 
   expect(handleTag(5)).toEqual({
     color: 'warning',
     text: 'Pending',
-    icon: <ClockCircleOutlined />,
+    icon: <SyncOutlined spin />,
   });
 });
