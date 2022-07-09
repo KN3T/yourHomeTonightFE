@@ -46,7 +46,11 @@ const UserProfilePage = () => {
             <Card>
               <Row gutter={[0, 10]}>
                 <Col className="profile__content__image" xl={24} lg={24}>
-                  <Avatar size={150} src="https://joeschmoe.io/api/v1/random" />
+                  <Avatar
+                    data-testid="avatar"
+                    size={150}
+                    src="https://joeschmoe.io/api/v1/random"
+                  />
                 </Col>
               </Row>
             </Card>
