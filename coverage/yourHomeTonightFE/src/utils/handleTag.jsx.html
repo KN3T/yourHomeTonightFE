@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60.6% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>33/33</span>
+                <span class='fraction'>20/33</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60.6% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>33/33</span>
+                <span class='fraction'>20/33</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -105,29 +105,29 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   CheckCircleOutlined,
@@ -140,21 +140,21 @@ import React from 'react';
 const handleTag = (status) =&gt; {
   switch (status) {
     case 2:
-      return {
-        color: 'processing',
-        text: 'Paid',
-        icon: &lt;ClockCircleOutlined /&gt;,
-      };
-    case 3:
-      return {
-        color: 'error',
-        text: 'Cancelled',
-        icon: &lt;CloseCircleOutlined /&gt;,
-      };
-    case 4:
-      return { color: 'success', text: 'Done', icon: &lt;CheckCircleOutlined /&gt; };
-    default:
-      return {
+      return <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        color: 'processing',</span>
+<span class="cstat-no" title="statement not covered" >        text: 'Paid',</span>
+<span class="cstat-no" title="statement not covered" >        icon: &lt;ClockCircleOutlined /&gt;,</span>
+<span class="cstat-no" title="statement not covered" >      };</span>
+<span class="cstat-no" title="statement not covered" >    case 3:</span>
+<span class="cstat-no" title="statement not covered" >      return <span class="branch-0 cbranch-no" title="branch not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        color: 'error',</span>
+<span class="cstat-no" title="statement not covered" >        text: 'Cancelled',</span>
+<span class="cstat-no" title="statement not covered" >        icon: &lt;CloseCircleOutlined /&gt;,</span>
+<span class="cstat-no" title="statement not covered" >      };</span>
+<span class="cstat-no" title="statement not covered" >    case 4:</span>
+      return <span class="branch-0 cbranch-no" title="branch not covered" >{ color: 'success', text: 'Done', icon: &lt;CheckCircleOutlined /&gt; };</span>
+<span class="cstat-no" title="statement not covered" >    default:</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
         color: 'warning',
         text: 'Pending',
         icon: &lt;SyncOutlined spin /&gt;,
@@ -169,7 +169,7 @@ export default handleTag;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Jul 09 2022 17:40:50 GMT+0700 (Indochina Time)
+                at Sat Jul 09 2022 17:44:51 GMT+0700 (Indochina Time)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
