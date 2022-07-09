@@ -1,9 +1,10 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Select } from 'antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { profileApi } from '../../../../api/profileApi';
 import englandIcon from '../../../../assets/images/englandIcon.jpg';
 import vietnamIcon from '../../../../assets/images/vietnamIcon.png';
 import UserControl from '../../../UserControl/UserControl';
@@ -50,9 +51,24 @@ const HeaderNavAdmin = () => {
 
   const defaultLanguage = window.localStorage.getItem('lng');
 
+  const [user, setUser] = useState(userData);
+  useEffect(() => {
+    const getProfile = async () => {
+      const { data } = await profileApi.get();
+      data && setUser(data.data);
+    };
+    getProfile();
+  }, []);
+
+  const onLogOut = () => {
+    location.reload();
+    window.localStorage.clear();
+  };
+
   return (
     <div className="navbar__header__wrapper">
       <Select
+        data-testid="select-admin-navbar"
         defaultValue={
           i18n.language === 'en' ? languageOptions[0] : languageOptions[1]
         }
@@ -65,7 +81,7 @@ const HeaderNavAdmin = () => {
           style={{ margin: '0 10px' }}
           icon={<UserOutlined />}
         >
-          <UserControl />
+          <UserControl userData={user} onLogOut={onLogOut} />
         </Button>
       ) : (
         <Link to="/login">

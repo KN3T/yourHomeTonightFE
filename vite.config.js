@@ -4,10 +4,12 @@ import { defineConfig } from 'vite';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
-    server: {
-        proxy: {
-            '/api': 'http://api.yourhometonight.com/api/login',
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: ['setupTests.js'],
+        coverage: {
+            reporter: ['text', 'json', 'html'],
         },
-        cors: true,
-    }
-})
+    },
+});
