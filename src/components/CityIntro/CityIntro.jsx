@@ -44,7 +44,7 @@ const CityInfo = () => {
 
   return (
     <div className="city_info  ctn">
-      <Title level={2} className="title_city_section">
+      <Title data-testid="title" level={2} className="title_city_section">
         {t('city.populer_city_title')}
       </Title>
       <div className="city_info_wrapper">
