@@ -37,7 +37,7 @@ const HotelPopulerList = () => {
   return (
     <Spin spinning={loading}>
       <div className="hotel_populer_list  ctn">
-        <Title className="title_section" level={2}>
+        <Title data-testid="headingId" className="title_section" level={2}>
           {t('hotel.populer_hotel_title')}
         </Title>
         <Row className="hotel_list" gutter={[16, 0]}>
