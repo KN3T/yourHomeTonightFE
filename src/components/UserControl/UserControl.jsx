@@ -1,20 +1,38 @@
-/* eslint-disable react/prop-types */
 import {
   HomeOutlined,
   LogoutOutlined,
   ZoomOutOutlined,
 } from '@ant-design/icons';
 import { Button, Dropdown, Menu } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-const UserControl = ({ userData, onLogOut }) => {
+import { profileApi } from '../../api/profileApi';
+
+const UserControl = () => {
+  const [userData, setUserData] = useState(
+    JSON.parse(window.localStorage.getItem('userData'))
+  );
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const { data } = await profileApi.get();
+      data && setUserData(data.data);
+    };
+    getProfile();
+  }, []);
+
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const userRole = userData && userData.role;
-  const hotelId = userData && userData.hotelId;
+  const userRole = localStorage.getItem('role');
+  const hotelId = localStorage.getItem('hotelId');
+
+  const logout = () => {
+    location.reload();
+    window.localStorage.clear();
+  };
 
   const menu =
     userRole === 'ROLE_HOTEL' ? (
@@ -37,12 +55,7 @@ const UserControl = ({ userData, onLogOut }) => {
           },
           {
             label: (
-              <Button
-                data-testid="button-logout"
-                type="link"
-                icon={<LogoutOutlined />}
-                onClick={onLogOut}
-              >
+              <Button type="link" icon={<LogoutOutlined />} onClick={logout}>
                 {t('navbar.logout')}
               </Button>
             ),
@@ -70,12 +83,7 @@ const UserControl = ({ userData, onLogOut }) => {
           },
           {
             label: (
-              <Button
-                data-testid="button-logout"
-                type="link"
-                icon={<LogoutOutlined />}
-                onClick={onLogOut}
-              >
+              <Button type="link" icon={<LogoutOutlined />} onClick={logout}>
                 {t('navbar.logout')}
               </Button>
             ),
@@ -87,7 +95,7 @@ const UserControl = ({ userData, onLogOut }) => {
 
   return (
     <Dropdown overlay={menu} trigger={['click']}>
-      <span>{userData && userData.fullName}</span>
+      <span>{userData.fullName}</span>
     </Dropdown>
   );
 };
