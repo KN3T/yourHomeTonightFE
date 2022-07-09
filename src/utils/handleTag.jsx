@@ -11,7 +11,7 @@ const handleTag = (status) => {
     case 2:
       return {
         color: 'processing',
-        text: 'Success',
+        text: 'Paid',
         icon: <ClockCircleOutlined />,
       };
     case 3:
@@ -21,7 +21,7 @@ const handleTag = (status) => {
         icon: <CloseCircleOutlined />,
       };
     case 4:
-      return { color: 'Done', text: 'Done', icon: <CheckCircleOutlined /> };
+      return { color: 'success', text: 'Done', icon: <CheckCircleOutlined /> };
     default:
       return {
         color: 'warning',
