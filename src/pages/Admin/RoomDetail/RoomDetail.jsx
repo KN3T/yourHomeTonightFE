@@ -1,11 +1,11 @@
 import {
+  BuildOutlined,
+  BulbOutlined,
   CheckCircleOutlined,
   ContactsOutlined,
   DollarOutlined,
   FileTextOutlined,
-  LaptopOutlined,
   ProfileOutlined,
-  RedditOutlined,
   SmileOutlined,
   TeamOutlined,
   UserOutlined,
@@ -230,7 +230,7 @@ const RoomDetail = () => {
                       </p>
                       <p>
                         <span className="icon">
-                          <LaptopOutlined />
+                          <BulbOutlined />
                         </span>{' '}
                         <span> Assets: </span>
                         <span>
@@ -254,7 +254,9 @@ const RoomDetail = () => {
                           <FileTextOutlined />
                         </span>{' '}
                         <span> Description: </span>
-                        <span>{detailRoom.description}</span>
+                        <span className="desc_room">
+                          {detailRoom.description}
+                        </span>
                       </p>
                     </div>
                   </Col>
@@ -271,7 +273,7 @@ const RoomDetail = () => {
                       <p>
                         <span className="icon">
                           {' '}
-                          <RedditOutlined />
+                          <BuildOutlined />
                         </span>{' '}
                         <span> Beds: </span>
                         <span>{detailRoom.beds}</span>
