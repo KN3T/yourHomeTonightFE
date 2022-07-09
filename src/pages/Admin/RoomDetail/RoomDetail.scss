@@ -54,6 +54,7 @@
     .icon {
       color: #ff690f;
       font-weight: 700;
+      margin-right: 5px;
     }
     .img_rooms {
       width: 100%;
@@ -69,4 +70,25 @@
 .header {
   padding-left: 25px;
   padding-top: 20px;
+}
+
+.list__asset {
+  margin-top: 5px;
+  column-count: 2;
+  li {
+    list-style-type: none;
+    margin-bottom: 5px;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid-column;
+    width: 100%;
+    line-height: 17px;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 2px;
+      padding-right: 2px;
+    }
+  }
 }

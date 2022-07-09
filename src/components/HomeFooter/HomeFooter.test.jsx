@@ -19,6 +19,12 @@ describe('HomeFooter test', () => {
     expect(screen.getAllByRole('combobox')).toHaveLength(2);
   });
 
+  it('HomeFooter should be have 4 label', () => {
+    render(<HomeFooter />);
+
+    expect(screen.getAllByTestId('label')).toHaveLength(4);
+  });
+
   test('HomeFooter should render', () => {
     render(<HomeFooter />);
     expect(screen.getByText('©2022 Yourhome29.')).toBeInTheDocument();

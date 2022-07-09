@@ -149,11 +149,11 @@ const HotelInCityPage = () => {
   const onChangeRating = (value) => {
     setParams({
       ...params,
-      rating: parseInt(value),
+      rating: parseFloat(value),
     });
     setSearchParams({
       ...params,
-      rating: parseInt(value),
+      rating: parseFloat(value),
     });
   };
 

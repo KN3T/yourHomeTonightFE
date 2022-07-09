@@ -22,7 +22,7 @@ const HotelPopulerList = () => {
     if (result.data.status === 'success') {
       const { data } = result;
       setData(data.data.hotels);
-      loadingContext.done();
+      data && loadingContext.done();
     }
   };
 
