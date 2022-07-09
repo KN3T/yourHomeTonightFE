@@ -32,12 +32,13 @@ const LoginPage = () => {
         localStorage.setItem('userData', JSON.stringify(data.data));
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('role', role);
+        localStorage.setItem('hotelId', data.data.hotelId);
         setLoadingButton(false);
         useLocalToken();
         if (role === 'ROLE_HOTEL') {
           navigate(`/manageHotel/${response.data.data.hotelId}`);
         } else if (role === 'ROLE_USER' || role === 'ROLE_ADMIN') {
-          history.back();
+          navigate(-1);
         }
         message.success('Login successfully');
       }

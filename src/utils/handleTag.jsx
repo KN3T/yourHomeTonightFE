@@ -9,7 +9,11 @@ import React from 'react';
 const handleTag = (status) => {
   switch (status) {
     case 2:
-      return { color: 'processing', text: 'Paid', icon: <SyncOutlined spin /> };
+      return {
+        color: 'processing',
+        text: 'Paid',
+        icon: <ClockCircleOutlined />,
+      };
     case 3:
       return {
         color: 'error',
@@ -22,7 +26,7 @@ const handleTag = (status) => {
       return {
         color: 'warning',
         text: 'Pending',
-        icon: <ClockCircleOutlined />,
+        icon: <SyncOutlined spin />,
       };
   }
 };

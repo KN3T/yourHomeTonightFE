@@ -250,7 +250,7 @@ const HotelAdmin = () => {
           asset: response.data.data.asset,
           images: response.data.data.images,
         };
-        setDataSource(initialData);
+        setDataSource([...initialData]);
         setLoading(false);
         message.success(`Room ${response.data.data.number} is updated!!!`);
       }
