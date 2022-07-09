@@ -82,6 +82,19 @@ const RoomDetailsModal = (props) => {
           </Col>
           <Col className="info__section" span={10}>
             <h2 className="info__name">{roomData.type}</h2>
+            <div className="room__price">
+              <h3>
+                {t('room.only')}{' '}
+                <span
+                  style={{ color: 'var(--primary-color)', fontWeight: 700 }}
+                >
+                  {t('room.price_value', {
+                    val: formatCurrency(roomData.price, currentLanguage),
+                  })}{' '}
+                </span>
+                {t('room.per_night')}
+              </h3>
+            </div>
             <div className="info__description">
               <h2 className="info__title">{t('room.description')}</h2>
               <ul>
@@ -117,15 +130,6 @@ const RoomDetailsModal = (props) => {
         </Row>
         <Row gutter={[[0, 0]]} className="bottom__section">
           <Col span={24} className="bottom__wrapper">
-            <div className="room__price">
-              <strong>
-                {t('room.only')}{' '}
-                {t('room.price_value', {
-                  val: formatCurrency(roomData.price, currentLanguage),
-                })}{' '}
-                {t('room.per_night')}
-              </strong>
-            </div>
             <div className="booking__button">
               {dataOrder.checkIn && dataOrder.checkOut ? (
                 <Button

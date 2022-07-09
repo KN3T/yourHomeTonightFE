@@ -4,7 +4,11 @@ import './index.scss';
 
 const Button = (props) => {
   const { text } = props;
-  return <button className="btn__component">{text}</button>;
+  return (
+    <button data-testid="role_button" role="button" className="btn__component">
+      {text}
+    </button>
+  );
 };
 
 export default Button;

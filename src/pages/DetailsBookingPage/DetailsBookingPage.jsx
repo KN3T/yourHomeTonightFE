@@ -1,4 +1,4 @@
-import { Button, Card, Col, Divider, Row, Tag } from 'antd';
+import { Button, Card, Col, Divider, Image, Row, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +6,7 @@ import { BsArrowDownCircle, BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
@@ -114,7 +114,10 @@ const CheckoutPageConfirmation = () => {
             <Row gutter={[16, 0]}>
               <Col span={24}>
                 <div className="details__booking__content__heading">
-                  <h1>Your trip to Da Lat</h1>
+                  <h1>
+                    {t('checkout.your_trip_to')}{' '}
+                    {confirmationData.hotel.address.city}
+                  </h1>
                   <div>
                     <span className="tag__highlight">
                       Email sent to: <b>{confirmationData.email}</b>
@@ -124,7 +127,9 @@ const CheckoutPageConfirmation = () => {
                         <FaBed />
                       </div>
                       <div>
-                        <h3>Crowne Plaza Da Lat</h3>
+                        <Link to={`/hotels/${confirmationData.hotel.id}`}>
+                          <h3>{confirmationData.hotel.name}</h3>
+                        </Link>
                         <div>
                           <span>
                             {moment(confirmationData.checkIn.date).format(
@@ -158,9 +163,12 @@ const CheckoutPageConfirmation = () => {
                     >
                       <div className="details__booking__content__top">
                         <div className="details__booking__content__image">
-                          <img
-                            src={confirmationData.hotel.images[0].src}
-                            alt=""
+                          <Image
+                            src={
+                              confirmationData.room.images[0] &&
+                              confirmationData.room.images[0].src &&
+                              confirmationData.room.images[0].src
+                            }
                           />
                         </div>
                         <div className="details__booking__content__description">

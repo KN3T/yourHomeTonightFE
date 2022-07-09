@@ -13,20 +13,18 @@ describe('HomeFooter test', () => {
     expect(homeEle).not.toBeInTheDocument();
   });
 
-  it('HomeFooter should be have 2 select', () => {
+  it('HomeFooter should be have 1 select', () => {
     render(<HomeFooter />);
 
-    expect(screen.getAllByRole('combobox')).toHaveLength(2);
-  });
-
-  it('HomeFooter should be have 4 label', () => {
-    render(<HomeFooter />);
-
-    expect(screen.getAllByTestId('label')).toHaveLength(4);
+    expect(screen.getAllByRole('combobox')).toHaveLength(1);
   });
 
   test('HomeFooter should render', () => {
     render(<HomeFooter />);
     expect(screen.getByText('©2022 Yourhome29.')).toBeInTheDocument();
+  });
+  test('HomeFooter should render', () => {
+    render(<HomeFooter />);
+    expect(screen.getByText('footer.about')).toBeInTheDocument();
   });
 });

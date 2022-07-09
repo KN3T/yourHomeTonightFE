@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import dollar from '../../assets/images/dollar.jpg';
 import us from '../../assets/images/englandIcon.jpg';
+import usa from '../../assets/images/usa.svg';
 import vn from '../../assets/images/vietnamIcon.png';
 import vietnamdong from '../../assets/images/vietnamdong.jpg';
 import './HomeFooter.scss';
@@ -94,42 +95,21 @@ const HomeFooter = () => {
           </p>
           <div className="lng-select" style={{ paddingBottom: 10 }}>
             <Select
-              defaultValue="United Kingdom"
+              defaultValue="United State"
               style={{
                 width: 200,
               }}
               onChange={handleChange}
             >
               <OptGroup label="Site">
-                <Option value="United Kingdom">
+                <Option value="United State">
                   {' '}
-                  <img src={us} alt="" style={{ width: '20px' }} /> United
-                  Kingdom
+                  <img src={usa} alt="" style={{ width: '20px' }} /> United
+                  State
                 </Option>
                 <Option value="Vietnamese">
                   {' '}
                   <img src={vn} alt="" style={{ width: '20px' }} /> Vietnam
-                </Option>
-              </OptGroup>
-            </Select>
-          </div>
-
-          <div className="lng-select">
-            <Select
-              defaultValue="&nbsp;£ &nbsp; Pound Sterling"
-              style={{
-                width: 200,
-              }}
-              onChange={handleChange}
-            >
-              <OptGroup label="Most-Used Currencies">
-                <Option value="Euro">
-                  <img src={vietnamdong} alt="" style={{ width: '20px' }} />{' '}
-                  Vietnamese Dong
-                </Option>
-                <Option value="United States Dollars">
-                  <img src={dollar} alt="" style={{ width: '20px' }} /> United
-                  States Dollars
                 </Option>
               </OptGroup>
             </Select>

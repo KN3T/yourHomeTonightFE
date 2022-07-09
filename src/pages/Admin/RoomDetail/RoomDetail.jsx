@@ -10,7 +10,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Button, Rate, Table, Tag } from 'antd';
+import { Breadcrumb, Button, Carousel, Rate, Table, Tag } from 'antd';
 import { Card, Col, Divider, Image, Row } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -297,14 +297,14 @@ const RoomDetail = () => {
                     </div>
                   </Col>
                   <Col span={8}>
-                    {detailRoom.images && (
-                      <div className="room_wrapper">
-                        <Image
-                          className="img_rooms"
-                          src={detailRoom?.images[0]?.src}
-                        />
-                      </div>
-                    )}
+                    <Carousel>
+                      {detailRoom.images &&
+                        detailRoom.images.map((item, index) => (
+                          <div key={index} className="room_wrapper">
+                            <img className="img_rooms" src={item.src} />
+                          </div>
+                        ))}
+                    </Carousel>
                   </Col>
                 </Row>
               </Card>
