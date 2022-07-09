@@ -20,8 +20,4 @@ module.exports = {
         window: true,
         module: true
       },
-    rules: {
-        "no-unused-vars": 0,
-        "no-self-assign": 0
-    }
   };
