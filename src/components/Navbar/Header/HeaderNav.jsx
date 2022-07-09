@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import englandIcon from '../../../assets/images/englandIcon.jpg';
+import usa from '../../../assets/images/usa.svg';
 import vietnamIcon from '../../../assets/images/vietnamIcon.png';
 import UserControl from '../../UserControl/UserControl';
 import './index.scss';
@@ -24,7 +25,7 @@ const HeaderNav = () => {
       value: 'en',
       label: (
         <div>
-          <img src={englandIcon} alt="" style={{ width: '20px' }} />
+          <img src={usa} alt="" style={{ width: '20px' }} />
         </div>
       ),
     },

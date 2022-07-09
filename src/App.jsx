@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import './App.scss';
 import Router from './router/Router';
@@ -14,11 +14,11 @@ ConfigProvider.config({
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <Router />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

@@ -83,10 +83,16 @@ const ModalAdd = ({ visible, onCancel, handleAddRoom }) => {
   };
 
   const onCreate = (values) => {
+    const imgData = imagesSrc.map((item, index) => {
+      return {
+        id: index,
+        src: item,
+      };
+    });
     handleAddRoom({
       ...values,
       images: imagesId,
-      imagesSrc: imagesSrc,
+      imagesSrc: imgData,
     });
 
     setFileList([]);
@@ -251,9 +257,6 @@ const ModalAdd = ({ visible, onCancel, handleAddRoom }) => {
                   <Checkbox value="Flat-screen TV">Flat-screen TV</Checkbox>
                 </Col>
                 <Col span={8}>
-                  <Checkbox value="Soundproofing">Soundproofing</Checkbox>
-                </Col>
-                <Col span={8}>
                   <Checkbox value="Free WiFi">Free WiFi</Checkbox>
                 </Col>
                 <Col span={8}>
@@ -261,6 +264,38 @@ const ModalAdd = ({ visible, onCancel, handleAddRoom }) => {
                 </Col>
                 <Col span={8}>
                   <Checkbox value="Ensuite bathroom">Ensuite bathroom</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Soundproofing">Soundproofing</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Safety deposit box">
+                    Safety deposit box
+                  </Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Electric kettle">Electric kettle</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Microwave">Microwave</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Coffee machine">Coffee machine</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Dishwasher">Dishwasher</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Fireplace">Fireplace</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Clothes rack">Clothes rack</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Ceiling fan">Ceiling fan</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Balcony">Balcony</Checkbox>
                 </Col>
               </Row>
             </Checkbox.Group>

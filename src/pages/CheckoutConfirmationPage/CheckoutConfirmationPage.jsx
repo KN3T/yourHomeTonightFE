@@ -1,4 +1,4 @@
-import { Button, Col, Row, Steps, Tag } from 'antd';
+import { Button, Col, Image, Row, Steps, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,7 @@ import { IoBedSharp } from 'react-icons/io5';
 import { MdSecurity } from 'react-icons/md';
 import { MdOutlineChildCare } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
@@ -130,7 +130,9 @@ const CheckoutPageConfirmation = () => {
                         <FaBed />
                       </div>
                       <div>
-                        <h3>{confirmationData.hotel.name}</h3>
+                        <Link to={`/hotels/${confirmationData.hotel.id}`}>
+                          <h3>{confirmationData.hotel.name}</h3>
+                        </Link>
                         <div>
                           <span>
                             {moment(confirmationData.checkIn.date).format(
@@ -171,7 +173,13 @@ const CheckoutPageConfirmation = () => {
                   >
                     <div className="checkout__confirmation__content__top">
                       <div className="checkout__confirmation__content__image">
-                        <img src={confirmationData.room.images[0].src} alt="" />
+                        <Image
+                          src={
+                            confirmationData.room.images[0] &&
+                            confirmationData.room.images[0].src &&
+                            confirmationData.room.images[0].src
+                          }
+                        />
                       </div>
                       <div className="checkout__confirmation__content__description">
                         <h2>{confirmationData.room.type}</h2>

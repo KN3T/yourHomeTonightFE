@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { StarFilled } from '@ant-design/icons';
 import { Avatar, Col, Comment, Rate, Space, Table } from 'antd';
 import moment from 'moment';
@@ -16,6 +17,7 @@ const FeedBack = ({ hotelId, hotelData }) => {
     const getAllFeedback = async () => {
       const { data } = await feedbackApi.getAll(hotelId);
       setFeedback(data.data);
+      loadingContext.done();
     };
     getAllFeedback();
   }, [hotelId]);
@@ -48,7 +50,6 @@ const FeedBack = ({ hotelId, hotelData }) => {
     },
   ];
 
-  loadingContext.done();
   return (
     <div>
       <Space>
@@ -75,12 +76,21 @@ const FeedBack = ({ hotelId, hotelData }) => {
           </span>
         </div>
       </Space>
-      <Table
-        pagination={{ pageSize: 3 }}
-        rowKey="id"
-        dataSource={feedback.reviews}
-        columns={columns}
-      />
+      {feedback && feedback.reviews && feedback.reviews.length > 3 ? (
+        <Table
+          pagination={{ pageSize: 3 }}
+          rowKey="id"
+          dataSource={feedback.reviews}
+          columns={columns}
+        />
+      ) : (
+        <Table
+          pagination={false}
+          rowKey="id"
+          dataSource={feedback.reviews}
+          columns={columns}
+        />
+      )}
     </div>
   );
 };
