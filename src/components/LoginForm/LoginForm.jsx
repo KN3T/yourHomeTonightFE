@@ -2,16 +2,22 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import './LoginForm.scss';
 
 const LoginForm = ({ onFinish, onFinishFailed, loadingButton }) => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const layout = {
     labelCol: { span: { sm: 24, md: 8, lg: 6 } },
     wrapperCol: { span: { sm: 24, md: 16, lg: 12 } },
+  };
+
+  const onClickToRegister = () => {
+    navigate('/register', { state: location.state });
   };
   return (
     <Form
@@ -60,7 +66,7 @@ const LoginForm = ({ onFinish, onFinishFailed, loadingButton }) => {
       <Form.Item>
         <div className="login__form__link">
           <span>{t('login.not_have_account')}</span>
-          <Link to="/register">{t('login.register_now')}</Link>
+          <a onClick={onClickToRegister}>{t('login.register_now')}</a>
         </div>
       </Form.Item>
       <Form.Item>
