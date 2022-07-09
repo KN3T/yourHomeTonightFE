@@ -55,7 +55,7 @@ const UserProfilePage = () => {
               </Row>
             </Card>
           </section>
-          <Tabs defaultActiveKey="1" className="ctn">
+          <Tabs data-testid="tabs" defaultActiveKey="1" className="ctn">
             <TabPane
               tab={
                 <span>
