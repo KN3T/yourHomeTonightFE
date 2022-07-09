@@ -84,6 +84,9 @@ const SearchRoom = ({
                 size="large"
                 onCalendarChange={setDate}
                 allowClear={false}
+                disabledDate={(current) =>
+                  current.isBefore(moment().subtract(1, 'day'))
+                }
               />
             </Form.Item>
           </Col>

@@ -17,9 +17,8 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: ['react'],
-    rules: {},
     globals: {
         window: true,
         module: true
-    }
-};
+      },
+  };

@@ -1,4 +1,4 @@
-import { HomeOutlined, TwitterOutlined, UserOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -53,12 +53,6 @@ const SiderNav = () => {
           <NavLink className="link" to="/">
             <HomeOutlined className="icon" />
             <span className="text__icon">{t('navbar.home')}</span>
-          </NavLink>
-        </Space>
-        <Space className="space">
-          <NavLink className="link" to="/hotels">
-            <TwitterOutlined className="icon" />
-            <span className="text__icon">{t('navbar.hotels')}</span>
           </NavLink>
         </Space>
       </div>

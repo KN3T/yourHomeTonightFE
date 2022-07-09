@@ -27,10 +27,10 @@ const UserControl = () => {
   const { t } = useTranslation();
 
   const userRole = localStorage.getItem('role');
-  const hotelId = userData.hotelId;
+  const hotelId = localStorage.getItem('hotelId');
 
   const logout = () => {
-    userRole === 'ROLE_USER' ? location.reload() : navigate('/');
+    location.reload();
     window.localStorage.clear();
   };
 

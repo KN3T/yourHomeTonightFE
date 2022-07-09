@@ -211,16 +211,7 @@ const HotelProfileForm = (props) => {
               </Form.Item>
             </Col>
           </Row>
-          <Form.Item
-            name="rules"
-            label="Rules"
-            rules={[
-              {
-                required: true,
-                message: 'Please choose a rule',
-              },
-            ]}
-          >
+          <Form.Item name="rules" label="Rules">
             <Checkbox.Group
               style={{
                 width: '100%',
@@ -236,16 +227,7 @@ const HotelProfileForm = (props) => {
               </Row>
             </Checkbox.Group>
           </Form.Item>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[
-              {
-                required: true,
-                message: 'Please enter description',
-              },
-            ]}
-          >
+          <Form.Item name="description" label="Description">
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item name="images">
