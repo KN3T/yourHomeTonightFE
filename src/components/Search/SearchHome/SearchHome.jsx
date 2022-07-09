@@ -88,7 +88,6 @@ const SearchHome = (props) => {
                 onSearch={handleSearch}
               >
                 <Input
-                  // data-testid="input-debounce"
                   onChange={(e) => {
                     setCityName(e.target.value);
                   }}
