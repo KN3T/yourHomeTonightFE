@@ -88,7 +88,6 @@
         .description__wrapper {
           div {
             display: flex;
-            align-items: center;
           }
 
           svg {
@@ -98,9 +97,6 @@
         }
 
         .description__hotel {
-          display: flex;
-          align-items: center;
-
           p {
             margin-left: 10px;
             overflow: hidden;
@@ -124,6 +120,7 @@
             font-weight: 400;
             font-size: 16px;
             line-height: 24px;
+            color: var(--primary-color);
           }
 
           span.per__night {
