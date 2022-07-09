@@ -6,53 +6,33 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { addOrder } from '../../store/Slice/Booking/BookingSlice';
 import formatCurrency from '../../utils/formatCurrency';
 import './RoomDetailsModal.scss';
 
 const RoomDetailsModal = (props) => {
   const {
     isModalVisible,
-    handleOk,
     handleCancel,
     roomData,
     roomImages,
     dataOrder,
     setIsModalVisible,
+    handleBooking,
   } = props;
 
-  const navigate = useNavigate();
   const [bigImage, setBigImage] = useState(roomImages[0]);
-  const [orderData, setOrderData] = useState(dataOrder);
-  const dispach = useDispatch();
 
   useEffect(() => {
     setBigImage(roomImages[0]);
   }, [roomData]);
 
-  useEffect(() => {
-    setOrderData(dataOrder);
-  }, [dataOrder]);
-
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
-  const handleBooking = () => {
-    if (localStorage.getItem('userData')) {
-      dispach(addOrder(orderData));
-      window.localStorage.setItem('bookingData', JSON.stringify(dataOrder));
-      navigate('/checkout');
-    } else {
-      navigate('/login');
-    }
-  };
   return (
     <Modal
       visible={isModalVisible}
-      onOk={handleOk}
       onCancel={handleCancel}
       className="room__details__container"
       footer={false}
