@@ -1,4 +1,5 @@
 import { Tag } from 'antd';
+import React from 'react';
 
 const handleRating = (ratingCount) => {
   if (ratingCount < 5 && ratingCount > 4) {
