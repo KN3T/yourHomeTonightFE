@@ -477,17 +477,16 @@ const DetailsHotelPage = () => {
         </Row>
       )}
       {selectedRoom.images && (
-        <>
-          <RoomDetailsModal
-            isModalVisible={isModalVisible}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
-            roomData={selectedRoom}
-            roomImages={roomImages}
-            dataOrder={dataOrder}
-            setIsModalVisible={setIsModalVisible}
-          />
-        </>
+        <RoomDetailsModal
+          hotelId={id}
+          isModalVisible={isModalVisible}
+          handleOk={handleOk}
+          handleCancel={handleCancel}
+          roomData={selectedRoom}
+          roomImages={roomImages}
+          dataOrder={dataOrder}
+          setIsModalVisible={setIsModalVisible}
+        />
       )}
     </div>
   );
