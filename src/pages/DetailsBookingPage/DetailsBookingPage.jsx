@@ -120,9 +120,6 @@ const CheckoutPageConfirmation = () => {
                         <div className="tag__highlight">
                           Confirmation: #<b>{confirmationData.id}</b>
                         </div>
-                        <div className="icon__arrow" onClick={onClickDown}>
-                          <BsArrowDownCircle />
-                        </div>
                       </div>
                     </div>
                   </div>
