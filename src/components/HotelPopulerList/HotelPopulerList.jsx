@@ -10,6 +10,8 @@ const { Title } = Typography;
 
 const HotelPopulerList = ({ hotelData }) => {
   const { t } = useTranslation();
+  const NumberOfHotels = 3;
+
   return (
     <div className="hotel_populer_list  ctn">
       <Title className="title_section" level={2}>
@@ -17,7 +19,7 @@ const HotelPopulerList = ({ hotelData }) => {
       </Title>
       <Row className="hotel_list" gutter={[16, 0]}>
         {hotelData &&
-          hotelData.slice(0, 3).map((item, index) => {
+          hotelData.slice(0, NumberOfHotels).map((item, index) => {
             return (
               <Col
                 xxl={8}
