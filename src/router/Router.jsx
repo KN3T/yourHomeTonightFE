@@ -1,3 +1,4 @@
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Route, Routes } from 'react-router-loading';
 
@@ -20,10 +21,12 @@ import {
   UserProfilePage,
 } from '../pages';
 
+const hist = createBrowserHistory();
+
 const Router = () => {
   return (
     <>
-      <Routes>
+      <Routes history={hist}>
         <Route element={<GuestLayout />} loading>
           <Route path="/" element={<HomePage />} loading />
           <Route path="/hotels" element={<HotelInCityPage />} loading />
