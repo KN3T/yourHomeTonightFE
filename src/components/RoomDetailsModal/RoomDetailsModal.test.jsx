@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import moment from 'moment';
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -44,5 +44,15 @@ describe('Room details modal', () => {
       </Provider>
     );
     expect(roomDetailsModal).toMatchSnapshot();
+  });
+
+  it('should render button booking', () => {
+    const btn = screen.queryByTestId('btn__booking');
+    expect(
+      <btn
+        handleBooking={() => console.log('booking button')}
+        setIsModalVisible={() => console.log('close modal')}
+      />
+    ).toMatchSnapshot();
   });
 });
