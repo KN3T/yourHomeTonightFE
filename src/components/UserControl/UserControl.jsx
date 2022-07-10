@@ -23,6 +23,7 @@ const UserControl = ({ userData, onLogOut }) => {
           {
             label: (
               <Button
+                data-testid="btn__myhotel"
                 icon={<HomeOutlined />}
                 type="link"
                 onClick={() => navigate(`/manageHotel/${hotelId}`)}
@@ -37,12 +38,7 @@ const UserControl = ({ userData, onLogOut }) => {
           },
           {
             label: (
-              <Button
-                data-testid="button-logout"
-                type="link"
-                icon={<LogoutOutlined />}
-                onClick={onLogOut}
-              >
+              <Button type="link" icon={<LogoutOutlined />} onClick={onLogOut}>
                 {t('navbar.logout')}
               </Button>
             ),

@@ -113,6 +113,7 @@ const RoomDetailsModal = (props) => {
             <div className="booking__button">
               {dataOrder.checkIn && dataOrder.checkOut ? (
                 <Button
+                  data-testid="btn__booking"
                   onClick={() => {
                     handleBooking();
                     setIsModalVisible(false);
