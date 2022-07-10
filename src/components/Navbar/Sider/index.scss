@@ -1,0 +1,125 @@
+.navbar__sider__wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 5rem;
+  border-right: 1px solid #d9e2e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.3s;
+  background-color: white;
+  z-index: 100;
+
+  .space {
+    cursor: pointer;
+    transition: 0.3s all ease-out;
+    border: 2px solid transparent;
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 5px;
+
+    .ant-space-item {
+      border-radius: 5px;
+      width: 100%;
+
+      a {
+        padding: 20px;
+        border-radius: 5px;
+      }
+    }
+
+    a:hover {
+      background-color: #f0f3f5;
+      color: #181d20;
+      .link {
+        .icon {
+          color: #181d20;
+        }
+        .text__icon {
+          color: #181d20;
+        }
+      }
+    }
+
+    a.active {
+      background-color: #f0f3f5;
+      .icon {
+        color: #192024;
+        font-weight: bold;
+      }
+      .text__icon {
+        color: #192024;
+        font-weight: bold;
+      }
+    }
+
+    &:first-child {
+      margin-top: 20px;
+    }
+    &:last-child {
+      margin-top: 5px;
+    }
+
+    .link {
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      .icon {
+        font-size: 20px;
+        color: #8796a1;
+        transition: 0.3s;
+      }
+      .text__icon {
+        transition: 0.3s;
+        margin-left: 10px;
+        display: none;
+        color: #8796a1;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  &:hover {
+    width: 13rem;
+
+    .link {
+      .icon {
+        margin-right: 10px;
+      }
+      .text__icon {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.navbar__logo__wrapper {
+  position: fixed;
+  width: 100vw;
+  background-color: white;
+  z-index: 99;
+  box-shadow: 0 2px 8px 0 rgb(175, 174, 183);
+  display: flex;
+  top: 0;
+  height: 79px;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    padding-left: 6rem;
+    padding-top: 12px;
+    top: 50%;
+    span {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.navbar__logo__wrapper__with_shadow {
+  box-shadow: 0 2px 8px 0 rgb(175, 174, 183);
+}

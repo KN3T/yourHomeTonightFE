@@ -1,0 +1,80 @@
+.checkout__form {
+  &__wrapper {
+    .guest__info {
+      &__notice {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 8px;
+        background-color: rgb(244, 246, 248);
+        color: rgb(0, 24, 51);
+        border-radius: 8px;
+      }
+    }
+  }
+
+  &__item {
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid rgb(192, 202, 213);
+    box-shadow: rgb(0 0 0 / 24%) 0px 0px 1px 0px,
+      rgb(0 0 0 / 16%) 0px 2px 1px -1px, rgb(0 0 0 / 12%) 0px 2px 4px 0px;
+    margin-top: 16px;
+
+    .form__item {
+      &__input {
+        appearance: none;
+        display: block;
+        width: 100%;
+        font-family: inherit;
+        color: inherit;
+        background-color: transparent;
+        border-width: 1px;
+        border-style: solid;
+        padding: 10px;
+        border-color: rgb(192, 202, 213);
+        font-size: 16px;
+        border-radius: 12px;
+      }
+    }
+
+    .radio__button {
+      height: 40px;
+      width: 100%;
+      position: relative;
+      border-radius: 2px;
+      color: rgba(0, 0, 0, 0.85);
+      padding: 6.5px 11px;
+      font-size: 16px;
+    }
+
+    .radio__logo {
+      position: absolute;
+      left: 29px;
+      bottom: 4px;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    border-radius: 12px;
+    height: 45px;
+  }
+
+  &__agreement {
+    padding: 16px;
+
+    span {
+      font-size: 14px;
+      color: rgb(79, 111, 143);
+      font-weight: 700;
+    }
+
+    a {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+}

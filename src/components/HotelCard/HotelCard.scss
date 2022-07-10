@@ -1,0 +1,166 @@
+.room_card {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_img_wrapper {
+    overflow: hidden;
+    height: 28rem;
+    width: 100%;
+    border-radius: 10px;
+
+    .room_card_img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    img {
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &_info {
+    width: 100%;
+
+    .room_name {
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .room_rating {
+      color: #777777;
+      font-size: 14px;
+    }
+
+    .room_price {
+      color: var(--primary-color);
+      font-size: 28px;
+      font-weight: 750;
+    }
+
+    .room_start,
+    .room_per_night {
+      font-size: 16px;
+      font-weight: 500;
+      color: #777777;
+    }
+  }
+}
+
+@media screen and (max-width: 1412px) {
+  .room_card {
+    width: 23rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 25rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1310px) {
+  .room_card {
+    width: 22rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 25rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1256px) {
+  .room_card {
+    width: 21rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 25rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1206px) {
+  .room_card {
+    width: 21rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 24rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1197px) {
+  .room_card {
+    width: 24rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 24rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 915px) {
+  .room_card {
+    width: 20rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 22rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 764px) {
+  .room_card {
+    width: 24rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 22rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 334px) {
+  .room_card {
+    width: 22rem;
+
+    &_img_wrapper {
+      &_img {
+        height: 20rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
