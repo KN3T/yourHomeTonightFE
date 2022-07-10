@@ -16,7 +16,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IoBedSharp } from 'react-icons/io5';
+import { RiHotelFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -119,14 +119,14 @@ const SearchHome = () => {
                   justifyContent: 'space-between',
                 }}
               >
-                {item.city && item.city}
+                {item.city && item.city} city
                 <span
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                   }}
                 >
-                  <IoBedSharp
+                  <RiHotelFill
                     style={{
                       marginRight: '2px',
                     }}

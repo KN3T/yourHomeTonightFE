@@ -1,10 +1,9 @@
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { BarsOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import UserControl from '../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNav = () => {
@@ -27,14 +26,22 @@ const SiderNav = () => {
   return (
     <>
       <div className="navbar__sider__wrapper">
+        <Space className="space">
+          <NavLink className="link" to="/login">
+            <BarsOutlined className="icon" />
+            <span className="text__icon"></span>
+          </NavLink>
+        </Space>
+        <Divider
+          className="navbar__sider__divider"
+          style={{ margin: '14px 0' }}
+        />
         {userData.token ? (
           <Space className="space">
-            <a className="link">
+            <NavLink to="/userprofile" className="link">
               <UserOutlined className="icon" />
-              <span className="text__icon">
-                <UserControl />
-              </span>
-            </a>
+              <span className="text__icon">{t('navbar.profile')}</span>
+            </NavLink>
           </Space>
         ) : (
           <Space className="space">
@@ -45,10 +52,6 @@ const SiderNav = () => {
           </Space>
         )}
 
-        <Divider
-          className="navbar__sider__divider"
-          style={{ margin: '14px 0' }}
-        />
         <Space className="space">
           <NavLink className="link" to="/">
             <HomeOutlined className="icon" />

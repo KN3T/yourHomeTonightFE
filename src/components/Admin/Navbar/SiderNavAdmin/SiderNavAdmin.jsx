@@ -1,15 +1,11 @@
-import {
-  BarChartOutlined,
-  ProfileOutlined,
-  TwitterOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { BarChartOutlined, BarsOutlined } from '@ant-design/icons';
 import { Divider, Space } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiFillHome } from 'react-icons/ai';
+import { RiHotelFill } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 
-import UserControl from '../../../UserControl/UserControl';
 import './index.scss';
 
 const SiderNavAdmin = () => {
@@ -29,10 +25,8 @@ const SiderNavAdmin = () => {
       <div className="navbar__sider__wrapper">
         <Space className="space">
           <a className="link">
-            <UserOutlined className="icon" />
-            <span className="text__icon">
-              <UserControl />
-            </span>
+            <BarsOutlined className="icon" />
+            <span className="text__icon"></span>
           </a>
         </Space>
 
@@ -48,14 +42,14 @@ const SiderNavAdmin = () => {
         </Space>
         <Space className="space">
           <NavLink className="link" to="rooms">
-            <TwitterOutlined className="icon" />
+            <AiFillHome className="icon" />
             <span className="text__icon">{t('admin.managerooms')}</span>
           </NavLink>
         </Space>
         <Space className="space">
           <NavLink className="link" to="profile">
-            <ProfileOutlined className="icon" />
-            <span className="text__icon">Hotel Info</span>
+            <RiHotelFill className="icon" />
+            <span className="text__icon">My Hotel</span>
           </NavLink>
         </Space>
       </div>

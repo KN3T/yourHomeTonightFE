@@ -103,7 +103,8 @@
   width: 100vw;
   background-color: white;
   z-index: 99;
-  border-bottom: 1px solid #d9e2e8;
+  box-shadow: 0 2px 8px 0 rgb(175, 174, 183);
+  // border-bottom: 1px solid #d9e2e8;
   display: flex;
   top: 0;
   height: 79px;
