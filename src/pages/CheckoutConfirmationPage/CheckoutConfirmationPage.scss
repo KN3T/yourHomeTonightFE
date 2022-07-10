@@ -338,13 +338,6 @@
       transition: all 0.2s linear;
       cursor: pointer;
 
-      svg {
-        width: 100%;
-        height: 100%;
-        transition: all 0.2s linear;
-        color: var(--primary-color);
-      }
-
       &:hover {
         svg {
           color: #001833;
