@@ -301,10 +301,10 @@ const CheckoutPageConfirmation = () => {
                         <span>{t('checkout.status')}</span>
 
                         <Tag
-                          color={handleTag(confirmationData.status).color}
-                          icon={handleTag(confirmationData.status).icon}
+                          color={handleTag(1).color}
+                          icon={handleTag(1).icon}
                         >
-                          {handleTag(confirmationData.status).text}
+                          {handleTag(1).text}
                         </Tag>
                       </div>
                       <div className="checkout__confirmation__content__summary__item">
