@@ -125,6 +125,17 @@ const HomePage = () => {
   const [hotelData, setHotelData] = useState([]);
   const [cityData, setCityData] = useState([]);
 
+  const getCities = async () => {
+    try {
+      const response = await cityApi.getAll();
+      if (response.data.status === 'success') {
+        setCityData(response.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchHotels = async () => {
     let result = await hotelApi.getAll();
     if (result.data.status === 'success') {
@@ -134,22 +145,21 @@ const HomePage = () => {
     }
   };
 
-  const getCities = async () => {
-    try {
-      const response = await cityApi.getAll();
-      if (response.data.status === 'success') {
-        setCityData(response.data.data);
-        response.data.data && loadingContext();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchHotels();
     getCities();
+    fetchHotels();
   }, []);
+
+  const onClickCity = (city) => {
+    navigate({
+      pathname: '/hotels',
+      search: `?city=${city}&minPrice=${minPrice}&maxPrice=${maxPrice}&checkIn=${moment(
+        date[0]
+      ).format('X')}&checkOut=${moment(date[1]).format(
+        'X'
+      )}&adults=${adults}&children=${children}&order=desc`,
+    });
+  };
 
   return (
     <div className="homepage__container">
@@ -172,7 +182,7 @@ const HomePage = () => {
         setDate={setDate}
       />
       <HotelPopulerList hotelData={hotelData} />
-      <CityIntro cityData={cityData} />
+      <CityIntro cityData={cityData} onClickCity={onClickCity} />
     </div>
   );
 };
