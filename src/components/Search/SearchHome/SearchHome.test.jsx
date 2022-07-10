@@ -8,7 +8,7 @@ import SearchHome from './SearchHome';
 
 describe('SearchHome component', () => {
   it('should render a search bar', () => {
-    const date = [moment(), moment(moment().add(3, 'day'))];
+    const date = [moment('07-09-2022'), moment(moment('07-12-2022'))];
     const searchBar = render(
       <HashRouter>
         <SearchHome
