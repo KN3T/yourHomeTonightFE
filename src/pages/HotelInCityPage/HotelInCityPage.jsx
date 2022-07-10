@@ -65,6 +65,10 @@ const HotelInCityPage = () => {
     getHotel(params);
   }, [params]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [getHotel]);
+
   const onClickHigh = () => {
     setSortValue('high to low');
     setVisibleSortOption(false);
