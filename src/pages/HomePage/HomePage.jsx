@@ -119,7 +119,21 @@ const HomePage = () => {
   const onSelect = (value) => {
     setCityName(value);
   };
-  loadingContext.done();
+
+  const [hotelData, setHotelData] = useState([]);
+
+  const fetchHotels = async () => {
+    let result = await hotelApi.getAll();
+    if (result.data.status === 'success') {
+      const { data } = result;
+      setHotelData(data.data.hotels);
+      data && loadingContext.done();
+    }
+  };
+
+  useEffect(() => {
+    fetchHotels();
+  }, []);
 
   return (
     <div className="homepage__container">
@@ -141,7 +155,7 @@ const HomePage = () => {
         DATE_FORMAT={DATE_FORMAT}
         setDate={setDate}
       />
-      <HotelPopulerList loading />
+      <HotelPopulerList hotelData={hotelData} />
       <CityIntro />
     </div>
   );
