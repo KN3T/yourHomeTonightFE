@@ -127,37 +127,42 @@ const CheckoutPage = () => {
                     </div>
                   </div>
                   <div className="checkout__content__itinerary">
-                    <div className="schedule">
-                      <div className="schedule__item">
-                        <div className="title">{t('checkout.check_in')}</div>
-                        <div className="content">
-                          {moment(bookingData.checkIn * 1000).format(
-                            'ddd, MMM Do'
-                          )}
+                    <Row gutter={[10, 10]} style={{ width: '100%' }}>
+                      <Col xxl={16} xl={16} lg={16} md={16} sm={16} xs={24}>
+                        <Row gutter={[10, 10]}>
+                          <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={24}>
+                            <div className="schedule__item">
+                              <div className="title">
+                                {t('checkout.check_in')}
+                              </div>
+                              <div className="content">
+                                {moment(bookingData.checkIn * 1000).format(
+                                  'ddd, MMM Do'
+                                )}
+                              </div>
+                            </div>
+                          </Col>
+                          <Col xxl={12} xl={12} lg={12} md={12} sm={12} xs={24}>
+                            <div className="schedule__item">
+                              <div className="title">
+                                {t('checkout.check_out')}
+                              </div>
+                              <div className="content">
+                                {moment(bookingData.checkOut * 1000).format(
+                                  'ddd, MMM Do'
+                                )}
+                              </div>
+                            </div>
+                          </Col>
+                        </Row>
+                      </Col>
+                      <Col xxl={8} xl={8} lg={8} md={8} sm={8} xs={24}>
+                        <div className="schedule__item">
+                          <div className="title">{t('checkout.nights')}</div>
+                          <div className="content">{nights}</div>
                         </div>
-                      </div>
-                      <hr />
-                      <div className="schedule__item">
-                        <div className="title">{t('checkout.check_out')}</div>
-                        <div className="content">
-                          {moment(bookingData.checkOut * 1000).format(
-                            'ddd, MMM Do'
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="room__info">
-                      <div className="room__info__item">
-                        <div className="title">{t('checkout.nights')}</div>
-                        <div className="content">{nights}</div>
-                      </div>
-                      <hr />
-                      <div className="room__info__item">
-                        <div className="title">{t('checkout.room')}</div>
-                        <div className="content">1</div>
-                      </div>
-                    </div>
+                      </Col>
+                    </Row>
                   </div>
                   <div className="checkout__content__bottom">
                     <div className="room__type">{bookingData.type}</div>

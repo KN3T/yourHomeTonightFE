@@ -155,7 +155,7 @@ const CheckoutPageConfirmation = () => {
 
             {confirmationData && confirmationData && (
               <Row gutter={[16, 0]}>
-                <Col span={16}>
+                <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                   <div
                     className="checkout__confirmation__content__info"
                     id="content"
@@ -187,38 +187,57 @@ const CheckoutPageConfirmation = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="checkout__confirmation__content__itinerary">
-                      <div className="schedule">
-                        <div className="schedule__item">
-                          <div className="title">{t('checkout.check_in')}</div>
-                          <div className="content">
-                            {moment(confirmationData.checkIn.date).format(
-                              'ddd, MMM Do'
-                            )}
+                    <div className="checkout__content__itinerary">
+                      <Row gutter={[10, 10]} style={{ width: '100%' }}>
+                        <Col xxl={16} xl={16} lg={16} md={16} sm={16} xs={24}>
+                          <Row gutter={[10, 10]}>
+                            <Col
+                              xxl={12}
+                              xl={12}
+                              lg={12}
+                              md={12}
+                              sm={12}
+                              xs={24}
+                            >
+                              <div className="schedule__item">
+                                <div className="title">
+                                  {t('checkout.check_in')}
+                                </div>
+                                <div className="content">
+                                  {moment(confirmationData.checkIn.date).format(
+                                    'ddd, MMM Do'
+                                  )}
+                                </div>
+                              </div>
+                            </Col>
+                            <Col
+                              xxl={12}
+                              xl={12}
+                              lg={12}
+                              md={12}
+                              sm={12}
+                              xs={24}
+                            >
+                              <div className="schedule__item">
+                                <div className="title">
+                                  {t('checkout.check_out')}
+                                </div>
+                                <div className="content">
+                                  {moment(
+                                    confirmationData.checkOut.date
+                                  ).format('ddd, MMM Do')}
+                                </div>
+                              </div>
+                            </Col>
+                          </Row>
+                        </Col>
+                        <Col xxl={8} xl={8} lg={8} md={8} sm={8} xs={24}>
+                          <div className="schedule__item">
+                            <div className="title">{t('checkout.nights')}</div>
+                            <div className="content">{nights}</div>
                           </div>
-                        </div>
-                        <hr />
-                        <div className="schedule__item">
-                          <div className="title">{t('checkout.check_out')}</div>
-                          <div className="content">
-                            {moment(confirmationData.checkOut.date).format(
-                              'ddd, MMM Do'
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="room__info">
-                        <div className="room__info__item">
-                          <div className="title">{t('checkout.nights')}</div>
-                          <div className="content">{nights}</div>
-                        </div>
-                        <hr />
-                        <div className="room__info__item">
-                          <div className="title">{t('checkout.room')}</div>
-                          <div className="content">1</div>
-                        </div>
-                      </div>
+                        </Col>
+                      </Row>
                     </div>
                     <div className="checkout__confirmation__content__bottom">
                       <div className="room__type">{confirmationData.type}</div>
@@ -253,38 +272,8 @@ const CheckoutPageConfirmation = () => {
                     </div>
                   </div>
                 </Col>
-                <Col span={8}>
+                <Col xxl={8} xl={7} lg={7} md={24} sm={24} xs={24}>
                   <div className="checkout__confirmation__content__summary">
-                    {confirmationData.payment ? (
-                      <>
-                        <div className="checkout__confirmation__content__summary__heading">
-                          <h2>Payment Summary</h2>
-                        </div>
-                        <div className="line"></div>
-                        <div className="checkout__confirmation__content__summary__list">
-                          <div className="checkout__confirmation__content__summary__item">
-                            <span>Billing name</span>
-                            <span>{confirmationData.payment.billingName}</span>
-                          </div>
-                          <div className="checkout__confirmation__content__summary__item">
-                            <span>Purchase date</span>
-                            <span>
-                              {moment(
-                                confirmationData.payment.purchasedAt.date
-                              ).format('MMM Do YYYY')}
-                            </span>
-                          </div>
-                          <div className="checkout__confirmation__content__summary__item">
-                            <span>Payment method</span>
-                            <span>Stripe</span>
-                          </div>
-                        </div>
-                        <div className="line"></div>
-                      </>
-                    ) : (
-                      ''
-                    )}
-
                     <div className="checkout__confirmation__content__summary__list">
                       <div className="checkout__confirmation__content__summary__item">
                         <span>{t('checkout.status')}</span>
