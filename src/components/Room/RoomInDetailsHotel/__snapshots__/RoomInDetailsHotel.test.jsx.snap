@@ -1,0 +1,238 @@
+// Vitest Snapshot v1
+
+exports[`RoomInDetailsHotel > Should return an item room in table 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ant-row"
+        style="margin: -10px -10px -10px -10px;"
+      >
+        <div
+          class="ant-col ant-col-6"
+          style="padding: 10px 10px 10px 10px;"
+        >
+          <span>
+            Deluxe Triple Room
+          </span>
+        </div>
+        <div
+          class="ant-col ant-col-6"
+          style="padding: 10px 10px 10px 10px;"
+        >
+          <div
+            class="ant-space ant-space-vertical"
+          >
+            <div
+              class="ant-space-item"
+              style="margin-bottom: 8px;"
+            >
+              <span
+                style="color: rgb(20, 138, 87);"
+              >
+                Dishwasher
+              </span>
+            </div>
+            <div
+              class="ant-space-item"
+            >
+              <span
+                style="color: rgb(20, 138, 87);"
+              >
+                Flat-screen TV
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-col ant-col-6"
+          style="padding: 10px 10px 10px 10px; display: flex; justify-content: center;"
+        >
+          <span
+            class="price"
+            style="font-size: 20px;"
+          >
+            <b>
+              details__hotel.price_value
+            </b>
+          </span>
+        </div>
+        <div
+          class="ant-col ant-col-6"
+          style="padding: 10px 10px 10px 10px; display: flex; justify-content: center;"
+        >
+          <button
+            class="ant-btn ant-btn-primary"
+            data-testid="button-view-detail"
+            type="button"
+          >
+            <span
+              aria-label="caret-right"
+              class="anticon anticon-caret-right"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                data-icon="caret-right"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="0 0 1024 1024"
+                width="1em"
+              >
+                <path
+                  d="M715.8 493.5L335 165.1c-14.2-12.2-35-1.2-35 18.5v656.8c0 19.7 20.8 30.7 35 18.5l380.8-328.4c10.9-9.4 10.9-27.6 0-37z"
+                />
+              </svg>
+            </span>
+            <span>
+              details__hotel.view_details
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ant-row"
+      style="margin: -10px -10px -10px -10px;"
+    >
+      <div
+        class="ant-col ant-col-6"
+        style="padding: 10px 10px 10px 10px;"
+      >
+        <span>
+          Deluxe Triple Room
+        </span>
+      </div>
+      <div
+        class="ant-col ant-col-6"
+        style="padding: 10px 10px 10px 10px;"
+      >
+        <div
+          class="ant-space ant-space-vertical"
+        >
+          <div
+            class="ant-space-item"
+            style="margin-bottom: 8px;"
+          >
+            <span
+              style="color: rgb(20, 138, 87);"
+            >
+              Dishwasher
+            </span>
+          </div>
+          <div
+            class="ant-space-item"
+          >
+            <span
+              style="color: rgb(20, 138, 87);"
+            >
+              Flat-screen TV
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-col ant-col-6"
+        style="padding: 10px 10px 10px 10px; display: flex; justify-content: center;"
+      >
+        <span
+          class="price"
+          style="font-size: 20px;"
+        >
+          <b>
+            details__hotel.price_value
+          </b>
+        </span>
+      </div>
+      <div
+        class="ant-col ant-col-6"
+        style="padding: 10px 10px 10px 10px; display: flex; justify-content: center;"
+      >
+        <button
+          class="ant-btn ant-btn-primary"
+          data-testid="button-view-detail"
+          type="button"
+        >
+          <span
+            aria-label="caret-right"
+            class="anticon anticon-caret-right"
+            role="img"
+          >
+            <svg
+              aria-hidden="true"
+              data-icon="caret-right"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 1024 1024"
+              width="1em"
+            >
+              <path
+                d="M715.8 493.5L335 165.1c-14.2-12.2-35-1.2-35 18.5v656.8c0 19.7 20.8 30.7 35 18.5l380.8-328.4c10.9-9.4 10.9-27.6 0-37z"
+              />
+            </svg>
+          </span>
+          <span>
+            details__hotel.view_details
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
