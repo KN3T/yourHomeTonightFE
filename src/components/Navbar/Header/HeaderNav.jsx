@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import englandIcon from '../../../assets/images/englandIcon.jpg';
 import usa from '../../../assets/images/usa.svg';
 import vietnamIcon from '../../../assets/images/vietnamIcon.png';
 import UserControl from '../../UserControl/UserControl';

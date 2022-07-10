@@ -1,16 +1,5 @@
 /* eslint-disable no-unused-vars */
-import {
-  Col,
-  Form,
-  Input,
-  Layout,
-  Popover,
-  Rate,
-  Row,
-  Skeleton,
-  Slider,
-  Spin,
-} from 'antd';
+import { Col, Form, Layout, Popover, Rate, Row, Slider, Spin } from 'antd';
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
