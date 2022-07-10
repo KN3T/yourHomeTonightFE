@@ -178,9 +178,11 @@
         padding-bottom: 8px;
 
         span {
-          padding: 3px 2px;
           color: #001833;
           font-size: 16px;
+          line-height: 19.6px;
+          display: flex;
+          align-items: center;
         }
       }
 

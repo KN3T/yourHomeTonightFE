@@ -2,7 +2,7 @@ import { Button, Card, Col, Divider, Image, Row, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BsArrowDownCircle, BsFillPeopleFill } from 'react-icons/bs';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
@@ -61,14 +61,6 @@ const CheckoutPageConfirmation = () => {
   const tax = subTotal * 0.1;
 
   const total = confirmationData && confirmationData && confirmationData.total;
-
-  const onClickDown = () => {
-    const element = document.getElementById('content');
-
-    element.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
 
   const [loading, setLoading] = useState(false);
 
@@ -267,6 +259,7 @@ const CheckoutPageConfirmation = () => {
                           <Tag
                             color={handleTag(confirmationData.status).color}
                             icon={handleTag(confirmationData.status).icon}
+                            style={{ margin: 0 }}
                           >
                             {handleTag(confirmationData.status).text}
                           </Tag>

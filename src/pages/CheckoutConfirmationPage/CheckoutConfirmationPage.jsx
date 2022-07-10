@@ -1,10 +1,9 @@
-import { CaretDownOutlined } from '@ant-design/icons';
 import { Button, Col, Image, Row, Steps, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
-import { BsArrowDownCircle, BsFillPeopleFill } from 'react-icons/bs';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdSecurity } from 'react-icons/md';
@@ -65,14 +64,6 @@ const CheckoutPageConfirmation = () => {
   const tax = subTotal * 0.1;
 
   const total = confirmationData && confirmationData && confirmationData.total;
-
-  const onClickDown = () => {
-    const element = document.getElementById('content');
-
-    element.scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
 
   const [loading, setLoading] = useState(false);
 
@@ -299,10 +290,11 @@ const CheckoutPageConfirmation = () => {
                         <span>{t('checkout.status')}</span>
 
                         <Tag
-                          color={handleTag(1).color}
-                          icon={handleTag(1).icon}
+                          color={handleTag(confirmationData.status).color}
+                          icon={handleTag(confirmationData.status).icon}
+                          style={{ margin: 0 }}
                         >
-                          {handleTag(1).text}
+                          {handleTag(confirmationData.status).text}
                         </Tag>
                       </div>
                       <div className="checkout__confirmation__content__summary__item">
