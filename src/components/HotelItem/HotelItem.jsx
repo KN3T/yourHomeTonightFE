@@ -82,14 +82,16 @@ const HotelItem = ({
                   <Col xxl={16} xl={16} lg={16} md={24} sm={24} xs={24}>
                     <div className="description__wrapper">
                       <div className="description__hotel">
-                        <span>
+                        <div style={{ marginTop: '4px' }}>
                           <RiHotelFill />
-                        </span>
+                        </div>
                         <p>{hotelData.description}</p>
                       </div>
                       <div>
-                        <AiFillPhone />
-                        {hotelData.phone}
+                        <div style={{ marginTop: '2px' }}>
+                          <AiFillPhone />
+                        </div>
+                        <p style={{ marginLeft: '10px' }}>{hotelData.phone}</p>
                       </div>
                     </div>
                   </Col>

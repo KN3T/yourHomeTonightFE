@@ -11,34 +11,34 @@ const CityInfo = () => {
   const { t } = useTranslation();
   const popularCities = [
     {
-      name: 'Phú Quốc, Việt Nam',
-      properties: 673,
+      name: 'Da Nang, Viet Nam',
+      properties: 350,
       backgroundImage:
-        'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/124355467.jpg?k=dd21ad9708439a0b43cda501e2f0b08eda27460129a599b3556d0cf994f364e8&o=&hp=1',
+        'https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg',
     },
     {
-      name: 'TP. Hồ Chí Minh, Việt Nam',
-      properties: 2018,
+      name: 'Ho Chi Minh City, Viet Nam',
+      properties: 700,
       backgroundImage:
-        'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/196407744.jpg?k=1f82b3bbe1509877d15386622426e01aa912b1f1c53caa52f0426c403967ad95&o=&hp=1',
+        'https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2020/11/04/thanh-pho-thu-duc-tp-ho-chi-minh-41120.jpg',
     },
     {
-      name: 'Cần Thơ, Việt Nam',
-      properties: 709,
+      name: 'Can Tho, Viet Nam',
+      properties: 250,
       backgroundImage:
-        'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/196407744.jpg?k=1f82b3bbe1509877d15386622426e01aa912b1f1c53caa52f0426c403967ad95&o=&hp=1',
+        'https://i1-kinhdoanh.vnecdn.net/2020/10/19/121774598-699865344269296-8580-6401-9195-1603091427.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=46C_F171FelZxbt2hQuCkQ',
     },
     {
-      name: 'Hội An, Việt Nam',
-      properties: 980,
+      name: 'Ha Noi, Viet Nam',
+      properties: 600,
       backgroundImage:
-        'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/161116603.jpg?k=bf827bd530d82f54a078054ba524e29400c18695615251709e96b121d0c57556&o=&hp=1',
+        'https://media-cdn.tripadvisor.com/media/photo-s/1b/28/2a/ed/ha-n-i-th-do-van-minh.jpg',
     },
     {
-      name: 'Huế, Việt Nam',
-      properties: 1024,
+      name: 'Bangkok, Thailand',
+      properties: 120,
       backgroundImage:
-        'https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/161116585.jpg?k=6d35e26e4ba72338ee27704ad0468da3bd257d7be0b94dba6b3ec931b174ea11&o=&hp=1',
+        'http://divui.com/blog/wp-content/uploads/2016/11/bangkok-city.jpg',
     },
   ];
 

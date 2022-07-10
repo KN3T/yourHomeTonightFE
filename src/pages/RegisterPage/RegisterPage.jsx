@@ -73,7 +73,14 @@ const RegisterPage = () => {
         message.success('Register successfully!!!');
       }
     } catch (error) {
-      message.error('Something went wrong, please try it later!!!');
+      console.log(error);
+      if (error.response.status === 409) {
+        setLoadingButton(false);
+        message.error(error.response.data.message);
+      } else {
+        setLoadingButton(false);
+        message.error('Something went wrong, please try it later!!!');
+      }
     }
   };
 

@@ -1,3 +1,4 @@
+import { CaretDownOutlined } from '@ant-design/icons';
 import { Button, Col, Image, Row, Steps, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
@@ -152,9 +153,6 @@ const CheckoutPageConfirmation = () => {
                           {t('checkout.booking_id')}: #
                           <b>{confirmationData.id}</b>
                         </div>
-                        <div className="icon__arrow" onClick={onClickDown}>
-                          <BsArrowDownCircle />
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -301,10 +299,10 @@ const CheckoutPageConfirmation = () => {
                         <span>{t('checkout.status')}</span>
 
                         <Tag
-                          color={handleTag(confirmationData.status).color}
-                          icon={handleTag(confirmationData.status).icon}
+                          color={handleTag(1).color}
+                          icon={handleTag(1).icon}
                         >
-                          {handleTag(confirmationData.status).text}
+                          {handleTag(1).text}
                         </Tag>
                       </div>
                       <div className="checkout__confirmation__content__summary__item">
