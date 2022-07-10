@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Col, Row } from 'antd';
 import { Typography } from 'antd';
 import React from 'react';
@@ -7,40 +8,23 @@ import './CityIntro.scss';
 
 const { Title, Text } = Typography;
 
-const CityInfo = () => {
+const CityInfo = ({ cityData }) => {
   const { t } = useTranslation();
-  const popularCities = [
-    {
-      name: 'Da Nang, Viet Nam',
-      properties: 350,
-      backgroundImage:
-        'https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg',
-    },
-    {
-      name: 'Ho Chi Minh City, Viet Nam',
-      properties: 700,
-      backgroundImage:
-        'https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2020/11/04/thanh-pho-thu-duc-tp-ho-chi-minh-41120.jpg',
-    },
-    {
-      name: 'Can Tho, Viet Nam',
-      properties: 250,
-      backgroundImage:
-        'https://i1-kinhdoanh.vnecdn.net/2020/10/19/121774598-699865344269296-8580-6401-9195-1603091427.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=46C_F171FelZxbt2hQuCkQ',
-    },
-    {
-      name: 'Ha Noi, Viet Nam',
-      properties: 600,
-      backgroundImage:
-        'https://media-cdn.tripadvisor.com/media/photo-s/1b/28/2a/ed/ha-n-i-th-do-van-minh.jpg',
-    },
-    {
-      name: 'Bangkok, Thailand',
-      properties: 120,
-      backgroundImage:
-        'http://divui.com/blog/wp-content/uploads/2016/11/bangkok-city.jpg',
-    },
+  const images = [
+    'https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg',
+    'https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2020/11/04/thanh-pho-thu-duc-tp-ho-chi-minh-41120.jpg',
+    'https://i1-kinhdoanh.vnecdn.net/2020/10/19/121774598-699865344269296-8580-6401-9195-1603091427.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=46C_F171FelZxbt2hQuCkQ',
+    'https://media-cdn.tripadvisor.com/media/photo-s/1b/28/2a/ed/ha-n-i-th-do-van-minh.jpg',
+    'http://divui.com/blog/wp-content/uploads/2016/11/bangkok-city.jpg',
   ];
+
+  const popularCities = cityData.map((item, index) => {
+    return {
+      name: item.city,
+      properties: item.count_hotel,
+      backgroundImage: images[index],
+    };
+  });
 
   return (
     <div className="city_info  ctn">

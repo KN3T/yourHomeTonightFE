@@ -123,6 +123,7 @@ const HomePage = () => {
   };
 
   const [hotelData, setHotelData] = useState([]);
+  const [cityData, setCityData] = useState([]);
 
   const fetchHotels = async () => {
     let result = await hotelApi.getAll();
@@ -133,8 +134,21 @@ const HomePage = () => {
     }
   };
 
+  const getCities = async () => {
+    try {
+      const response = await cityApi.getAll();
+      if (response.data.status === 'success') {
+        setCityData(response.data.data);
+        response.data.data && loadingContext();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchHotels();
+    getCities();
   }, []);
 
   return (
@@ -158,7 +172,7 @@ const HomePage = () => {
         setDate={setDate}
       />
       <HotelPopulerList hotelData={hotelData} />
-      <CityIntro />
+      <CityIntro cityData={cityData} />
     </div>
   );
 };
