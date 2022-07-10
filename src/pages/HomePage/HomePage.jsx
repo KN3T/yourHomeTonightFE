@@ -40,6 +40,10 @@ const HomePage = () => {
     getPrices();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleVisibleChange = (newVisible) => {
     setVisible(newVisible);
   };
