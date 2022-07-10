@@ -1,7 +1,7 @@
 import {
   CheckCircleOutlined,
-  ClockCircleOutlined,
   CloseCircleOutlined,
+  MoneyCollectOutlined,
   SyncOutlined,
 } from '@ant-design/icons';
 import React from 'react';
@@ -12,7 +12,7 @@ const handleTag = (status) => {
       return {
         color: 'processing',
         text: 'Paid',
-        icon: <ClockCircleOutlined />,
+        icon: <MoneyCollectOutlined />,
       };
     case 3:
       return {

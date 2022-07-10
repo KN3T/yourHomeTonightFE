@@ -41,9 +41,10 @@ const TableBookings = ({ bookings }) => {
       title: 'Id',
       dataIndex: 'id',
       key: 'id',
+      sorter: (a, b) => a.id - b.id,
     },
     {
-      title: 'Name',
+      title: 'Customer Name',
       dataIndex: 'fullName',
       key: 'fullName',
     },
@@ -51,16 +52,19 @@ const TableBookings = ({ bookings }) => {
       title: 'Check In',
       dataIndex: 'checkIn',
       key: 'checkIn',
+      sorter: (a, b) => moment(a.checkIn).unix() - moment(b.checkIn).unix(),
     },
     {
       title: 'Check Out',
       dataIndex: 'checkOut',
       key: 'checkOut',
+      sorter: (a, b) => moment(a.checkOut).unix() - moment(b.checkOut).unix(),
     },
     {
-      title: 'Created At',
+      title: 'Booking Date',
       dataIndex: 'createdAt',
       key: 'createdAt',
+      sorter: (a, b) => moment(a.createdAt).unix() - moment(b.createdAt).unix(),
     },
     {
       title: 'Email',
@@ -90,6 +94,7 @@ const TableBookings = ({ bookings }) => {
       title: 'Total',
       dataIndex: 'total',
       key: 'total',
+      sorter: (a, b) => a.total - b.total,
     },
     {
       title: 'Action',
