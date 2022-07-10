@@ -72,3 +72,5 @@ exports[`User Control > Should return a select option 1`] = `
   "unmount": [Function],
 }
 `;
+
+exports[`User Control > should render button my hotel 1`] = `null`;

@@ -318,6 +318,7 @@ exports[`Room details modal > Should return a modal show details information abo
                         >
                           <button
                             class="ant-btn ant-btn-primary"
+                            data-testid="btn__booking"
                             type="button"
                           >
                             <span>
@@ -394,4 +395,11 @@ exports[`Room details modal > Should return a modal show details information abo
   "rerender": [Function],
   "unmount": [Function],
 }
+`;
+
+exports[`Room details modal > should render button booking 1`] = `
+<btn
+  handleBooking={[Function]}
+  setIsModalVisible={[Function]}
+/>
 `;
