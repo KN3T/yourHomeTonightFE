@@ -31,7 +31,9 @@ const HomeFooter = () => {
     <Footer className="footer">
       <section className="container ctn">
         <div className="item-1">
-          <p className="footer-title">{t('footer.company')}</p>
+          <p className="footer-title" data-testid="label">
+            {t('footer.company')}
+          </p>
           <a>
             <p>{t('footer.about')}</p>
           </a>
@@ -52,7 +54,9 @@ const HomeFooter = () => {
           </a>
         </div>
         <div className="item-2">
-          <p className="footer-title">{t('footer.contact')}</p>
+          <p className="footer-title" data-testid="label">
+            {t('footer.contact')}
+          </p>
           <a>
             <p>
               {t('footer.help')}/{t('footer.faq')}
@@ -75,7 +79,9 @@ const HomeFooter = () => {
           </a>
         </div>
         <div className="item-3">
-          <p className="footer-title">{t('footer.more')}</p>
+          <p className="footer-title" data-testid="label">
+            {t('footer.more')}
+          </p>
           <a>
             <p>{t('footer.airline_fees')}</p>
           </a>
@@ -90,7 +96,7 @@ const HomeFooter = () => {
           </a>
         </div>
         <div className="item-4">
-          <p className="footer-title">
+          <p className="footer-title" data-testid="label">
             {t('footer.site')} / {t('footer.currency')}
           </p>
           <div className="lng-select" style={{ paddingBottom: 10 }}>
@@ -114,27 +120,6 @@ const HomeFooter = () => {
               </OptGroup>
             </Select>
           </div>
-
-          {/* <div className="lng-select">
-            <Select
-              defaultValue="&nbsp;£ &nbsp; Pound Sterling"
-              style={{
-                width: 200,
-              }}
-              onChange={handleChange}
-            >
-              <OptGroup label="Most-Used Currencies">
-                <Option value="Euro">
-                  <img src={vietnamdong} alt="" style={{ width: '20px' }} />{' '}
-                  Vietnamese Dong
-                </Option>
-                <Option value="United States Dollars">
-                  <img src={dollar} alt="" style={{ width: '20px' }} /> United
-                  States Dollars
-                </Option>
-              </OptGroup>
-            </Select>
-          </div> */}
         </div>
         <div className="item-5">
           <div className="footer-info">

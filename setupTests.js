@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom';
+
 /* eslint-disable no-undef */
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
