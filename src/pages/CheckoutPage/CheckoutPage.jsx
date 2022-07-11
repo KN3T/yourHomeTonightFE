@@ -1,13 +1,16 @@
-import { Col, Form, Image, Row, Steps, message } from 'antd';
+import { Col, Divider, Form, Image, Row, Steps, message } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiFillPhone, AiOutlineMail } from 'react-icons/ai';
 import { BiTimeFive } from 'react-icons/bi';
 import { BsFillPeopleFill } from 'react-icons/bs';
+import { ImNotification } from 'react-icons/im';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare, MdSecurity } from 'react-icons/md';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
 import bookingApi from '../../api/bookingApi';
@@ -108,14 +111,92 @@ const CheckoutPage = () => {
           <div className="checkout__content__heading">
             <span>{t('checkout.almost_done')}</span>
             <span>{t('checkout.enter_and_complete')}</span>
+            <Row gutter={[16, 0]}>
+              <Col span={16}>
+                <div
+                  className="checkout__confirmation__content__heading"
+                  style={{ padding: 0, margin: 0 }}
+                >
+                  <h1 style={{ margin: 0 }}>
+                    {t('checkout.your_trip_to')}{' '}
+                    {bookingData.hotelData.address.city}
+                  </h1>
+                  <div>
+                    <div
+                      style={{ width: '100%' }}
+                      className="checkout__confirmation__small__summary"
+                    >
+                      <div
+                        className="checkout__content__image"
+                        style={{ marginRight: '16px' }}
+                      >
+                        <Image src={bookingData.hotelData.images[0].src} />
+                      </div>
+                      <div>
+                        <Link to={`/hotels/${bookingData.hotelData.id}`}>
+                          <h3 style={{ margin: 0, fontSize: '20px' }}>
+                            <b>{bookingData.hotelData.name}</b>
+                          </h3>
+                        </Link>
+                        <div>
+                          <span
+                            style={{
+                              fontWeight: 'normal',
+                              fontSize: '14px',
+                              display: 'flex',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <AiFillPhone style={{ marginRight: '5px' }} />
+                            {bookingData.hotelData.phone}
+                          </span>
+                        </div>
+                        <div>
+                          <span
+                            style={{
+                              fontWeight: 'normal',
+                              fontSize: '14px',
+                              display: 'flex',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <AiOutlineMail style={{ marginRight: '5px' }} />
+                            {bookingData.hotelData.email}
+                          </span>
+                        </div>
+                        <div>
+                          <span
+                            style={{
+                              fontWeight: 'normal',
+                              fontSize: '14px',
+                              display: 'flex',
+                              alignItems: 'center',
+                            }}
+                          >
+                            <ImNotification style={{ marginRight: '5px' }} />
+                            <i>
+                              {t('checkout.check_in_text')}{' '}
+                              {t('checkout.check_in_note')}
+                            </i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </Row>
           </div>
+
+          <Divider />
+
           {bookingData && bookingData.selectedRoom && (
             <Row gutter={[16, 16]}>
               <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                 <div className="checkout__content__info">
                   <div className="checkout__content__top">
                     <div className="checkout__content__image">
-                      <Image src="https://q-xx.bstatic.com/xdata/images/hotel/max300/351902045.jpg?k=8c2f8bc5e9983ecc8791d4a219b89ad362bb41e5d83a501d93131db64a5bbe62&o=" />
+                      <Image src={bookingData.selectedRoom.images[0].src} />
                     </div>
                     <div className="checkout__content__description">
                       <h2>{bookingData.selectedRoom.type}</h2>
