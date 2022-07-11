@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { StarFilled } from '@ant-design/icons';
-import { Avatar, Col, Comment, Rate, Space, Table } from 'antd';
+import { Avatar, Comment, Rate, Space, Table } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useLoadingContext } from 'react-router-loading';
@@ -60,12 +59,10 @@ const FeedBack = ({ hotelId, hotelData }) => {
             color: 'white',
             padding: '1rem 2rem',
             borderRadius: '10px',
+            position: 'relative',
           }}
         >
           {hotelData.rating}
-          <span style={{ position: 'absolute', top: '10.2%' }}>
-            <StarFilled style={{ fontSize: '15px' }} />
-          </span>
         </h1>
         <div style={{ marginTop: '-20px', marginLeft: '10px' }}>
           <span style={{ display: 'block', fontSize: '15px' }}>

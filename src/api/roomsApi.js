@@ -2,8 +2,8 @@ import { axiosInstance } from "./axiosInstance";
 import useLocalToken from './helpers'
 
 export const roomsApi = {
-    getAll(id) {
-        const url = `/hotels/${id}/rooms`
+    getAll({id, date}) {
+        const url = `/hotels/${id}/rooms?checkIn=${date[0]}&checkOut=${date[1]}`
         return axiosInstance.get(url)
     },
     
