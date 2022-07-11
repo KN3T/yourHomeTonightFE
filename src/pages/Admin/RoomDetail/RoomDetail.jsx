@@ -33,7 +33,7 @@ const RoomDetail = () => {
       key: 'id',
     },
     {
-      title: 'Name',
+      title: 'Customer Name',
       dataIndex: 'fullName',
       key: 'fullName',
     },
@@ -48,7 +48,7 @@ const RoomDetail = () => {
       key: 'checkOut',
     },
     {
-      title: 'Created At',
+      title: 'Booking Date',
       dataIndex: 'createdAt',
       key: 'createdAt',
     },

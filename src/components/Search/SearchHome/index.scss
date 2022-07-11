@@ -13,7 +13,7 @@
     outline: none;
     border: none;
     transition: 0.3s linear;
-    padding: 10px 20px;
+    padding: 10px;
     cursor: pointer;
 
     &::placeholder {
@@ -21,11 +21,16 @@
     }
 
     &:hover {
-      background-color: #a1a8ac;
-
       &::placeholder {
         color: #fff;
       }
+      .ant-input.ant-input-lg {
+        background-color: #f0f3f5;
+        width: 100%;
+      }
+    }
+    .ant-input.ant-input-lg {
+      background-color: #f0f3f5;
     }
   }
 

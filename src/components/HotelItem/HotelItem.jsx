@@ -40,7 +40,7 @@ const HotelItem = ({
                 <div className="hotel__location">
                   <MdLocationOn className="icon" />
                   <span>
-                    {hotelData.address.address}, {hotelData.address.city},
+                    {hotelData.address.address}, {hotelData.address.city},{' '}
                     {hotelData.address.province}
                   </span>
                 </div>
