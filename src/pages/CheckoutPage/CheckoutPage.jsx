@@ -112,7 +112,7 @@ const CheckoutPage = () => {
             <span>{t('checkout.almost_done')}</span>
             <span>{t('checkout.enter_and_complete')}</span>
             <Row gutter={[16, 0]}>
-              <Col span={16}>
+              <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                 <div
                   className="checkout__confirmation__content__heading"
                   style={{ padding: 0, margin: 0 }}
@@ -128,7 +128,11 @@ const CheckoutPage = () => {
                     >
                       <div
                         className="checkout__content__image"
-                        style={{ marginRight: '16px' }}
+                        style={{
+                          marginRight: '16px',
+                          maxHeight: '150px',
+                          borderRadius: '16px',
+                        }}
                       >
                         <Image src={bookingData.hotelData.images[0].src} />
                       </div>
