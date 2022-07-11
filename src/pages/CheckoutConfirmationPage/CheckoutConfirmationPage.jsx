@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
 import { BsFillCalendarDateFill, BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
+import { GiNotebook } from 'react-icons/gi';
+import { ImNotification } from 'react-icons/im';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdSecurity } from 'react-icons/md';
 import { MdOutlineChildCare } from 'react-icons/md';
@@ -107,7 +109,7 @@ const CheckoutPageConfirmation = () => {
         {confirmationData && (
           <section className="checkout__confirmation__content ctn">
             <Row gutter={[16, 0]}>
-              <Col span={24}>
+              <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                 <div className="checkout__confirmation__content__heading">
                   <h1>
                     {t('checkout.your_trip_to')}{' '}
@@ -118,18 +120,28 @@ const CheckoutPageConfirmation = () => {
                       {t('checkout.email_confirm')}
                       <b>{confirmationData.email}</b>
                     </span>
-                    <div className="checkout__confirmation__small__summary">
-                      <div className="icon__bed">
-                        <FaBed />
+                    <div
+                      style={{ width: '100%' }}
+                      className="checkout__confirmation__small__summary"
+                    >
+                      <div
+                        className="checkout__confirmation__content__image"
+                        style={{
+                          marginRight: '16px',
+                          maxHeight: '150px',
+                          borderRadius: '16px',
+                        }}
+                      >
+                        <Image src={confirmationData.hotel.images[0].src} />
                       </div>
                       <div>
                         <Link to={`/hotels/${confirmationData.hotel.id}`}>
                           <h3>{confirmationData.hotel.name}</h3>
                         </Link>
-                        <div>
-                          <span>
-                            <BsFillCalendarDateFill />
-                          </span>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <BsFillCalendarDateFill
+                            style={{ marginRight: '5px' }}
+                          />
                           <span>
                             {moment(confirmationData.checkIn.date).format(
                               'ddd, MMM Do'
@@ -139,12 +151,14 @@ const CheckoutPageConfirmation = () => {
                               'ddd, MMM Do'
                             )}
                           </span>
-                          <span>
-                            {t('checkout.check_in_text')}{' '}
-                            {t('checkout.check_in_note')}
-                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <ImNotification style={{ marginRight: '5px' }} />
+                          {t('checkout.check_in_text')}{' '}
+                          {t('checkout.check_in_note')}
                         </div>
                         <div className="tag__highlight">
+                          <GiNotebook />
                           {t('checkout.booking_id')}: #
                           <b>{confirmationData.id}</b>
                         </div>
@@ -287,7 +301,7 @@ const CheckoutPageConfirmation = () => {
                           icon={handleTag(confirmationData.status).icon}
                           style={{ margin: 0 }}
                         >
-                          {handleTag(1).text}
+                          {handleTag(confirmationData.status).text}
                         </Tag>
                       </div>
                       <div className="checkout__confirmation__content__summary__item">
