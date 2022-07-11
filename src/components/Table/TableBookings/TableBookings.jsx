@@ -4,6 +4,7 @@ import { Button, Input, Skeleton, Space, Table, Tag } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { hotelApi } from '../../../api';
 import handleTag from '../../../utils/handleTag';
@@ -12,6 +13,8 @@ import './TableBookings.scss';
 const { Search } = Input;
 
 const TableBookings = ({ bookings }) => {
+  const navigate = useNavigate();
+  const param = useParams();
   const { t } = useTranslation();
   const data = bookings.map((booking) => ({
     ...booking,
@@ -42,6 +45,22 @@ const TableBookings = ({ bookings }) => {
       dataIndex: 'id',
       key: 'id',
       sorter: (a, b) => a.id - b.id,
+    },
+    {
+      title: 'Room Number',
+      dataIndex: 'roomNumber',
+      key: 'roomNumber',
+      render: (_, record) => (
+        <Button
+          onClick={() =>
+            navigate(`/manageHotel/${param.id}/rooms/${record.roomNumber}`)
+          }
+          type="link"
+        >
+          No. {record.roomNumber}
+        </Button>
+      ),
+      sorter: (a, b) => a.roomNumber - b.roomNumber,
     },
     {
       title: 'Customer Name',

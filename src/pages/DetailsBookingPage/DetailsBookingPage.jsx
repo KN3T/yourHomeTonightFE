@@ -2,8 +2,9 @@ import { Button, Card, Col, Divider, Image, Row, Tag } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BsFillPeopleFill } from 'react-icons/bs';
+import { BsCalendarDate, BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
+import { ImNotification } from 'react-icons/im';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom';
@@ -98,7 +99,8 @@ const CheckoutPageConfirmation = () => {
                         <Link to={`/hotels/${confirmationData.hotel.id}`}>
                           <h3>{confirmationData.hotel.name}</h3>
                         </Link>
-                        <div>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <BsCalendarDate style={{ marginRight: '5px' }} />
                           <span>
                             {moment(confirmationData.checkIn.date).format(
                               'ddd, MMM Do'
@@ -108,6 +110,9 @@ const CheckoutPageConfirmation = () => {
                               'ddd, MMM Do'
                             )}
                           </span>
+                        </div>
+                        <div>
+                          <ImNotification style={{ marginRight: '5px' }} />
                           <span>
                             {t('checkout.check_in_text')}{' '}
                             {t('checkout.check_in_note')}

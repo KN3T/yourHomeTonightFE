@@ -53,7 +53,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       setLoadingButton(false);
-      message.error(error.response.data.message);
+      message.error('Email or password is invalid!!!');
     }
   };
 
