@@ -2,7 +2,7 @@
   "hotel": {
     "rating": "Rating",
     "per_night": "night",
-    "populer_hotel_title": "Our Most Popular Hotel",
+    "populer_hotel_title": "Our Most Popular Hotels",
     "populer_hotel_content": "This summer, make your dream trip a reality. Book and stay for less before Sep 30, 2022",
     "start_from": "Start from:",
     "price_value": "{{val, currency(currency: USD)}}"
@@ -44,7 +44,7 @@
     "price": "Price",
     "low_to_high": "(low to high)",
     "high_to_low": "(high to low)",
-    "reviews": "reviews",
+    "reviews": "review(s)",
     "price_value": "{{val, currency(currency: USD)}}",
     "to": "to",
     "view": "View"
@@ -74,7 +74,7 @@
     "wonderful_reviews": "Wonderful reviews",
     "available_rates": "Available rooms",
     "description": "{{description}}",
-    "based_on": "Based on {{review}} verified guest reviews",
+    "based_on": "Based on {{review}} verified guest review(s)",
     "beds": "Room No. ",
     "guests": "Guests",
     "submit": "Submit",
@@ -83,11 +83,11 @@
     "no_inclusions": "No inclusions",
     "view_details": "View details",
     "view__rooms": "View rooms",
-    "amenities": "Amenitites",
+    "amenities": "Amenities",
     "fitness_center": "Fitness center",
     "valet_parking": "Valet parking",
     "express_checkout": "Express check-out",
-    "coffe_shop": "Coffe shop",
+    "coffe_shop": "Coffee shop",
     "hairdryer": "Hairdryer",
     "bar_lounge": "Bar/Lounge",
     "kid_friendly": "Kid-friendly",
@@ -106,7 +106,7 @@
   "room": {
     "description": "Description",
     "beds": "Beds",
-    "adults": "Adults",
+    "adults": "Adult(s)",
     "children": "Children",
     "facilities": "Facilities",
     "per_night": "per night",
@@ -116,8 +116,8 @@
   },
 
   "city": {
-    "populer_city_title": "Our Most Popular City",
-    "populer_city_properties": "properties",
+    "populer_city_title": "Our Most Popular Cities",
+    "populer_city_properties": "hotels",
     "motels": "motels"
   },
   "footer": {
@@ -166,7 +166,7 @@
   },
 
   "search": {
-    "adults": "Adults",
+    "adults": "Adult(s)",
     "children": "Children",
     "search_placeholder": "Search your favorite city"
   },
@@ -185,7 +185,7 @@
     "nights": "NIGHTS",
     "room": "ROOMS",
     "beds": "Beds",
-    "adults": "Adults",
+    "adults": "Adult(s)",
     "children": "Children",
     "noti": "The guest checking into each hotel room must be 21 or older, present a valid Photo ID and credit card.",
     "guest_name": "Guest Name",
@@ -234,7 +234,7 @@
     "number": "Number",
     "type": "Type",
     "beds": "Beds",
-    "adults": "Adults",
+    "adults": "Adult(s)",
     "children": "Children",
     "price": "Price",
     "add_room": "Add new room"

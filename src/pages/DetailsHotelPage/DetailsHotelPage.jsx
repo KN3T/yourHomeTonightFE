@@ -111,6 +111,7 @@ const DetailsHotelPage = () => {
       response.data.data && setHotelData(response.data.data);
       setDataOrder({
         ...dataOrder,
+        hotelData: response.data.data,
         hotelAddress: response.data.data.address,
         rating: response.data.data.rating,
       });

@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BiTimeFive } from 'react-icons/bi';
-import { BsFillPeopleFill } from 'react-icons/bs';
+import { BsFillCalendarDateFill, BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdSecurity } from 'react-icons/md';
@@ -127,6 +127,9 @@ const CheckoutPageConfirmation = () => {
                           <h3>{confirmationData.hotel.name}</h3>
                         </Link>
                         <div>
+                          <span>
+                            <BsFillCalendarDateFill />
+                          </span>
                           <span>
                             {moment(confirmationData.checkIn.date).format(
                               'ddd, MMM Do'

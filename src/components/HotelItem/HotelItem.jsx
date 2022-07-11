@@ -40,7 +40,7 @@ const HotelItem = ({
                 <div className="hotel__location">
                   <MdLocationOn className="icon" />
                   <span>
-                    {hotelData.address.address}, {hotelData.address.city},
+                    {hotelData.address.address}, {hotelData.address.city},{' '}
                     {hotelData.address.province}
                   </span>
                 </div>
@@ -98,9 +98,17 @@ const HotelItem = ({
                   <Col xxl={8} xl={8} lg={8} md={24} xs={24}>
                     <div className="price__wrapper">
                       <span className="price">
-                        {t('hotels.price_value', {
-                          val: formatCurrency(hotelData.price, currentLanguage),
-                        })}
+                        <span style={{ color: 'var(--secondary-color)' }}>
+                          {t('details__hotel.from')}
+                        </span>{' '}
+                        <b>
+                          {t('hotels.price_value', {
+                            val: formatCurrency(
+                              hotelData.price,
+                              currentLanguage
+                            ),
+                          })}
+                        </b>
                       </span>
                       <span className="per__night">
                         {t('hotels.per_night')}
