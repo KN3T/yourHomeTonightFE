@@ -1,4 +1,3 @@
-import { ConfigProvider } from 'antd';
 import 'antd/dist/antd.variable.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -8,12 +7,6 @@ import App from './App';
 import './i18n';
 import './index.scss';
 import { store } from './store';
-
-ConfigProvider.config({
-  theme: {
-    primaryColor: '#f7660c',
-  },
-});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -155,16 +155,11 @@
     }
     &__itinerary {
       background-color: rgb(244, 246, 248);
-      display: flex;
       margin-top: 16px;
       border-radius: 16px;
-      height: 70px;
-      flex-direction: row;
+      height: 100%;
+
       .schedule {
-        display: flex;
-        align-items: center;
-        padding: 32px;
-        width: 66.6667%;
         &__item {
           display: flex;
           flex-direction: column;
@@ -251,28 +246,12 @@
 
 @media screen and (max-width: 1144px) {
   .checkout {
-    &__container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
     &__content {
       width: 100%;
       padding: 30px;
 
       &__itinerary {
-        background-color: rgb(244, 246, 248);
-        display: flex;
-        margin-top: 16px;
-        border-radius: 16px;
-        height: 80px;
-        flex-direction: row;
         .schedule {
-          display: flex;
-          align-items: center;
-          padding: 32px;
-          width: 66.6667%;
           &__item {
             display: flex;
             flex-direction: column;
@@ -327,25 +306,9 @@
 
 @media screen and (max-width: 996px) {
   .checkout {
-    &__container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
     &__content {
       &__itinerary {
-        background-color: rgb(244, 246, 248);
-        display: flex;
-        margin-top: 16px;
-        border-radius: 16px;
-        height: 70px;
-        flex-direction: row;
         .schedule {
-          display: flex;
-          align-items: center;
-          padding: 32px;
-          width: 66.6667%;
           &__item {
             display: flex;
             flex-direction: column;
@@ -353,11 +316,11 @@
             margin: 16px;
             .title {
               color: rgb(79, 111, 143);
-              font-size: 10px;
+              font-size: 12px;
               font-weight: 700;
             }
             .content {
-              font-size: 12px;
+              font-size: 14px;
               color: rgb(0, 24, 51);
               font-weight: 700;
             }
@@ -400,24 +363,9 @@
 
 @media screen and (max-width: 728px) {
   .checkout {
-    &__container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
     &__content {
       &__itinerary {
-        background-color: rgb(244, 246, 248);
-        display: flex;
-        margin-top: 16px;
-        border-radius: 16px;
-        height: 110px;
-        flex-direction: row;
         .schedule {
-          display: flex;
-          align-items: center;
-          padding: 32px;
-          width: 66.6667%;
           &__item {
             display: flex;
             flex-direction: column;
@@ -467,25 +415,9 @@
 
 @media screen and (max-width: 558px) {
   .checkout {
-    &__container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
     &__content {
       &__itinerary {
-        background-color: rgb(244, 246, 248);
-        display: flex;
-        margin-top: 16px;
-        border-radius: 16px;
-        height: 110px;
-        flex-direction: row;
         .schedule {
-          display: flex;
-          align-items: center;
-          padding: 32px;
-          width: 66.6667%;
           &__item {
             display: flex;
             flex-direction: column;
