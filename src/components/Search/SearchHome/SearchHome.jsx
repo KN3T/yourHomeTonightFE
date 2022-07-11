@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import './index.scss';
 
 const { RangePicker } = DatePicker;
+const { Search } = Input;
 
 const SearchHome = (props) => {
   const {
@@ -96,9 +97,14 @@ const SearchHome = (props) => {
                   size="large"
                   loading={loading}
                   placeholder={t('search.search_placeholder')}
+                  allowClear
                 />
               </AutoComplete>
-              <Spin className="spin__search" spinning={loading} />
+              <Spin
+                style={{ zIndex: '1' }}
+                className="spin__search"
+                spinning={loading}
+              />
             </Form.Item>
           </Col>
           <Col
