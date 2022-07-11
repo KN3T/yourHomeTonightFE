@@ -1,19 +1,19 @@
-import { ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import {
   Button,
   Col,
   Divider,
   Input,
-  Modal,
   Row,
   Space,
   Spin,
   Table,
   message,
 } from 'antd';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit } from 'react-icons/ai';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useLoadingContext } from 'react-router-loading';
 
@@ -21,8 +21,6 @@ import { roomsApi } from '../../../api/roomsApi';
 import './HotelAdmin.scss';
 import ModalAdd from './ModalAdd/ModalAdd';
 import ModalEdit from './ModalEdit/ModalEdit';
-
-const { confirm } = Modal;
 
 const HotelAdmin = () => {
   const { t } = useTranslation();
@@ -37,9 +35,14 @@ const HotelAdmin = () => {
   const [editRoomData, setEditRoomData] = useState();
   const loadingContext = useLoadingContext();
 
+  const date = [
+    moment('02-07-2000').format('X'),
+    moment('08-02-2000').format('X'),
+  ];
+
   const getRooms = async (id) => {
     setLoading(true);
-    const response = await roomsApi.getAll(id);
+    const response = await roomsApi.getAll({ id, date });
     if (response.data.status === 'success') {
       setRoomData(
         response.data.data &&
@@ -88,6 +91,7 @@ const HotelAdmin = () => {
           No. {record.number}
         </Button>
       ),
+      sorter: (a, b) => a.number - b.number,
     },
     {
       title: 'Type',
@@ -97,18 +101,22 @@ const HotelAdmin = () => {
     {
       title: 'Beds',
       dataIndex: 'beds',
+      sorter: (a, b) => a.beds - b.beds,
     },
     {
       title: 'Adults',
       dataIndex: 'adults',
+      sorter: (a, b) => a.adults - b.adults,
     },
     {
       title: 'Children',
       dataIndex: 'childrenData',
+      sorter: (a, b) => a.childrenData - b.childrenData,
     },
     {
       title: 'Price',
       dataIndex: 'price',
+      sorter: (a, b) => a.price - b.price,
     },
     {
       title: 'Action',
@@ -125,53 +133,11 @@ const HotelAdmin = () => {
             >
               <AiFillEdit />
             </Button>
-            <Button type="danger" onClick={() => onClickDelete(id)}>
-              <AiFillDelete />
-            </Button>
           </Space>
         );
       },
     },
   ];
-
-  const showDeleteConfirm = (roomId) => {
-    confirm({
-      title: 'Are you sure delete this room?',
-      icon: <ExclamationCircleOutlined />,
-      content: 'By confirm this action, this room will be deleted forever',
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
-
-      async onOk() {
-        setLoading(true);
-        try {
-          const response = await roomsApi.delete({
-            roomId: roomId,
-            hotelId: id,
-          });
-          if (response.status === 204) {
-            const filterData = dataSource.filter((item) => item.id !== roomId);
-            setDataSource(filterData);
-            setLoading(false);
-            message.success('A room is deleted!!!');
-          }
-        } catch (error) {
-          console.log(error);
-          setLoading(false);
-          message.error('Something went wrong, please try it again!');
-        }
-      },
-
-      onCancel() {
-        console.log('Cancel');
-      },
-    });
-  };
-
-  const onClickDelete = async (roomId) => {
-    showDeleteConfirm(roomId);
-  };
 
   const onClickEdit = (id) => {
     const data = dataSource.find((item) => item.id === id);
@@ -297,6 +263,7 @@ const HotelAdmin = () => {
                 className="search__input"
                 onChange={(e) => onSearch(e.target.value)}
                 value={searchValue}
+                placeholder="Search by room no, type, price"
               />
             </Col>
             <Col>

@@ -87,7 +87,8 @@ const CheckoutPageConfirmation = () => {
                   </h1>
                   <div>
                     <span className="tag__highlight">
-                      Email sent to: <b>{confirmationData.email}</b>
+                      {t('checkout.email_confirm')}
+                      <b>{confirmationData.email}</b>
                     </span>
                     <div className="details__booking__small__summary">
                       <div className="icon__bed">
@@ -107,10 +108,14 @@ const CheckoutPageConfirmation = () => {
                               'ddd, MMM Do'
                             )}
                           </span>
-                          <span>Check-in: after 12:00 PM</span>
+                          <span>
+                            {t('checkout.check_in_text')}{' '}
+                            {t('checkout.check_in_note')}
+                          </span>
                         </div>
                         <div className="tag__highlight">
-                          Confirmation: #<b>{confirmationData.id}</b>
+                          {t('checkout.booking_id')}: #
+                          <b>{confirmationData.id}</b>
                         </div>
                       </div>
                     </div>
@@ -150,49 +155,61 @@ const CheckoutPageConfirmation = () => {
                               ? confirmationData.hotel.address.province
                               : ''}
                           </p>
-                          <div className="details__booking__content__rating">
-                            <div>
-                              {/* {confirmationData.hotel.rating
-                            ? confirmationData.hotel.rating
-                            : 0}{' '} */}
-                              5
-                            </div>
-                            <span>GUEST RATING</span>
-                          </div>
                         </div>
                       </div>
-                      <div className="details__booking__content__itinerary">
-                        <div className="schedule">
-                          <div className="schedule__item">
-                            <div className="title">CHECK-IN</div>
-                            <div className="content">
-                              {moment(confirmationData.checkIn.date).format(
-                                'ddd, MMM Do YYYY'
-                              )}
+                      <div className="checkout__content__itinerary">
+                        <Row gutter={[10, 10]} style={{ width: '100%' }}>
+                          <Col xxl={16} xl={16} lg={16} md={16} sm={16} xs={24}>
+                            <Row gutter={[10, 10]}>
+                              <Col
+                                xxl={12}
+                                xl={12}
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                xs={24}
+                              >
+                                <div className="schedule__item">
+                                  <div className="title">
+                                    {t('checkout.check_in')}
+                                  </div>
+                                  <div className="content">
+                                    {moment(
+                                      confirmationData.checkIn.date
+                                    ).format('ddd, MMM Do')}
+                                  </div>
+                                </div>
+                              </Col>
+                              <Col
+                                xxl={12}
+                                xl={12}
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                xs={24}
+                              >
+                                <div className="schedule__item">
+                                  <div className="title">
+                                    {t('checkout.check_out')}
+                                  </div>
+                                  <div className="content">
+                                    {moment(
+                                      confirmationData.checkOut.date
+                                    ).format('ddd, MMM Do')}
+                                  </div>
+                                </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                          <Col xxl={8} xl={8} lg={8} md={8} sm={8} xs={24}>
+                            <div className="schedule__item">
+                              <div className="title">
+                                {t('checkout.nights')}
+                              </div>
+                              <div className="content">{nights}</div>
                             </div>
-                          </div>
-                          <hr />
-                          <div className="schedule__item">
-                            <div className="title">CHECK-OUT</div>
-                            <div className="content">
-                              {moment(confirmationData.checkOut.date).format(
-                                'ddd, MMM Do YYYY'
-                              )}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="room__info">
-                          <div className="room__info__item">
-                            <div className="title">Nights</div>
-                            <div className="content">{nights}</div>
-                          </div>
-                          <hr />
-                          <div className="room__info__item">
-                            <div className="title">ROOMS</div>
-                            <div className="content">1</div>
-                          </div>
-                        </div>
+                          </Col>
+                        </Row>
                       </div>
                       <div className="details__booking__content__bottom">
                         <div className="room__type">
@@ -202,16 +219,25 @@ const CheckoutPageConfirmation = () => {
                           <ul>
                             <li className="room__assets__item">
                               <IoBedSharp />
-                              <span>Beds {confirmationData.room.beds}</span>
+                              <span>
+                                {t('checkout.beds')}
+                                {': '} {confirmationData.room.beds}
+                              </span>
                             </li>
                             <li className="room__assets__item">
                               <BsFillPeopleFill />
-                              <span>Adults {confirmationData.room.adults}</span>
+                              <span>
+                                {t('checkout.adults')}
+                                {': '}
+                                {confirmationData.room.adults}
+                              </span>
                             </li>
                             <li className="room__assets__item">
                               <MdOutlineChildCare />
                               <span>
-                                Children {confirmationData.room.children}
+                                {t('checkout.children')}
+                                {': '}
+                                {confirmationData.room.children}
                               </span>
                             </li>
                           </ul>
@@ -221,41 +247,9 @@ const CheckoutPageConfirmation = () => {
                   </Col>
                   <Col xl={8} lg={8} md={24} sm={24} xs={24}>
                     <div className="details__booking__content__summary">
-                      {confirmationData.payment ? (
-                        <>
-                          <div className="details__booking__content__summary__heading">
-                            <h2>Payment Summary</h2>
-                          </div>
-                          <div className="line"></div>
-                          <div className="details__booking__content__summary__list">
-                            <div className="details__booking__content__summary__item">
-                              <span>Billing name</span>
-                              <span>
-                                {confirmationData.payment.billingName}
-                              </span>
-                            </div>
-                            <div className="details__booking__content__summary__item">
-                              <span>Purchase date</span>
-                              <span>
-                                {moment(
-                                  confirmationData.payment.purchasedAt.date
-                                ).format('MMM Do YYYY')}
-                              </span>
-                            </div>
-                            <div className="details__booking__content__summary__item">
-                              <span>Payment method</span>
-                              <span>Stripe</span>
-                            </div>
-                          </div>
-                          <div className="line"></div>
-                        </>
-                      ) : (
-                        ''
-                      )}
-
                       <div className="details__booking__content__summary__list">
                         <div className="details__booking__content__summary__item">
-                          <span>Status</span>
+                          <span>{t('checkout.status')}</span>
                           <Tag
                             color={handleTag(confirmationData.status).color}
                             icon={handleTag(confirmationData.status).icon}
@@ -265,18 +259,7 @@ const CheckoutPageConfirmation = () => {
                           </Tag>
                         </div>
                         <div className="details__booking__content__summary__item">
-                          <span>Cost per night</span>
-                          <span>
-                            {t('hotels.price_value', {
-                              val: formatCurrency(
-                                confirmationData.room.price,
-                                currentLanguage
-                              ),
-                            })}
-                          </span>
-                        </div>
-                        <div className="details__booking__content__summary__item">
-                          <span>Cost per night</span>
+                          <span>{t('checkout.cost_per_night')}</span>
                           <span>
                             {t('hotels.price_value', {
                               val: formatCurrency(
@@ -287,11 +270,11 @@ const CheckoutPageConfirmation = () => {
                           </span>
                         </div>
                         <div className="checkout__content__summary__item">
-                          <span>Number of nights</span>
+                          <span>{t('checkout.num_of_nights')}</span>
                           <span>{nights}</span>
                         </div>
                         <div className="checkout__content__summary__item">
-                          <span>Subtotal</span>
+                          <span>{t('checkout.sub_total')}</span>
                           <span>
                             {t('hotels.price_value', {
                               val: formatCurrency(subTotal, currentLanguage),
@@ -299,7 +282,7 @@ const CheckoutPageConfirmation = () => {
                           </span>
                         </div>
                         <div className="details__booking__content__summary__item">
-                          <span>Taxes and fees</span>
+                          <span>{t('checkout.tax_and_fee')}</span>
                           <span>
                             {t('hotels.price_value', {
                               val: formatCurrency(tax, currentLanguage),
@@ -309,7 +292,7 @@ const CheckoutPageConfirmation = () => {
                       </div>
                       <div className="line"></div>
                       <div className="details__booking__content__summary__total">
-                        <span>Total charges</span>
+                        <span>{t('checkout.total_charges')}</span>
                         <span>
                           {t('hotels.price_value', {
                             val: formatCurrency(total, currentLanguage),
