@@ -60,7 +60,7 @@ const TableBookings = ({ bookings }) => {
           No. {record.roomNumber}
         </Button>
       ),
-      sorter: (a, b) => a.number - b.number,
+      sorter: (a, b) => a.roomNumber - b.roomNumber,
     },
     {
       title: 'Customer Name',
