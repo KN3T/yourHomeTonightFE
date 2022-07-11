@@ -26,7 +26,6 @@ const SiderNavAdmin = () => {
         <Space className="space">
           <a className="link">
             <BarsOutlined className="icon" />
-            <span className="text__icon"></span>
           </a>
         </Space>
 

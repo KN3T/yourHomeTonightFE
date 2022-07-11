@@ -27,10 +27,9 @@ const SiderNav = () => {
     <>
       <div className="navbar__sider__wrapper">
         <Space className="space">
-          <NavLink className="link" to="/login">
+          <a className="link">
             <BarsOutlined className="icon" />
-            <span className="text__icon"></span>
-          </NavLink>
+          </a>
         </Space>
         <Divider
           className="navbar__sider__divider"

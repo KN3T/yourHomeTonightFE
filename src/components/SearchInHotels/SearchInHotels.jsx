@@ -179,6 +179,7 @@ const SearchInHotels = ({
                   onChange={(e) => {
                     setCityName(e.target.value);
                   }}
+                  allowClear
                   style={{ paddingRight: '50px' }}
                   className="input"
                   size="large"

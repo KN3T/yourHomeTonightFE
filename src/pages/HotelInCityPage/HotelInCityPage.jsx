@@ -133,16 +133,18 @@ const HotelInCityPage = () => {
   };
 
   const onFilterPrice = (value) => {
-    setParams({
-      ...params,
-      minPrice: value[0],
-      maxPrice: value[1],
-    });
-    setSearchParams({
-      ...params,
-      minPrice: value[0],
-      maxPrice: value[1],
-    });
+    setTimeout(() => {
+      setParams({
+        ...params,
+        minPrice: value[0],
+        maxPrice: value[1],
+      });
+      setSearchParams({
+        ...params,
+        minPrice: value[0],
+        maxPrice: value[1],
+      });
+    }, 500);
   };
 
   const onChangeRating = (value) => {
