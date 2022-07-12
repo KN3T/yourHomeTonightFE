@@ -43,7 +43,12 @@ const HotelCard = (props) => {
         </div>
         <div className="room_rating">
           {t('hotel.rating')}:{' '}
-          <Rate disabled defaultValue={0} value={rating ? rating : 0} />
+          <Rate
+            allowHalf
+            disabled
+            defaultValue={0}
+            value={rating ? rating : 0}
+          />
         </div>
         <div>
           <span className="room_start">{t('hotel.start_from')}</span>

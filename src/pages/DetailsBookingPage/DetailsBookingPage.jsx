@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BsCalendarDate, BsFillPeopleFill } from 'react-icons/bs';
-import { FaBed } from 'react-icons/fa';
+import { GiNotebook } from 'react-icons/gi';
 import { ImNotification } from 'react-icons/im';
 import { IoBedSharp } from 'react-icons/io5';
 import { MdOutlineChildCare } from 'react-icons/md';
@@ -79,8 +79,8 @@ const CheckoutPageConfirmation = () => {
       <div className="details__booking__wrapper">
         {confirmationData && (
           <section className="details__booking__content ctn">
-            <Row gutter={[16, 0]}>
-              <Col span={24}>
+            <Row gutter={[0, 0]}>
+              <Col xxl={16} xl={15} lg={15} md={24} sm={24} xs={24}>
                 <div className="details__booking__content__heading">
                   <h1>
                     {t('checkout.your_trip_to')}{' '}
@@ -91,9 +91,19 @@ const CheckoutPageConfirmation = () => {
                       {t('checkout.email_confirm')}
                       <b>{confirmationData.email}</b>
                     </span>
-                    <div className="details__booking__small__summary">
-                      <div className="icon__bed">
-                        <FaBed />
+                    <div
+                      style={{ width: '100%' }}
+                      className="details__booking__small__summary"
+                    >
+                      <div
+                        className="checkout__confirmation__content__image"
+                        style={{
+                          marginRight: '16px',
+                          maxHeight: '150px',
+                          borderRadius: '16px',
+                        }}
+                      >
+                        <Image src={confirmationData.hotel.images[0].src} />
                       </div>
                       <div>
                         <Link to={`/hotels/${confirmationData.hotel.id}`}>
@@ -119,6 +129,7 @@ const CheckoutPageConfirmation = () => {
                           </span>
                         </div>
                         <div className="tag__highlight">
+                          <GiNotebook />
                           {t('checkout.booking_id')}: #
                           <b>{confirmationData.id}</b>
                         </div>
@@ -126,8 +137,8 @@ const CheckoutPageConfirmation = () => {
                     </div>
                   </div>
                 </div>
-                <Divider />
               </Col>
+              <Divider style={{ margin: 0 }} />
               {confirmationData && confirmationData && (
                 <>
                   <Col xl={16} lg={16} md={24} sm={24} xs={24}>
@@ -325,10 +336,10 @@ const CheckoutPageConfirmation = () => {
                   </Col>
                 </>
               )}
+              <Divider style={{ marginTop: '12px' }} />
             </Row>
             {confirmationData.status === 4 && (
-              <Row>
-                <Divider />
+              <Row gutter={[16, 0]} style={{ marginTop: '16px' }}>
                 <Col xl={12} lg={12} md={24} sm={24} xs={24}>
                   <Card>
                     <BookingFeedback

@@ -4,6 +4,9 @@ import { Typography } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import bangkok from '../../assets/images/bangkok.jpg';
+import cantho from '../../assets/images/cantho.jpg';
+import hanoi from '../../assets/images/hanoi.jpg';
 import './CityIntro.scss';
 
 const { Title, Text } = Typography;
@@ -11,11 +14,11 @@ const { Title, Text } = Typography;
 const CityInfo = ({ cityData, onClickCity }) => {
   const { t } = useTranslation();
   const images = [
-    'https://i1-kinhdoanh.vnecdn.net/2020/10/19/121774598-699865344269296-8580-6401-9195-1603091427.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=46C_F171FelZxbt2hQuCkQ',
+    cantho,
     'https://res.klook.com/image/upload/c_crop,w_1125,h_624,x_1,y_0/w_1125,h_624/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/destination/ur2mrg23d91mex03l4mw.jpg',
     'https://cdnmedia.baotintuc.vn/Upload/c2tvplmdloSDblsn03qN2Q/files/2020/11/04/thanh-pho-thu-duc-tp-ho-chi-minh-41120.jpg',
-    'http://divui.com/blog/wp-content/uploads/2016/11/bangkok-city.jpg',
-    'https://media-cdn.tripadvisor.com/media/photo-s/1b/28/2a/ed/ha-n-i-th-do-van-minh.jpg',
+    bangkok,
+    hanoi,
   ];
 
   const popularCities = cityData.map((item, index) => {

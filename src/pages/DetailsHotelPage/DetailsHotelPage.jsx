@@ -355,7 +355,7 @@ const DetailsHotelPage = () => {
                 xs={{ span: 24 }}
               >
                 <h1 id="list__rooms">{t('details__hotel.rating')}</h1>
-                <Rate disabled defaultValue={hotelData.rating} />
+                <Rate allowHalf disabled defaultValue={hotelData.rating} />
                 <p>
                   {t('details__hotel.based_on', {
                     review: hotelData.ratingCount,
