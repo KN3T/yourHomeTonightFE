@@ -35,21 +35,23 @@ const SiderNav = () => {
           className="navbar__sider__divider"
           style={{ margin: '14px 0' }}
         />
-        {userData.token ? (
-          <Space className="space">
-            <NavLink to="/userprofile" className="link">
-              <UserOutlined className="icon" />
-              <span className="text__icon">{t('navbar.profile')}</span>
-            </NavLink>
-          </Space>
-        ) : (
-          <Space className="space">
-            <NavLink className="link" to="/login">
-              <UserOutlined className="icon" />
-              <span className="text__icon">{t('navbar.login')}</span>
-            </NavLink>
-          </Space>
-        )}
+
+        {userData.role === 'ROLE_USER' &&
+          (userData.token ? (
+            <Space className="space">
+              <NavLink to="/userprofile" className="link">
+                <UserOutlined className="icon" />
+                <span className="text__icon">{t('navbar.profile')}</span>
+              </NavLink>
+            </Space>
+          ) : (
+            <Space className="space">
+              <NavLink className="link" to="/login">
+                <UserOutlined className="icon" />
+                <span className="text__icon">{t('navbar.login')}</span>
+              </NavLink>
+            </Space>
+          ))}
 
         <Space className="space">
           <NavLink className="link" to="/">
