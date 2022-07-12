@@ -140,6 +140,16 @@ const HomePage = () => {
     let result = await hotelApi.getAll();
     if (result.data.status === 'success') {
       const { data } = result;
+      result.data.data.hotels
+        .sort((a, b) => {
+          const keyA = a.rating,
+            keyB = b.rating;
+
+          if (keyA < keyB) return -1;
+          if (keyA > keyB) return 1;
+          return 0;
+        })
+        .reverse();
       setHotelData(data.data.hotels);
       data && loadingContext.done();
     }
