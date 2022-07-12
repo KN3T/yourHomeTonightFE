@@ -32,7 +32,7 @@ const FeedBack = ({ hotelId, hotelData }) => {
             content={
               <Space direction="vertical">
                 <Rate disabled defaultValue={record.rating} />
-                <p style={{ fontSize: '10px', opacity: '.7' }}>
+                <p style={{ fontSize: '12px', opacity: '.7' }}>
                   Room type: {record.roomType}
                 </p>
                 <p>{record.content}</p>
