@@ -29,7 +29,7 @@ const Dashboard = () => {
         labels: data.data.map((data) => data.month),
         datasets: [
           {
-            label: 'GBV (Gross Booking Volume)',
+            label: 'GBV (Gross Booking Value)',
             data: data.data.map((data) => data.revenue),
           },
         ],
