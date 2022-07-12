@@ -105,7 +105,7 @@
 
   "room": {
     "description": "Description",
-    "beds": "Beds",
+    "beds": "Bed(s)",
     "adults": "Adult(s)",
     "children": "Children",
     "facilities": "Facilities",
@@ -184,7 +184,7 @@
     "check_out": "CHECK-OUT",
     "nights": "NIGHTS",
     "room": "ROOMS",
-    "beds": "Beds",
+    "beds": "Bed(s)",
     "adults": "Adult(s)",
     "children": "Children",
     "noti": "The guest checking into each hotel room must be 21 or older, present a valid Photo ID and credit card.",
@@ -233,7 +233,7 @@
     "action": "Action",
     "number": "Number",
     "type": "Type",
-    "beds": "Beds",
+    "beds": "Bed(s)",
     "adults": "Adult(s)",
     "children": "Children",
     "price": "Price",
